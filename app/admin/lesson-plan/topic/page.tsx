@@ -277,5 +277,3 @@ export default function TopicPage() {
     </div>
   );
 }
-// Using FaCheckDouble from icons
-import { FaCheckDouble } from "react-icons/fa";
