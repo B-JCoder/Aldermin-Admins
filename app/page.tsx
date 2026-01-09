@@ -10,17 +10,17 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import {
-  BiThreeDots,
+  BiDotsVerticalRounded,
   BiBell,
-  BiGraphUpArrow,
-  BiGraphDownArrow,
-  BiGenderMale,
-  BiGenderFemale,
+  BiUpArrowAlt,
+  BiMaleSign,
+  BiFemaleSign,
   BiPlus,
   BiPencil,
   BiTrash,
   BiChevronLeft,
   BiChevronRight,
+  BiDownArrowAlt,
 } from "react-icons/bi";
 import { FaCircle } from "react-icons/fa";
 
@@ -83,7 +83,7 @@ export default function Dashboard() {
               <div className="flex justify-between items-center mb-1">
                 <h6 className="font-semibold text-gray-800">Students</h6>
                 <button className="text-gray-700 hover:text-gray-900">
-                  <BiThreeDots size={20} />
+                  <BiDotsVerticalRounded size={20} />
                 </button>
               </div>
               <h3 className="text-2xl font-bold text-gray-900">1,230</h3>
@@ -97,7 +97,7 @@ export default function Dashboard() {
               <div className="flex justify-between items-center mb-1">
                 <h6 className="font-semibold text-gray-800">Teachers</h6>
                 <button className="text-gray-700 hover:text-gray-900">
-                  <BiThreeDots size={20} />
+                  <BiDotsVerticalRounded size={20} />
                 </button>
               </div>
               <h3 className="text-2xl font-bold text-gray-900">60</h3>
@@ -111,7 +111,7 @@ export default function Dashboard() {
               <div className="flex justify-between items-center mb-1">
                 <h6 className="font-semibold text-gray-800">Employee</h6>
                 <button className="text-gray-700 hover:text-gray-900">
-                  <BiThreeDots size={20} />
+                  <BiDotsVerticalRounded size={20} />
                 </button>
               </div>
               <h3 className="text-2xl font-bold text-gray-900">100</h3>
@@ -171,7 +171,10 @@ export default function Dashboard() {
           <div className="bg-white rounded-[20px] shadow-sm p-6 h-full flex flex-col">
             <div className="flex justify-between items-center mb-6">
               <h5 className="font-semibold text-gray-800 text-lg">Students</h5>
-              <BiThreeDots size={22} className="text-gray-600 cursor-pointer" />
+              <BiDotsVerticalRounded
+                size={22}
+                className="text-gray-600 cursor-pointer"
+              />
             </div>
 
             <div className="flex-1 flex justify-around items-center flex-wrap gap-4">
@@ -238,10 +241,10 @@ export default function Dashboard() {
             <div className="mt-6 text-center">
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-blue-500 font-semibold flex items-center justify-center gap-2">
-                  <BiGenderMale size={18} /> 3,178 (Boys)
+                  <BiMaleSign size={18} /> 3,178 (Boys)
                 </div>
                 <div className="text-yellow-500 font-semibold flex items-center justify-center gap-2">
-                  <BiGenderFemale size={18} /> 2,731 (Girls)
+                  <BiFemaleSign size={18} /> 2,731 (Girls)
                 </div>
               </div>
             </div>
@@ -366,7 +369,7 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
               {/* Income */}
               <div className="bg-cyan-50/50 p-6 rounded-[20px] relative text-gray-800 flex flex-col justify-end">
-                <BiGraphUpArrow className="absolute top-6 left-6 text-white text-2xl drop-shadow-sm" />
+                <BiUpArrowAlt className="absolute top-6 left-6 text-white text-2xl drop-shadow-sm" />
                 <span className="absolute top-6 right-6 bg-green-100 text-green-700 border border-green-200 text-[11px] font-bold px-3 py-1 rounded-full">
                   ↑ 12%
                 </span>
@@ -382,7 +385,7 @@ export default function Dashboard() {
 
               {/* Expense */}
               <div className="bg-blue-50/50 p-6 rounded-[20px] relative text-gray-800 flex flex-col justify-end">
-                <BiGraphDownArrow className="absolute top-6 left-6 text-white text-2xl drop-shadow-sm" />
+                <BiDownArrowAlt className="absolute top-6 left-6 text-white text-2xl drop-shadow-sm" />
                 <span className="absolute top-6 right-6 bg-red-100 text-red-700 border border-red-200 text-[11px] font-bold px-3 py-1 rounded-full">
                   ↓ 0.5%
                 </span>
@@ -415,7 +418,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <button>
-                <BiThreeDots size={22} className="text-gray-600" />
+                <BiDotsVerticalRounded size={22} className="text-gray-600" />
               </button>
             </div>
             <div className="flex-1 w-full min-h-0">
@@ -502,7 +505,7 @@ export default function Dashboard() {
               <div className="flex justify-between items-start mb-4">
                 <h6 className="font-semibold text-gray-800">Fee Status</h6>
                 <button>
-                  <BiThreeDots size={20} className="text-gray-600" />
+                  <BiDotsVerticalRounded size={20} className="text-gray-600" />
                 </button>
               </div>
 
@@ -545,7 +548,7 @@ export default function Dashboard() {
             <div className="flex justify-between items-center mb-4">
               <h6 className="font-semibold text-gray-800">Messages</h6>
               <button>
-                <BiThreeDots size={20} className="text-gray-600" />
+                <BiDotsVerticalRounded size={20} className="text-gray-600" />
               </button>
             </div>
 
