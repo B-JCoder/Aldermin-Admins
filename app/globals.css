@@ -1,27 +1,181 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 @theme {
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 @layer base {
-    body {
-        @apply bg-gray-50 text-gray-800;
-    }
+  body {
+    @apply bg-[#F5F5F7] text-gray-900;
+  }
 }
 
-/* Custom Scrollbar for Sidebar */
+/* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
-    background: #233342;
+  background: transparent;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #37474f;
-    border-radius: 5px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #455a64;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Primary: #FFFFFF (White) */
+  --background: #f5f5f7;
+  --foreground: #000000;
+
+  /* Card: Glass White */
+  --card: #ffffff; /* Base card color, though we use glass utility mostly */
+  --card-foreground: #000000;
+
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+
+  /* Primary for Shadcn (White per user request, but used for buttons/actions?) 
+       User said: "Primary: #FFFFFF". "Buttons -> Secondary background".
+       Shadcn Button variant="default" uses bg-primary. 
+       If I set --primary to #006D5F, then default buttons match User's request.
+       If I set --primary to #FFFFFF, default buttons are white.
+       I will set --primary to #006D5F (Secondary color) effectively for the default action color, 
+       BUT I must respect the variable naming.
+       The prompt says "Primary: #FFFFFF".
+       I will define --primary as #FFFFFF.
+       And I will define --secondary as #006D5F.
+       And I will update components to use variant="secondary" for main actions effectively.
+    */
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+
+  --secondary: #006d5f;
+  --secondary-foreground: #ffffff;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  --accent: #000000;
+  --accent-foreground: #ffffff;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #006d5f;
+
+  --chart-1: #006d5f;
+  --chart-2: #2a9d8f;
+  --chart-3: #e9c46a;
+  --chart-4: #f4a261;
+  --chart-5: #e76f51;
+
+  /* Sidebar - Secondary Background */
+  --sidebar: #006d5f;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #006d5f;
+  --sidebar-accent: #005a4e; /* Slightly darker/lighter for hover */
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #ffffff;
+}
+
+.dark {
+  /* Keeping dark mode but aligning with brand if needed. 
+       The user didn't specify dark mode details explicitly other than "Icons -> White on dark".
+       I'll keep standard dark defaults but using the teal as secondary.
+    */
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #18181b;
+  --card-foreground: #fafafa;
+  --popover: #18181b;
+  --popover-foreground: #fafafa;
+  --primary: #fafafa;
+  --primary-foreground: #18181b;
+  --secondary: #006d5f;
+  --secondary-foreground: #fafafa;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --accent: #27272a;
+  --accent-foreground: #fafafa;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #fafafa;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #d4d4d8;
+
+  --sidebar: #050505;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #006d5f;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #27272a;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #27272a;
+  --sidebar-ring: #d4d4d8;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
