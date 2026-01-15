@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import AdminLayout from "@/components/layout/AdminLayout";
 
 export default function ForgotPasswordPage() {
   const router = useRouter();
