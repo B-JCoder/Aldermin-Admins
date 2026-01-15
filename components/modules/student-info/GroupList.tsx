@@ -1,0 +1,121 @@
+"use client";
+
+import React from "react";
+import { GlassCard } from "@/components/cards/GlassCard";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { FaLayerGroup, FaEdit, FaTrash } from "react-icons/fa";
+
+interface Group {
+  id: number;
+  name: string;
+  grade: string;
+  section: string;
+}
+
+interface GroupListProps {
+  groups: Group[];
+}
+
+export function GroupList({ groups }: GroupListProps) {
+  return (
+    <GlassCard className="p-8 pb-0 overflow-hidden">
+      <div className="flex items-center justify-between mb-8">
+        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+          Assembly Registry
+        </h4>
+        <Badge
+          variant="secondary"
+          className="bg-secondary text-white px-4 py-1.5 text-[10px] font-black rounded-full uppercase tracking-tighter shadow-sm hover:bg-secondary/90"
+        >
+          {groups.length} Groups Active
+        </Badge>
+      </div>
+
+      <div className="overflow-hidden rounded-xl border border-white/20 bg-white/40">
+        <Table>
+          <TableHeader className="bg-white/50">
+            <TableRow>
+              <TableHead className="px-6 py-5 w-16 text-[10px] uppercase font-black text-muted-foreground">
+                SN
+              </TableHead>
+              <TableHead className="px-6 py-5 text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                Assembly Identity
+              </TableHead>
+              <TableHead className="px-6 py-5 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                Target Scope
+              </TableHead>
+              <TableHead className="px-6 py-5 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                Action
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {groups.map((g, index) => (
+              <TableRow
+                key={g.id}
+                className="hover:bg-white/60 transition-all group"
+              >
+                <TableCell className="px-6 py-5 text-muted-foreground font-mono text-xs italic">
+                  {index + 1}
+                </TableCell>
+                <TableCell className="px-6 py-5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-white/50 flex items-center justify-center text-secondary/50 group-hover:bg-secondary/10 group-hover:text-secondary group-hover:shadow-sm transition-all border border-white/40">
+                      <FaLayerGroup size={12} />
+                    </div>
+                    <span className="font-black text-foreground tracking-tight text-sm font-serif italic">
+                      {g.name}
+                    </span>
+                  </div>
+                </TableCell>
+                <TableCell className="px-6 py-5 text-center">
+                  <div className="flex flex-col items-center gap-1">
+                    <Badge
+                      variant="outline"
+                      className="bg-white/50 text-muted-foreground text-[9px]"
+                    >
+                      Grades: {g.grade}
+                    </Badge>
+                    <Badge
+                      variant="outline"
+                      className="bg-white/50 text-muted-foreground text-[9px]"
+                    >
+                      Units: {g.section}
+                    </Badge>
+                  </div>
+                </TableCell>
+                <TableCell className="px-6 py-5 text-center">
+                  <div className="flex justify-center gap-2">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-blue-500 hover:text-white hover:bg-blue-600 rounded-lg"
+                    >
+                      <FaEdit size={14} />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-destructive hover:text-white hover:bg-destructive rounded-lg"
+                    >
+                      <FaTrash size={14} />
+                    </Button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </GlassCard>
+  );
+}

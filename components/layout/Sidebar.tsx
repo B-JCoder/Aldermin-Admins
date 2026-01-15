@@ -21,7 +21,7 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 type SubMenuItem = {
   label: string;
@@ -31,8 +31,8 @@ type SubMenuItem = {
 type MenuItem = {
   icon: React.ElementType;
   label: string;
-  href?: string; // If it has a direct link
-  subItems?: SubMenuItem[]; // If it has submenu
+  href?: string;
+  subItems?: SubMenuItem[];
 };
 
 const menuItems: MenuItem[] = [
@@ -50,7 +50,7 @@ const menuItems: MenuItem[] = [
         href: "/admin/student-info/wise-attendance",
       },
       { label: "Student Group", href: "/admin/student-info/group" },
-      { label: "Student Promote", href: "/admin/student-info/promote" }, // Simplified for now
+      { label: "Student Promote", href: "/admin/student-info/promote" },
     ],
   },
   {
@@ -261,27 +261,27 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="w-64 bg-[#233342] text-white h-screen overflow-y-auto custom-scrollbar flex-shrink-0">
-      <div className="p-4 flex items-center justify-center">
+    <aside className="w-64 bg-sidebar text-sidebar-foreground h-screen overflow-y-auto custom-scrollbar flex-shrink-0 transition-colors duration-300 border-r border-sidebar-border/10">
+      <div className="p-4 flex items-center justify-center border-b border-sidebar-border/10">
         {/* Logo */}
-        <h1 className="text-2xl font-bold">Aldermin</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Aldermin</h1>
       </div>
       <nav className="mt-4">
         <ul>
           {menuItems.map((item, index) => (
             <li
               key={index}
-              className="border-l-4 border-transparent hover:border-[#1e88e5]"
+              className="border-l-4 border-transparent hover:border-sidebar-foreground/50"
             >
               {item.subItems ? (
                 <div>
                   <button
                     onClick={() => toggleSubMenu(item.label)}
-                    className="w-full flex items-center justify-between px-4 py-3 text-gray-300 hover:bg-[#1e2b36] hover:text-white transition-colors"
+                    className="w-full flex items-center justify-between px-4 py-3 text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all duration-200"
                   >
                     <div className="flex items-center gap-3">
-                      <item.icon className="text-lg" />
-                      <span className="font-medium">{item.label}</span>
+                      <item.icon className="text-lg opacity-90" />
+                      <span className="font-medium text-sm">{item.label}</span>
                     </div>
                     {openSubMenus.includes(item.label) ? (
                       <IoIosArrowDown />
@@ -291,11 +291,11 @@ export default function Sidebar() {
                   </button>
                   {/* Submenu */}
                   <div
-                    className={clsx(
-                      "bg-[#1a2632] overflow-hidden transition-all duration-300",
+                    className={cn(
+                      "bg-black/10 overflow-hidden transition-all duration-300 ease-in-out",
                       openSubMenus.includes(item.label)
-                        ? "max-h-[1000px]"
-                        : "max-h-0"
+                        ? "max-h-[1000px] opacity-100"
+                        : "max-h-0 opacity-0"
                     )}
                   >
                     <ul className="py-2">
@@ -303,7 +303,7 @@ export default function Sidebar() {
                         <li key={subIndex}>
                           <Link
                             href={subItem.href}
-                            className="block px-4 py-2 pl-12 text-sm text-gray-400 hover:text-white hover:bg-[#233342] transition-colors"
+                            className="block px-4 py-2 pl-12 text-xs font-medium text-sidebar-foreground/70 hover:text-white hover:bg-white/10 transition-colors"
                           >
                             {subItem.label}
                           </Link>
@@ -315,10 +315,10 @@ export default function Sidebar() {
               ) : (
                 <Link
                   href={item.href || "#"}
-                  className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-[#1e2b36] hover:text-white transition-colors"
+                  className="flex items-center gap-3 px-4 py-3 text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all duration-200"
                 >
-                  <item.icon className="text-lg" />
-                  <span className="font-medium">{item.label}</span>
+                  <item.icon className="text-lg opacity-90" />
+                  <span className="font-medium text-sm">{item.label}</span>
                 </Link>
               )}
             </li>
