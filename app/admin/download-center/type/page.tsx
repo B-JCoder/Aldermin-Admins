@@ -1,9 +1,26 @@
 "use client";
 
 import React, { useState } from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { PageHeader } from "@/components/common/PageHeader";
+import { ListToolbar } from "@/components/common/ListToolbar";
+import { ListPagination } from "@/components/common/ListPagination";
+import { ListActionButtons } from "@/components/common/ListActionButtons";
+import { GlassCard } from "@/components/cards/GlassCard";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
 
 export default function ContentTypePage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -22,151 +39,140 @@ export default function ContentTypePage() {
     },
   ]);
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const filteredTypes = typeList.filter(
+    (item: any) =>
+      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form Submitted", formData);
-  };
-
-  const handleDelete = (id: number) => {
-    if (confirm("Are you sure you want to delete this record?")) {
-      setTypeList((prev) => prev.filter((item) => item.id !== id));
-    }
-  };
+  const totalPages = Math.ceil(filteredTypes.length / pageSize);
+  const paginatedTypes = filteredTypes.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
 
   return (
-    <div className="container mx-auto p-4 space-y-6">
-      <div className="flex items-center justify-between">
-        <h4 className="text-xl font-bold text-gray-800 tracking-tight">
-          Content Type
-        </h4>
-      </div>
+    <div className="container mx-auto space-y-8">
+      <PageHeader
+        title="Content Type Taxonomy"
+        subtitle="Define and Organize Institutional Digital Asset Classifications"
+      />
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Form Section */}
-        <div className="md:col-span-1">
-          <div className="rounded-xl bg-white p-6 shadow-sm border border-gray-100 ring-1 ring-black/5">
-            <h4 className="mb-5 text-sm font-bold text-gray-400 gap-2 uppercase tracking-widest leading-none">
-              Add Content Type
+        <div className="lg:col-span-4 h-full">
+          <GlassCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
+            <h4 className="mb-8 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+              Define Taxonomy
             </h4>
-            <form onSubmit={handleSubmit} noValidate className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Name <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full rounded-lg border-gray-300 p-2.5 border text-sm focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all"
-                  required
-                />
+            <form className="space-y-6 flex-1">
+              <div className="space-y-5">
+                <div>
+                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                    Classification Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm italic"
+                    placeholder="e.g. Technical Guide"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                    Conceptual Description
+                  </label>
+                  <textarea
+                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm min-h-[120px]"
+                    placeholder="Define the scope of this classification..."
+                    rows={4}
+                  ></textarea>
+                </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Description
-                </label>
-                <textarea
-                  name="description"
-                  value={formData.description}
-                  onChange={handleInputChange}
-                  className="w-full rounded-lg border-gray-300 p-2.5 border text-sm focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all"
-                  rows={4}
-                ></textarea>
-              </div>
-
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  className="w-full rounded-lg bg-blue-600 px-4 py-2.5 text-white font-bold text-sm transition-all hover:bg-blue-700 active:scale-[0.98] shadow-md shadow-blue-100"
-                >
-                  Save Type
-                </button>
+              <div className="pt-6">
+                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl shadow-secondary/20 transition-all active:scale-95">
+                  Save Taxonomy Class
+                </Button>
               </div>
             </form>
-          </div>
+          </GlassCard>
         </div>
 
         {/* List Section */}
-        <div className="md:col-span-2">
-          <div className="rounded-xl bg-white p-6 shadow-sm border border-gray-100 ring-1 ring-black/5">
-            <h4 className="mb-5 text-sm font-bold text-gray-400 gap-2 uppercase tracking-widest leading-none">
-              Content Type List
-            </h4>
-            <div className="overflow-x-auto rounded-xl border border-gray-100">
-              <table className="min-w-full text-sm">
-                <thead className="bg-gray-50/50 text-gray-500 font-bold">
-                  <tr>
-                    <th className="px-6 py-4 text-left w-16 uppercase tracking-tighter">
-                      SN
-                    </th>
-                    <th className="px-6 py-4 text-left uppercase tracking-tighter">
-                      Name
-                    </th>
-                    <th className="px-6 py-4 text-left uppercase tracking-tighter">
-                      Description
-                    </th>
-                    <th className="px-6 py-4 text-center uppercase tracking-tighter">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {typeList.map((item, index) => (
-                    <tr
-                      key={item.id}
-                      className="hover:bg-gray-50/30 transition-colors"
-                    >
-                      <td className="px-6 py-4 text-gray-400 font-mono text-xs">
-                        {index + 1}
-                      </td>
-                      <td className="px-6 py-4 font-bold text-gray-800 tracking-tight">
-                        {item.name}
-                      </td>
-                      <td className="px-6 py-4 text-gray-500 line-clamp-1 max-w-xs">
-                        {item.description}
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex justify-center space-x-2">
-                          <button
-                            className="p-2 rounded-lg bg-gray-50 text-blue-500 hover:bg-blue-600 hover:text-white transition-all shadow-sm"
-                            title="Edit"
-                          >
-                            <FaEdit size={14} />
-                          </button>
-                          <button
-                            onClick={() => handleDelete(item.id)}
-                            className="p-2 rounded-lg bg-gray-50 text-red-500 hover:bg-red-600 hover:text-white transition-all shadow-sm"
-                            title="Delete"
-                          >
-                            <FaTrash size={14} />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                  {typeList.length === 0 && (
-                    <tr>
-                      <td
-                        colSpan={4}
-                        className="px-6 py-12 text-center text-gray-300 font-bold uppercase tracking-widest text-[10px]"
-                      >
-                        No content types defined.
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+        <div className="lg:col-span-8 space-y-6 flex flex-col h-full">
+          <ListToolbar
+            searchPlaceHolder="Search taxonomy registry..."
+            onSearch={setSearchTerm}
+            showAddButton={false}
+          />
+
+          <GlassCard className="flex-1 flex flex-col">
+            <div className="p-8 border-b border-white/20">
+              <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+                Active Classification Registry
+              </h4>
             </div>
-          </div>
+
+            <div className="flex-1 overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-20">SN</TableHead>
+                    <TableHead>Classification Name</TableHead>
+                    <TableHead>Scope Description</TableHead>
+                    <TableHead className="text-center">Governance</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {paginatedTypes.map((item: any, index: number) => (
+                    <TableRow key={item.id} className="group">
+                      <TableCell className="font-mono text-xs text-muted-foreground italic">
+                        {(currentPage - 1) * pageSize + index + 1}
+                      </TableCell>
+                      <TableCell>
+                        <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none">
+                          {item.name}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="text-[10px] text-muted-foreground/60 italic font-medium leading-relaxed max-w-sm">
+                          {item.description}
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <ListActionButtons
+                          onEdit={() => console.log("Edit")}
+                          onDelete={() => console.log("Delete")}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  {paginatedTypes.length === 0 && (
+                    <TableRow>
+                      <TableCell
+                        colSpan={4}
+                        className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                      >
+                        No matches found in taxonomy registry.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </div>
+
+            {filteredTypes.length > pageSize && (
+              <ListPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+                totalRecords={filteredTypes.length}
+                pageSize={pageSize}
+              />
+            )}
+          </GlassCard>
         </div>
       </div>
     </div>

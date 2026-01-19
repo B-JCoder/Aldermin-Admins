@@ -1,9 +1,25 @@
 "use client";
 
 import React, { useState } from "react";
-import { FaEdit, FaTrash, FaShareAlt } from "react-icons/fa";
+import { PageHeader } from "@/components/common/PageHeader";
+import { ListToolbar } from "@/components/common/ListToolbar";
+import { ListPagination } from "@/components/common/ListPagination";
+import { ListActionButtons } from "@/components/common/ListActionButtons";
+import { GlassCard } from "@/components/cards/GlassCard";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 export default function SharedContentPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
+
   const [contentList, setContentList] = useState([
     {
       id: 1,
@@ -23,110 +39,112 @@ export default function SharedContentPage() {
     },
   ]);
 
-  const handleDelete = (id: number) => {
-    if (confirm("Are you sure you want to delete this shared content?")) {
-      setContentList((prev) => prev.filter((item) => item.id !== id));
-    }
-  };
+  const filteredContent = contentList.filter(
+    (item: any) =>
+      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.sendTo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.sharedBy.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredContent.length / pageSize);
+  const paginatedContent = filteredContent.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
 
   return (
-    <div className="container mx-auto p-4 space-y-6">
-      <div className="flex items-center justify-between">
-        <h4 className="text-xl font-bold text-gray-800 tracking-tight">
-          Shared Content
-        </h4>
-      </div>
+    <div className="container mx-auto space-y-8">
+      <PageHeader
+        title="Shared Content Registry"
+        subtitle="View and manage files shared with students or staff"
+      />
 
-      <div className="rounded-xl bg-white p-6 shadow-sm border border-gray-100 ring-1 ring-black/5">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="p-2 bg-indigo-50 rounded-lg">
-            <FaShareAlt className="text-indigo-600" size={20} />
-          </div>
-          <div>
-            <h4 className="text-lg font-bold text-gray-900 leading-none">
-              Management of Shared Resources
+      <div className="space-y-6 flex flex-col h-full">
+        <ListToolbar
+          searchPlaceHolder="Search shared resources..."
+          onSearch={setSearchTerm}
+          showAddButton={false}
+        />
+
+        <GlassCard className="flex-1 flex flex-col">
+          <div className="p-8 border-b border-white/20">
+            <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+              Institutional Resource Governance
             </h4>
-            <p className="text-xs text-gray-500 mt-1 font-medium">
-              View and manage files shared with students or staff
-            </p>
           </div>
-        </div>
 
-        <div className="overflow-x-auto rounded-xl border border-gray-100">
-          <table className="min-w-full text-sm">
-            <thead className="bg-gray-50/50 text-gray-400 font-black uppercase text-[10px] tracking-widest">
-              <tr>
-                <th className="px-6 py-4 text-left w-16">SN</th>
-                <th className="px-6 py-4 text-left">Resource Name</th>
-                <th className="px-6 py-4 text-left">Recipients</th>
-                <th className="px-6 py-4 text-left">Shared Date</th>
-                <th className="px-6 py-4 text-left">Valid Until</th>
-                <th className="px-6 py-4 text-left">Publisher</th>
-                <th className="px-6 py-4 text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {contentList.map((item, index) => (
-                <tr
-                  key={item.id}
-                  className="hover:bg-indigo-50/10 transition-colors group"
-                >
-                  <td className="px-6 py-4 text-gray-400 font-mono text-xs">
-                    {index + 1}
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="font-bold text-gray-800 group-hover:underline cursor-pointer">
-                      {item.name}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="inline-flex items-center rounded-md bg-gray-100 px-2.5 py-1 text-[10px] font-black text-gray-600">
-                      {item.sendTo}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-gray-500 font-medium text-xs">
-                    {item.sharedDate}
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="text-xs font-bold text-red-500 bg-red-50 px-2 py-1 rounded">
-                      {item.validUpto}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 text-xs font-bold">
-                    {item.sharedBy}
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex justify-center space-x-2">
-                      <button
-                        className="p-2 rounded-lg bg-gray-50 text-blue-500 hover:bg-blue-600 hover:text-white transition-all shadow-sm"
-                        title="Edit"
-                      >
-                        <FaEdit size={14} />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(item.id)}
-                        className="p-2 rounded-lg bg-gray-50 text-red-500 hover:bg-red-600 hover:text-white transition-all shadow-sm"
-                        title="Delete"
-                      >
-                        <FaTrash size={14} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-              {contentList.length === 0 && (
-                <tr>
-                  <td
-                    colSpan={7}
-                    className="px-6 py-12 text-center text-gray-300 font-bold uppercase tracking-widest text-[10px]"
-                  >
-                    No content shared currently.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+          <div className="flex-1 overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-16">SN</TableHead>
+                  <TableHead>Resource Name</TableHead>
+                  <TableHead>Recipients</TableHead>
+                  <TableHead>Shared Date</TableHead>
+                  <TableHead>Valid Until</TableHead>
+                  <TableHead>Publisher</TableHead>
+                  <TableHead className="text-center">Action</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {paginatedContent.map((item: any, index: number) => (
+                  <TableRow key={item.id} className="group">
+                    <TableCell className="font-mono text-xs text-muted-foreground italic">
+                      {(currentPage - 1) * pageSize + index + 1}
+                    </TableCell>
+                    <TableCell>
+                      <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none group-hover:text-secondary group-hover:underline cursor-pointer transition-all">
+                        {item.name}
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <span className="inline-flex items-center rounded-xl bg-secondary/10 border border-secondary/20 px-3 py-1.5 text-[10px] font-black text-secondary uppercase tracking-widest">
+                        {item.sendTo}
+                      </span>
+                    </TableCell>
+                    <TableCell className="text-[11px] font-bold text-muted-foreground/60 font-mono">
+                      {item.sharedDate}
+                    </TableCell>
+                    <TableCell>
+                      <span className="text-[10px] font-black text-red-500 bg-red-50/50 border border-red-100 px-2 py-1.5 rounded-xl uppercase tracking-widest">
+                        {item.validUpto}
+                      </span>
+                    </TableCell>
+                    <TableCell className="text-[11px] font-black text-secondary uppercase italic">
+                      {item.sharedBy}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <ListActionButtons
+                        onEdit={() => console.log("Edit")}
+                        onDelete={() => console.log("Delete")}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
+                {paginatedContent.length === 0 && (
+                  <TableRow>
+                    <TableCell
+                      colSpan={7}
+                      className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    >
+                      No matching resources shared.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </div>
+
+          {filteredContent.length > pageSize && (
+            <ListPagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+              totalRecords={filteredContent.length}
+              pageSize={pageSize}
+            />
+          )}
+        </GlassCard>
       </div>
     </div>
   );

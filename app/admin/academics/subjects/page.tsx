@@ -1,6 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
+import { FaPlus } from "react-icons/fa";
+import { PageHeader } from "@/components/common/PageHeader";
+import { SubjectForm } from "@/components/modules/academics/SubjectForm";
+import { SubjectList } from "@/components/modules/academics/SubjectList";
+import { Button } from "@/components/ui/button";
 
 type Subject = {
   name: string;
@@ -9,97 +14,44 @@ type Subject = {
 };
 
 export default function SubjectPage() {
-  const [subjects, setSubjects] = useState<Subject[]>([]);
+  const [subjects, setSubjects] = useState<Subject[]>([
+    { name: "Mathematics", code: "MATH101", type: "Theory" },
+    { name: "Physics Lab", code: "PHYS101L", type: "Practical" },
+  ]);
   const [form, setForm] = useState<Subject>({
     name: "",
     code: "",
     type: "Theory",
   });
 
-  const submit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!form.name) return;
     setSubjects([...subjects, form]);
     setForm({ name: "", code: "", type: "Theory" });
   };
 
   return (
-    <div className="grid grid-cols-12 gap-6">
-      {/* Add Subject */}
-      <div className="col-span-12 md:col-span-4">
-        <div className="bg-white shadow rounded p-4">
-          <h2 className="font-semibold mb-4">Add Subject</h2>
+    <div className="container mx-auto space-y-8">
+      <PageHeader
+        title="Knowledge Inventory"
+        subtitle="Syllabus Management"
+        action={
+          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10 transition-all">
+            <FaPlus /> Authorize Subject
+          </Button>
+        }
+      />
 
-          <form onSubmit={submit} className="space-y-3">
-            <input
-              placeholder="Subject Name"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full border px-3 py-2 rounded"
-            />
-
-            <input
-              placeholder="Subject Code"
-              value={form.code}
-              onChange={(e) => setForm({ ...form, code: e.target.value })}
-              className="w-full border px-3 py-2 rounded"
-            />
-
-            <div className="flex gap-6 text-sm">
-              <label>
-                <input
-                  type="radio"
-                  checked={form.type === "Theory"}
-                  onChange={() => setForm({ ...form, type: "Theory" })}
-                />{" "}
-                Theory
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  checked={form.type === "Practical"}
-                  onChange={() => setForm({ ...form, type: "Practical" })}
-                />{" "}
-                Practical
-              </label>
-            </div>
-
-            <button className="bg-blue-600 text-white px-4 py-2 rounded">
-              Save
-            </button>
-          </form>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Creation Form */}
+        <div className="lg:col-span-4 h-full">
+          <SubjectForm form={form} setForm={setForm} onSubmit={handleSubmit} />
         </div>
-      </div>
 
-      {/* Subject List */}
-      <div className="col-span-12 md:col-span-8">
-        <div className="bg-white shadow rounded p-4">
-          <h2 className="font-semibold mb-4">Subject List</h2>
-
-          <table className="w-full border text-sm">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="border p-2">SN</th>
-                <th className="border p-2">Subject</th>
-                <th className="border p-2">Type</th>
-                <th className="border p-2">Code</th>
-                <th className="border p-2">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {subjects.map((s, i) => (
-                <tr key={i}>
-                  <td className="border p-2">{i + 1}</td>
-                  <td className="border p-2">{s.name}</td>
-                  <td className="border p-2">{s.type}</td>
-                  <td className="border p-2">{s.code}</td>
-                  <td className="border p-2 text-center text-red-600">
-                    Delete
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {/* List Index */}
+        <div className="lg:col-span-8 h-full">
+          <SubjectList subjects={subjects} />
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -8,8 +8,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { GlassCard } from "@/components/cards/GlassCard";
-import { Button } from "@/components/ui/button";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { ListToolbar } from "@/components/common/ListToolbar";
+import { ListPagination } from "@/components/common/ListPagination";
+import { ListActionButtons } from "@/components/common/ListActionButtons";
 
 interface Assignment {
   id: number;
@@ -25,108 +26,127 @@ interface AssignmentListProps {
   assignments: Assignment[];
 }
 
-export function AssignmentList({ assignments }: AssignmentListProps) {
+export function AssignmentList({
+  assignments: initialAssignments,
+}: AssignmentListProps) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
+
+  const filteredAssignments = initialAssignments.filter(
+    (a) =>
+      a.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      a.subject.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredAssignments.length / pageSize);
+  const paginatedAssignments = filteredAssignments.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
   return (
-    <GlassCard className="h-full relative overflow-hidden p-0">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-sidebar/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+    <div className="space-y-6 flex flex-col h-full">
+      <ListToolbar
+        searchPlaceHolder="Search assignments..."
+        onSearch={setSearchTerm}
+        showAddButton={false}
+      />
 
-      <div className="p-6 border-b border-white/20">
-        <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-widest">
-          Active Assignment Queue
-        </h4>
-      </div>
+      <GlassCard className="flex-1 flex flex-col">
+        <div className="p-8 border-b border-white/20">
+          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+            Active Assignment Queue
+          </h4>
+        </div>
 
-      <div className="p-6">
-        <div className="rounded-lg border border-white/20 overflow-hidden bg-white/40">
+        <div className="flex-1 overflow-x-auto">
           <Table>
-            <TableHeader className="bg-white/50">
+            <TableHeader>
               <TableRow>
-                <TableHead className="w-16 font-bold uppercase text-[10px] tracking-wider text-muted-foreground">
-                  SN
-                </TableHead>
-                <TableHead className="font-bold uppercase text-[10px] tracking-wider text-muted-foreground">
-                  Task Identity
-                </TableHead>
-                <TableHead className="text-center font-bold uppercase text-[10px] tracking-wider text-muted-foreground">
-                  Deadline
-                </TableHead>
-                <TableHead className="text-center font-bold uppercase text-[10px] tracking-wider text-muted-foreground">
-                  Submission
-                </TableHead>
-                <TableHead className="text-center font-bold uppercase text-[10px] tracking-wider text-muted-foreground">
-                  Action
-                </TableHead>
+                <TableHead className="w-20">SN</TableHead>
+                <TableHead>Assignment Detail</TableHead>
+                <TableHead className="text-center">Deadline</TableHead>
+                <TableHead className="text-center">Submission Status</TableHead>
+                <TableHead className="text-center">Action</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {assignments.map((a, index) => (
-                <TableRow
-                  key={a.id}
-                  className="hover:bg-sidebar/5 transition-colors"
-                >
-                  <TableCell className="font-mono text-xs text-muted-foreground bg-transparent">
-                    {index + 1}
+              {paginatedAssignments.map((a, index) => (
+                <TableRow key={a.id} className="group">
+                  <TableCell className="font-mono text-xs text-muted-foreground italic">
+                    {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
-                  <TableCell className="bg-transparent">
+                  <TableCell>
                     <div className="flex flex-col gap-1">
-                      <span className="font-bold text-foreground text-sm uppercase font-serif italic">
+                      <span className="font-black text-foreground text-sm uppercase italic tracking-tight">
                         {a.title}
                       </span>
                       <div className="flex items-center gap-2">
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-sidebar/10 text-sidebar border border-sidebar/20">
+                        <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-secondary/10 text-secondary border border-secondary/20">
                           {a.subject}
                         </span>
-                        <span className="text-[10px] font-medium text-muted-foreground uppercase">
+                        <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider">
                           {a.class}
                         </span>
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell className="text-center bg-transparent">
+                  <TableCell className="text-center">
                     <span className="font-mono text-xs font-bold text-muted-foreground">
                       {a.deadline}
                     </span>
                   </TableCell>
-                  <TableCell className="text-center bg-transparent">
-                    <div className="flex flex-col items-center gap-1">
-                      <span className="text-xs font-bold">
-                        {a.submitted}{" "}
-                        <span className="text-muted-foreground">
-                          / {a.total}
+                  <TableCell className="text-center">
+                    <div className="flex flex-col items-center gap-1.5">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-black text-foreground">
+                          {a.submitted}
                         </span>
-                      </span>
-                      <div className="w-16 h-1 bg-gray-200 rounded-full overflow-hidden">
+                        <span className="text-[10px] font-bold text-muted-foreground uppercase">
+                          of {a.total}
+                        </span>
+                      </div>
+                      <div className="w-24 h-1.5 bg-sidebar/5 rounded-full overflow-hidden border border-white/20">
                         <div
-                          className="h-full bg-sidebar"
+                          className="h-full bg-secondary shadow-[0_0_10px_rgba(0,109,95,0.3)] transition-all duration-500"
                           style={{ width: `${(a.submitted / a.total) * 100}%` }}
                         />
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell className="text-center bg-transparent">
-                    <div className="flex justify-center gap-2">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-blue-500 hover:text-blue-600 hover:bg-blue-50"
-                      >
-                        <FaEdit size={14} />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-red-500 hover:text-red-600 hover:bg-red-50"
-                      >
-                        <FaTrash size={14} />
-                      </Button>
-                    </div>
+                  <TableCell className="text-center">
+                    <ListActionButtons
+                      onEdit={() => console.log("Edit")}
+                      onDelete={() => console.log("Delete")}
+                    />
                   </TableCell>
                 </TableRow>
               ))}
+              {paginatedAssignments.length === 0 && (
+                <TableRow>
+                  <TableCell
+                    colSpan={5}
+                    className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                  >
+                    No matching assignments found.
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </div>
-      </div>
-    </GlassCard>
+
+        {filteredAssignments.length > pageSize && (
+          <ListPagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+            totalRecords={filteredAssignments.length}
+            pageSize={pageSize}
+          />
+        )}
+      </GlassCard>
+    </div>
   );
 }

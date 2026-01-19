@@ -1,22 +1,34 @@
 "use client";
 
 import React, { useState } from "react";
+import { PageHeader } from "@/components/common/PageHeader";
+import { ListToolbar } from "@/components/common/ListToolbar";
+import { ListPagination } from "@/components/common/ListPagination";
+import { ListActionButtons } from "@/components/common/ListActionButtons";
+import { GlassCard } from "@/components/cards/GlassCard";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
 import {
   FaIdCard,
-  FaPlus,
-  FaTrash,
-  FaEdit,
   FaCheck,
   FaRulerCombined,
   FaImage,
   FaUserShield,
-  FaSignature,
   FaToggleOn,
-  FaToggleOff,
-  FaEye,
 } from "react-icons/fa";
 
 export default function IDCardPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
+
   const [idCardList, setIdCardList] = useState([
     {
       id: 1,
@@ -32,80 +44,88 @@ export default function IDCardPage() {
     },
   ]);
 
-  return (
-    <div className="container mx-auto p-4 space-y-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-gray-900 tracking-tighter flex items-center gap-3">
-          <div className="p-2 bg-amber-600 rounded-xl shadow-lg ring-4 ring-amber-50">
-            <FaIdCard className="text-white" size={20} />
-          </div>
-          Identification Blueprint
-        </h1>
-      </div>
+  const filteredCards = idCardList.filter(
+    (c: any) =>
+      c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      c.role.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  const totalPages = Math.ceil(filteredCards.length / pageSize);
+  const paginatedCards = filteredCards.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+  return (
+    <div className="container mx-auto space-y-8">
+      <PageHeader
+        title="Identification Blueprint"
+        subtitle="ID Card Design & Architectural Configuration"
+      />
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Template Designer Form */}
-        <div className="lg:col-span-12 xl:col-span-5">
-          <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 flex flex-col h-full bg-gradient-to-br from-white to-amber-50/5">
-            <h4 className="mb-8 text-xs font-black text-gray-400 uppercase tracking-widest leading-none flex items-center justify-between">
+        <div className="lg:col-span-12 xl:col-span-5 h-full">
+          <GlassCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
+            <h4 className="mb-8 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
               Design Token Architecture
-              <div className="h-1 w-24 bg-amber-100 rounded-full"></div>
             </h4>
 
             <form className="space-y-6 flex-1">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="md:col-span-2">
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
                     Blueprint Designation{" "}
                     <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
-                    className="w-full rounded-2xl border-gray-100 p-4 text-xs font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm italic"
+                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm italic"
                     placeholder="e.g. Standard Student ID"
                     required
                   />
                 </div>
 
-                <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
-                    Dimensional Width (mm)
-                  </label>
-                  <div className="relative">
-                    <FaRulerCombined
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
-                      size={12}
-                    />
-                    <input
-                      type="text"
-                      className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-xs font-mono font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
-                      placeholder="57"
-                    />
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                      Width (mm)
+                    </label>
+                    <div className="relative">
+                      <FaRulerCombined
+                        className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary/40"
+                        size={10}
+                      />
+                      <input
+                        type="text"
+                        className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-mono font-bold focus:bg-white outline-none transition-all shadow-sm"
+                        placeholder="57"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                      Height (mm)
+                    </label>
+                    <div className="relative">
+                      <FaRulerCombined
+                        className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary/40"
+                        size={10}
+                      />
+                      <input
+                        type="text"
+                        className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-mono font-bold focus:bg-white outline-none transition-all shadow-sm"
+                        placeholder="89"
+                      />
+                    </div>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
-                    Dimensional Height (mm)
-                  </label>
-                  <div className="relative">
-                    <FaRulerCombined
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
-                      size={12}
-                    />
-                    <input
-                      type="text"
-                      className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-xs font-mono font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
-                      placeholder="89"
-                    />
-                  </div>
-                </div>
-
-                <div className="md:col-span-2">
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 px-1">
+                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-3 px-1">
                     Attribute Toggle Matrix
                   </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                     {[
                       "Admission No",
                       "Full Name",
@@ -119,138 +139,125 @@ export default function IDCardPage() {
                     ].map((attr) => (
                       <div
                         key={attr}
-                        className="flex items-center justify-between p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-sm transition-all group"
+                        className="flex items-center justify-between p-2.5 rounded-xl bg-white/40 border border-white/60 hover:border-secondary/30 transition-all group"
                       >
-                        <span className="text-[9px] font-black text-gray-500 uppercase tracking-tighter group-hover:text-amber-600 transition-colors">
+                        <span className="text-[8px] font-black text-muted-foreground uppercase tracking-tighter group-hover:text-secondary">
                           {attr}
                         </span>
                         <FaToggleOn
-                          size={16}
-                          className="text-emerald-500 cursor-pointer"
+                          size={14}
+                          className="text-secondary cursor-pointer"
                         />
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
-                    Background Vector
+                <div className="grid grid-cols-2 gap-4 pt-2">
+                  <label className="w-full flex flex-col items-center gap-2 p-4 rounded-2xl border border-dashed border-white/40 bg-white/40 text-[9px] font-black text-muted-foreground/60 uppercase tracking-widest cursor-pointer hover:bg-white hover:border-secondary/40 transition-all shadow-sm">
+                    <FaImage size={14} className="text-secondary/40" />
+                    Canvas Vector
+                    <input type="file" className="hidden" />
                   </label>
-                  <div className="relative group">
-                    <label className="w-full flex items-center gap-3 p-4 rounded-2xl bg-gray-50 border border-dashed border-gray-200 text-[10px] font-black text-gray-400 uppercase tracking-widest cursor-pointer group-hover:bg-white group-hover:border-amber-300 transition-all">
-                      <FaImage
-                        size={14}
-                        className="text-gray-300 group-hover:text-amber-500"
-                      />
-                      Upload Canvas
-                      <input type="file" className="hidden" />
-                    </label>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                  <label className="w-full flex flex-col items-center gap-2 p-4 rounded-2xl border border-dashed border-white/40 bg-white/40 text-[9px] font-black text-muted-foreground/60 uppercase tracking-widest cursor-pointer hover:bg-white hover:border-secondary/40 transition-all shadow-sm">
+                    <FaUserShield size={14} className="text-secondary/40" />
                     Institutional Seal
+                    <input type="file" className="hidden" />
                   </label>
-                  <div className="relative group">
-                    <label className="w-full flex items-center gap-3 p-4 rounded-2xl bg-gray-50 border border-dashed border-gray-200 text-[10px] font-black text-gray-400 uppercase tracking-widest cursor-pointer group-hover:bg-white group-hover:border-amber-300 transition-all">
-                      <FaUserShield
-                        size={14}
-                        className="text-gray-300 group-hover:text-amber-500"
-                      />
-                      Upload Logo
-                      <input type="file" className="hidden" />
-                    </label>
-                  </div>
                 </div>
               </div>
 
               <div className="pt-6">
-                <button
-                  type="submit"
-                  className="w-full relative overflow-hidden rounded-2xl bg-gray-900 border-b-4 border-gray-700 text-white px-8 py-5 text-[10px] font-black uppercase tracking-[0.3em] transition-all hover:bg-black active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-gray-200"
-                >
-                  <div className="relative z-10 flex items-center justify-center gap-2">
-                    <FaCheck className="italic" />
-                    Establish Blueprint
-                  </div>
-                </button>
+                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl shadow-secondary/20 transition-all active:scale-95">
+                  <FaCheck className="mr-2 italic" /> Establish Blueprint
+                </Button>
               </div>
             </form>
-          </div>
+          </GlassCard>
         </div>
 
         {/* Templates Index */}
-        <div className="lg:col-span-12 xl:col-span-7">
-          <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 relative overflow-hidden h-full">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-amber-50/20 rounded-full blur-3xl -mr-40 -mt-40 pointer-events-none"></div>
+        <div className="lg:col-span-12 xl:col-span-7 space-y-6 flex flex-col h-full">
+          <ListToolbar
+            searchPlaceHolder="Search template registry..."
+            onSearch={setSearchTerm}
+            showAddButton={false}
+          />
 
-            <div className="flex items-center justify-between mb-8 relative">
-              <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest leading-none">
+          <GlassCard className="flex-1 flex flex-col">
+            <div className="p-8 border-b border-white/20">
+              <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
                 Institutional Template Registry
               </h4>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-gray-50 relative">
-              <table className="min-w-full text-sm">
-                <thead className="bg-gray-50/70 text-gray-500 font-bold border-b border-gray-50">
-                  <tr>
-                    <th className="px-6 py-6 text-left w-16 text-[10px] uppercase font-black">
-                      SN
-                    </th>
-                    <th className="px-6 py-6 text-left text-[10px] uppercase font-black tracking-widest">
-                      Blueprint Identity
-                    </th>
-                    <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
+            <div className="flex-1 overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-20">SN</TableHead>
+                    <TableHead>Blueprint Identity</TableHead>
+                    <TableHead className="text-center">
                       Applicable Tier
-                    </th>
-                    <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-50">
-                  {idCardList.map((card, index) => (
-                    <tr
-                      key={card.id}
-                      className="hover:bg-amber-50/10 transition-all group"
-                    >
-                      <td className="px-6 py-10 text-gray-300 font-mono text-xs italic">
-                        {index + 1}
-                      </td>
-                      <td className="px-6 py-10">
-                        <div className="font-black text-gray-900 tracking-tight text-base font-serif italic uppercase leading-none mb-2">
+                    </TableHead>
+                    <TableHead className="text-center">Action</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {paginatedCards.map((card: any, index: number) => (
+                    <TableRow key={card.id} className="group">
+                      <TableCell className="font-mono text-xs text-muted-foreground italic">
+                        {(currentPage - 1) * pageSize + index + 1}
+                      </TableCell>
+                      <TableCell>
+                        <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none mb-1">
                           {card.name}
                         </div>
-                        <div className="text-[9px] font-black text-amber-500 uppercase tracking-widest flex items-center gap-2">
-                          <FaRulerCombined size={10} /> Layout: {card.layout}
+                        <div className="text-[10px] font-bold text-secondary uppercase tracking-widest flex items-center gap-1.5 font-mono">
+                          <FaRulerCombined
+                            size={8}
+                            className="text-secondary/60"
+                          />{" "}
+                          Layout: {card.layout}
                         </div>
-                      </td>
-                      <td className="px-6 py-10 text-center">
-                        <span className="px-4 py-1.5 bg-gray-900 text-white text-[9px] font-black rounded-xl uppercase tracking-[0.2em] shadow-sm">
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <span className="px-4 py-1.5 bg-secondary text-white text-[9px] font-black rounded-xl uppercase tracking-widest shadow-sm">
                           {card.role}
                         </span>
-                      </td>
-                      <td className="px-6 py-10 text-center">
-                        <div className="flex justify-center gap-1">
-                          <button className="p-3 rounded-xl bg-gray-50 text-blue-500 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
-                            <FaEye size={14} />
-                          </button>
-                          <button className="p-3 rounded-xl bg-gray-50 text-emerald-500 hover:bg-emerald-600 hover:text-white transition-all shadow-sm">
-                            <FaEdit size={14} />
-                          </button>
-                          <button className="p-3 rounded-xl bg-gray-50 text-rose-500 hover:bg-rose-600 hover:text-white transition-all shadow-sm">
-                            <FaTrash size={14} />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <ListActionButtons
+                          onEdit={() => console.log("Edit")}
+                          onDelete={() => console.log("Delete")}
+                        />
+                      </TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
+                  {paginatedCards.length === 0 && (
+                    <TableRow>
+                      <TableCell
+                        colSpan={4}
+                        className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                      >
+                        No matches found in template registry.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
             </div>
-          </div>
+
+            {filteredCards.length > pageSize && (
+              <ListPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+                totalRecords={filteredCards.length}
+                pageSize={pageSize}
+              />
+            )}
+          </GlassCard>
         </div>
       </div>
     </div>

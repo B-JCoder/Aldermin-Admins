@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import { PageHeader } from "@/components/common/PageHeader";
+import { Button } from "@/components/ui/button";
 import {
   FaUserShield,
   FaIdCard,
@@ -16,6 +18,7 @@ import {
   FaFileUpload,
   FaCloudUploadAlt,
   FaSave,
+  FaMoneyBillWave,
 } from "react-icons/fa";
 
 export default function AddStaffPage() {
@@ -92,7 +95,7 @@ export default function AddStaffPage() {
     subtitle: string;
   }) => (
     <div className="flex items-center gap-4 mb-8 group">
-      <div className="p-3 bg-blue-600 rounded-2xl shadow-lg ring-4 ring-blue-50 group-hover:scale-110 transition-transform">
+      <div className="p-3 bg-secondary rounded-2xl shadow-lg ring-4 ring-secondary/5 group-hover:scale-110 transition-transform">
         <Icon className="text-white" size={20} />
       </div>
       <div>
@@ -108,17 +111,12 @@ export default function AddStaffPage() {
   );
 
   return (
-    <div className="container mx-auto p-4 max-w-6xl space-y-12 pb-20">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-black text-gray-900 tracking-tighter">
-            Personnel Onboarding
-          </h1>
-          <p className="text-sm text-gray-400 font-medium">
-            Recruit new staff members into the institutional ecosystem
-          </p>
-        </div>
-      </div>
+    <div className="container mx-auto space-y-12 pb-20">
+      <PageHeader
+        title="Personnel Onboarding"
+        subtitle="Staff Recruitment Lifecycle"
+        backUrl="/admin/hr/staff"
+      />
 
       <form onSubmit={handleSubmit} noValidate className="space-y-12">
         {/* Basic Info Section */}
@@ -428,9 +426,9 @@ export default function AddStaffPage() {
 
         {/* Footer Actions */}
         <div className="flex justify-center pt-8">
-          <button
+          <Button
             type="submit"
-            className="group relative flex items-center justify-center gap-4 rounded-full bg-blue-600 px-16 py-5 text-white font-black text-xl transition-all hover:bg-blue-700 active:scale-[0.98] shadow-2xl shadow-blue-200 overflow-hidden"
+            className="group relative flex items-center justify-center gap-4 rounded-full bg-secondary h-20 px-16 py-5 text-white font-black text-xl transition-all hover:bg-secondary/90 active:scale-[0.98] shadow-2xl shadow-secondary/20 overflow-hidden"
           >
             <FaSave
               size={24}
@@ -438,11 +436,9 @@ export default function AddStaffPage() {
             />
             Finalize Personnel Record
             <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-          </button>
+          </Button>
         </div>
       </form>
     </div>
   );
 }
-// Placeholder components since I can't import local files easily in this context but I'll use inline FaMoneyBillWave
-import { FaMoneyBillWave } from "react-icons/fa";

@@ -5,7 +5,7 @@ import { GlassCard } from "@/components/cards/GlassCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { FaPlusCheck } from "react-icons/fa6"; // Using FaPlusCheck or similar if available, else generic FaPlus
+import { FaPlus } from "react-icons/fa6";
 
 interface GroupFormProps {
   onAddGroup: (name: string) => void;
@@ -48,9 +48,10 @@ export function GroupForm({ onAddGroup }: GroupFormProps) {
         <div className="pt-4 mt-auto">
           <Button
             type="submit"
-            variant="secondary"
-            className="w-full py-6 text-xs font-black uppercase tracking-widest shadow-lg"
+            variant="default"
+            className="w-full py-6 text-xs font-black uppercase tracking-widest shadow-lg flex items-center justify-center gap-2"
           >
+            <FaPlus className="text-sm" />
             Finalize Assembly
           </Button>
         </div>

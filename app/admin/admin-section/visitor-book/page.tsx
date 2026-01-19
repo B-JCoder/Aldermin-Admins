@@ -1,23 +1,33 @@
 "use client";
 
 import React, { useState } from "react";
+import { PageHeader } from "@/components/common/PageHeader";
+import { ListToolbar } from "@/components/common/ListToolbar";
+import { ListPagination } from "@/components/common/ListPagination";
+import { ListActionButtons } from "@/components/common/ListActionButtons";
+import { GlassCard } from "@/components/cards/GlassCard";
 import {
-  FaBook,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import {
   FaPlus,
-  FaTrash,
-  FaEdit,
-  FaCheck,
-  FaUserFriends,
   FaIdCard,
+  FaUserFriends,
   FaCalendarAlt,
   FaClock,
-  FaEnvelope,
-  FaFileAlt,
-  FaMapMarkerAlt,
-  FaSearch,
 } from "react-icons/fa";
 
 export default function VisitorBookPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
+
   const [visitorList, setVisitorList] = useState([
     {
       id: 1,
@@ -41,35 +51,47 @@ export default function VisitorBookPage() {
     },
   ]);
 
-  return (
-    <div className="container mx-auto p-4 space-y-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-gray-900 tracking-tighter flex items-center gap-3">
-          <div className="p-2 bg-amber-600 rounded-xl shadow-lg ring-4 ring-amber-50">
-            <FaBook className="text-white" size={20} />
-          </div>
-          Institutional Visitor Ledger
-        </h1>
-      </div>
+  const filteredVisitors = visitorList.filter(
+    (v) =>
+      v.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      v.purpose.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  const totalPages = Math.ceil(filteredVisitors.length / pageSize);
+  const paginatedVisitors = filteredVisitors.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+  return (
+    <div className="container mx-auto space-y-8">
+      <PageHeader
+        title="Visitor Logbook"
+        subtitle="External Interaction Matrix"
+        action={
+          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10 transition-all">
+            <FaPlus /> Authorize Entry
+          </Button>
+        }
+      />
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Creation Form */}
-        <div className="lg:col-span-4">
-          <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 flex flex-col h-full bg-gradient-to-br from-white to-amber-50/5">
-            <h4 className="mb-6 text-xs font-black text-gray-400 uppercase tracking-widest leading-none flex items-center justify-between">
-              Log External Interaction
-              <div className="h-1 w-12 bg-amber-100 rounded-full"></div>
+        <div className="lg:col-span-4 h-full">
+          <GlassCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
+            <h4 className="mb-8 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+              Inward Log Registry
             </h4>
 
             <form className="space-y-6 flex-1">
-              <div className="grid grid-cols-1 gap-4">
+              <div className="space-y-4">
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
                     Visitor Appellation <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
-                    className="w-full rounded-2xl border-gray-100 p-4 text-xs font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
+                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
                     placeholder="Full Name"
                     required
                   />
@@ -77,34 +99,34 @@ export default function VisitorBookPage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                    <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
                       Identity Token <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                       <FaIdCard
-                        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
                         size={12}
                       />
                       <input
                         type="text"
-                        className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-xs font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
+                        className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
                         placeholder="ID No"
                         required
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                    <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
                       Census
                     </label>
                     <div className="relative">
                       <FaUserFriends
-                        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
                         size={12}
                       />
                       <input
                         type="number"
-                        className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-xs font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
+                        className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
                         placeholder="1"
                       />
                     </div>
@@ -112,141 +134,140 @@ export default function VisitorBookPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
                     Interaction Intent
                   </label>
                   <input
                     type="text"
-                    className="w-full rounded-2xl border-gray-100 p-4 text-xs font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm italic"
-                    placeholder="e.g. Academic Consultation"
+                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm italic"
+                    placeholder="Consultation"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="relative">
                     <FaCalendarAlt
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
                       size={12}
                     />
                     <input
                       type="date"
-                      className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-[10px] font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
+                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-[10px] font-bold focus:bg-white outline-none transition-all shadow-sm"
                     />
                   </div>
                   <div className="relative">
                     <FaClock
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
                       size={12}
                     />
                     <input
                       type="time"
-                      className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-[10px] font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
+                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-[10px] font-bold focus:bg-white outline-none transition-all shadow-sm"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4">
-                <button
-                  type="submit"
-                  className="w-full relative overflow-hidden rounded-2xl bg-gray-900 border-b-4 border-gray-700 text-white px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:bg-black active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-gray-200"
-                >
-                  <div className="relative z-10 flex items-center justify-center gap-2">
-                    <FaCheck className="italic" />
-                    Authorize Entry
-                  </div>
-                </button>
+              <div className="pt-6">
+                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl shadow-secondary/20 transition-all active:scale-95">
+                  Authorize Entry
+                </Button>
               </div>
             </form>
-          </div>
+          </GlassCard>
         </div>
 
         {/* List Index */}
-        <div className="lg:col-span-8">
-          <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 relative overflow-hidden h-full">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-50/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
+        <div className="lg:col-span-8 space-y-6 flex flex-col h-full">
+          <ListToolbar
+            searchPlaceHolder="Search visitor stream..."
+            onSearch={setSearchTerm}
+            showAddButton={false}
+          />
 
-            <div className="flex items-center justify-between mb-8 relative">
-              <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest leading-none">
-                Live Interaction Stream
+          <GlassCard className="flex-1 flex flex-col">
+            <div className="p-8 border-b border-white/20">
+              <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+                Live Patron Stream
               </h4>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-gray-50 relative">
-              <table className="min-w-full text-sm">
-                <thead className="bg-gray-50/70 text-gray-500 font-bold border-b border-gray-50">
-                  <tr>
-                    <th className="px-6 py-6 text-left w-16 text-[10px] uppercase font-black">
-                      SN
-                    </th>
-                    <th className="px-6 py-6 text-left text-[10px] uppercase font-black tracking-widest">
-                      Patron Profile
-                    </th>
-                    <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
-                      Temporal Node
-                    </th>
-                    <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
-                      Status
-                    </th>
-                    <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
-                      Interaction
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-50">
-                  {visitorList.map((v, index) => (
-                    <tr
-                      key={v.id}
-                      className="hover:bg-amber-50/20 transition-all group"
-                    >
-                      <td className="px-6 py-8 text-gray-300 font-mono text-xs italic">
-                        {index + 1}
-                      </td>
-                      <td className="px-6 py-8">
-                        <div className="font-black text-gray-900 tracking-tight text-base font-serif italic uppercase leading-none mb-2">
+            <div className="flex-1 overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-20">SN</TableHead>
+                    <TableHead>Patron Profile</TableHead>
+                    <TableHead className="text-center">Temporal Node</TableHead>
+                    <TableHead className="text-center">Status</TableHead>
+                    <TableHead className="text-center">Action</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {paginatedVisitors.map((v, index) => (
+                    <TableRow key={v.id} className="group">
+                      <TableCell className="font-mono text-xs text-muted-foreground italic">
+                        {(currentPage - 1) * pageSize + index + 1}
+                      </TableCell>
+                      <TableCell>
+                        <div className="font-black text-foreground text-sm uppercase italic tracking-tight mb-1 leading-none">
                           {v.name}
                         </div>
-                        <div className="text-[9px] font-black text-amber-600 uppercase tracking-widest flex items-center gap-2">
-                          <FaUserFriends size={10} /> {v.person} Person(s)
-                          <span className="h-1 w-1 bg-gray-200 rounded-full"></span>
-                          {v.purpose}
+                        <div className="text-[10px] font-bold text-secondary uppercase tracking-widest flex items-center gap-2">
+                          <FaUserFriends size={10} /> {v.person} • {v.purpose}
                         </div>
-                      </td>
-                      <td className="px-6 py-8 text-center text-gray-400 italic">
-                        <div className="text-[10px] font-black uppercase text-gray-500 font-mono mb-1">
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <div className="text-[10px] font-black uppercase text-muted-foreground font-mono leading-none mb-1">
                           {v.date}
                         </div>
-                        <div className="text-[9px] font-bold text-gray-300">
-                          {v.timeIn} Arrival
+                        <div className="text-[9px] font-bold text-muted-foreground/60 uppercase">
+                          {v.timeIn}
                         </div>
-                      </td>
-                      <td className="px-6 py-8 text-center">
+                      </TableCell>
+                      <TableCell className="text-center">
                         <span
-                          className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest shadow-sm ring-1 ring-inset ${
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${
                             v.status === "Checked In"
-                              ? "bg-emerald-50 text-emerald-700 ring-emerald-100 animate-pulse"
-                              : "bg-gray-100 text-gray-500 ring-gray-200"
+                              ? "bg-emerald-500/10 text-emerald-600 animate-pulse"
+                              : "bg-muted text-muted-foreground"
                           }`}
                         >
                           {v.status}
                         </span>
-                      </td>
-                      <td className="px-6 py-8 text-center">
-                        <div className="flex justify-center gap-1">
-                          <button className="p-3 rounded-xl bg-gray-50 text-blue-500 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
-                            <FaEdit size={14} />
-                          </button>
-                          <button className="p-3 rounded-xl bg-gray-50 text-rose-500 hover:bg-rose-600 hover:text-white transition-all shadow-sm">
-                            <FaTrash size={14} />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <ListActionButtons
+                          onEdit={() => console.log("Edit")}
+                          onDelete={() => console.log("Delete")}
+                        />
+                      </TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
+                  {paginatedVisitors.length === 0 && (
+                    <TableRow>
+                      <TableCell
+                        colSpan={5}
+                        className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                      >
+                        No matches in interaction stream.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
             </div>
-          </div>
+
+            {filteredVisitors.length > pageSize && (
+              <ListPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+                totalRecords={filteredVisitors.length}
+                pageSize={pageSize}
+              />
+            )}
+          </GlassCard>
         </div>
       </div>
     </div>

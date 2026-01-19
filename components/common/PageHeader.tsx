@@ -2,11 +2,13 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { FaChevronLeft } from "react-icons/fa";
 
 interface PageHeaderProps {
   title: string;
   subtitle?: string;
-  icon?: React.ReactNode;
+  backUrl?: string;
   action?: React.ReactNode;
   className?: string;
 }
@@ -14,33 +16,35 @@ interface PageHeaderProps {
 export function PageHeader({
   title,
   subtitle,
-  icon,
+  backUrl,
   action,
   className,
 }: PageHeaderProps) {
   return (
-    <div
-      className={cn(
-        "flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8",
-        className
+    <div className={cn("flex flex-col gap-4 mb-10", className)}>
+      {backUrl && (
+        <Link
+          href={backUrl}
+          className="flex items-center gap-1 text-xs font-bold text-muted-foreground hover:text-secondary transition-colors uppercase tracking-widest w-fit"
+        >
+          <FaChevronLeft size={10} />
+          Back
+        </Link>
       )}
-    >
-      <div>
-        <h1 className="text-3xl font-black text-foreground tracking-tighter flex items-center gap-3">
-          {icon && (
-            <div className="p-2 bg-secondary rounded-xl shadow-lg ring-4 ring-white/50 text-white flex items-center justify-center">
-              {icon}
-            </div>
+
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <h1 className="text-3xl font-black text-foreground tracking-tighter">
+            {title}
+          </h1>
+          {subtitle && (
+            <p className="text-sm text-muted-foreground font-bold uppercase tracking-[0.2em] mt-2">
+              {subtitle}
+            </p>
           )}
-          {title}
-        </h1>
-        {subtitle && (
-          <p className="text-sm text-muted-foreground font-bold uppercase tracking-[0.2em] mt-2 ml-1">
-            {subtitle}
-          </p>
-        )}
+        </div>
+        {action && <div className="flex items-center gap-2">{action}</div>}
       </div>
-      {action && <div className="flex items-center gap-2">{action}</div>}
     </div>
   );
 }

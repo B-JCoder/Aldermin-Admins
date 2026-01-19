@@ -1,11 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
+import { PageHeader } from "@/components/common/PageHeader";
+import { ListToolbar } from "@/components/common/ListToolbar";
+import { ListPagination } from "@/components/common/ListPagination";
+import { GlassCard } from "@/components/cards/GlassCard";
 import {
-  FaFolderOpen,
-  FaSearch,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
   FaTrash,
-  FaEdit,
   FaDownload,
   FaFilePdf,
   FaFileWord,
@@ -14,6 +23,10 @@ import {
 } from "react-icons/fa";
 
 export default function DownloadCenterListPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
+
   const [contents, setContents] = useState([
     {
       id: 1,
@@ -44,125 +57,137 @@ export default function DownloadCenterListPage() {
   const getIcon = (type: string) => {
     switch (type) {
       case "PDF":
-        return <FaFilePdf className="text-rose-500" />;
+        return <FaFilePdf className="text-secondary/60" size={16} />;
       case "Word":
-        return <FaFileWord className="text-blue-500" />;
+        return <FaFileWord className="text-secondary/60" size={16} />;
       case "Image":
-        return <FaFileImage className="text-purple-500" />;
+        return <FaFileImage className="text-secondary/60" size={16} />;
       default:
-        return <FaFileAlt className="text-gray-400" />;
+        return <FaFileAlt className="text-secondary/60" size={16} />;
     }
   };
 
+  const filteredContents = contents.filter(
+    (c: any) =>
+      c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      c.category.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredContents.length / pageSize);
+  const paginatedContents = filteredContents.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
   return (
-    <div className="container mx-auto p-4 space-y-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-gray-900 tracking-tighter flex items-center gap-3">
-          <div className="p-2 bg-indigo-600 rounded-xl shadow-lg ring-4 ring-indigo-50">
-            <FaFolderOpen className="text-white" size={20} />
-          </div>
-          Central Content Registry
-        </h1>
-      </div>
+    <div className="container mx-auto space-y-8">
+      <PageHeader
+        title="Central Content Registry"
+        subtitle="Manage & Distribute Institutional Digital Assets"
+      />
 
-      <div className="grid grid-cols-1 gap-8">
-        <div className="rounded-[2.5rem] bg-white p-8 shadow-2xl shadow-gray-100 border border-gray-100/50">
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest">
-              Stored Assets
-            </h3>
-            <div className="relative">
-              <FaSearch
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
-                size={14}
-              />
-              <input
-                type="text"
-                placeholder="Search Registry..."
-                className="pl-10 pr-4 py-3 rounded-2xl bg-gray-50 border-none text-xs font-bold focus:ring-2 focus:ring-indigo-500/10 outline-none w-64 transition-all"
-              />
-            </div>
+      <div className="space-y-6 flex flex-col h-full">
+        <ListToolbar
+          searchPlaceHolder="Search digital assets..."
+          onSearch={setSearchTerm}
+          showAddButton={false}
+        />
+
+        <GlassCard className="flex-1 flex flex-col">
+          <div className="p-8 border-b border-white/20">
+            <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+              Stored Assets Registry
+            </h4>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="min-w-full text-sm">
-              <thead>
-                <tr className="border-b border-gray-50">
-                  <th className="px-6 py-4 text-left text-[10px] uppercase font-black tracking-widest text-gray-400">
-                    Asset Name
-                  </th>
-                  <th className="px-6 py-4 text-center text-[10px] uppercase font-black tracking-widest text-gray-400">
-                    Classification
-                  </th>
-                  <th className="px-6 py-4 text-center text-[10px] uppercase font-black tracking-widest text-gray-400">
-                    Format
-                  </th>
-                  <th className="px-6 py-4 text-center text-[10px] uppercase font-black tracking-widest text-gray-400">
-                    Uploaded
-                  </th>
-                  <th className="px-6 py-4 text-center text-[10px] uppercase font-black tracking-widest text-gray-400">
-                    Options
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-50/50">
-                {contents.map((c) => (
-                  <tr
-                    key={c.id}
-                    className="group hover:bg-gray-50/50 transition-all"
-                  >
-                    <td className="px-6 py-6">
+          <div className="flex-1 overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Asset Name</TableHead>
+                  <TableHead className="text-center">Classification</TableHead>
+                  <TableHead className="text-center">Format</TableHead>
+                  <TableHead className="text-center">Uploaded</TableHead>
+                  <TableHead className="text-center">Options</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {paginatedContents.map((c: any) => (
+                  <TableRow key={c.id} className="group">
+                    <TableCell>
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-2xl bg-gray-50 flex items-center justify-center shadow-sm">
-                          {getIcon(c.type)}
+                        <div className="w-10 h-10 rounded-2xl bg-secondary/5 border border-secondary/10 flex items-center justify-center shadow-sm group-hover:bg-secondary group-hover:border-secondary transition-all">
+                          <div className="group-hover:text-white transition-colors">
+                            {getIcon(c.type)}
+                          </div>
                         </div>
                         <div>
-                          <div className="font-black text-gray-900 text-sm mb-0.5">
+                          <div className="font-black text-foreground text-sm uppercase italic leading-none mb-1">
                             {c.name}
                           </div>
-                          <div className="text-[10px] font-bold text-gray-400">
-                            {c.size}
+                          <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest font-mono">
+                            Size: {c.size}
                           </div>
                         </div>
                       </div>
-                    </td>
+                    </TableCell>
                     <td className="px-6 py-6 text-center">
-                      <span className="px-3 py-1 rounded-lg bg-indigo-50 text-indigo-600 text-[10px] font-black uppercase tracking-widest">
+                      <span className="px-3 py-1.5 bg-secondary/10 text-secondary text-[9px] font-black rounded-xl uppercase tracking-widest border border-secondary/20">
                         {c.category}
                       </span>
                     </td>
-                    <td className="px-6 py-6 text-center">
-                      <span className="text-xs font-mono font-bold text-gray-500">
+                    <TableCell className="text-center">
+                      <span className="text-xs font-mono font-bold text-muted-foreground/60">
                         {c.type}
                       </span>
-                    </td>
-                    <td className="px-6 py-6 text-center">
-                      <span className="text-xs font-mono font-bold text-gray-400">
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <span className="text-xs font-mono font-bold text-muted-foreground/40 italic">
                         {c.date}
                       </span>
-                    </td>
-                    <td className="px-6 py-6 text-center">
+                    </TableCell>
+                    <TableCell className="text-center">
                       <div className="flex justify-center gap-2">
                         <button
-                          className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-indigo-600 hover:text-white transition-all shadow-sm"
+                          className="p-2.5 rounded-xl bg-secondary/10 text-secondary hover:bg-secondary hover:text-white transition-all shadow-sm active:scale-95"
                           title="Download"
                         >
                           <FaDownload size={12} />
                         </button>
                         <button
-                          className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-rose-500 hover:text-white transition-all shadow-sm"
+                          className="p-2.5 rounded-xl bg-red-50 text-red-500 hover:bg-red-500 hover:text-white transition-all shadow-sm active:scale-95"
                           title="Delete"
                         >
                           <FaTrash size={12} />
                         </button>
                       </div>
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
+                {paginatedContents.length === 0 && (
+                  <TableRow>
+                    <TableCell
+                      colSpan={5}
+                      className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    >
+                      No matching assets found in registry.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
           </div>
-        </div>
+
+          {filteredContents.length > pageSize && (
+            <ListPagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+              totalRecords={filteredContents.length}
+              pageSize={pageSize}
+            />
+          )}
+        </GlassCard>
       </div>
     </div>
   );

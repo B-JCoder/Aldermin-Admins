@@ -27,7 +27,7 @@ export default function StudentGroupPage() {
 
   return (
     <div className="container mx-auto space-y-8">
-      <PageHeader title="Social Assemblies" icon={<FaUsers size={20} />} />
+      <PageHeader title="Social Assemblies" />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <div className="lg:col-span-4 h-full">

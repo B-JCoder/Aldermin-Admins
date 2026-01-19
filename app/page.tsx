@@ -12,7 +12,7 @@ export default function LoginPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === "admin" && password === "Admin@123") {
+    if (username === "a" && password === "A") {
       // Successful login
       router.push("/admin");
     } else {
@@ -84,7 +84,7 @@ export default function LoginPage() {
         </form>
 
         <div className="mt-6 text-center text-xs text-gray-400">
-          <p>Mock Credentials: admin / Admin@123</p>
+          <p>Mock Credentials: a / A</p>
         </div>
       </div>
     </div>

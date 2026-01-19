@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { FaClipboardList } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import { AssignmentForm } from "@/components/modules/study-material/AssignmentForm";
 import { AssignmentList } from "@/components/modules/study-material/AssignmentList";
+import { PageHeader } from "@/components/common/PageHeader";
+import { Button } from "@/components/ui/button";
 
 export default function AssignmentPage() {
   // Logic preserved from original file
@@ -30,14 +32,15 @@ export default function AssignmentPage() {
 
   return (
     <div className="container mx-auto space-y-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-foreground tracking-tighter flex items-center gap-3">
-          <div className="p-2 bg-secondary rounded-xl shadow-lg ring-4 ring-white/50">
-            <FaClipboardList className="text-white" size={20} />
-          </div>
-          Academic Task Force
-        </h1>
-      </div>
+      <PageHeader
+        title="Curricular Registry"
+        subtitle="Homework Management"
+        action={
+          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10">
+            <FaPlus /> Authorize Assignment
+          </Button>
+        }
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 h-full">
         {/* Assignment Form */}

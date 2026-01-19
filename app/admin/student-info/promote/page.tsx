@@ -29,10 +29,7 @@ export default function StudentPromotePage() {
       <PageHeader
         title="Student Promotion Hub"
         subtitle="Academic Progression Management"
-        icon={<FaLevelUpAlt size={28} />}
       />
-
-      <PromoteFilter />
 
       <ProgressionRegistry students={students} />
     </div>

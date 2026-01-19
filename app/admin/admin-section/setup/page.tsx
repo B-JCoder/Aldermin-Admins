@@ -1,19 +1,27 @@
 "use client";
 
 import React, { useState } from "react";
+import { PageHeader } from "@/components/common/PageHeader";
+import { ListToolbar } from "@/components/common/ListToolbar";
+import { ListPagination } from "@/components/common/ListPagination";
+import { ListActionButtons } from "@/components/common/ListActionButtons";
+import { GlassCard } from "@/components/cards/GlassCard";
 import {
-  FaCogs,
-  FaPlus,
-  FaTrash,
-  FaEdit,
-  FaCheck,
-  FaPuzzlePiece,
-  FaTag,
-  FaInfoCircle,
-  FaSearch,
-} from "react-icons/fa";
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { FaCheck, FaPuzzlePiece, FaTag } from "react-icons/fa";
 
 export default function AdminSetupPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
+
   const [setupList, setSetupList] = useState([
     {
       id: 1,
@@ -29,40 +37,47 @@ export default function AdminSetupPage() {
     },
   ]);
 
-  return (
-    <div className="container mx-auto p-4 space-y-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-gray-900 tracking-tighter flex items-center gap-3">
-          <div className="p-2 bg-amber-600 rounded-xl shadow-lg ring-4 ring-amber-50">
-            <FaCogs className="text-white" size={20} />
-          </div>
-          Institutional Configuration
-        </h1>
-      </div>
+  const filteredSetup = setupList.filter(
+    (s: any) =>
+      s.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      s.type.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  const totalPages = Math.ceil(filteredSetup.length / pageSize);
+  const paginatedSetup = filteredSetup.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+  return (
+    <div className="container mx-auto space-y-8">
+      <PageHeader
+        title="Institutional Configuration"
+        subtitle="Core Administrative Parameters & Setup Environment"
+      />
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Creation Form */}
-        <div className="lg:col-span-4">
-          <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 flex flex-col h-full bg-gradient-to-br from-white to-amber-50/5">
-            <h4 className="mb-6 text-xs font-black text-gray-400 uppercase tracking-widest leading-none flex items-center justify-between">
+        <div className="lg:col-span-4 h-full">
+          <GlassCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
+            <h4 className="mb-8 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
               Define Parameter
-              <div className="h-1 w-12 bg-amber-100 rounded-full"></div>
             </h4>
 
-            <form className="space-y-4 flex-1">
-              <div className="grid grid-cols-1 gap-4">
+            <form className="space-y-6 flex-1">
+              <div className="space-y-5">
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
                     Taxonomy Class <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
                     <FaPuzzlePiece
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary/40"
                       size={12}
                     />
                     <input
                       type="text"
-                      className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-xs font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
+                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
                       placeholder="e.g. Session Type"
                       required
                     />
@@ -70,18 +85,18 @@ export default function AdminSetupPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1 text-nowrap">
+                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
                     Parameter Designation{" "}
                     <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
                     <FaTag
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary/40"
                       size={12}
                     />
                     <input
                       type="text"
-                      className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-xs font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
+                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
                       placeholder="e.g. Morning Shift"
                       required
                     />
@@ -89,98 +104,105 @@ export default function AdminSetupPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1 text-nowrap">
+                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
                     Conceptual Description
                   </label>
                   <textarea
-                    className="w-full rounded-2xl border-gray-100 p-4 text-xs font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm min-h-[100px]"
+                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm min-h-[120px]"
                     placeholder="Define the scope of this parameter..."
                   ></textarea>
                 </div>
               </div>
 
-              <div className="pt-4">
-                <button
-                  type="submit"
-                  className="w-full relative overflow-hidden rounded-2xl bg-gray-900 border-b-4 border-gray-700 text-white px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:bg-black active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-gray-200"
-                >
-                  <div className="relative z-10 flex items-center justify-center gap-2">
-                    <FaCheck className="italic" />
-                    Initialize Parameter
-                  </div>
-                </button>
+              <div className="pt-6">
+                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl shadow-secondary/20 transition-all active:scale-95">
+                  <FaCheck className="mr-2 italic" /> Initialize Parameter
+                </Button>
               </div>
             </form>
-          </div>
+          </GlassCard>
         </div>
 
         {/* List Index */}
-        <div className="lg:col-span-8">
-          <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 relative overflow-hidden h-full">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-50/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
+        <div className="lg:col-span-8 space-y-6 flex flex-col h-full">
+          <ListToolbar
+            searchPlaceHolder="Search configuration matrix..."
+            onSearch={setSearchTerm}
+            showAddButton={false}
+          />
 
-            <div className="flex items-center justify-between mb-8 relative">
-              <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest leading-none">
+          <GlassCard className="flex-1 flex flex-col">
+            <div className="p-8 border-b border-white/20">
+              <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
                 Active Configuration Matrix
               </h4>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-gray-50 relative">
-              <table className="min-w-full text-sm">
-                <thead className="bg-gray-50/70 text-gray-500 font-bold border-b border-gray-50">
-                  <tr>
-                    <th className="px-6 py-6 text-left w-16 text-[10px] uppercase font-black">
-                      SN
-                    </th>
-                    <th className="px-6 py-6 text-left text-[10px] uppercase font-black tracking-widest">
-                      Configuration Entity
-                    </th>
-                    <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
-                      Description
-                    </th>
-                    <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
-                      Governance
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-50">
-                  {setupList.map((s, index) => (
-                    <tr
-                      key={s.id}
-                      className="hover:bg-amber-50/20 transition-all group"
-                    >
-                      <td className="px-6 py-8 text-gray-300 font-mono text-xs italic">
-                        {index + 1}
-                      </td>
-                      <td className="px-6 py-8">
-                        <div className="font-black text-gray-900 tracking-tight text-base font-serif italic uppercase leading-none mb-2">
+            <div className="flex-1 overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-20">SN</TableHead>
+                    <TableHead>Configuration Entity</TableHead>
+                    <TableHead className="text-center">Description</TableHead>
+                    <TableHead className="text-center">Governance</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {paginatedSetup.map((s: any, index: number) => (
+                    <TableRow key={s.id} className="group">
+                      <TableCell className="font-mono text-xs text-muted-foreground italic">
+                        {(currentPage - 1) * pageSize + index + 1}
+                      </TableCell>
+                      <TableCell>
+                        <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none mb-1">
                           {s.name}
                         </div>
-                        <div className="text-[9px] font-black text-amber-600 uppercase tracking-widest flex items-center gap-2">
-                          <FaPuzzlePiece size={10} /> {s.type}
+                        <div className="text-[10px] font-bold text-secondary uppercase tracking-widest flex items-center gap-1.5 font-mono">
+                          <FaPuzzlePiece
+                            size={8}
+                            className="text-secondary/60"
+                          />{" "}
+                          {s.type}
                         </div>
-                      </td>
-                      <td className="px-6 py-8 text-center max-w-xs">
-                        <div className="text-[10px] text-gray-400 italic font-medium leading-relaxed">
+                      </TableCell>
+                      <TableCell className="text-center max-w-xs">
+                        <div className="text-[10px] text-muted-foreground/60 italic font-medium leading-relaxed">
                           {s.description}
                         </div>
-                      </td>
-                      <td className="px-6 py-8 text-center">
-                        <div className="flex justify-center gap-1">
-                          <button className="p-3 rounded-xl bg-gray-50 text-blue-500 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
-                            <FaEdit size={14} />
-                          </button>
-                          <button className="p-3 rounded-xl bg-gray-50 text-rose-500 hover:bg-rose-600 hover:text-white transition-all shadow-sm">
-                            <FaTrash size={14} />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <ListActionButtons
+                          onEdit={() => console.log("Edit")}
+                          onDelete={() => console.log("Delete")}
+                        />
+                      </TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
+                  {paginatedSetup.length === 0 && (
+                    <TableRow>
+                      <TableCell
+                        colSpan={4}
+                        className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                      >
+                        No matches found in configuration matrix.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
             </div>
-          </div>
+
+            {filteredSetup.length > pageSize && (
+              <ListPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+                totalRecords={filteredSetup.length}
+                pageSize={pageSize}
+              />
+            )}
+          </GlassCard>
         </div>
       </div>
     </div>

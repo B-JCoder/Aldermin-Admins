@@ -1,21 +1,33 @@
 "use client";
 
 import React, { useState } from "react";
+import { PageHeader } from "@/components/common/PageHeader";
+import { ListToolbar } from "@/components/common/ListToolbar";
+import { ListPagination } from "@/components/common/ListPagination";
+import { ListActionButtons } from "@/components/common/ListActionButtons";
+import { GlassCard } from "@/components/cards/GlassCard";
 import {
-  FaPaperPlane,
-  FaPlus,
-  FaTrash,
-  FaEdit,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import {
   FaCheck,
-  FaAddressCard,
   FaCalendarAlt,
   FaHashtag,
-  FaSearch,
   FaMapMarkerAlt,
   FaFileAlt,
 } from "react-icons/fa";
 
 export default function PostalDispatchPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
+
   const [postalList, setPostalList] = useState([
     {
       id: 1,
@@ -35,52 +47,60 @@ export default function PostalDispatchPage() {
     },
   ]);
 
-  return (
-    <div className="container mx-auto p-4 space-y-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-gray-900 tracking-tighter flex items-center gap-3">
-          <div className="p-2 bg-amber-600 rounded-xl shadow-lg ring-4 ring-amber-50">
-            <FaPaperPlane className="text-white" size={20} />
-          </div>
-          Institutional Dispatch Ledger
-        </h1>
-      </div>
+  const filteredPostal = postalList.filter(
+    (p: any) =>
+      p.to.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.referenceNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.from.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  const totalPages = Math.ceil(filteredPostal.length / pageSize);
+  const paginatedPostal = filteredPostal.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+  return (
+    <div className="container mx-auto space-y-8">
+      <PageHeader
+        title="Institutional Dispatch Ledger"
+        subtitle="Outgoing Correspondence Repository"
+      />
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Creation Form */}
-        <div className="lg:col-span-4">
-          <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 flex flex-col h-full bg-gradient-to-br from-white to-amber-50/5">
-            <h4 className="mb-6 text-xs font-black text-gray-400 uppercase tracking-widest leading-none flex items-center justify-between">
+        <div className="lg:col-span-4 h-full">
+          <GlassCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
+            <h4 className="mb-8 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
               Authorize Outbound Vector
-              <div className="h-1 w-12 bg-amber-100 rounded-full"></div>
             </h4>
 
-            <form className="space-y-4 flex-1">
-              <div className="grid grid-cols-1 gap-4">
+            <form className="space-y-6 flex-1">
+              <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1 text-nowrap">
+                    <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
                       Source Unit <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
-                      className="w-full rounded-2xl border-gray-100 p-4 text-xs font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
+                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
                       placeholder="From"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1 text-nowrap">
+                    <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
                       Codification
                     </label>
                     <div className="relative">
                       <FaHashtag
-                        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
-                        size={12}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
+                        size={10}
                       />
                       <input
                         type="text"
-                        className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-xs font-mono font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
+                        className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-mono font-bold focus:bg-white outline-none transition-all shadow-sm"
                         placeholder="Ref No"
                       />
                     </div>
@@ -88,30 +108,30 @@ export default function PostalDispatchPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1 text-nowrap">
+                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
                     Consignee Identity <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
-                    className="w-full rounded-2xl border-gray-100 p-4 text-xs font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
+                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
                     placeholder="To"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1 text-nowrap">
+                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
                     Geospatial Destination{" "}
                     <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
                     <FaMapMarkerAlt
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
-                      size={12}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
+                      size={10}
                     />
                     <input
                       type="text"
-                      className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-xs font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
+                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
                       placeholder="Full Address"
                       required
                     />
@@ -119,11 +139,11 @@ export default function PostalDispatchPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1 text-nowrap">
+                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
                     Institutional Memo
                   </label>
                   <textarea
-                    className="w-full rounded-2xl border-gray-100 p-4 text-xs font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm min-h-[80px]"
+                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm min-h-[100px]"
                     placeholder="Brief narrative context..."
                   ></textarea>
                 </div>
@@ -131,131 +151,133 @@ export default function PostalDispatchPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="relative">
                     <FaCalendarAlt
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
-                      size={12}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
+                      size={10}
                     />
                     <input
                       type="date"
-                      className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-[10px] font-bold focus:ring-4 focus:ring-amber-500/10 outline-none transition-all bg-white shadow-sm"
+                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-[10px] font-bold focus:bg-white outline-none transition-all shadow-sm"
                     />
                   </div>
-                  <div className="relative">
-                    <FaFileAlt
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
-                      size={12}
-                    />
+                  <div className="relative group">
                     <input type="file" className="hidden" id="dispatch-file" />
                     <label
                       htmlFor="dispatch-file"
-                      className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-[10px] font-black uppercase tracking-widest bg-gray-50 border border-dashed border-gray-200 cursor-pointer hover:bg-white flex items-center"
+                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-[9px] font-black uppercase tracking-widest border border-dashed cursor-pointer hover:bg-white hover:border-secondary/40 transition-all flex items-center shadow-sm"
                     >
-                      Scan Doc
+                      <FaFileAlt
+                        className="absolute left-4 text-muted-foreground/40"
+                        size={12}
+                      />
+                      Scan Document
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4">
-                <button
-                  type="submit"
-                  className="w-full relative overflow-hidden rounded-2xl bg-gray-900 border-b-4 border-gray-700 text-white px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:bg-black active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-gray-200"
-                >
-                  <div className="relative z-10 flex items-center justify-center gap-2">
-                    <FaCheck className="italic" />
-                    Catalog Outbound
-                  </div>
-                </button>
+              <div className="pt-6">
+                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl shadow-secondary/20 transition-all active:scale-95">
+                  <FaCheck className="mr-2 italic" /> Catalog Outbound Record
+                </Button>
               </div>
             </form>
-          </div>
+          </GlassCard>
         </div>
 
         {/* List Index */}
-        <div className="lg:col-span-8">
-          <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 relative overflow-hidden h-full">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-50/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
+        <div className="lg:col-span-8 space-y-6 flex flex-col h-full">
+          <ListToolbar
+            searchPlaceHolder="Search dispatch stream..."
+            onSearch={setSearchTerm}
+            showAddButton={false}
+          />
 
-            <div className="flex items-center justify-between mb-8 relative">
-              <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest leading-none">
-                Dispatch Vector Stream
+          <GlassCard className="flex-1 flex flex-col">
+            <div className="p-8 border-b border-white/20">
+              <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+                Dispatch Corridor Stream
               </h4>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-gray-50 relative">
-              <table className="min-w-full text-sm">
-                <thead className="bg-gray-50/70 text-gray-500 font-bold border-b border-gray-50">
-                  <tr>
-                    <th className="px-6 py-6 text-left w-16 text-[10px] uppercase font-black">
-                      SN
-                    </th>
-                    <th className="px-6 py-6 text-left text-[10px] uppercase font-black tracking-widest">
-                      Vector Data
-                    </th>
-                    <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
-                      Temporal Node
-                    </th>
-                    <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
-                      Phase
-                    </th>
-                    <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
-                      Governance
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-50">
-                  {postalList.map((p, index) => (
-                    <tr
-                      key={p.id}
-                      className="hover:bg-amber-50/20 transition-all group"
-                    >
-                      <td className="px-6 py-8 text-gray-300 font-mono text-xs italic">
-                        {index + 1}
-                      </td>
-                      <td className="px-6 py-8">
-                        <div className="font-black text-gray-900 tracking-tight text-base font-serif italic uppercase leading-none mb-2">
+            <div className="flex-1 overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-20">SN</TableHead>
+                    <TableHead>Consignee Data</TableHead>
+                    <TableHead className="text-center">Reference</TableHead>
+                    <TableHead className="text-center">Temporal</TableHead>
+                    <TableHead className="text-center">Phase</TableHead>
+                    <TableHead className="text-center">Action</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {paginatedPostal.map((p: any, index: number) => (
+                    <TableRow key={p.id} className="group">
+                      <TableCell className="font-mono text-xs text-muted-foreground italic">
+                        {(currentPage - 1) * pageSize + index + 1}
+                      </TableCell>
+                      <TableCell>
+                        <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none mb-1">
                           {p.to}
                         </div>
-                        <div className="text-[10px] font-mono text-amber-600 font-bold flex items-center gap-2">
-                          <span className="px-1.5 py-0.5 bg-amber-50 rounded border border-amber-100 text-[8px] uppercase tracking-tighter">
-                            REF: {p.referenceNo}
-                          </span>
-                          <span className="text-gray-300 uppercase tracking-widest text-[8px]">
-                            From: {p.from}
-                          </span>
+                        <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+                          Source: {p.from}
                         </div>
-                      </td>
-                      <td className="px-6 py-8 text-center">
-                        <div className="text-[10px] font-black uppercase text-gray-500 font-mono">
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <span className="px-2 py-1 bg-secondary/10 text-secondary text-[9px] font-bold font-mono rounded border border-secondary/20 uppercase">
+                          {p.referenceNo}
+                        </span>
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <div className="text-[10px] font-black uppercase text-muted-foreground font-mono">
                           {p.date}
                         </div>
-                      </td>
-                      <td className="px-6 py-8 text-center">
+                      </TableCell>
+                      <TableCell className="text-center">
                         <span
-                          className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest shadow-sm ring-1 ring-inset ${
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${
                             p.status === "Transmitted"
-                              ? "bg-emerald-50 text-emerald-700 ring-emerald-100"
-                              : "bg-amber-50 text-amber-700 ring-amber-100"
+                              ? "bg-emerald-500/10 text-emerald-600"
+                              : "bg-amber-500/10 text-amber-600 animate-pulse"
                           }`}
                         >
                           {p.status}
                         </span>
-                      </td>
-                      <td className="px-6 py-8 text-center">
-                        <div className="flex justify-center gap-1">
-                          <button className="p-3 rounded-xl bg-gray-50 text-blue-500 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
-                            <FaEdit size={14} />
-                          </button>
-                          <button className="p-3 rounded-xl bg-gray-50 text-rose-500 hover:bg-rose-600 hover:text-white transition-all shadow-sm">
-                            <FaTrash size={14} />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <ListActionButtons
+                          onEdit={() => console.log("Edit")}
+                          onDelete={() => console.log("Delete")}
+                        />
+                      </TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
+                  {paginatedPostal.length === 0 && (
+                    <TableRow>
+                      <TableCell
+                        colSpan={6}
+                        className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                      >
+                        No matches in dispatch correspondence stream.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
             </div>
-          </div>
+
+            {filteredPostal.length > pageSize && (
+              <ListPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+                totalRecords={filteredPostal.length}
+                pageSize={pageSize}
+              />
+            )}
+          </GlassCard>
         </div>
       </div>
     </div>

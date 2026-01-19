@@ -36,7 +36,6 @@ export default function StudentListPage() {
       <PageHeader
         title="Student Directory"
         subtitle="Academic Year 2023-24"
-        icon={<FaUserGraduate size={24} />}
         action={
           <div className="flex items-center gap-2">
             <Button
@@ -54,8 +53,6 @@ export default function StudentListPage() {
           </div>
         }
       />
-
-      <StudentListFilter />
 
       <StudentListTable students={students} />
     </div>

@@ -46,7 +46,7 @@ export function CategoryForm({ onAddCategory }: CategoryFormProps) {
         <div className="pt-4">
           <Button
             type="submit"
-            variant="secondary"
+            variant="default"
             className="w-full py-6 text-xs font-black uppercase tracking-widest transition-all shadow-lg text-white"
           >
             <div className="flex items-center justify-center gap-2">

@@ -1,9 +1,23 @@
 "use client";
 
 import React, { useState } from "react";
+import { PageHeader } from "@/components/common/PageHeader";
+import { ListToolbar } from "@/components/common/ListToolbar";
+import { ListPagination } from "@/components/common/ListPagination";
+import { ListActionButtons } from "@/components/common/ListActionButtons";
+import { GlassCard } from "@/components/cards/GlassCard";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   FaUserPlus,
-  FaSearch,
   FaIdBadge,
   FaPhone,
   FaEnvelope,
@@ -12,11 +26,9 @@ import {
 } from "react-icons/fa";
 
 export default function StaffListPage() {
-  const [searchParams, setSearchParams] = useState({
-    role: "",
-    staffId: "",
-    name: "",
-  });
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
 
   const [staffList, setStaffList] = useState([
     {
@@ -35,186 +47,162 @@ export default function StaffListPage() {
       name: "Seneca Minor",
       role: "Admin",
       department: "Administration",
-      designation: "Registar",
+      designation: "Registrar",
       mobile: "+8801700000008",
       email: "seneca@aldermin.edu",
     },
   ]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setSearchParams((prev) => ({ ...prev, [name]: value }));
-  };
+  const filteredStaff = staffList.filter(
+    (staff: any) =>
+      staff.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      staff.staffNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      staff.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      staff.department.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredStaff.length / pageSize);
+  const paginatedStaff = filteredStaff.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
 
   return (
-    <div className="container mx-auto p-4 space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h4 className="text-xl font-bold text-gray-800 tracking-tight">
-            Staff Directory
-          </h4>
-          <p className="text-xs text-gray-500 font-medium">
-            Search and manage all institutional personnel
-          </p>
-        </div>
-        <button className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-2.5 text-white font-black text-sm hover:bg-blue-700 transition shadow-lg shadow-blue-100 uppercase tracking-widest">
-          <FaUserPlus size={14} /> Add New Staff
-        </button>
-      </div>
+    <div className="container mx-auto space-y-8">
+      <PageHeader
+        title="Institutional Directory"
+        subtitle="Personnel Infrastructure"
+        action={
+          <Link href="/admin/hr/add-staff">
+            <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10 transition-all">
+              <FaUserPlus /> Authorize Personnel
+            </Button>
+          </Link>
+        }
+      />
 
-      {/* Filter Section */}
-      <div className="rounded-2xl bg-white p-6 shadow-sm border border-gray-100 ring-1 ring-black/5">
-        <h4 className="mb-6 text-xs font-bold text-gray-400 uppercase tracking-widest leading-none">
-          Directory Filter
-        </h4>
-        <form className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Role <span className="text-red-500">*</span>
-            </label>
-            <select
-              name="role"
-              value={searchParams.role}
-              onChange={handleInputChange}
-              className="w-full rounded-xl border-gray-200 p-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all font-bold text-gray-600 bg-gray-50/50"
-            >
-              <option value="">Select Role</option>
-              <option value="teacher">Teacher</option>
-              <option value="admin">Admin</option>
-            </select>
+      <div className="space-y-6 flex flex-col h-full">
+        <ListToolbar
+          searchPlaceHolder="Search directory..."
+          onSearch={setSearchTerm}
+          showAddButton={false}
+        />
+
+        <GlassCard className="flex-1 flex flex-col">
+          <div className="p-8 border-b border-white/20">
+            <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+              Certified Staff Index
+            </h4>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Staff ID
-            </label>
-            <select
-              name="staffId"
-              className="w-full rounded-xl border-gray-200 p-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all font-bold text-gray-600 bg-gray-50/50"
-            >
-              <option value="">Select ID</option>
-              <option value="001">STF2023-001</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Search by Name
-            </label>
-            <select
-              name="name"
-              className="w-full rounded-xl border-gray-200 p-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all font-bold text-gray-600 bg-gray-50/50"
-            >
-              <option value="">Select Name</option>
-              <option value="marcus">Marcus Aurelius</option>
-            </select>
-          </div>
-
-          <div className="md:col-span-3 flex justify-end">
-            <button
-              type="button"
-              className="flex items-center gap-2 rounded-xl bg-gray-800 px-10 py-3 text-white font-black text-sm transition-all hover:bg-black active:scale-[0.98] shadow-md shadow-gray-100"
-            >
-              <FaSearch size={14} />
-              Search Directory
-            </button>
-          </div>
-        </form>
-      </div>
-
-      {/* Directory Table */}
-      <div className="rounded-2xl bg-white p-6 shadow-sm border border-gray-100 ring-1 ring-black/5">
-        <h4 className="mb-6 text-xs font-bold text-gray-400 uppercase tracking-widest leading-none">
-          Personnel List
-        </h4>
-        <div className="overflow-x-auto rounded-xl border border-gray-100">
-          <table className="min-w-full text-sm">
-            <thead className="bg-gray-50/50 text-gray-500 font-bold border-b border-gray-100">
-              <tr>
-                <th className="px-6 py-4 text-left w-16 uppercase tracking-tighter text-[10px]">
-                  SN
-                </th>
-                <th className="px-6 py-4 text-left uppercase tracking-tighter text-[10px]">
-                  Staff Identity
-                </th>
-                <th className="px-6 py-4 text-left uppercase tracking-tighter text-[10px]">
-                  Role / Dept
-                </th>
-                <th className="px-6 py-4 text-left uppercase tracking-tighter text-[10px]">
-                  Designation
-                </th>
-                <th className="px-6 py-4 text-left uppercase tracking-tighter text-[10px]">
-                  Contact Info
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {staffList.map((staff, index) => (
-                <tr
-                  key={staff.id}
-                  className="hover:bg-blue-50/10 transition-colors group"
-                >
-                  <td className="px-6 py-4 text-gray-400 font-mono text-xs">
-                    {index + 1}
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center font-black text-lg shadow-inner">
-                        {staff.name.charAt(0)}
-                      </div>
-                      <div>
-                        <div className="font-black text-gray-900 tracking-tight font-serif italic text-base leading-none mb-1">
-                          {staff.name}
+          <div className="flex-1 overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-20">SN</TableHead>
+                  <TableHead>Staff Identity</TableHead>
+                  <TableHead>Role / Dept</TableHead>
+                  <TableHead>Designation</TableHead>
+                  <TableHead>Contact Info</TableHead>
+                  <TableHead className="text-center">Action</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {paginatedStaff.map((staff: any, index: number) => (
+                  <TableRow key={staff.id} className="group">
+                    <TableCell className="font-mono text-xs text-muted-foreground italic">
+                      {(currentPage - 1) * pageSize + index + 1}
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 bg-secondary/10 text-secondary rounded-full flex items-center justify-center font-black text-sm shadow-inner group-hover:bg-secondary group-hover:text-white transition-all shadow-sm">
+                          {staff.name.charAt(0)}
                         </div>
-                        <div className="flex items-center gap-1 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                          <FaIdBadge className="text-gray-300" />{" "}
-                          {staff.staffNo}
+                        <div>
+                          <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none mb-1">
+                            {staff.name}
+                          </div>
+                          <div className="flex items-center gap-1 text-[10px] font-bold text-muted-foreground uppercase tracking-widest leading-none">
+                            <FaIdBadge
+                              className="text-muted-foreground/40"
+                              size={10}
+                            />{" "}
+                            {staff.staffNo}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-blue-50 text-blue-700 text-[10px] font-black uppercase ring-1 ring-blue-100 mb-1">
-                      {staff.role}
-                    </span>
-                    <div className="flex items-center gap-1 text-[10px] text-gray-400 font-bold uppercase tracking-widest">
-                      <FaBuilding className="text-gray-300" />{" "}
-                      {staff.department}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-2 font-bold text-gray-600">
-                      <FaUserTie className="text-gray-300" size={12} />
-                      {staff.designation}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2 text-xs font-medium text-gray-500">
-                        <FaPhone className="text-emerald-500/50" size={10} />{" "}
-                        {staff.mobile}
+                    </TableCell>
+                    <TableCell>
+                      <span className="inline-flex px-2 py-0.5 rounded bg-secondary/10 text-secondary text-[9px] font-black uppercase tracking-widest mb-1.5 shadow-sm">
+                        {staff.role}
+                      </span>
+                      <div className="flex items-center gap-1 text-[10px] text-muted-foreground font-bold uppercase tracking-widest leading-none">
+                        <FaBuilding
+                          className="text-muted-foreground/40"
+                          size={10}
+                        />{" "}
+                        {staff.department}
                       </div>
-                      <div className="flex items-center gap-2 text-xs font-medium text-gray-500">
-                        <FaEnvelope className="text-blue-500/50" size={10} />{" "}
-                        {staff.email}
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-2 text-[10px] font-black text-foreground uppercase tracking-widest">
+                        <FaUserTie
+                          className="text-muted-foreground/40"
+                          size={12}
+                        />
+                        {staff.designation}
                       </div>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-              {staffList.length === 0 && (
-                <tr>
-                  <td
-                    colSpan={5}
-                    className="px-6 py-12 text-center text-gray-300 font-bold uppercase tracking-widest text-[10px]"
-                  >
-                    No personnel records found.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-muted-foreground transition-colors hover:text-secondary cursor-pointer">
+                          <FaPhone
+                            className="text-muted-foreground/40"
+                            size={10}
+                          />{" "}
+                          {staff.mobile}
+                        </div>
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-muted-foreground transition-colors hover:text-secondary cursor-pointer">
+                          <FaEnvelope
+                            className="text-muted-foreground/40"
+                            size={10}
+                          />{" "}
+                          {staff.email}
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <ListActionButtons
+                        onEdit={() => console.log("Edit")}
+                        onDelete={() => console.log("Delete")}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
+                {paginatedStaff.length === 0 && (
+                  <TableRow>
+                    <TableCell
+                      colSpan={6}
+                      className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    >
+                      No records match the active directory search.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </div>
+
+          {filteredStaff.length > pageSize && (
+            <ListPagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+              totalRecords={filteredStaff.length}
+              pageSize={pageSize}
+            />
+          )}
+        </GlassCard>
       </div>
     </div>
   );
