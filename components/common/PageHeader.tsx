@@ -10,6 +10,7 @@ interface PageHeaderProps {
   subtitle?: string;
   backUrl?: string;
   action?: React.ReactNode;
+  icon?: React.ReactNode;
   className?: string;
 }
 
@@ -18,6 +19,7 @@ export function PageHeader({
   subtitle,
   backUrl,
   action,
+  icon,
   className,
 }: PageHeaderProps) {
   return (
@@ -34,9 +36,12 @@ export function PageHeader({
 
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <h1 className="text-3xl font-black text-foreground tracking-tighter">
-            {title}
-          </h1>
+          <div className="flex items-center gap-3">
+            {icon && <div className="text-secondary">{icon}</div>}
+            <h1 className="text-3xl font-black text-foreground tracking-tighter">
+              {title}
+            </h1>
+          </div>
           {subtitle && (
             <p className="text-sm text-muted-foreground font-bold uppercase tracking-[0.2em] mt-2">
               {subtitle}
