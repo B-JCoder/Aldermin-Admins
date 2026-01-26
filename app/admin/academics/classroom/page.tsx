@@ -1,74 +1,60 @@
 "use client";
 
 import { useState } from "react";
+import { PageHeader } from "@/components/common/PageHeader";
+import { ClassRoomForm } from "@/components/modules/academics/ClassRoomForm";
+import { ClassRoomList } from "@/components/modules/academics/ClassRoomList";
+import { Button } from "@/components/ui/button";
+import { FaPlus } from "react-icons/fa";
 
 export default function ClassRoomPage() {
   const [rooms, setRooms] = useState([
     { id: 1, roomNumber: "101", capacity: "40" },
   ]);
+  const [roomNumber, setRoomNumber] = useState("");
+  const [capacity, setCapacity] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!roomNumber || !capacity) return;
+    setRooms([...rooms, { id: rooms.length + 1, roomNumber, capacity }]);
+    setRoomNumber("");
+    setCapacity("");
+  };
+
+  const handleDelete = (id: number) => {
+    if (confirm("Are you sure you want to delete this room?")) {
+      setRooms(rooms.filter((r) => r.id !== id));
+    }
+  };
 
   return (
-    <div className="grid grid-cols-12 gap-6">
-      {/* ===== Form ===== */}
-      <div className="col-span-12 lg:col-span-4">
-        <div className="bg-white rounded-xl shadow p-6">
-          <h2 className="text-lg font-semibold mb-4">Add Class Room</h2>
+    <div className="container mx-auto space-y-8">
+      <PageHeader
+        title="Classroom Management"
+        subtitle="Infrastructure"
+        action={
+          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10 transition-all">
+            <FaPlus /> Add Room
+          </Button>
+        }
+      />
 
-          <form className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium">Room Number</label>
-              <input
-                type="text"
-                className="w-full border rounded px-3 py-2 mt-1"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium">Capacity</label>
-              <input
-                type="text"
-                className="w-full border rounded px-3 py-2 mt-1"
-              />
-            </div>
-
-            <button className="bg-blue-600 text-white px-4 py-2 rounded">
-              Save
-            </button>
-          </form>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Creation Form */}
+        <div className="lg:col-span-4 h-full">
+          <ClassRoomForm
+            roomNumber={roomNumber}
+            setRoomNumber={setRoomNumber}
+            capacity={capacity}
+            setCapacity={setCapacity}
+            handleSubmit={handleSubmit}
+          />
         </div>
-      </div>
 
-      {/* ===== Table ===== */}
-      <div className="col-span-12 lg:col-span-8">
-        <div className="bg-white rounded-xl shadow p-6">
-          <h2 className="text-lg font-semibold mb-4">Class Room List</h2>
-
-          <div className="overflow-x-auto">
-            <table className="w-full border">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="p-2 border">SN</th>
-                  <th className="p-2 border">Room Number</th>
-                  <th className="p-2 border">Capacity</th>
-                  <th className="p-2 border">Action</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {rooms.map((room, index) => (
-                  <tr key={room.id}>
-                    <td className="p-2 border">{index + 1}</td>
-                    <td className="p-2 border">{room.roomNumber}</td>
-                    <td className="p-2 border">{room.capacity}</td>
-                    <td className="p-2 border text-center">
-                      <button className="text-blue-600 mr-3">Edit</button>
-                      <button className="text-red-600">Delete</button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+        {/* List Index */}
+        <div className="lg:col-span-8 h-full">
+          <ClassRoomList rooms={rooms} handleDelete={handleDelete} />
         </div>
       </div>
     </div>

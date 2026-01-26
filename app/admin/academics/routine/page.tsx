@@ -1,89 +1,94 @@
 "use client";
 
+import { useState } from "react";
+import { PageHeader } from "@/components/common/PageHeader";
+import { RoutineForm } from "@/components/modules/academics/RoutineForm";
+import { RoutineList } from "@/components/modules/academics/RoutineList";
+import { Button } from "@/components/ui/button";
+import { FaPlus } from "react-icons/fa";
+
 export default function ClassRoutinePage() {
+  const [routines, setRoutines] = useState([
+    {
+      id: 1,
+      class: "Class 5",
+      section: "A",
+      day: "Monday",
+      startTime: "08:00",
+      endTime: "08:40",
+      subject: "Math",
+      teacher: "Sir Ahmed",
+      room: "101",
+    },
+  ]);
+
+  const [formData, setFormData] = useState({
+    class: "",
+    section: "",
+    day: "",
+    startTime: "",
+    endTime: "",
+    subject: "",
+    teacher: "",
+    room: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.class || !formData.day || !formData.subject) return;
+
+    setRoutines([
+      ...routines,
+      {
+        id: routines.length + 1,
+        ...formData,
+      },
+    ]);
+
+    // Reset minimal
+    setFormData({
+      class: "",
+      section: "",
+      day: "",
+      startTime: "",
+      endTime: "",
+      subject: "",
+      teacher: "",
+      room: "",
+    });
+  };
+
+  const handleDelete = (id: number) => {
+    if (confirm("Are you sure you want to delete this routine?")) {
+      setRoutines(routines.filter((r) => r.id !== id));
+    }
+  };
+
   return (
-    <div className="grid grid-cols-12 gap-6">
-      {/* ===== Form ===== */}
-      <div className="col-span-12 lg:col-span-4">
-        <div className="bg-white rounded-xl shadow p-6">
-          <h2 className="text-lg font-semibold mb-4">Add Class Routine</h2>
+    <div className="container mx-auto space-y-8">
+      <PageHeader
+        title="Routine Management"
+        subtitle="Scheduling"
+        action={
+          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10 transition-all">
+            <FaPlus /> Add Routine
+          </Button>
+        }
+      />
 
-          <form className="space-y-4">
-            <select className="w-full border rounded px-3 py-2">
-              <option>Select Class</option>
-            </select>
-
-            <select className="w-full border rounded px-3 py-2">
-              <option>Select Section</option>
-            </select>
-
-            <select className="w-full border rounded px-3 py-2">
-              <option>Select Day</option>
-            </select>
-
-            <div className="grid grid-cols-2 gap-2">
-              <input type="time" className="border rounded px-3 py-2" />
-              <input type="time" className="border rounded px-3 py-2" />
-            </div>
-
-            <select className="w-full border rounded px-3 py-2">
-              <option>Select Subject</option>
-            </select>
-
-            <select className="w-full border rounded px-3 py-2">
-              <option>Select Teacher</option>
-            </select>
-
-            <input
-              type="text"
-              placeholder="Room / Lab"
-              className="w-full border rounded px-3 py-2"
-            />
-
-            <button className="bg-blue-600 text-white px-4 py-2 rounded">
-              Save
-            </button>
-          </form>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Creation Form */}
+        <div className="lg:col-span-4 h-full">
+          <RoutineForm
+            formData={formData}
+            setFormData={setFormData}
+            handleSubmit={handleSubmit}
+          />
         </div>
-      </div>
 
-      {/* ===== Table ===== */}
-      <div className="col-span-12 lg:col-span-8">
-        <div className="bg-white rounded-xl shadow p-6">
-          <h2 className="text-lg font-semibold mb-4">Class Routine List</h2>
-
-          <div className="overflow-x-auto">
-            <table className="w-full border">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="border p-2">SN</th>
-                  <th className="border p-2">Class</th>
-                  <th className="border p-2">Section</th>
-                  <th className="border p-2">Day</th>
-                  <th className="border p-2">Time</th>
-                  <th className="border p-2">Subject</th>
-                  <th className="border p-2">Teacher</th>
-                  <th className="border p-2">Action</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td className="border p-2">1</td>
-                  <td className="border p-2">Class 5</td>
-                  <td className="border p-2">A</td>
-                  <td className="border p-2">Monday</td>
-                  <td className="border p-2">08:00 - 08:40</td>
-                  <td className="border p-2">Math</td>
-                  <td className="border p-2">Sir Ahmed</td>
-                  <td className="border p-2 text-center">
-                    <button className="text-blue-600 mr-3">Edit</button>
-                    <button className="text-red-600">Delete</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        {/* List Index */}
+        <div className="lg:col-span-8 h-full">
+          <RoutineList routines={routines} handleDelete={handleDelete} />
         </div>
       </div>
     </div>

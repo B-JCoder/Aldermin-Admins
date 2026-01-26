@@ -1,148 +1,91 @@
 "use client";
 
 import { useState } from "react";
+import { PageHeader } from "@/components/common/PageHeader";
+import { AssignSubjectForm } from "@/components/modules/academics/AssignSubjectForm";
+import { AssignSubjectList } from "@/components/modules/academics/AssignSubjectList";
+import { Button } from "@/components/ui/button";
+import { FaPlus } from "react-icons/fa";
 
 const subjects = ["Math", "English", "Science"];
 const sections = ["A", "B", "C"];
 const teachers = ["John Doe", "Sarah Smith", "Michael Lee"];
 
-const assignedSubjects = [
-  {
-    id: 1,
-    subject: "Math",
-    section: "A",
-    teacher: "John Doe",
-  },
-];
-
 export default function AssignSubjectPage() {
-  const [subject, setSubject] = useState("");
-  const [section, setSection] = useState("");
-  const [teacher, setTeacher] = useState("");
+  const [selectedSubject, setSelectedSubject] = useState("");
+  const [selectedSection, setSelectedSection] = useState("");
+  const [selectedTeacher, setSelectedTeacher] = useState("");
 
-  const handleDelete = () => {
+  const [assignedSubjects, setAssignedSubjects] = useState([
+    {
+      id: 1,
+      subject: "Math",
+      section: "A",
+      teacher: "John Doe",
+    },
+  ]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedSubject || !selectedSection || !selectedTeacher) return;
+
+    setAssignedSubjects([
+      ...assignedSubjects,
+      {
+        id: assignedSubjects.length + 1,
+        subject: selectedSubject,
+        section: selectedSection,
+        teacher: selectedTeacher,
+      },
+    ]);
+
+    // Reset form
+    setSelectedSubject("");
+    setSelectedSection("");
+    setSelectedTeacher("");
+  };
+
+  const handleDelete = (id: number) => {
     if (confirm("Are you sure you want to delete this record?")) {
-      alert("Deleted (mock)");
+      setAssignedSubjects(assignedSubjects.filter((t) => t.id !== id));
     }
   };
 
   return (
-    <div className="space-y-6">
-      {/* Page Title */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-xl font-semibold text-gray-800">Assign Subject</h1>
-      </div>
+    <div className="container mx-auto space-y-8">
+      <PageHeader
+        title="Subject Allocation"
+        subtitle="Academics Management"
+        action={
+          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10 transition-all">
+            <FaPlus /> Assign Subject
+          </Button>
+        }
+      />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* FORM */}
-        <div className="lg:col-span-4">
-          <div className="bg-white rounded-xl shadow p-6">
-            <h2 className="text-lg font-semibold mb-4">Add Assign Subject</h2>
-
-            <form className="space-y-4">
-              {/* Subject */}
-              <div>
-                <label className="block text-sm font-medium mb-1">
-                  Select Subject <span className="text-red-500">*</span>
-                </label>
-                <select
-                  className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-200"
-                  value={subject}
-                  onChange={(e) => setSubject(e.target.value)}
-                >
-                  <option value="">Select</option>
-                  {subjects.map((sub) => (
-                    <option key={sub}>{sub}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Section */}
-              <div>
-                <label className="block text-sm font-medium mb-1">
-                  Select Section <span className="text-red-500">*</span>
-                </label>
-                <select
-                  className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-200"
-                  value={section}
-                  onChange={(e) => setSection(e.target.value)}
-                >
-                  <option value="">Select</option>
-                  {sections.map((sec) => (
-                    <option key={sec}>{sec}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Teacher */}
-              <div>
-                <label className="block text-sm font-medium mb-1">
-                  Select Teacher <span className="text-red-500">*</span>
-                </label>
-                <select
-                  className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-200"
-                  value={teacher}
-                  onChange={(e) => setTeacher(e.target.value)}
-                >
-                  <option value="">Select</option>
-                  {teachers.map((t) => (
-                    <option key={t}>{t}</option>
-                  ))}
-                </select>
-              </div>
-
-              <button
-                type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
-              >
-                Save
-              </button>
-            </form>
-          </div>
+        <div className="lg:col-span-4 h-full">
+          <AssignSubjectForm
+            selectedSubject={selectedSubject}
+            setSelectedSubject={setSelectedSubject}
+            selectedSection={selectedSection}
+            setSelectedSection={setSelectedSection}
+            selectedTeacher={selectedTeacher}
+            setSelectedTeacher={setSelectedTeacher}
+            handleSubmit={handleSubmit}
+            subjects={subjects}
+            sections={sections}
+            teachers={teachers}
+          />
         </div>
 
         {/* TABLE */}
-        <div className="lg:col-span-8">
-          <div className="bg-white rounded-xl shadow p-6">
-            <h2 className="text-lg font-semibold mb-4">Assign Subject List</h2>
-
-            <div className="overflow-x-auto">
-              <table className="min-w-full border border-gray-200">
-                <thead className="bg-gray-100">
-                  <tr>
-                    <th className="px-4 py-2 border">SN</th>
-                    <th className="px-4 py-2 border">Subject</th>
-                    <th className="px-4 py-2 border">Section</th>
-                    <th className="px-4 py-2 border">Teacher</th>
-                    <th className="px-4 py-2 border">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {assignedSubjects.map((item, index) => (
-                    <tr key={item.id} className="text-center">
-                      <td className="border px-4 py-2">{index + 1}</td>
-                      <td className="border px-4 py-2">{item.subject}</td>
-                      <td className="border px-4 py-2">{item.section}</td>
-                      <td className="border px-4 py-2">{item.teacher}</td>
-                      <td className="border px-4 py-2">
-                        <div className="flex justify-center gap-2">
-                          <button className="px-3 py-1 text-sm border rounded hover:bg-gray-100">
-                            Edit
-                          </button>
-                          <button
-                            onClick={handleDelete}
-                            className="px-3 py-1 text-sm text-red-600 border rounded hover:bg-red-50"
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+        <div className="lg:col-span-8 h-full">
+          <AssignSubjectList
+            assignedSubjects={assignedSubjects}
+            handleDelete={handleDelete}
+          />
         </div>
       </div>
     </div>
