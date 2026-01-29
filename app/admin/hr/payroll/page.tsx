@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { ListToolbar } from "@/components/common/ListToolbar";
 import { ListPagination } from "@/components/common/ListPagination";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -81,7 +81,7 @@ export default function PayrollPage() {
         title="Staff Payroll Management"
         subtitle="Institutional Compensation & Disbursement Terminal"
         action={
-          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 h-12 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10 transition-all">
+          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 h-12 px-6 rounded-xl font-bold  text-[10px]  shadow-lg shadow-secondary/10 transition-all">
             <FaMoneyBillWave size={14} /> Authorize Cycle Disbursement
           </Button>
         }
@@ -108,7 +108,7 @@ export default function PayrollPage() {
             Icon: FaFileInvoice,
           },
         ].map((stat, i) => (
-          <GlassCard
+          <AdminCard
             key={i}
             className="p-8 flex items-center gap-6 group hover:translate-y-[-2px] transition-all duration-300"
           >
@@ -118,14 +118,14 @@ export default function PayrollPage() {
               <stat.Icon size={24} />
             </div>
             <div>
-              <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest leading-none mb-2">
+              <p className="text-[10px] font-semibold text-gray-500   leading-none mb-2">
                 {stat.label}
               </p>
-              <h3 className="text-2xl font-black text-foreground tracking-tighter font-mono italic">
+              <h3 className="text-2xl font-semibold text-foreground tracking-tighter  ">
                 {stat.val}
               </h3>
             </div>
-          </GlassCard>
+          </AdminCard>
         ))}
       </div>
 
@@ -136,9 +136,9 @@ export default function PayrollPage() {
           showAddButton={false}
         />
 
-        <GlassCard className="flex-1 flex flex-col">
-          <div className="p-8 border-b border-white/20">
-            <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+        <AdminCard className="flex-1 flex flex-col">
+          <div className="p-8 border-b border-gray-200">
+            <h4 className="text-xs font-semibold text-gray-500   leading-none">
               Institutional Payroll Ledger
             </h4>
           </div>
@@ -159,42 +159,42 @@ export default function PayrollPage() {
               <TableBody>
                 {paginatedPayroll.map((item: any, index: number) => (
                   <TableRow key={item.id} className="group">
-                    <TableCell className="font-mono text-xs text-muted-foreground italic">
+                    <TableCell className=" text-xs text-gray-500 ">
                       {(currentPage - 1) * pageSize + index + 1}
                     </TableCell>
                     <TableCell>
-                      <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none">
+                      <div className="font-semibold text-foreground text-sm   tracking-tight leading-none">
                         {item.staffName}
                       </div>
                     </TableCell>
                     <TableCell>
-                      <div className="text-xs font-bold text-foreground mb-1 uppercase tracking-tight">
+                      <div className="text-xs font-bold text-foreground mb-1  tracking-tight">
                         {item.role}
                       </div>
-                      <div className="text-[10px] text-muted-foreground uppercase font-black tracking-widest">
+                      <div className="text-[10px] text-gray-500  font-semibold ">
                         {item.department}
                       </div>
                     </TableCell>
                     <TableCell className="text-center">
-                      <div className="font-bold text-foreground text-xs uppercase italic tracking-tighter">
+                      <div className="font-bold text-foreground text-xs   tracking-tighter">
                         {item.month}
                       </div>
-                      <div className="text-[10px] text-muted-foreground font-mono italic">
+                      <div className="text-[10px] text-gray-500  ">
                         {item.year}
                       </div>
                     </TableCell>
                     <TableCell className="text-right tabular-nums">
-                      <div className="text-[10px] font-bold text-muted-foreground uppercase leading-none mb-1 tracking-tighter">
+                      <div className="text-[10px] font-bold text-gray-500  leading-none mb-1 tracking-tighter">
                         Net Disbursement
                       </div>
-                      <div className="text-lg font-black text-foreground italic tracking-tighter">
+                      <div className="text-lg font-semibold text-foreground  tracking-tighter">
                         ${item.netSalary}
                       </div>
                     </TableCell>
                     <TableCell>
                       <div className="flex justify-center">
                         <span
-                          className={`px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest shadow-sm ring-1 ring-inset ${
+                          className={`px-4 py-1.5 rounded-full text-[9px] font-semibold   shadow-sm ring-1 ring-inset ${
                             item.status === "Paid"
                               ? "bg-emerald-500/10 text-emerald-600 ring-emerald-500/20"
                               : item.status === "Generated"
@@ -217,7 +217,7 @@ export default function PayrollPage() {
                   <TableRow>
                     <TableCell
                       colSpan={7}
-                      className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                      className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                     >
                       No matching records in payroll stream.
                     </TableCell>
@@ -236,8 +236,9 @@ export default function PayrollPage() {
               pageSize={pageSize}
             />
           )}
-        </GlassCard>
+        </AdminCard>
       </div>
     </div>
   );
 }
+

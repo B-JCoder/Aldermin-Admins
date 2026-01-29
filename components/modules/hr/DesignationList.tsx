@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -51,9 +51,9 @@ export function DesignationList({
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col">
-        <div className="p-8 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <AdminCard className="flex-1 flex flex-col">
+        <div className="p-8 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Authorized Institutional Roles
           </h4>
         </div>
@@ -70,7 +70,7 @@ export function DesignationList({
             <TableBody>
               {paginatedDesignationList.map((item, index) => (
                 <TableRow key={item.id} className="group">
-                  <TableCell className="font-mono text-xs text-muted-foreground italic">
+                  <TableCell className=" text-xs text-gray-500 ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell>
@@ -78,7 +78,7 @@ export function DesignationList({
                       <div className="p-2 bg-secondary/10 text-secondary rounded-lg group-hover:bg-secondary group-hover:text-white transition-all shadow-sm">
                         <FaUserTie size={14} />
                       </div>
-                      <span className="font-black text-foreground text-sm uppercase italic tracking-tight">
+                      <span className="font-semibold text-foreground text-sm   tracking-tight">
                         {item.title}
                       </span>
                     </div>
@@ -95,7 +95,7 @@ export function DesignationList({
                 <TableRow>
                   <TableCell
                     colSpan={3}
-                    className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                   >
                     No matching designations found.
                   </TableCell>
@@ -114,7 +114,7 @@ export function DesignationList({
             pageSize={pageSize}
           />
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

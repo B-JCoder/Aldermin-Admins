@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Button } from "@/components/ui/button";
 import { FaEdit, FaTrash, FaChalkboardTeacher } from "react-icons/fa";
 
@@ -22,33 +22,33 @@ interface LessonPlanListProps {
 
 export function LessonPlanList({ plans }: LessonPlanListProps) {
   return (
-    <GlassCard className="p-6 bg-white/60">
-      <h4 className="mb-6 text-xs font-bold text-gray-400 uppercase tracking-widest leading-none">
+    <AdminCard className="p-6 bg-white">
+      <h4 className="mb-6 text-xs font-bold text-gray-400   leading-none">
         Active Teaching Schedule
       </h4>
       <div className="overflow-x-auto rounded-xl border border-gray-100">
         <table className="min-w-full text-sm">
           <thead className="bg-gray-50/50 text-gray-500 font-bold border-b border-gray-100">
             <tr>
-              <th className="px-6 py-4 text-left w-16 uppercase tracking-tighter text-[10px]">
+              <th className="px-6 py-4 text-left w-16  tracking-tighter text-[10px]">
                 SN
               </th>
-              <th className="px-6 py-4 text-left uppercase tracking-tighter text-[10px]">
+              <th className="px-6 py-4 text-left  tracking-tighter text-[10px]">
                 Instructor
               </th>
-              <th className="px-6 py-4 text-left uppercase tracking-tighter text-[10px]">
+              <th className="px-6 py-4 text-left  tracking-tighter text-[10px]">
                 Academic Context
               </th>
-              <th className="px-6 py-4 text-left uppercase tracking-tighter text-[10px]">
+              <th className="px-6 py-4 text-left  tracking-tighter text-[10px]">
                 Lesson / Topic
               </th>
-              <th className="px-6 py-4 text-center uppercase tracking-tighter text-[10px]">
+              <th className="px-6 py-4 text-center  tracking-tighter text-[10px]">
                 Scheduled Date
               </th>
-              <th className="px-6 py-4 text-center uppercase tracking-tighter text-[10px]">
+              <th className="px-6 py-4 text-center  tracking-tighter text-[10px]">
                 Status
               </th>
-              <th className="px-6 py-4 text-center uppercase tracking-tighter text-[10px]">
+              <th className="px-6 py-4 text-center  tracking-tighter text-[10px]">
                 Action
               </th>
             </tr>
@@ -59,7 +59,7 @@ export function LessonPlanList({ plans }: LessonPlanListProps) {
                 key={plan.id}
                 className="hover:bg-secondary/5 transition-colors group"
               >
-                <td className="px-6 py-4 text-gray-400 font-mono text-xs">
+                <td className="px-6 py-4 text-gray-400  text-xs">
                   {index + 1}
                 </td>
                 <td className="px-6 py-4">
@@ -67,7 +67,7 @@ export function LessonPlanList({ plans }: LessonPlanListProps) {
                     <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
                       <FaChalkboardTeacher size={14} />
                     </div>
-                    <div className="font-black text-gray-800 tracking-tight leading-none italic font-serif">
+                    <div className="font-semibold text-gray-800 tracking-tight leading-none  ">
                       {plan.teacher}
                     </div>
                   </div>
@@ -76,7 +76,7 @@ export function LessonPlanList({ plans }: LessonPlanListProps) {
                   <div className="text-xs font-bold text-gray-700">
                     {plan.subject}
                   </div>
-                  <div className="text-[10px] text-gray-400 font-black uppercase tracking-widest">
+                  <div className="text-[10px] text-gray-400 font-semibold  ">
                     {plan.className}
                   </div>
                 </td>
@@ -84,7 +84,7 @@ export function LessonPlanList({ plans }: LessonPlanListProps) {
                   <div className="font-bold text-gray-900 leading-tight mb-1">
                     {plan.lesson}
                   </div>
-                  <div className="text-[10px] text-secondary/70 font-bold uppercase flex items-center gap-1">
+                  <div className="text-[10px] text-secondary/70 font-bold  flex items-center gap-1">
                     <div className="w-1 h-1 rounded-full bg-secondary"></div>
                     {plan.topic}
                   </div>
@@ -97,7 +97,7 @@ export function LessonPlanList({ plans }: LessonPlanListProps) {
                 <td className="px-6 py-4">
                   <div className="flex justify-center">
                     <span
-                      className={`px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ring-1 ring-inset ${
+                      className={`px-4 py-1 rounded-full text-[10px] font-semibold   ring-1 ring-inset ${
                         plan.status === "Completed"
                           ? "bg-emerald-50 text-emerald-700 ring-emerald-200"
                           : "bg-blue-50 text-blue-700 ring-blue-200"
@@ -130,6 +130,6 @@ export function LessonPlanList({ plans }: LessonPlanListProps) {
           </tbody>
         </table>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

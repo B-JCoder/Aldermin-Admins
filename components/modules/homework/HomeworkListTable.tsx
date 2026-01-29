@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { ListToolbar } from "@/components/common/ListToolbar";
 import { ListPagination } from "@/components/common/ListPagination";
 import { ListActionButtons } from "@/components/common/ListActionButtons";
@@ -60,9 +60,9 @@ export function HomeworkListTable({
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col">
-        <div className="p-8 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <AdminCard className="flex-1 flex flex-col">
+        <div className="p-8 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Published Interaction stream
           </h4>
         </div>
@@ -82,50 +82,50 @@ export function HomeworkListTable({
             <TableBody>
               {paginatedList.map((h, index) => (
                 <TableRow key={h.id} className="group">
-                  <TableCell className="font-mono text-xs text-muted-foreground italic">
+                  <TableCell className=" text-xs text-gray-500 ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell>
-                    <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none mb-1">
+                    <div className="font-semibold text-foreground text-sm   tracking-tight leading-none mb-1">
                       {h.subject}
                     </div>
-                    <div className="text-[10px] font-bold text-secondary uppercase tracking-widest flex items-center gap-2">
+                    <div className="text-[10px] font-bold text-secondary   flex items-center gap-2">
                       <FaLayerGroup size={10} /> {h.class}
                     </div>
                   </TableCell>
                   <TableCell className="text-center">
                     <div className="inline-flex flex-col items-center p-2 rounded-xl bg-secondary/5 border border-secondary/10 min-w-[60px] shadow-sm">
-                      <span className="text-xs font-black font-mono text-secondary leading-none">
+                      <span className="text-xs font-semibold  text-secondary leading-none">
                         {h.marks}
                       </span>
-                      <span className="text-[7px] font-black uppercase text-muted-foreground mt-1 tracking-widest">
+                      <span className="text-[7px] font-semibold  text-gray-500 mt-1 ">
                         Valence
                       </span>
                     </div>
                   </TableCell>
                   <TableCell>
                     <div className="space-y-1.5">
-                      <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+                      <div className="flex items-center gap-2 text-[10px] text-gray-500">
                         <FaCalendarDay
                           className="text-secondary/40"
                           size={10}
                         />
-                        <span className="font-black uppercase tracking-tighter w-12">
+                        <span className="font-semibold  tracking-tighter w-12">
                           Start:
                         </span>
-                        <span className="font-mono font-bold">
+                        <span className=" font-bold">
                           {h.homeworkDate}
                         </span>
                       </div>
-                      <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+                      <div className="flex items-center gap-2 text-[10px] text-gray-500">
                         <FaClipboardCheck
                           className="text-secondary/40"
                           size={10}
                         />
-                        <span className="font-black uppercase tracking-tighter w-12">
+                        <span className="font-semibold  tracking-tighter w-12">
                           End:
                         </span>
-                        <span className="font-mono font-bold text-secondary">
+                        <span className=" font-bold text-secondary">
                           {h.submissionDate}
                         </span>
                       </div>
@@ -135,9 +135,9 @@ export function HomeworkListTable({
                     <div className="flex flex-col items-center gap-1 cursor-pointer group/asset transition-colors hover:text-secondary">
                       <FaFileDownload
                         size={16}
-                        className="text-muted-foreground/30 group-hover/asset:text-secondary"
+                        className="text-gray-500/30 group-hover/asset:text-secondary"
                       />
-                      <span className="text-[9px] font-mono font-bold uppercase text-muted-foreground group-hover/asset:text-secondary truncate max-w-[100px]">
+                      <span className="text-[9px]  font-bold  text-gray-500 group-hover/asset:text-secondary truncate max-w-[100px]">
                         {h.fileName}
                       </span>
                     </div>
@@ -154,7 +154,7 @@ export function HomeworkListTable({
                 <TableRow>
                   <TableCell
                     colSpan={6}
-                    className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                   >
                     No matching assignments in registry.
                   </TableCell>
@@ -173,7 +173,7 @@ export function HomeworkListTable({
             pageSize={pageSize}
           />
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

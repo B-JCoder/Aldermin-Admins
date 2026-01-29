@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,9 +16,9 @@ import { FaCheck } from "react-icons/fa";
 
 export function LeaveEntitlementForm() {
   return (
-    <GlassCard className="h-full flex flex-col bg-gradient-to-br from-white to-secondary/5 border-secondary/10">
+    <AdminCard className="h-full flex flex-col bg-gradient-to-br from-white to-secondary/5 border-secondary/10">
       <div className="mb-6 flex items-center justify-between">
-        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+        <h4 className="text-xs font-semibold text-gray-500   leading-none">
           Define Quota
         </h4>
         <div className="h-1 w-12 bg-secondary/20 rounded-full"></div>
@@ -27,11 +27,11 @@ export function LeaveEntitlementForm() {
       <form className="space-y-4 flex-1">
         <div className="space-y-4">
           <div className="space-y-2">
-            <Label className="text-[10px] font-black text-muted-foreground uppercase tracking-widest px-1">
+            <Label className="text-[10px] font-semibold text-gray-500   px-1">
               Target Role
             </Label>
             <Select>
-              <SelectTrigger className="w-full rounded-xl bg-white/50 border-white/40 focus:bg-white transition-all font-bold text-xs h-12">
+              <SelectTrigger className="w-full rounded-xl bg-white border-gray-200 focus:bg-white transition-all font-bold text-xs h-12">
                 <SelectValue placeholder="Select Role..." />
               </SelectTrigger>
               <SelectContent>
@@ -43,11 +43,11 @@ export function LeaveEntitlementForm() {
             </Select>
           </div>
           <div className="space-y-2">
-            <Label className="text-[10px] font-black text-muted-foreground uppercase tracking-widest px-1">
+            <Label className="text-[10px] font-semibold text-gray-500   px-1">
               Leave Type
             </Label>
             <Select>
-              <SelectTrigger className="w-full rounded-xl bg-white/50 border-white/40 focus:bg-white transition-all font-bold text-xs h-12">
+              <SelectTrigger className="w-full rounded-xl bg-white border-gray-200 focus:bg-white transition-all font-bold text-xs h-12">
                 <SelectValue placeholder="Select Type..." />
               </SelectTrigger>
               <SelectContent>
@@ -58,12 +58,12 @@ export function LeaveEntitlementForm() {
             </Select>
           </div>
           <div className="space-y-2">
-            <Label className="text-[10px] font-black text-muted-foreground uppercase tracking-widest px-1">
+            <Label className="text-[10px] font-semibold text-gray-500   px-1">
               Days per Year
             </Label>
             <Input
               type="number"
-              className="rounded-xl bg-white/50 border-white/40 focus:bg-white transition-all font-bold text-xs p-4 h-12"
+              className="rounded-xl bg-white border-gray-200 focus:bg-white transition-all font-bold text-xs p-4 h-12"
               placeholder="e.g. 12"
             />
           </div>
@@ -72,13 +72,13 @@ export function LeaveEntitlementForm() {
         <div className="pt-4 mt-auto">
           <Button
             type="submit"
-            className="w-full rounded-xl bg-foreground text-background font-black text-[10px] uppercase tracking-[0.2em] h-12 shadow-lg hover:shadow-xl hover:bg-foreground/90 transition-all flex items-center justify-center gap-2"
+            className="w-full rounded-xl bg-foreground text-background font-semibold text-[10px]  tracking-[0.2em] h-12 shadow-lg hover:shadow-xl hover:bg-foreground/90 transition-all flex items-center justify-center gap-2"
           >
-            <FaCheck size={12} className="italic" />
+            <FaCheck size={12} className="" />
             Assign Quota
           </Button>
         </div>
       </form>
-    </GlassCard>
+    </AdminCard>
   );
 }

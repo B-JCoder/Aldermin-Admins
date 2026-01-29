@@ -47,13 +47,13 @@ export default function PayrollPage() {
   return (
     <div className="container mx-auto p-4 space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-gray-900 tracking-tighter flex items-center gap-3">
+        <h1 className="text-2xl font-semibold text-gray-900 tracking-tighter flex items-center gap-3">
           <div className="p-2 bg-sky-600 rounded-xl shadow-lg ring-4 ring-sky-50">
             <FaMoneyBillWave className="text-white" size={20} />
           </div>
           Fiscal Remuneration Matrix
         </h1>
-        <button className="flex items-center gap-2 px-6 py-3 bg-gray-900 text-white text-[10px] font-black rounded-xl uppercase tracking-[0.2em] hover:bg-black transition-all shadow-xl active:scale-95">
+        <button className="flex items-center gap-2 px-6 py-3 bg-gray-900 text-white text-[10px] font-semibold rounded-xl  tracking-[0.2em] hover:bg-black transition-all shadow-xl active:scale-95">
           <FaPrint /> Broadcast Payroll
         </button>
       </div>
@@ -61,7 +61,7 @@ export default function PayrollPage() {
       <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 bg-gradient-to-br from-white to-sky-50/5 relative overflow-hidden">
         <form className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div>
-            <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+            <label className="block text-[10px] font-semibold text-gray-400   mb-2 px-1">
               Fiscal Cycle (Month)
             </label>
             <div className="relative">
@@ -75,7 +75,7 @@ export default function PayrollPage() {
             </div>
           </div>
           <div>
-            <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+            <label className="block text-[10px] font-semibold text-gray-400   mb-2 px-1">
               Organizational Tier
             </label>
             <div className="relative">
@@ -91,10 +91,10 @@ export default function PayrollPage() {
           <div className="md:col-span-2 flex items-end">
             <button
               type="submit"
-              className="w-full relative overflow-hidden rounded-2xl bg-sky-600 border-b-4 border-sky-800 text-white px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:bg-sky-700 active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-sky-100"
+              className="w-full relative overflow-hidden rounded-2xl bg-sky-600 border-b-4 border-sky-800 text-white px-8 py-4 text-[10px] font-semibold  tracking-[0.2em] transition-all hover:bg-sky-700 active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-sky-100"
             >
               <div className="relative z-10 flex items-center justify-center gap-2">
-                <FaSearch className="italic" />
+                <FaSearch className="" />
                 Analyze Fiscal Distribution
               </div>
             </button>
@@ -104,7 +104,7 @@ export default function PayrollPage() {
 
       <div className="rounded-3xl bg-white shadow-xl border border-gray-100 ring-1 ring-black/5 relative overflow-hidden">
         <div className="p-8 border-b border-gray-50 flex items-center justify-between bg-gray-50/30">
-          <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest leading-none">
+          <h4 className="text-xs font-semibold text-gray-400   leading-none">
             Remuneration Disbursement Stream
           </h4>
         </div>
@@ -113,22 +113,22 @@ export default function PayrollPage() {
           <table className="min-w-full text-sm">
             <thead className="bg-gray-50/50 text-gray-400 font-bold border-b border-gray-50">
               <tr>
-                <th className="px-8 py-6 text-left w-20 text-[10px] uppercase font-black">
+                <th className="px-8 py-6 text-left w-20 text-[10px]  font-semibold">
                   SN
                 </th>
-                <th className="px-8 py-6 text-left text-[10px] uppercase font-black tracking-widest">
+                <th className="px-8 py-6 text-left text-[10px]  font-semibold ">
                   Personnel Node
                 </th>
-                <th className="px-8 py-6 text-center text-[10px] uppercase font-black tracking-widest">
+                <th className="px-8 py-6 text-center text-[10px]  font-semibold ">
                   Net Compensation
                 </th>
-                <th className="px-8 py-6 text-center text-[10px] uppercase font-black tracking-widest">
+                <th className="px-8 py-6 text-center text-[10px]  font-semibold ">
                   Compliance Status
                 </th>
-                <th className="px-8 py-6 text-center text-[10px] uppercase font-black tracking-widest">
+                <th className="px-8 py-6 text-center text-[10px]  font-semibold ">
                   Disbursement Date
                 </th>
-                <th className="px-8 py-6 text-center text-[10px] uppercase font-black tracking-widest">
+                <th className="px-8 py-6 text-center text-[10px]  font-semibold ">
                   Action
                 </th>
               </tr>
@@ -139,7 +139,7 @@ export default function PayrollPage() {
                   key={p.id}
                   className="hover:bg-sky-50/10 transition-all group"
                 >
-                  <td className="px-8 py-10 text-gray-300 font-mono text-xs italic">
+                  <td className="px-8 py-10 text-gray-300  text-xs ">
                     {index + 1}
                   </td>
                   <td className="px-8 py-10">
@@ -148,12 +148,12 @@ export default function PayrollPage() {
                         <FaUserShield size={14} />
                       </div>
                       <div>
-                        <div className="font-black text-gray-900 tracking-tight text-base font-serif italic uppercase leading-none mb-1">
+                        <div className="font-semibold text-gray-900 tracking-tight text-base    leading-none mb-1">
                           {p.name}
                         </div>
-                        <div className="text-[9px] font-black text-gray-400 uppercase tracking-widest">
+                        <div className="text-[9px] font-semibold text-gray-400  ">
                           {p.role} •{" "}
-                          <span className="text-sky-500 font-mono italic">
+                          <span className="text-sky-500  ">
                             {p.staffId}
                           </span>
                         </div>
@@ -161,13 +161,13 @@ export default function PayrollPage() {
                     </div>
                   </td>
                   <td className="px-8 py-10 text-center">
-                    <div className="text-lg font-black font-mono text-gray-900 group-hover:text-sky-600 transition-colors">
+                    <div className="text-lg font-semibold  text-gray-900 group-hover:text-sky-600 transition-colors">
                       {p.netSalary}
                     </div>
                   </td>
                   <td className="px-8 py-10 text-center">
                     <span
-                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm ring-1 ring-inset ${
+                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-semibold   shadow-sm ring-1 ring-inset ${
                         p.status === "Paid"
                           ? "bg-emerald-50 text-emerald-700 ring-emerald-100"
                           : "bg-amber-50 text-amber-700 ring-amber-100"
@@ -181,11 +181,11 @@ export default function PayrollPage() {
                       {p.status}
                     </span>
                   </td>
-                  <td className="px-8 py-10 text-center text-gray-400 font-mono text-[10px] italic">
+                  <td className="px-8 py-10 text-center text-gray-400  text-[10px] ">
                     {p.payDate}
                   </td>
                   <td className="px-8 py-10 text-center">
-                    <button className="px-5 py-2.5 bg-gray-900 text-white text-[9px] font-black rounded-xl uppercase tracking-widest hover:bg-black transition-all shadow-lg active:scale-95 flex items-center gap-2 mx-auto">
+                    <button className="px-5 py-2.5 bg-gray-900 text-white text-[9px] font-semibold rounded-xl   hover:bg-black transition-all shadow-lg active:scale-95 flex items-center gap-2 mx-auto">
                       <FaReceipt size={10} /> Generate Payslip
                     </button>
                   </td>
@@ -198,3 +198,4 @@ export default function PayrollPage() {
     </div>
   );
 }
+

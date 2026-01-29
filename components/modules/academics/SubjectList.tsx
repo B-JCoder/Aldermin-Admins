@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -50,9 +50,9 @@ export function SubjectList({ subjects: initialSubjects }: SubjectListProps) {
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col">
-        <div className="p-8 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <AdminCard className="flex-1 flex flex-col">
+        <div className="p-8 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Authorized Subjects
           </h4>
         </div>
@@ -71,16 +71,16 @@ export function SubjectList({ subjects: initialSubjects }: SubjectListProps) {
             <TableBody>
               {paginatedSubjects.map((subject, index) => (
                 <TableRow key={index} className="group">
-                  <TableCell className="font-mono text-xs text-muted-foreground italic">
+                  <TableCell className=" text-xs text-gray-500 ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-sidebar/5 flex items-center justify-center text-muted-foreground group-hover:bg-secondary group-hover:text-white transition-all shadow-sm">
+                      <div className="w-10 h-10 rounded-xl bg-sidebar/5 flex items-center justify-center text-gray-500 group-hover:bg-secondary group-hover:text-white transition-all shadow-sm">
                         <FaBook size={16} />
                       </div>
                       <div>
-                        <div className="font-black text-foreground text-sm uppercase italic tracking-tight">
+                        <div className="font-semibold text-foreground text-sm   tracking-tight">
                           {subject.name}
                         </div>
                       </div>
@@ -88,7 +88,7 @@ export function SubjectList({ subjects: initialSubjects }: SubjectListProps) {
                   </TableCell>
                   <TableCell className="text-center">
                     <span
-                      className={`px-3 py-1 text-[9px] font-black rounded-full uppercase tracking-widest ${
+                      className={`px-3 py-1 text-[9px] font-semibold rounded-full   ${
                         subject.type === "Theory"
                           ? "bg-blue-500/10 text-blue-500"
                           : "bg-emerald-500/10 text-emerald-500"
@@ -98,7 +98,7 @@ export function SubjectList({ subjects: initialSubjects }: SubjectListProps) {
                     </span>
                   </TableCell>
                   <TableCell className="text-center">
-                    <div className="text-[10px] font-black uppercase text-muted-foreground font-mono">
+                    <div className="text-[10px] font-semibold  text-gray-500 ">
                       {subject.code || "---"}
                     </div>
                   </TableCell>
@@ -114,7 +114,7 @@ export function SubjectList({ subjects: initialSubjects }: SubjectListProps) {
                 <TableRow>
                   <TableCell
                     colSpan={5}
-                    className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                   >
                     No matching subjects found.
                   </TableCell>
@@ -133,7 +133,7 @@ export function SubjectList({ subjects: initialSubjects }: SubjectListProps) {
             pageSize={pageSize}
           />
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

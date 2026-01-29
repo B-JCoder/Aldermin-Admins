@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -55,36 +55,36 @@ export function StudentReportTable({ students }: StudentReportTableProps) {
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+      <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
+        
 
-        <div className="p-8 pb-4 relative z-10 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+        <div className="p-8 pb-4 relative z-10 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Subject Behavioural Dossier
           </h4>
         </div>
 
         <div className="flex-1 overflow-x-auto p-8 pt-0 relative z-10">
-          <div className="rounded-xl border border-white/20 bg-white/40 overflow-hidden">
+          <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
             <Table>
-              <TableHeader className="bg-white/50">
+              <TableHeader className="bg-white">
                 <TableRow>
-                  <TableHead className="px-8 py-6 text-left w-16 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-left w-16 text-[10px] font-semibold   text-gray-500">
                     SN
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-left text-[10px] font-semibold   text-gray-500">
                     Subject Profile
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-center text-[10px] font-semibold   text-gray-500">
                     Enrollment Node
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-center text-[10px] font-semibold   text-gray-500">
                     Aggregate Merit
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-center text-[10px] font-semibold   text-gray-500">
                     Interaction
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-center text-[10px] font-semibold   text-gray-500">
                     Governance
                   </TableHead>
                 </TableRow>
@@ -93,9 +93,9 @@ export function StudentReportTable({ students }: StudentReportTableProps) {
                 {paginatedStudents.map((student, index) => (
                   <TableRow
                     key={student.id}
-                    className="group hover:bg-white/60 transition-all font-medium"
+                    className="group hover:bg-white transition-all font-medium"
                   >
-                    <TableCell className="px-8 py-8 text-muted-foreground/50 font-mono text-xs italic">
+                    <TableCell className="px-8 py-8 text-gray-500/50  text-xs ">
                       {(currentPage - 1) * pageSize + index + 1}
                     </TableCell>
                     <TableCell className="px-8 py-8">
@@ -104,21 +104,21 @@ export function StudentReportTable({ students }: StudentReportTableProps) {
                           <FaUserGraduate size={16} />
                         </div>
                         <div>
-                          <div className="font-black text-foreground tracking-tight text-base font-serif italic uppercase leading-none mb-1 group-hover:text-secondary transition-colors">
+                          <div className="font-semibold text-foreground tracking-tight text-base    leading-none mb-1 group-hover:text-secondary transition-colors">
                             {student.name}
                           </div>
-                          <div className="text-[9px] font-black text-muted-foreground uppercase tracking-widest">
+                          <div className="text-[9px] font-semibold text-gray-500  ">
                             {student.gender} • {student.class}
                           </div>
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="px-8 py-8 text-center text-muted-foreground font-mono text-[10px]">
+                    <TableCell className="px-8 py-8 text-center text-gray-500  text-[10px]">
                       {student.admissionNo}
                     </TableCell>
                     <TableCell className="px-8 py-8 text-center">
                       <span
-                        className={`inline-flex items-center px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm ring-1 ring-inset ${
+                        className={`inline-flex items-center px-4 py-1.5 rounded-full text-[10px] font-semibold   shadow-sm ring-1 ring-inset ${
                           student.points >= 0
                             ? "bg-emerald-50 text-emerald-700 ring-emerald-100"
                             : "bg-rose-50 text-rose-700 ring-rose-100"
@@ -130,7 +130,7 @@ export function StudentReportTable({ students }: StudentReportTableProps) {
                         Merit
                       </span>
                     </TableCell>
-                    <TableCell className="px-8 py-8 text-center text-muted-foreground font-bold italic">
+                    <TableCell className="px-8 py-8 text-center text-gray-500 font-bold ">
                       {student.incidents} Entries
                     </TableCell>
                     <TableCell className="px-8 py-8 text-center">
@@ -158,7 +158,7 @@ export function StudentReportTable({ students }: StudentReportTableProps) {
             />
           </div>
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

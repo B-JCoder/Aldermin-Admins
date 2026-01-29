@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Button } from "@/components/ui/button";
 import { ListPagination } from "@/components/common/ListPagination";
 import { ListToolbar } from "@/components/common/ListToolbar";
@@ -63,15 +63,15 @@ export function IDQueue({
             showAddButton={false}
           />
         </div>
-        <Button className="h-14 px-8 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl shadow-secondary/20 transition-all active:scale-95 flex items-center gap-2">
+        <Button className="h-14 px-8 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-semibold  text-[10px]  shadow-xl shadow-secondary/20 transition-all active:scale-95 flex items-center gap-2">
           <FaPrint className="text-secondary-foreground/80" /> Execute Primary
           Print
         </Button>
       </div>
 
-      <GlassCard className="flex-1 flex flex-col">
-        <div className="p-8 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <AdminCard className="flex-1 flex flex-col">
+        <div className="p-8 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Card Production Queue
           </h4>
         </div>
@@ -83,7 +83,7 @@ export function IDQueue({
                 <TableHead className="w-12">
                   <input
                     type="checkbox"
-                    className="rounded-lg border-white/40 bg-white/50 text-secondary focus:ring-secondary/20 transition-all cursor-pointer w-4 h-4"
+                    className="rounded-lg border-gray-200 bg-white text-secondary focus:ring-secondary/20 transition-all cursor-pointer w-4 h-4"
                   />
                 </TableHead>
                 <TableHead>Member Profile</TableHead>
@@ -96,20 +96,20 @@ export function IDQueue({
                   <TableCell>
                     <input
                       type="checkbox"
-                      className="rounded-lg border-white/40 bg-white/50 text-secondary focus:ring-secondary/20 transition-all cursor-pointer w-4 h-4"
+                      className="rounded-lg border-gray-200 bg-white text-secondary focus:ring-secondary/20 transition-all cursor-pointer w-4 h-4"
                     />
                   </TableCell>
                   <TableCell>
-                    <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none mb-1 group-hover:text-secondary group-hover:underline cursor-pointer transition-all">
+                    <div className="font-semibold text-foreground text-sm   tracking-tight leading-none mb-1 group-hover:text-secondary group-hover:underline cursor-pointer transition-all">
                       {s.name}
                     </div>
-                    <div className="text-[10px] font-mono font-bold text-secondary uppercase tracking-widest">
+                    <div className="text-[10px]  font-bold text-secondary  ">
                       {s.admissionNo} <span className="opacity-20 mx-1">|</span>{" "}
                       {s.class} {s.section}
                     </div>
                   </TableCell>
                   <TableCell className="text-center">
-                    <div className="text-[10px] font-black uppercase text-secondary/60 font-mono tracking-widest italic opacity-60">
+                    <div className="text-[10px] font-semibold  text-secondary/60    opacity-60">
                       {s.layout}
                     </div>
                   </TableCell>
@@ -119,7 +119,7 @@ export function IDQueue({
                 <TableRow>
                   <TableCell
                     colSpan={3}
-                    className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                   >
                     No matches found in production queue.
                   </TableCell>
@@ -138,7 +138,7 @@ export function IDQueue({
             pageSize={pageSize}
           />
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

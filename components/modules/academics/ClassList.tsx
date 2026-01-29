@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -49,9 +49,9 @@ export function ClassList({ classList: initialClassList }: ClassListProps) {
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col">
-        <div className="p-8 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <AdminCard className="flex-1 flex flex-col">
+        <div className="p-8 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Grade Matrix
           </h4>
         </div>
@@ -69,16 +69,16 @@ export function ClassList({ classList: initialClassList }: ClassListProps) {
             <TableBody>
               {paginatedClassList.map((c, index) => (
                 <TableRow key={c.id} className="group">
-                  <TableCell className="font-mono text-xs text-muted-foreground italic">
+                  <TableCell className=" text-xs text-gray-500 ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-sidebar/5 flex items-center justify-center text-muted-foreground group-hover:bg-secondary group-hover:text-white transition-all shadow-sm">
+                      <div className="w-10 h-10 rounded-xl bg-sidebar/5 flex items-center justify-center text-gray-500 group-hover:bg-secondary group-hover:text-white transition-all shadow-sm">
                         <FaGraduationCap size={16} />
                       </div>
                       <div>
-                        <div className="font-black text-foreground text-sm uppercase italic tracking-tight">
+                        <div className="font-semibold text-foreground text-sm   tracking-tight">
                           {c.name}
                         </div>
                       </div>
@@ -87,18 +87,18 @@ export function ClassList({ classList: initialClassList }: ClassListProps) {
                   <TableCell className="text-center">
                     <div className="flex flex-col gap-1 items-center">
                       <div className="flex items-center gap-2">
-                        <span className="text-[9px] font-black text-muted-foreground uppercase tracking-tighter">
+                        <span className="text-[9px] font-semibold text-gray-500  tracking-tighter">
                           Pass:
                         </span>
-                        <span className="font-mono font-bold text-secondary">
+                        <span className=" font-bold text-secondary">
                           {c.passingMarks}
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-[9px] font-black text-muted-foreground uppercase tracking-tighter">
+                        <span className="text-[9px] font-semibold text-gray-500  tracking-tighter">
                           Avg:
                         </span>
-                        <span className="font-mono font-bold text-blue-500">
+                        <span className=" font-bold text-blue-500">
                           {c.averageMarks}%
                         </span>
                       </div>
@@ -116,7 +116,7 @@ export function ClassList({ classList: initialClassList }: ClassListProps) {
                 <TableRow>
                   <TableCell
                     colSpan={4}
-                    className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                   >
                     No matching grades found.
                   </TableCell>
@@ -135,7 +135,7 @@ export function ClassList({ classList: initialClassList }: ClassListProps) {
             pageSize={pageSize}
           />
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

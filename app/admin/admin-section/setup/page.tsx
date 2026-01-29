@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { ListToolbar } from "@/components/common/ListToolbar";
 import { ListPagination } from "@/components/common/ListPagination";
 import { ListActionButtons } from "@/components/common/ListActionButtons";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -59,15 +59,15 @@ export default function AdminSetupPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Creation Form */}
         <div className="lg:col-span-4 h-full">
-          <GlassCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
-            <h4 className="mb-8 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+          <AdminCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
+            <h4 className="mb-8 text-xs font-semibold text-gray-500   leading-none">
               Define Parameter
             </h4>
 
             <form className="space-y-6 flex-1">
               <div className="space-y-5">
                 <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                     Taxonomy Class <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -77,7 +77,7 @@ export default function AdminSetupPage() {
                     />
                     <input
                       type="text"
-                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
+                      className="w-full rounded-2xl border-gray-200 bg-white p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
                       placeholder="e.g. Session Type"
                       required
                     />
@@ -85,7 +85,7 @@ export default function AdminSetupPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                     Parameter Designation{" "}
                     <span className="text-red-500">*</span>
                   </label>
@@ -96,7 +96,7 @@ export default function AdminSetupPage() {
                     />
                     <input
                       type="text"
-                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
+                      className="w-full rounded-2xl border-gray-200 bg-white p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
                       placeholder="e.g. Morning Shift"
                       required
                     />
@@ -104,23 +104,23 @@ export default function AdminSetupPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                     Conceptual Description
                   </label>
                   <textarea
-                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm min-h-[120px]"
+                    className="w-full rounded-2xl border-gray-200 bg-white p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm min-h-[120px]"
                     placeholder="Define the scope of this parameter..."
                   ></textarea>
                 </div>
               </div>
 
               <div className="pt-6">
-                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl shadow-secondary/20 transition-all active:scale-95">
-                  <FaCheck className="mr-2 italic" /> Initialize Parameter
+                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-semibold  text-[10px]  shadow-xl shadow-secondary/20 transition-all active:scale-95">
+                  <FaCheck className="mr-2 " /> Initialize Parameter
                 </Button>
               </div>
             </form>
-          </GlassCard>
+          </AdminCard>
         </div>
 
         {/* List Index */}
@@ -131,9 +131,9 @@ export default function AdminSetupPage() {
             showAddButton={false}
           />
 
-          <GlassCard className="flex-1 flex flex-col">
-            <div className="p-8 border-b border-white/20">
-              <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+          <AdminCard className="flex-1 flex flex-col">
+            <div className="p-8 border-b border-gray-200">
+              <h4 className="text-xs font-semibold text-gray-500   leading-none">
                 Active Configuration Matrix
               </h4>
             </div>
@@ -151,14 +151,14 @@ export default function AdminSetupPage() {
                 <TableBody>
                   {paginatedSetup.map((s: any, index: number) => (
                     <TableRow key={s.id} className="group">
-                      <TableCell className="font-mono text-xs text-muted-foreground italic">
+                      <TableCell className=" text-xs text-gray-500 ">
                         {(currentPage - 1) * pageSize + index + 1}
                       </TableCell>
                       <TableCell>
-                        <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none mb-1">
+                        <div className="font-semibold text-foreground text-sm   tracking-tight leading-none mb-1">
                           {s.name}
                         </div>
-                        <div className="text-[10px] font-bold text-secondary uppercase tracking-widest flex items-center gap-1.5 font-mono">
+                        <div className="text-[10px] font-bold text-secondary   flex items-center gap-1.5 ">
                           <FaPuzzlePiece
                             size={8}
                             className="text-secondary/60"
@@ -167,7 +167,7 @@ export default function AdminSetupPage() {
                         </div>
                       </TableCell>
                       <TableCell className="text-center max-w-xs">
-                        <div className="text-[10px] text-muted-foreground/60 italic font-medium leading-relaxed">
+                        <div className="text-[10px] text-gray-500/60  font-medium leading-relaxed">
                           {s.description}
                         </div>
                       </TableCell>
@@ -183,7 +183,7 @@ export default function AdminSetupPage() {
                     <TableRow>
                       <TableCell
                         colSpan={4}
-                        className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                        className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                       >
                         No matches found in configuration matrix.
                       </TableCell>
@@ -202,9 +202,10 @@ export default function AdminSetupPage() {
                 pageSize={pageSize}
               />
             )}
-          </GlassCard>
+          </AdminCard>
         </div>
       </div>
     </div>
   );
 }
+

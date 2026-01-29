@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,20 +29,20 @@ export function TopicOverviewFilter({
   };
 
   return (
-    <GlassCard className="p-6 bg-white/60">
+    <AdminCard className="p-6 bg-white">
       <form
         onSubmit={handleSearch}
         className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end"
       >
         <div className="space-y-2">
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest">
+          <Label className="block text-[10px] font-semibold text-gray-500  ">
             Target Class
           </Label>
           <Select
             onValueChange={(val) => onSelectChange("className", val)}
             value={searchParams.className}
           >
-            <SelectTrigger className="w-full rounded-xl border-white/40 p-4 text-xs font-bold focus:ring-2 focus:ring-secondary/20 outline-none bg-white/50 h-10">
+            <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold focus:ring-2 focus:ring-secondary/20 outline-none bg-white h-10">
               <SelectValue placeholder="Select Class" />
             </SelectTrigger>
             <SelectContent>
@@ -52,14 +52,14 @@ export function TopicOverviewFilter({
         </div>
 
         <div className="space-y-2">
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest">
+          <Label className="block text-[10px] font-semibold text-gray-500  ">
             Section
           </Label>
           <Select
             onValueChange={(val) => onSelectChange("section", val)}
             value={searchParams.section}
           >
-            <SelectTrigger className="w-full rounded-xl border-white/40 p-4 text-xs font-bold focus:ring-2 focus:ring-secondary/20 outline-none bg-white/50 h-10">
+            <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold focus:ring-2 focus:ring-secondary/20 outline-none bg-white h-10">
               <SelectValue placeholder="Select Section" />
             </SelectTrigger>
             <SelectContent>
@@ -69,14 +69,14 @@ export function TopicOverviewFilter({
         </div>
 
         <div className="space-y-2">
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest">
+          <Label className="block text-[10px] font-semibold text-gray-500  ">
             Subject
           </Label>
           <Select
             onValueChange={(val) => onSelectChange("subject", val)}
             value={searchParams.subject}
           >
-            <SelectTrigger className="w-full rounded-xl border-white/40 p-4 text-xs font-bold focus:ring-2 focus:ring-secondary/20 outline-none bg-white/50 h-10">
+            <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold focus:ring-2 focus:ring-secondary/20 outline-none bg-white h-10">
               <SelectValue placeholder="Select Subject" />
             </SelectTrigger>
             <SelectContent>
@@ -88,13 +88,13 @@ export function TopicOverviewFilter({
         <div className="md:col-span-3 flex justify-end">
           <Button
             type="submit"
-            className="flex items-center gap-2 rounded-xl bg-gray-800 px-10 py-3 text-white font-black text-xs transition-all hover:bg-black active:scale-[0.98] shadow-md shadow-gray-100 uppercase tracking-widest h-10"
+            className="flex items-center gap-2 rounded-xl bg-gray-800 px-10 py-3 text-white font-semibold text-xs transition-all hover:bg-black active:scale-[0.98] shadow-md shadow-gray-100   h-10"
           >
             <FaSearch size={12} />
             Execute Search
           </Button>
         </div>
       </form>
-    </GlassCard>
+    </AdminCard>
   );
 }

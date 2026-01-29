@@ -48,7 +48,7 @@ export default function TeacherWiseReportPage() {
         action={
           <Button
             variant="outline"
-            className="rounded-2xl border-secondary/20 text-secondary hover:bg-secondary hover:text-white font-black text-xs uppercase tracking-widest"
+            className="rounded-2xl border-secondary/20 text-secondary hover:bg-secondary hover:text-white font-semibold text-xs  "
           >
             Generate Report
           </Button>

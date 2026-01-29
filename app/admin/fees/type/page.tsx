@@ -57,7 +57,7 @@ export default function FeeTypePage() {
         title="Revenue Classification"
         subtitle="Financial Ledger Setup"
         action={
-          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10 transition-all">
+          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold  text-[10px]  shadow-lg shadow-secondary/10 transition-all">
             <FaPlus /> Authorize Fee Type
           </Button>
         }

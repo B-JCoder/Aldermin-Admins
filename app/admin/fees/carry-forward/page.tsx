@@ -43,7 +43,7 @@ export default function FeeCarryForwardPage() {
         title="Fee Carry Forward Registry"
         subtitle="Manage Balance Transfers"
         action={
-          <Button className="rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-500/20 text-[10px] font-black uppercase tracking-widest px-6 h-12">
+          <Button className="rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-500/20 text-[10px] font-semibold   px-6 h-12">
             <FaSave className="mr-2" /> Bulk Forward
           </Button>
         }

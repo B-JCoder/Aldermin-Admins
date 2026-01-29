@@ -31,7 +31,7 @@ export default function AssignClassTeacherPage() {
   return (
     <div className="container mx-auto p-4 space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-gray-900 tracking-tighter flex items-center gap-3">
+        <h1 className="text-2xl font-semibold text-gray-900 tracking-tighter flex items-center gap-3">
           <div className="p-2 bg-indigo-600 rounded-xl shadow-lg ring-4 ring-indigo-50">
             <FaUserShield className="text-white" size={20} />
           </div>
@@ -43,7 +43,7 @@ export default function AssignClassTeacherPage() {
         {/* Assignment Form */}
         <div className="lg:col-span-4">
           <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 flex flex-col h-full bg-gradient-to-br from-white to-indigo-50/5">
-            <h4 className="mb-8 text-xs font-black text-gray-400 uppercase tracking-widest leading-none flex items-center gap-2">
+            <h4 className="mb-8 text-xs font-semibold text-gray-400   leading-none flex items-center gap-2">
               Designate Stewardship
               <div className="h-[1px] flex-1 bg-gray-100"></div>
             </h4>
@@ -51,7 +51,7 @@ export default function AssignClassTeacherPage() {
             <form className="space-y-6 flex-1">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-400   mb-2 px-1">
                     Academic Grade <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -67,7 +67,7 @@ export default function AssignClassTeacherPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-400   mb-2 px-1">
                     Sectional Unit <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -83,7 +83,7 @@ export default function AssignClassTeacherPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-400   mb-2 px-1">
                     Faculty Mentor <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -91,7 +91,7 @@ export default function AssignClassTeacherPage() {
                       className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300"
                       size={12}
                     />
-                    <select className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-xs font-black text-indigo-600 outline-none bg-indigo-50/30 appearance-none">
+                    <select className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-xs font-semibold text-indigo-600 outline-none bg-indigo-50/30 appearance-none">
                       <option>Select Teacher</option>
                       <option>Prof. Silas Vance</option>
                     </select>
@@ -102,10 +102,10 @@ export default function AssignClassTeacherPage() {
               <div className="pt-6">
                 <button
                   type="submit"
-                  className="w-full relative overflow-hidden rounded-2xl bg-gray-900 border-b-4 border-gray-700 text-white px-8 py-5 text-xs font-black uppercase tracking-widest transition-all hover:bg-black active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-gray-200"
+                  className="w-full relative overflow-hidden rounded-2xl bg-gray-900 border-b-4 border-gray-700 text-white px-8 py-5 text-xs font-semibold   transition-all hover:bg-black active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-gray-200"
                 >
                   <div className="relative z-10 flex items-center justify-center gap-2">
-                    <FaCheck className="italic" />
+                    <FaCheck className="" />
                     Initialize Stewardship
                   </div>
                 </button>
@@ -120,25 +120,25 @@ export default function AssignClassTeacherPage() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
 
             <div className="flex items-center justify-between mb-8 relative">
-              <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest leading-none">
+              <h4 className="text-xs font-semibold text-gray-400   leading-none">
                 Stewardship Registry
               </h4>
             </div>
 
             <div className="overflow-x-auto rounded-2xl border border-gray-50 relative">
               <table className="min-w-full text-[11px]">
-                <thead className="bg-gray-50/70 text-gray-500 font-black border-b border-gray-50">
+                <thead className="bg-gray-50/70 text-gray-500 font-semibold border-b border-gray-50">
                   <tr>
-                    <th className="px-5 py-6 text-left w-12 uppercase tracking-tighter">
+                    <th className="px-5 py-6 text-left w-12  tracking-tighter">
                       SN
                     </th>
-                    <th className="px-5 py-6 text-left uppercase tracking-tighter text-gray-400">
+                    <th className="px-5 py-6 text-left  tracking-tighter text-gray-400">
                       Class Dimension
                     </th>
-                    <th className="px-5 py-6 text-left uppercase tracking-tighter text-gray-400">
+                    <th className="px-5 py-6 text-left  tracking-tighter text-gray-400">
                       Faculty Supervisor
                     </th>
-                    <th className="px-5 py-6 text-center uppercase tracking-tighter text-gray-400">
+                    <th className="px-5 py-6 text-center  tracking-tighter text-gray-400">
                       Interaction
                     </th>
                   </tr>
@@ -149,14 +149,14 @@ export default function AssignClassTeacherPage() {
                       key={a.id}
                       className="hover:bg-indigo-50/20 transition-all group"
                     >
-                      <td className="px-5 py-8 text-gray-300 font-mono italic">
+                      <td className="px-5 py-8 text-gray-300  ">
                         {index + 1}
                       </td>
                       <td className="px-5 py-8">
-                        <div className="font-black text-gray-900 leading-tight text-base uppercase italic tracking-tighter mb-1">
+                        <div className="font-semibold text-gray-900 leading-tight text-base   tracking-tighter mb-1">
                           {a.className}
                         </div>
-                        <div className="flex items-center gap-2 text-[9px] font-black text-indigo-500 bg-indigo-50 px-2 py-0.5 rounded-md w-fit uppercase tracking-widest">
+                        <div className="flex items-center gap-2 text-[9px] font-semibold text-indigo-500 bg-indigo-50 px-2 py-0.5 rounded-md w-fit  ">
                           <FaLayerGroup size={8} /> {a.section}
                         </div>
                       </td>
@@ -166,10 +166,10 @@ export default function AssignClassTeacherPage() {
                             <FaUserTie size={16} />
                           </div>
                           <div>
-                            <div className="text-xs font-black text-gray-800 tracking-tight italic">
+                            <div className="text-xs font-semibold text-gray-800 tracking-tight ">
                               {a.teacher}
                             </div>
-                            <div className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-1">
+                            <div className="text-[9px] font-bold text-gray-400   mt-1">
                               Steward Representative
                             </div>
                           </div>
@@ -196,3 +196,4 @@ export default function AssignClassTeacherPage() {
     </div>
   );
 }
+

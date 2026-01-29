@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { ListToolbar } from "@/components/common/ListToolbar";
 import { ListPagination } from "@/components/common/ListPagination";
 import { ListActionButtons } from "@/components/common/ListActionButtons";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -74,7 +74,7 @@ export default function StaffListPage() {
         subtitle="Personnel Infrastructure"
         action={
           <Link href="/admin/hr/add-staff">
-            <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10 transition-all">
+            <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold  text-[10px]  shadow-lg shadow-secondary/10 transition-all">
               <FaUserPlus /> Authorize Personnel
             </Button>
           </Link>
@@ -88,9 +88,9 @@ export default function StaffListPage() {
           showAddButton={false}
         />
 
-        <GlassCard className="flex-1 flex flex-col">
-          <div className="p-8 border-b border-white/20">
-            <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+        <AdminCard className="flex-1 flex flex-col">
+          <div className="p-8 border-b border-gray-200">
+            <h4 className="text-xs font-semibold text-gray-500   leading-none">
               Certified Staff Index
             </h4>
           </div>
@@ -110,21 +110,21 @@ export default function StaffListPage() {
               <TableBody>
                 {paginatedStaff.map((staff: any, index: number) => (
                   <TableRow key={staff.id} className="group">
-                    <TableCell className="font-mono text-xs text-muted-foreground italic">
+                    <TableCell className=" text-xs text-gray-500 ">
                       {(currentPage - 1) * pageSize + index + 1}
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 bg-secondary/10 text-secondary rounded-full flex items-center justify-center font-black text-sm shadow-inner group-hover:bg-secondary group-hover:text-white transition-all shadow-sm">
+                        <div className="w-10 h-10 bg-secondary/10 text-secondary rounded-full flex items-center justify-center font-semibold text-sm shadow-inner group-hover:bg-secondary group-hover:text-white transition-all shadow-sm">
                           {staff.name.charAt(0)}
                         </div>
                         <div>
-                          <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none mb-1">
+                          <div className="font-semibold text-foreground text-sm   tracking-tight leading-none mb-1">
                             {staff.name}
                           </div>
-                          <div className="flex items-center gap-1 text-[10px] font-bold text-muted-foreground uppercase tracking-widest leading-none">
+                          <div className="flex items-center gap-1 text-[10px] font-bold text-gray-500   leading-none">
                             <FaIdBadge
-                              className="text-muted-foreground/40"
+                              className="text-gray-500/40"
                               size={10}
                             />{" "}
                             {staff.staffNo}
@@ -133,21 +133,21 @@ export default function StaffListPage() {
                       </div>
                     </TableCell>
                     <TableCell>
-                      <span className="inline-flex px-2 py-0.5 rounded bg-secondary/10 text-secondary text-[9px] font-black uppercase tracking-widest mb-1.5 shadow-sm">
+                      <span className="inline-flex px-2 py-0.5 rounded bg-secondary/10 text-secondary text-[9px] font-semibold   mb-1.5 shadow-sm">
                         {staff.role}
                       </span>
-                      <div className="flex items-center gap-1 text-[10px] text-muted-foreground font-bold uppercase tracking-widest leading-none">
+                      <div className="flex items-center gap-1 text-[10px] text-gray-500 font-bold   leading-none">
                         <FaBuilding
-                          className="text-muted-foreground/40"
+                          className="text-gray-500/40"
                           size={10}
                         />{" "}
                         {staff.department}
                       </div>
                     </TableCell>
                     <TableCell>
-                      <div className="flex items-center gap-2 text-[10px] font-black text-foreground uppercase tracking-widest">
+                      <div className="flex items-center gap-2 text-[10px] font-semibold text-foreground  ">
                         <FaUserTie
-                          className="text-muted-foreground/40"
+                          className="text-gray-500/40"
                           size={12}
                         />
                         {staff.designation}
@@ -155,16 +155,16 @@ export default function StaffListPage() {
                     </TableCell>
                     <TableCell>
                       <div className="space-y-1.5">
-                        <div className="flex items-center gap-2 text-[10px] font-bold text-muted-foreground transition-colors hover:text-secondary cursor-pointer">
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-gray-500 transition-colors hover:text-secondary cursor-pointer">
                           <FaPhone
-                            className="text-muted-foreground/40"
+                            className="text-gray-500/40"
                             size={10}
                           />{" "}
                           {staff.mobile}
                         </div>
-                        <div className="flex items-center gap-2 text-[10px] font-bold text-muted-foreground transition-colors hover:text-secondary cursor-pointer">
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-gray-500 transition-colors hover:text-secondary cursor-pointer">
                           <FaEnvelope
-                            className="text-muted-foreground/40"
+                            className="text-gray-500/40"
                             size={10}
                           />{" "}
                           {staff.email}
@@ -183,7 +183,7 @@ export default function StaffListPage() {
                   <TableRow>
                     <TableCell
                       colSpan={6}
-                      className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                      className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                     >
                       No records match the active directory search.
                     </TableCell>
@@ -202,8 +202,9 @@ export default function StaffListPage() {
               pageSize={pageSize}
             />
           )}
-        </GlassCard>
+        </AdminCard>
       </div>
     </div>
   );
 }
+

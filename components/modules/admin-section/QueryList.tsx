@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -58,9 +58,9 @@ export function QueryList({
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col">
-        <div className="p-8 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <AdminCard className="flex-1 flex flex-col">
+        <div className="p-8 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Inquiry Pipeline Registry
           </h4>
         </div>
@@ -79,7 +79,7 @@ export function QueryList({
             <TableBody>
               {paginatedQueries.map((item, index) => (
                 <TableRow key={item.id} className="group">
-                  <TableCell className="font-mono text-xs text-muted-foreground italic">
+                  <TableCell className=" text-xs text-gray-500 ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell>
@@ -88,20 +88,20 @@ export function QueryList({
                         <FaUserCircle size={16} />
                       </div>
                       <div>
-                        <div className="font-black text-foreground text-sm uppercase italic tracking-tight">
+                        <div className="font-semibold text-foreground text-sm   tracking-tight">
                           {item.name}
                         </div>
-                        <div className="text-[10px] font-bold text-muted-foreground uppercase">
+                        <div className="text-[10px] font-bold text-gray-500 ">
                           {item.admissionNo} • {item.dob}
                         </div>
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell className="font-bold text-muted-foreground text-[10px] uppercase tracking-widest">
+                  <TableCell className="font-bold text-gray-500 text-[10px]  ">
                     {item.fatherName}
                   </TableCell>
                   <TableCell className="text-center">
-                    <span className="px-3 py-1 bg-secondary/10 text-secondary text-[9px] font-black rounded-full uppercase tracking-widest">
+                    <span className="px-3 py-1 bg-secondary/10 text-secondary text-[9px] font-semibold rounded-full  ">
                       {item.class}
                     </span>
                   </TableCell>
@@ -117,7 +117,7 @@ export function QueryList({
                 <TableRow>
                   <TableCell
                     colSpan={5}
-                    className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                   >
                     No matching inquiries found.
                   </TableCell>
@@ -136,7 +136,7 @@ export function QueryList({
             pageSize={pageSize}
           />
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

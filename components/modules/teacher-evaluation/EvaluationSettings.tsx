@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { FaCheck, FaCogs } from "react-icons/fa";
@@ -23,21 +23,21 @@ export function EvaluationSettings() {
   return (
     <div className="space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <GlassCard className="p-8">
-          <h3 className="text-sm font-black text-muted-foreground uppercase tracking-widest mb-6">
+        <AdminCard className="p-8">
+          <h3 className="text-sm font-semibold text-gray-500   mb-6">
             Access Control
           </h3>
 
           <div className="space-y-6">
-            <div className="flex items-center justify-between p-4 bg-white/40 rounded-xl border border-white/40 backdrop-blur-sm">
+            <div className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 backdrop-blur-sm">
               <div className="space-y-1">
                 <Label
-                  className="text-sm font-black text-foreground cursor-pointer"
+                  className="text-sm font-semibold text-foreground cursor-pointer"
                   htmlFor="allowStudentReview"
                 >
                   Student Reviews
                 </Label>
-                <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">
+                <div className="text-[10px]  font-bold text-gray-500 ">
                   Allow students to submit evaluations
                 </div>
               </div>
@@ -49,15 +49,15 @@ export function EvaluationSettings() {
               />
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-white/40 rounded-xl border border-white/40 backdrop-blur-sm">
+            <div className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 backdrop-blur-sm">
               <div className="space-y-1">
                 <Label
-                  className="text-sm font-black text-foreground cursor-pointer"
+                  className="text-sm font-semibold text-foreground cursor-pointer"
                   htmlFor="allowParentReview"
                 >
                   Parent Reviews
                 </Label>
-                <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">
+                <div className="text-[10px]  font-bold text-gray-500 ">
                   Allow parents to submit evaluations
                 </div>
               </div>
@@ -69,23 +69,23 @@ export function EvaluationSettings() {
               />
             </div>
           </div>
-        </GlassCard>
+        </AdminCard>
 
-        <GlassCard className="p-8">
-          <h3 className="text-sm font-black text-muted-foreground uppercase tracking-widest mb-6">
+        <AdminCard className="p-8">
+          <h3 className="text-sm font-semibold text-gray-500   mb-6">
             Data Privacy
           </h3>
 
           <div className="space-y-6">
-            <div className="flex items-center justify-between p-4 bg-white/40 rounded-xl border border-white/40 backdrop-blur-sm">
+            <div className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 backdrop-blur-sm">
               <div className="space-y-1">
                 <Label
-                  className="text-sm font-black text-foreground cursor-pointer"
+                  className="text-sm font-semibold text-foreground cursor-pointer"
                   htmlFor="anonymousReviews"
                 >
                   Anonymous Submissions
                 </Label>
-                <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">
+                <div className="text-[10px]  font-bold text-gray-500 ">
                   Hide submitter identity from faculty
                 </div>
               </div>
@@ -97,15 +97,15 @@ export function EvaluationSettings() {
               />
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-white/40 rounded-xl border border-white/40 backdrop-blur-sm">
+            <div className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 backdrop-blur-sm">
               <div className="space-y-1">
                 <Label
-                  className="text-sm font-black text-foreground cursor-pointer"
+                  className="text-sm font-semibold text-foreground cursor-pointer"
                   htmlFor="reviewVerificationRequired"
                 >
                   Admin Approval
                 </Label>
-                <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">
+                <div className="text-[10px]  font-bold text-gray-500 ">
                   Manual verification before publishing
                 </div>
               </div>
@@ -119,14 +119,14 @@ export function EvaluationSettings() {
               />
             </div>
           </div>
-        </GlassCard>
+        </AdminCard>
       </div>
 
       <div className="flex justify-end">
         <Button
           variant="secondary"
           size="lg"
-          className="rounded-2xl px-10 py-6 text-sm font-black uppercase tracking-widest shadow-xl"
+          className="rounded-2xl px-10 py-6 text-sm font-semibold   shadow-xl"
         >
           <FaCheck className="mr-2" />
           Save Protocol

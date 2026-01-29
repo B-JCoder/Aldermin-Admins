@@ -63,7 +63,7 @@ export default function ClassPage() {
   return (
     <div className="container mx-auto p-4 space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-gray-900 tracking-tighter flex items-center gap-3">
+        <h1 className="text-2xl font-semibold text-gray-900 tracking-tighter flex items-center gap-3">
           <div className="p-2 bg-indigo-600 rounded-xl shadow-lg ring-4 ring-indigo-50">
             <FaGraduationCap className="text-white" size={20} />
           </div>
@@ -75,7 +75,7 @@ export default function ClassPage() {
         {/* Creation Form */}
         <div className="lg:col-span-4">
           <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 flex flex-col h-full bg-gradient-to-br from-white to-gray-50/10">
-            <h4 className="mb-8 text-xs font-black text-gray-400 uppercase tracking-widest leading-none flex items-center gap-2">
+            <h4 className="mb-8 text-xs font-semibold text-gray-400   leading-none flex items-center gap-2">
               Add Academic Grade
               <div className="h-[1px] flex-1 bg-gray-100"></div>
             </h4>
@@ -83,7 +83,7 @@ export default function ClassPage() {
             <form onSubmit={handleSubmit} className="space-y-6 flex-1">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-400   mb-2 px-1">
                     Grade Designation <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -97,7 +97,7 @@ export default function ClassPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-400   mb-2 px-1">
                     Passing Threshold
                   </label>
                   <select
@@ -113,7 +113,7 @@ export default function ClassPage() {
                 </div>
 
                 <div className="pt-2">
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-400   mb-4 px-1">
                     Constituent Units
                   </label>
                   <div className="grid grid-cols-1 gap-3">
@@ -136,7 +136,7 @@ export default function ClassPage() {
                                 : "text-gray-300 group-hover:text-indigo-400"
                             }
                           />
-                          <span className="text-[11px] font-black uppercase tracking-widest">
+                          <span className="text-[11px] font-semibold  ">
                             {section}
                           </span>
                         </div>
@@ -152,10 +152,10 @@ export default function ClassPage() {
               <div className="pt-6">
                 <button
                   type="submit"
-                  className="w-full relative overflow-hidden rounded-2xl bg-gray-900 border-b-4 border-gray-700 text-white px-8 py-5 text-xs font-black uppercase tracking-widest transition-all hover:bg-black active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-gray-200"
+                  className="w-full relative overflow-hidden rounded-2xl bg-gray-900 border-b-4 border-gray-700 text-white px-8 py-5 text-xs font-semibold   transition-all hover:bg-black active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-gray-200"
                 >
                   <div className="relative z-10 flex items-center justify-center gap-2">
-                    <FaPlus className="italic" />
+                    <FaPlus className="" />
                     Initialize Grade
                   </div>
                 </button>
@@ -170,25 +170,25 @@ export default function ClassPage() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
 
             <div className="flex items-center justify-between mb-8 relative">
-              <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest leading-none">
+              <h4 className="text-xs font-semibold text-gray-400   leading-none">
                 Institutional Grade Matrix
               </h4>
             </div>
 
             <div className="overflow-x-auto rounded-2xl border border-gray-50 relative">
               <table className="min-w-full text-[11px]">
-                <thead className="bg-gray-50/70 text-gray-500 font-black border-b border-gray-50">
+                <thead className="bg-gray-50/70 text-gray-500 font-semibold border-b border-gray-50">
                   <tr>
-                    <th className="px-5 py-6 text-left w-12 uppercase tracking-tighter">
+                    <th className="px-5 py-6 text-left w-12  tracking-tighter">
                       SN
                     </th>
-                    <th className="px-5 py-6 text-left uppercase tracking-tighter text-gray-400">
+                    <th className="px-5 py-6 text-left  tracking-tighter text-gray-400">
                       Grade Entity
                     </th>
-                    <th className="px-5 py-6 text-center uppercase tracking-tighter text-gray-400">
+                    <th className="px-5 py-6 text-center  tracking-tighter text-gray-400">
                       Metrics
                     </th>
-                    <th className="px-5 py-6 text-center uppercase tracking-tighter text-gray-400">
+                    <th className="px-5 py-6 text-center  tracking-tighter text-gray-400">
                       Governance
                     </th>
                   </tr>
@@ -199,7 +199,7 @@ export default function ClassPage() {
                       key={c.id}
                       className="hover:bg-indigo-50/20 transition-all group"
                     >
-                      <td className="px-5 py-8 text-gray-300 font-mono italic">
+                      <td className="px-5 py-8 text-gray-300  ">
                         {index + 1}
                       </td>
                       <td className="px-5 py-8">
@@ -208,14 +208,14 @@ export default function ClassPage() {
                             <FaGraduationCap size={16} />
                           </div>
                           <div>
-                            <div className="font-black text-gray-900 leading-tight text-xs uppercase italic tracking-tighter mb-1">
+                            <div className="font-semibold text-gray-900 leading-tight text-xs   tracking-tighter mb-1">
                               {c.name}
                             </div>
                             <div className="flex flex-wrap gap-1 mt-1">
                               {c.sections.map((s) => (
                                 <span
                                   key={s}
-                                  className="px-1.5 py-0.5 bg-indigo-50 text-[8px] font-black text-indigo-500 rounded uppercase tracking-tighter border border-indigo-100/50"
+                                  className="px-1.5 py-0.5 bg-indigo-50 text-[8px] font-semibold text-indigo-500 rounded  tracking-tighter border border-indigo-100/50"
                                 >
                                   {s}
                                 </span>
@@ -227,18 +227,18 @@ export default function ClassPage() {
                       <td className="px-5 py-8 text-center">
                         <div className="flex flex-col gap-1 items-center">
                           <div className="flex items-center gap-2">
-                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-tighter">
+                            <span className="text-[9px] font-semibold text-gray-400  tracking-tighter">
                               Pass:
                             </span>
-                            <span className="font-mono font-bold text-emerald-500">
+                            <span className=" font-bold text-emerald-500">
                               {c.passingMarks}
                             </span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-tighter">
+                            <span className="text-[9px] font-semibold text-gray-400  tracking-tighter">
                               Avg:
                             </span>
-                            <span className="font-mono font-bold text-blue-500">
+                            <span className=" font-bold text-blue-500">
                               {c.averageMarks}%
                             </span>
                           </div>
@@ -265,3 +265,4 @@ export default function ClassPage() {
     </div>
   );
 }
+

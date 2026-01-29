@@ -1,17 +1,17 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { BiDotsVerticalRounded, BiMale, BiFemale } from "react-icons/bi";
 
 export function StudentChart() {
   return (
-    <GlassCard className="p-6 h-full flex flex-col">
+    <AdminCard className="p-6 h-full flex flex-col">
       <div className="flex justify-between items-center mb-6">
-        <h5 className="font-black text-foreground text-sm uppercase tracking-widest">
+        <h5 className="font-semibold text-foreground text-sm  ">
           Students
         </h5>
-        <button className="text-muted-foreground hover:text-foreground">
+        <button className="text-gray-500 hover:text-foreground">
           <BiDotsVerticalRounded size={22} />
         </button>
       </div>
@@ -43,7 +43,7 @@ export function StudentChart() {
                 className="drop-shadow-lg"
               />
             </svg>
-            <span className="absolute text-2xl font-black text-foreground">
+            <span className="absolute text-2xl font-semibold text-foreground">
               53%
             </span>
           </div>
@@ -74,7 +74,7 @@ export function StudentChart() {
                 className="drop-shadow-lg"
               />
             </svg>
-            <span className="absolute text-2xl font-black text-foreground">
+            <span className="absolute text-2xl font-semibold text-foreground">
               47%
             </span>
           </div>
@@ -83,14 +83,14 @@ export function StudentChart() {
 
       <div className="mt-6 text-center">
         <div className="grid grid-cols-2 gap-4">
-          <div className="text-secondary font-bold flex items-center justify-center gap-2 text-xs uppercase tracking-wider">
+          <div className="text-secondary font-bold flex items-center justify-center gap-2 text-xs  tracking-wider">
             <BiMale size={18} /> 3,178 (Boys)
           </div>
-          <div className="text-yellow-600 font-bold flex items-center justify-center gap-2 text-xs uppercase tracking-wider">
+          <div className="text-yellow-600 font-bold flex items-center justify-center gap-2 text-xs  tracking-wider">
             <BiFemale size={18} /> 2,731 (Girls)
           </div>
         </div>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

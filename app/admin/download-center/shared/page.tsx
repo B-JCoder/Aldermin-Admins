@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { ListToolbar } from "@/components/common/ListToolbar";
 import { ListPagination } from "@/components/common/ListPagination";
 import { ListActionButtons } from "@/components/common/ListActionButtons";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -66,9 +66,9 @@ export default function SharedContentPage() {
           showAddButton={false}
         />
 
-        <GlassCard className="flex-1 flex flex-col">
-          <div className="p-8 border-b border-white/20">
-            <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+        <AdminCard className="flex-1 flex flex-col">
+          <div className="p-8 border-b border-gray-200">
+            <h4 className="text-xs font-semibold text-gray-500   leading-none">
               Institutional Resource Governance
             </h4>
           </div>
@@ -89,28 +89,28 @@ export default function SharedContentPage() {
               <TableBody>
                 {paginatedContent.map((item: any, index: number) => (
                   <TableRow key={item.id} className="group">
-                    <TableCell className="font-mono text-xs text-muted-foreground italic">
+                    <TableCell className=" text-xs text-gray-500 ">
                       {(currentPage - 1) * pageSize + index + 1}
                     </TableCell>
                     <TableCell>
-                      <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none group-hover:text-secondary group-hover:underline cursor-pointer transition-all">
+                      <div className="font-semibold text-foreground text-sm   tracking-tight leading-none group-hover:text-secondary group-hover:underline cursor-pointer transition-all">
                         {item.name}
                       </div>
                     </TableCell>
                     <TableCell>
-                      <span className="inline-flex items-center rounded-xl bg-secondary/10 border border-secondary/20 px-3 py-1.5 text-[10px] font-black text-secondary uppercase tracking-widest">
+                      <span className="inline-flex items-center rounded-xl bg-secondary/10 border border-secondary/20 px-3 py-1.5 text-[10px] font-semibold text-secondary  ">
                         {item.sendTo}
                       </span>
                     </TableCell>
-                    <TableCell className="text-[11px] font-bold text-muted-foreground/60 font-mono">
+                    <TableCell className="text-[11px] font-bold text-gray-500/60 ">
                       {item.sharedDate}
                     </TableCell>
                     <TableCell>
-                      <span className="text-[10px] font-black text-red-500 bg-red-50/50 border border-red-100 px-2 py-1.5 rounded-xl uppercase tracking-widest">
+                      <span className="text-[10px] font-semibold text-red-500 bg-red-50/50 border border-red-100 px-2 py-1.5 rounded-xl  ">
                         {item.validUpto}
                       </span>
                     </TableCell>
-                    <TableCell className="text-[11px] font-black text-secondary uppercase italic">
+                    <TableCell className="text-[11px] font-semibold text-secondary  ">
                       {item.sharedBy}
                     </TableCell>
                     <TableCell className="text-center">
@@ -125,7 +125,7 @@ export default function SharedContentPage() {
                   <TableRow>
                     <TableCell
                       colSpan={7}
-                      className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                      className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                     >
                       No matching resources shared.
                     </TableCell>
@@ -144,8 +144,9 @@ export default function SharedContentPage() {
               pageSize={pageSize}
             />
           )}
-        </GlassCard>
+        </AdminCard>
       </div>
     </div>
   );
 }
+

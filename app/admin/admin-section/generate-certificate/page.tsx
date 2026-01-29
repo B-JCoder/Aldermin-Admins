@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { ListToolbar } from "@/components/common/ListToolbar";
 import { ListPagination } from "@/components/common/ListPagination";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -75,15 +75,15 @@ export default function GenerateCertificatePage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Issuance Parameters */}
         <div className="lg:col-span-4 h-full">
-          <GlassCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
-            <h4 className="mb-8 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+          <AdminCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
+            <h4 className="mb-8 text-xs font-semibold text-gray-500   leading-none">
               Issuance Configuration
             </h4>
 
             <form className="space-y-6 flex-1">
               <div className="space-y-5">
                 <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                     Academic Grade <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -91,7 +91,7 @@ export default function GenerateCertificatePage() {
                       className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary/40"
                       size={12}
                     />
-                    <select className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none cursor-pointer">
+                    <select className="w-full rounded-2xl border-gray-200 bg-white p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none cursor-pointer">
                       <option>Select Grade</option>
                       <option>Grade 10</option>
                     </select>
@@ -99,7 +99,7 @@ export default function GenerateCertificatePage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                     Sectional Unit <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -107,7 +107,7 @@ export default function GenerateCertificatePage() {
                       className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary/40"
                       size={12}
                     />
-                    <select className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none cursor-pointer">
+                    <select className="w-full rounded-2xl border-gray-200 bg-white p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none cursor-pointer">
                       <option>Select Unit</option>
                       <option>Alpha</option>
                     </select>
@@ -115,7 +115,7 @@ export default function GenerateCertificatePage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                     Accolade Canvas <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -123,7 +123,7 @@ export default function GenerateCertificatePage() {
                       className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary/40"
                       size={12}
                     />
-                    <select className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none cursor-pointer text-secondary">
+                    <select className="w-full rounded-2xl border-gray-200 bg-white p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none cursor-pointer text-secondary">
                       <option>Academic Excellence 2024</option>
                       <option>Sports Achievement</option>
                     </select>
@@ -132,12 +132,12 @@ export default function GenerateCertificatePage() {
               </div>
 
               <div className="pt-6">
-                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl shadow-secondary/20 transition-all active:scale-95">
-                  <FaSearch className="mr-2 italic" /> Filter Honours Candidates
+                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-semibold  text-[10px]  shadow-xl shadow-secondary/20 transition-all active:scale-95">
+                  <FaSearch className="mr-2 " /> Filter Honours Candidates
                 </Button>
               </div>
             </form>
-          </GlassCard>
+          </AdminCard>
         </div>
 
         {/* Candidate List */}
@@ -148,12 +148,12 @@ export default function GenerateCertificatePage() {
             showAddButton={false}
           />
 
-          <GlassCard className="flex-1 flex flex-col">
-            <div className="p-8 border-b border-white/20 flex items-center justify-between">
-              <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+          <AdminCard className="flex-1 flex flex-col">
+            <div className="p-8 border-b border-gray-200 flex items-center justify-between">
+              <h4 className="text-xs font-semibold text-gray-500   leading-none">
                 Qualified Honours Stream
               </h4>
-              <Button className="h-10 px-6 bg-secondary hover:bg-secondary/90 text-white text-[10px] font-black rounded-xl uppercase tracking-widest transition-all gap-2 shadow-lg shadow-secondary/10 active:scale-95">
+              <Button className="h-10 px-6 bg-secondary hover:bg-secondary/90 text-white text-[10px] font-semibold rounded-xl   transition-all gap-2 shadow-lg shadow-secondary/10 active:scale-95">
                 <FaPrint /> Generate Batch
               </Button>
             </div>
@@ -192,22 +192,22 @@ export default function GenerateCertificatePage() {
                             <FaUserGraduate size={14} />
                           </div>
                           <div>
-                            <div className="font-black text-foreground tracking-tight text-sm uppercase italic leading-none mb-1">
+                            <div className="font-semibold text-foreground tracking-tight text-sm   leading-none mb-1">
                               {s.name}
                             </div>
-                            <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+                            <div className="text-[10px] font-bold text-gray-500  ">
                               {s.class} • Section {s.section}
                             </div>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell className="text-center">
-                        <span className="px-3 py-1.5 bg-secondary/10 text-secondary text-[10px] font-mono font-black rounded border border-secondary/20 uppercase">
+                        <span className="px-3 py-1.5 bg-secondary/10 text-secondary text-[10px]  font-semibold rounded border border-secondary/20 ">
                           {s.admissionNo}
                         </span>
                       </TableCell>
                       <TableCell className="text-center">
-                        <button className="text-[9px] font-black text-secondary uppercase tracking-widest hover:underline active:scale-95 transition-all">
+                        <button className="text-[9px] font-semibold text-secondary   hover:underline active:scale-95 transition-all">
                           Preview Accolade
                         </button>
                       </TableCell>
@@ -217,7 +217,7 @@ export default function GenerateCertificatePage() {
                     <TableRow>
                       <TableCell
                         colSpan={4}
-                        className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                        className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                       >
                         No matches found in honors stream.
                       </TableCell>
@@ -236,9 +236,10 @@ export default function GenerateCertificatePage() {
                 pageSize={pageSize}
               />
             )}
-          </GlassCard>
+          </AdminCard>
         </div>
       </div>
     </div>
   );
 }
+

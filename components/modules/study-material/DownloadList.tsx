@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -52,9 +52,9 @@ export function DownloadList({
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col">
-        <div className="p-8 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <AdminCard className="flex-1 flex flex-col">
+        <div className="p-8 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Authorized Digital Library
           </h4>
         </div>
@@ -73,24 +73,24 @@ export function DownloadList({
             <TableBody>
               {paginatedDownloads.map((d, index) => (
                 <TableRow key={d.id} className="group">
-                  <TableCell className="font-mono text-xs text-muted-foreground italic">
+                  <TableCell className=" text-xs text-gray-500 ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell>
-                    <div className="font-black text-foreground text-sm uppercase italic tracking-tight mb-1">
+                    <div className="font-semibold text-foreground text-sm   tracking-tight mb-1">
                       {d.title}
                     </div>
-                    <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-tighter">
+                    <div className="text-[10px] font-bold text-gray-500  tracking-tighter">
                       {d.date}
                     </div>
                   </TableCell>
                   <TableCell className="text-center">
-                    <span className="px-3 py-1 bg-secondary/10 text-secondary text-[9px] font-black rounded-full uppercase tracking-widest">
+                    <span className="px-3 py-1 bg-secondary/10 text-secondary text-[9px] font-semibold rounded-full  ">
                       {d.type}
                     </span>
                   </TableCell>
                   <TableCell className="text-center">
-                    <div className="text-[10px] font-black uppercase text-muted-foreground font-mono">
+                    <div className="text-[10px] font-semibold  text-gray-500 ">
                       {d.size}
                     </div>
                   </TableCell>
@@ -114,7 +114,7 @@ export function DownloadList({
                 <TableRow>
                   <TableCell
                     colSpan={5}
-                    className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                   >
                     No matching resources found.
                   </TableCell>
@@ -133,7 +133,7 @@ export function DownloadList({
             pageSize={pageSize}
           />
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

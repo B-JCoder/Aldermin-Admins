@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,22 +26,22 @@ export function LessonOverviewConfig({
     handleInputChange({ target: { name, value } });
   };
   return (
-    <GlassCard className="p-8 h-full bg-gradient-to-br from-white to-secondary/5">
-      <h4 className="mb-8 text-xs font-black text-gray-400 uppercase tracking-widest leading-none flex items-center gap-2">
+    <AdminCard className="p-8 h-full bg-gradient-to-br from-white to-secondary/5">
+      <h4 className="mb-8 text-xs font-semibold text-gray-400   leading-none flex items-center gap-2">
         Auditor Configuration
         <div className="h-[1px] flex-1 bg-secondary/20"></div>
       </h4>
 
       <form className="space-y-6 flex-1">
         <div className="space-y-2">
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest">
+          <Label className="block text-[10px] font-semibold text-gray-500  ">
             Primary Instructor
           </Label>
           <Select
             onValueChange={(val) => onSelectChange("teacher", val)}
             value={formData.teacher}
           >
-            <SelectTrigger className="w-full rounded-xl border-white/40 p-4 text-xs font-bold outline-none bg-white/50 shadow-sm focus:ring-2 focus:ring-secondary/20 h-10">
+            <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold outline-none bg-white shadow-sm focus:ring-2 focus:ring-secondary/20 h-10">
               <SelectValue placeholder="Select Staff" />
             </SelectTrigger>
             <SelectContent>
@@ -52,14 +52,14 @@ export function LessonOverviewConfig({
 
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest">
+            <Label className="block text-[10px] font-semibold text-gray-500  ">
               Class
             </Label>
             <Select
               onValueChange={(val) => onSelectChange("className", val)}
               value={formData.className}
             >
-              <SelectTrigger className="w-full rounded-xl border-white/40 p-4 text-xs font-bold outline-none bg-white/50 shadow-sm focus:ring-2 focus:ring-secondary/20 h-10">
+              <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold outline-none bg-white shadow-sm focus:ring-2 focus:ring-secondary/20 h-10">
                 <SelectValue placeholder="Select" />
               </SelectTrigger>
               <SelectContent>
@@ -68,14 +68,14 @@ export function LessonOverviewConfig({
             </Select>
           </div>
           <div className="space-y-2">
-            <Label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest">
+            <Label className="block text-[10px] font-semibold text-gray-500  ">
               Section
             </Label>
             <Select
               onValueChange={(val) => onSelectChange("section", val)}
               value={formData.section}
             >
-              <SelectTrigger className="w-full rounded-xl border-white/40 p-4 text-xs font-bold outline-none bg-white/50 shadow-sm focus:ring-2 focus:ring-secondary/20 h-10">
+              <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold outline-none bg-white shadow-sm focus:ring-2 focus:ring-secondary/20 h-10">
                 <SelectValue placeholder="Select" />
               </SelectTrigger>
               <SelectContent>
@@ -86,14 +86,14 @@ export function LessonOverviewConfig({
         </div>
 
         <div className="space-y-2">
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest">
+          <Label className="block text-[10px] font-semibold text-gray-500  ">
             Subject Domain
           </Label>
           <Select
             onValueChange={(val) => onSelectChange("subject", val)}
             value={formData.subject}
           >
-            <SelectTrigger className="w-full rounded-xl border-white/40 p-4 text-xs font-bold outline-none bg-white/50 shadow-sm focus:ring-2 focus:ring-secondary/20 h-10">
+            <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold outline-none bg-white shadow-sm focus:ring-2 focus:ring-secondary/20 h-10">
               <SelectValue placeholder="Select" />
             </SelectTrigger>
             <SelectContent>
@@ -103,12 +103,12 @@ export function LessonOverviewConfig({
         </div>
 
         <div className="pt-6">
-          <Button className="w-full py-6 bg-secondary text-white rounded-xl text-xs font-black uppercase tracking-widest shadow-xl shadow-secondary/10 hover:bg-secondary/90 transition-all flex items-center justify-center gap-2">
+          <Button className="w-full py-6 bg-secondary text-white rounded-xl text-xs font-semibold   shadow-xl shadow-secondary/10 hover:bg-secondary/90 transition-all flex items-center justify-center gap-2">
             <FaGraduationCap size={16} />
             Verify Progress
           </Button>
         </div>
       </form>
-    </GlassCard>
+    </AdminCard>
   );
 }

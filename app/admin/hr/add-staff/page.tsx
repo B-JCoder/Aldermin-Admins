@@ -99,10 +99,10 @@ export default function AddStaffPage() {
         <Icon className="text-white" size={20} />
       </div>
       <div>
-        <h4 className="text-lg font-black text-gray-800 tracking-tight uppercase">
+        <h4 className="text-lg font-semibold text-gray-800 tracking-tight ">
           {title}
         </h4>
-        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+        <p className="text-[10px] text-gray-400 font-bold  ">
           {subtitle}
         </p>
       </div>
@@ -129,7 +129,7 @@ export default function AddStaffPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="md:col-span-1">
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 Staff ID # <span className="text-red-500">*</span>
               </label>
               <input
@@ -142,7 +142,7 @@ export default function AddStaffPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 Role <span className="text-red-500">*</span>
               </label>
               <select
@@ -156,7 +156,7 @@ export default function AddStaffPage() {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 Department <span className="text-red-500">*</span>
               </label>
               <select
@@ -169,7 +169,7 @@ export default function AddStaffPage() {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 Designation <span className="text-red-500">*</span>
               </label>
               <select
@@ -183,7 +183,7 @@ export default function AddStaffPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 First Name
               </label>
               <input
@@ -194,7 +194,7 @@ export default function AddStaffPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 Last Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -206,7 +206,7 @@ export default function AddStaffPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 Gender
               </label>
               <select
@@ -220,7 +220,7 @@ export default function AddStaffPage() {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 Date of Birth <span className="text-red-500">*</span>
               </label>
               <input
@@ -232,7 +232,7 @@ export default function AddStaffPage() {
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 Email Address
               </label>
               <input
@@ -244,7 +244,7 @@ export default function AddStaffPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 Mobile # <span className="text-red-500">*</span>
               </label>
               <input
@@ -256,7 +256,7 @@ export default function AddStaffPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 Joining Date <span className="text-red-500">*</span>
               </label>
               <input
@@ -278,7 +278,7 @@ export default function AddStaffPage() {
           />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 EPF Number
               </label>
               <input
@@ -289,23 +289,23 @@ export default function AddStaffPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 Basic Salary
               </label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-black">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">
                   $
                 </span>
                 <input
                   type="text"
                   name="basicSalary"
                   onChange={handleInputChange}
-                  className="w-full rounded-2xl bg-gray-50 border-gray-100 pl-10 p-4 text-sm font-black text-indigo-600 focus:ring-2 focus:ring-blue-500/20 outline-none"
+                  className="w-full rounded-2xl bg-gray-50 border-gray-100 pl-10 p-4 text-sm font-semibold text-indigo-600 focus:ring-2 focus:ring-blue-500/20 outline-none"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 Contract Type
               </label>
               <select
@@ -319,7 +319,7 @@ export default function AddStaffPage() {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+              <label className="block text-xs font-semibold text-gray-400  mb-2">
                 Experience
               </label>
               <input
@@ -343,7 +343,7 @@ export default function AddStaffPage() {
             />
             <div className="space-y-6">
               <div>
-                <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+                <label className="block text-xs font-semibold text-gray-400  mb-2">
                   Account Holder Name
                 </label>
                 <input
@@ -355,18 +355,18 @@ export default function AddStaffPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+                  <label className="block text-xs font-semibold text-gray-400  mb-2">
                     Account #
                   </label>
                   <input
                     type="text"
                     name="bankAccountNo"
                     onChange={handleInputChange}
-                    className="w-full rounded-2xl bg-gray-50 border-gray-100 p-4 text-sm font-bold focus:ring-2 focus:ring-blue-500/20 outline-none font-mono"
+                    className="w-full rounded-2xl bg-gray-50 border-gray-100 p-4 text-sm font-bold focus:ring-2 focus:ring-blue-500/20 outline-none "
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-black text-gray-400 uppercase mb-2">
+                  <label className="block text-xs font-semibold text-gray-400  mb-2">
                     Bank Name <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -388,7 +388,7 @@ export default function AddStaffPage() {
             />
             <div className="space-y-4">
               <div className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-dashed border-gray-200 hover:border-blue-300 transition-colors relative">
-                <span className="text-xs font-black text-gray-500 uppercase">
+                <span className="text-xs font-semibold text-gray-500 ">
                   Staff Resume / CV
                 </span>
                 <FaFileUpload className="text-gray-300" size={20} />
@@ -399,7 +399,7 @@ export default function AddStaffPage() {
                 />
               </div>
               <div className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-dashed border-gray-200 hover:border-blue-300 transition-colors relative">
-                <span className="text-xs font-black text-gray-500 uppercase">
+                <span className="text-xs font-semibold text-gray-500 ">
                   Employment Letter
                 </span>
                 <FaFileUpload className="text-gray-300" size={20} />
@@ -410,7 +410,7 @@ export default function AddStaffPage() {
                 />
               </div>
               <div className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-dashed border-gray-200 hover:border-blue-300 transition-colors relative">
-                <span className="text-xs font-black text-gray-500 uppercase">
+                <span className="text-xs font-semibold text-gray-500 ">
                   NID / Global ID
                 </span>
                 <FaFileUpload className="text-gray-300" size={20} />
@@ -428,7 +428,7 @@ export default function AddStaffPage() {
         <div className="flex justify-center pt-8">
           <Button
             type="submit"
-            className="group relative flex items-center justify-center gap-4 rounded-full bg-secondary h-20 px-16 py-5 text-white font-black text-xl transition-all hover:bg-secondary/90 active:scale-[0.98] shadow-2xl shadow-secondary/20 overflow-hidden"
+            className="group relative flex items-center justify-center gap-4 rounded-full bg-secondary h-20 px-16 py-5 text-white font-semibold text-xl transition-all hover:bg-secondary/90 active:scale-[0.98] shadow-2xl shadow-secondary/20 overflow-hidden"
           >
             <FaSave
               size={24}
@@ -442,3 +442,4 @@ export default function AddStaffPage() {
     </div>
   );
 }
+

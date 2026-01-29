@@ -41,7 +41,7 @@ export default function StudentAttendancePage() {
         subtitle="Monitor Daily Student Presence"
         icon={<FaCalendarCheck size={28} />}
         action={
-          <div className="flex bg-white/50 p-2 rounded-2xl ring-1 ring-white/60 flex-wrap gap-2 backdrop-blur-sm">
+          <div className="flex bg-white p-2 rounded-2xl ring-1 ring-white/60 flex-wrap gap-2 backdrop-blur-sm">
             {["Present", "Late", "Absent", "Half Day"].map((stat) => (
               <div
                 key={stat}
@@ -58,7 +58,7 @@ export default function StudentAttendancePage() {
                       : "bg-indigo-500"
                   }`}
                 ></div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <span className="text-[10px] font-semibold   text-gray-500">
                   {stat}
                 </span>
               </div>
@@ -77,7 +77,7 @@ export default function StudentAttendancePage() {
       <div className="flex justify-center pb-12">
         <Button
           variant="secondary"
-          className="px-12 py-6 rounded-2xl text-sm font-black uppercase tracking-[0.3em] shadow-xl hover:scale-105 transition-transform"
+          className="px-12 py-6 rounded-2xl text-sm font-semibold  tracking-[0.3em] shadow-xl hover:scale-105 transition-transform"
         >
           <FaSave size={18} className="mr-2" />
           Commit To Ledger

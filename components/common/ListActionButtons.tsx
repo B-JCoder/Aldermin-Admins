@@ -21,21 +21,16 @@ export function ListActionButtons({
   className,
 }: ListActionButtonsProps) {
   return (
-    <div
-      className={cn(
-        "flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300",
-        className
-      )}
-    >
+    <div className={cn("flex justify-center gap-1", className)}>
       {onView && (
         <Button
           variant="ghost"
-          size="icon-sm"
+          size="sm"
           onClick={(e) => {
             e.stopPropagation();
             onView();
           }}
-          className="bg-orange-500/10 text-orange-500 hover:bg-orange-500 hover:text-white transition-all shadow-sm"
+          className="h-8 w-8 p-0 text-gray-500 hover:text-blue-600 hover:bg-blue-50"
         >
           <FaEye size={14} />
         </Button>
@@ -44,12 +39,12 @@ export function ListActionButtons({
       {onEdit && (
         <Button
           variant="ghost"
-          size="icon-sm"
+          size="sm"
           onClick={(e) => {
             e.stopPropagation();
             onEdit();
           }}
-          className="bg-blue-500/10 text-blue-500 hover:bg-blue-500 hover:text-white transition-all shadow-sm"
+          className="h-8 w-8 p-0 text-gray-500 hover:text-green-600 hover:bg-green-50"
         >
           <FaEdit size={14} />
         </Button>
@@ -58,12 +53,12 @@ export function ListActionButtons({
       {onDelete && (
         <Button
           variant="ghost"
-          size="icon-sm"
+          size="sm"
           onClick={(e) => {
             e.stopPropagation();
             onDelete();
           }}
-          className="bg-destructive/10 text-destructive hover:bg-destructive hover:text-white transition-all shadow-sm"
+          className="h-8 w-8 p-0 text-gray-500 hover:text-red-600 hover:bg-red-50"
         >
           <FaTrash size={14} />
         </Button>

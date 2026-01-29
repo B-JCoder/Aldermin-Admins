@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { ListToolbar } from "@/components/common/ListToolbar";
 import { ListPagination } from "@/components/common/ListPagination";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -93,9 +93,9 @@ export default function DownloadCenterListPage() {
           showAddButton={false}
         />
 
-        <GlassCard className="flex-1 flex flex-col">
-          <div className="p-8 border-b border-white/20">
-            <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+        <AdminCard className="flex-1 flex flex-col">
+          <div className="p-8 border-b border-gray-200">
+            <h4 className="text-xs font-semibold text-gray-500   leading-none">
               Stored Assets Registry
             </h4>
           </div>
@@ -122,27 +122,27 @@ export default function DownloadCenterListPage() {
                           </div>
                         </div>
                         <div>
-                          <div className="font-black text-foreground text-sm uppercase italic leading-none mb-1">
+                          <div className="font-semibold text-foreground text-sm   leading-none mb-1">
                             {c.name}
                           </div>
-                          <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest font-mono">
+                          <div className="text-[10px] font-bold text-gray-500   ">
                             Size: {c.size}
                           </div>
                         </div>
                       </div>
                     </TableCell>
                     <td className="px-6 py-6 text-center">
-                      <span className="px-3 py-1.5 bg-secondary/10 text-secondary text-[9px] font-black rounded-xl uppercase tracking-widest border border-secondary/20">
+                      <span className="px-3 py-1.5 bg-secondary/10 text-secondary text-[9px] font-semibold rounded-xl   border border-secondary/20">
                         {c.category}
                       </span>
                     </td>
                     <TableCell className="text-center">
-                      <span className="text-xs font-mono font-bold text-muted-foreground/60">
+                      <span className="text-xs  font-bold text-gray-500/60">
                         {c.type}
                       </span>
                     </TableCell>
                     <TableCell className="text-center">
-                      <span className="text-xs font-mono font-bold text-muted-foreground/40 italic">
+                      <span className="text-xs  font-bold text-gray-500/40 ">
                         {c.date}
                       </span>
                     </TableCell>
@@ -168,7 +168,7 @@ export default function DownloadCenterListPage() {
                   <TableRow>
                     <TableCell
                       colSpan={5}
-                      className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                      className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                     >
                       No matching assets found in registry.
                     </TableCell>
@@ -187,8 +187,9 @@ export default function DownloadCenterListPage() {
               pageSize={pageSize}
             />
           )}
-        </GlassCard>
+        </AdminCard>
       </div>
     </div>
   );
 }
+

@@ -27,7 +27,7 @@ export default function SectionPage() {
         title="Institutional Sections"
         subtitle="Academic Management"
         action={
-          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10">
+          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold  text-[10px]  shadow-lg shadow-secondary/10">
             <FaPlus /> Authorize Section
           </Button>
         }

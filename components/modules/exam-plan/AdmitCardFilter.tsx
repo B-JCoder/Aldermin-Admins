@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -15,13 +15,13 @@ import { FaSearch } from "react-icons/fa";
 
 export function AdmitCardFilter() {
   return (
-    <GlassCard className="p-8">
-      <h4 className="mb-4 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+    <AdminCard className="p-8">
+      <h4 className="mb-4 text-xs font-semibold text-gray-500   leading-none">
         Selection Filter
       </h4>
       <form className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
         <div className="md:col-span-3">
-          <Label className="block text-xs font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-xs font-semibold text-gray-500   mb-2 px-1">
             Exam <span className="text-rose-500">*</span>
           </Label>
           <Select>
@@ -36,7 +36,7 @@ export function AdmitCardFilter() {
         </div>
 
         <div>
-          <Label className="block text-xs font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-xs font-semibold text-gray-500   mb-2 px-1">
             Class <span className="text-rose-500">*</span>
           </Label>
           <Select>
@@ -51,7 +51,7 @@ export function AdmitCardFilter() {
         </div>
 
         <div>
-          <Label className="block text-xs font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-xs font-semibold text-gray-500   mb-2 px-1">
             Section <span className="text-rose-500">*</span>
           </Label>
           <Select>
@@ -66,12 +66,12 @@ export function AdmitCardFilter() {
         </div>
 
         <div className="flex justify-end">
-          <Button className="flex items-center gap-2 rounded-2xl bg-secondary text-white px-8 py-6 text-xs font-black uppercase tracking-[0.2em] transition-all hover:bg-secondary/90 active:scale-[0.98] shadow-lg h-auto">
+          <Button className="flex items-center gap-2 rounded-2xl bg-secondary text-white px-8 py-6 text-xs font-semibold  tracking-[0.2em] transition-all hover:bg-secondary/90 active:scale-[0.98] shadow-lg h-auto">
             <FaSearch size={14} />
             Filter Students
           </Button>
         </div>
       </form>
-    </GlassCard>
+    </AdminCard>
   );
 }

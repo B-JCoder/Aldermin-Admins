@@ -29,7 +29,7 @@ export default function IncidentWisePage() {
         action={
           <Button
             variant="outline"
-            className="rounded-xl border-secondary/20 text-secondary font-black text-[10px] uppercase tracking-widest hover:bg-secondary hover:text-white transition-all shadow-sm px-6 h-12"
+            className="rounded-xl border-secondary/20 text-secondary font-semibold text-[10px]   hover:bg-secondary hover:text-white transition-all shadow-sm px-6 h-12"
           >
             <FaPrint className="mr-2" /> Export Analytical Report
           </Button>

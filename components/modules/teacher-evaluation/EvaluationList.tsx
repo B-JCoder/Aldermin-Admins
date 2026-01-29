@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -64,36 +64,36 @@ export function EvaluationList({
   };
 
   return (
-    <GlassCard className="p-0 overflow-hidden relative">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+    <AdminCard className="p-0 overflow-hidden relative">
+      
 
       <div className="p-8 pb-0">
-        <h3 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-4">
+        <h3 className="text-[10px] font-semibold   text-gray-500 mb-4">
           Evaluation Records
         </h3>
       </div>
 
       <div className="p-6">
-        <div className="rounded-xl border border-white/20 overflow-hidden bg-white/40">
+        <div className="rounded-xl border border-gray-200 overflow-hidden bg-white">
           <Table>
-            <TableHeader className="bg-white/50">
+            <TableHeader className="bg-white">
               <TableRow>
-                <TableHead className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-[10px] font-semibold   text-gray-500">
                   Staff Identity
                 </TableHead>
-                <TableHead className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-[10px] font-semibold   text-gray-500">
                   Evaluated Faculty
                 </TableHead>
-                <TableHead className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-[10px] font-semibold   text-gray-500">
                   Submission Detail
                 </TableHead>
-                <TableHead className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-[10px] font-semibold   text-gray-500">
                   Rating & Review
                 </TableHead>
-                <TableHead className="px-6 py-4 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-center text-[10px] font-semibold   text-gray-500">
                   Current Status
                 </TableHead>
-                <TableHead className="px-6 py-4 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-center text-[10px] font-semibold   text-gray-500">
                   Controls
                 </TableHead>
               </TableRow>
@@ -102,23 +102,23 @@ export function EvaluationList({
               {evaluations.map((report, index) => (
                 <TableRow
                   key={report.id}
-                  className="group hover:bg-white/60 transition-colors"
+                  className="group hover:bg-white transition-colors"
                 >
                   <TableCell className="px-6 py-4">
-                    <div className="font-mono text-[10px] font-black text-secondary bg-secondary/10 px-3 py-1 rounded-full inline-block border border-secondary/20">
+                    <div className=" text-[10px] font-semibold text-secondary bg-secondary/10 px-3 py-1 rounded-full inline-block border border-secondary/20">
                       {report.staffNo}
                     </div>
-                    <div className="mt-2 text-[9px] font-black text-muted-foreground uppercase tracking-tighter italic">
+                    <div className="mt-2 text-[9px] font-semibold text-gray-500  tracking-tighter ">
                       SN: {index + 1}
                     </div>
                   </TableCell>
                   <TableCell className="px-6 py-4">
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full ring-4 ring-white border-2 border-secondary/10 bg-secondary/10 flex items-center justify-center text-secondary font-black text-sm shadow-inner">
+                      <div className="w-10 h-10 rounded-full ring-4 ring-white border-2 border-secondary/10 bg-secondary/10 flex items-center justify-center text-secondary font-semibold text-sm shadow-inner">
                         <FaUserTie />
                       </div>
                       <div>
-                        <div className="text-sm font-black text-foreground tracking-tight group-hover:text-secondary transition-colors font-serif italic">
+                        <div className="text-sm font-semibold text-foreground tracking-tight group-hover:text-secondary transition-colors  ">
                           {report.teacherName}
                         </div>
                       </div>
@@ -126,14 +126,14 @@ export function EvaluationList({
                   </TableCell>
                   <TableCell className="px-6 py-4">
                     <div className="flex flex-col gap-1">
-                      <div className="flex items-center gap-2 text-[11px] font-bold text-muted-foreground">
+                      <div className="flex items-center gap-2 text-[11px] font-bold text-gray-500">
                         <FaUser
                           size={10}
-                          className="text-muted-foreground/50"
+                          className="text-gray-500/50"
                         />
                         {report.submittedBy}
                       </div>
-                      <div className="flex items-center gap-2 text-[10px] font-black text-secondary uppercase tracking-wide bg-secondary/5 w-fit px-2 py-0.5 rounded">
+                      <div className="flex items-center gap-2 text-[10px] font-semibold text-secondary  tracking-wide bg-secondary/5 w-fit px-2 py-0.5 rounded">
                         <FaGraduationCap size={10} />
                         {report.className}
                       </div>
@@ -142,7 +142,7 @@ export function EvaluationList({
                   <TableCell className="px-6 py-4">
                     <div className="space-y-2">
                       {renderStars(report.rating)}
-                      <p className="text-[10px] font-medium text-muted-foreground leading-relaxed max-w-[200px] line-clamp-2 italic">
+                      <p className="text-[10px] font-medium text-gray-500 leading-relaxed max-w-[200px] line-clamp-2 ">
                         "{report.comment}"
                       </p>
                     </div>
@@ -150,7 +150,7 @@ export function EvaluationList({
                   <TableCell className="px-6 py-4 text-center">
                     <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-secondary/10 text-secondary border border-secondary/20">
                       <FaCheckCircle size={10} />
-                      <span className="text-[9px] font-black uppercase tracking-widest">
+                      <span className="text-[9px] font-semibold  ">
                         {report.status}
                       </span>
                     </div>
@@ -200,6 +200,6 @@ export function EvaluationList({
           </Table>
         </div>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

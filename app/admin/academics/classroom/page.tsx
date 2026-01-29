@@ -34,7 +34,7 @@ export default function ClassRoomPage() {
         title="Classroom Management"
         subtitle="Infrastructure"
         action={
-          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10 transition-all">
+          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold  text-[10px]  shadow-lg shadow-secondary/10 transition-all">
             <FaPlus /> Add Room
           </Button>
         }

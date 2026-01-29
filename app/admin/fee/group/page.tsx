@@ -50,7 +50,7 @@ export default function FeeGroupPage() {
   return (
     <div className="container mx-auto p-4 space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-gray-900 tracking-tighter flex items-center gap-3">
+        <h1 className="text-2xl font-semibold text-gray-900 tracking-tighter flex items-center gap-3">
           <div className="p-2 bg-emerald-600 rounded-xl shadow-lg ring-4 ring-emerald-50">
             <FaFileInvoiceDollar className="text-white" size={20} />
           </div>
@@ -62,14 +62,14 @@ export default function FeeGroupPage() {
         {/* Creation Form */}
         <div className="lg:col-span-4">
           <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 flex flex-col h-full bg-gradient-to-br from-white to-emerald-50/5">
-            <h4 className="mb-6 text-xs font-black text-gray-400 uppercase tracking-widest leading-none flex items-center justify-between">
+            <h4 className="mb-6 text-xs font-semibold text-gray-400   leading-none flex items-center justify-between">
               Create Financial Cluster
               <div className="h-1 w-12 bg-emerald-100 rounded-full"></div>
             </h4>
 
             <form onSubmit={handleSubmit} className="space-y-6 flex-1">
               <div>
-                <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                <label className="block text-xs font-semibold text-gray-400   mb-2 px-1">
                   Cluster Identity <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
@@ -81,7 +81,7 @@ export default function FeeGroupPage() {
                     type="text"
                     value={groupName}
                     onChange={(e) => setGroupName(e.target.value)}
-                    className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-sm font-bold focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all placeholder:font-medium bg-white shadow-sm italic"
+                    className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-sm font-bold focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all placeholder:font-medium bg-white shadow-sm "
                     placeholder="e.g. Quarterly Assessments"
                     required
                   />
@@ -89,7 +89,7 @@ export default function FeeGroupPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                <label className="block text-xs font-semibold text-gray-400   mb-2 px-1">
                   Scope & Definition
                 </label>
                 <div className="relative">
@@ -109,10 +109,10 @@ export default function FeeGroupPage() {
               <div className="pt-4">
                 <button
                   type="submit"
-                  className="group w-full relative overflow-hidden rounded-2xl bg-gray-900 border-b-4 border-gray-700 text-white px-8 py-5 text-xs font-black uppercase tracking-widest transition-all hover:bg-black active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-gray-200"
+                  className="group w-full relative overflow-hidden rounded-2xl bg-gray-900 border-b-4 border-gray-700 text-white px-8 py-5 text-xs font-semibold   transition-all hover:bg-black active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-gray-200"
                 >
                   <div className="relative z-10 flex items-center justify-center gap-2">
-                    <FaCheck className="italic" />
+                    <FaCheck className="" />
                     Initialize Cluster
                   </div>
                 </button>
@@ -127,7 +127,7 @@ export default function FeeGroupPage() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-50/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
 
             <div className="flex items-center justify-between mb-8 relative">
-              <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest leading-none">
+              <h4 className="text-xs font-semibold text-gray-400   leading-none">
                 Cluster Inventory
               </h4>
             </div>
@@ -136,16 +136,16 @@ export default function FeeGroupPage() {
               <table className="min-w-full text-sm">
                 <thead className="bg-gray-50/70 text-gray-500 font-bold border-b border-gray-50">
                   <tr>
-                    <th className="px-6 py-6 text-left w-16 text-[10px] uppercase font-black">
+                    <th className="px-6 py-6 text-left w-16 text-[10px]  font-semibold">
                       SN
                     </th>
-                    <th className="px-6 py-6 text-left text-[10px] uppercase font-black tracking-widest">
+                    <th className="px-6 py-6 text-left text-[10px]  font-semibold ">
                       Cluster Identity
                     </th>
-                    <th className="px-6 py-6 text-left text-[10px] uppercase font-black tracking-widest w-1/3">
+                    <th className="px-6 py-6 text-left text-[10px]  font-semibold  w-1/3">
                       Definition
                     </th>
-                    <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
+                    <th className="px-6 py-6 text-center text-[10px]  font-semibold ">
                       Interaction
                     </th>
                   </tr>
@@ -156,20 +156,20 @@ export default function FeeGroupPage() {
                       key={g.id}
                       className="hover:bg-emerald-50/20 transition-all group"
                     >
-                      <td className="px-6 py-8 text-gray-300 font-mono text-xs italic">
+                      <td className="px-6 py-8 text-gray-300  text-xs ">
                         {index + 1}
                       </td>
                       <td className="px-6 py-8">
-                        <div className="font-black text-gray-900 tracking-tight text-base font-serif italic uppercase leading-none mb-2">
+                        <div className="font-semibold text-gray-900 tracking-tight text-base    leading-none mb-2">
                           {g.name}
                         </div>
-                        <div className="text-[8px] font-black text-gray-400 uppercase tracking-[0.2em] flex items-center gap-1">
+                        <div className="text-[8px] font-semibold text-gray-400  tracking-[0.2em] flex items-center gap-1">
                           <div className="w-1 h-1 bg-emerald-500 rounded-full"></div>
                           {g.count} Associated Types
                         </div>
                       </td>
                       <td className="px-6 py-8">
-                        <p className="text-[10px] font-medium text-gray-400 italic leading-relaxed">
+                        <p className="text-[10px] font-medium text-gray-400  leading-relaxed">
                           {g.description ||
                             "No formal cluster definition provided."}
                         </p>
@@ -195,3 +195,4 @@ export default function FeeGroupPage() {
     </div>
   );
 }
+

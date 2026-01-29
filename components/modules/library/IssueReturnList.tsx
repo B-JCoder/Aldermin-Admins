@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -44,9 +44,9 @@ export function IssueReturnList({ members }: IssueReturnListProps) {
   );
 
   return (
-    <GlassCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
-      <div className="p-8 border-b border-white/20 flex items-center justify-between bg-secondary/5">
-        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+    <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
+      <div className="p-8 border-b border-gray-200 flex items-center justify-between bg-secondary/5">
+        <h4 className="text-xs font-semibold text-gray-500   leading-none">
           Circulation Engagement Stream
         </h4>
       </div>
@@ -55,16 +55,16 @@ export function IssueReturnList({ members }: IssueReturnListProps) {
         <Table>
           <TableHeader className="bg-secondary/5">
             <TableRow>
-              <TableHead className="px-8 py-6 text-left w-20 text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-8 py-6 text-left w-20 text-[10px]  font-semibold  text-gray-500">
                 SN
               </TableHead>
-              <TableHead className="px-8 py-6 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-8 py-6 text-left text-[10px]  font-semibold  text-gray-500">
                 Industrial Identity
               </TableHead>
-              <TableHead className="px-8 py-6 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-8 py-6 text-left text-[10px]  font-semibold  text-gray-500">
                 Communication Nodes
               </TableHead>
-              <TableHead className="px-8 py-6 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-8 py-6 text-center text-[10px]  font-semibold  text-gray-500">
                 Action
               </TableHead>
             </TableRow>
@@ -75,7 +75,7 @@ export function IssueReturnList({ members }: IssueReturnListProps) {
                 key={m.id}
                 className="hover:bg-secondary/5 transition-all group"
               >
-                <TableCell className="px-8 py-10 text-muted-foreground/50 font-mono text-xs italic">
+                <TableCell className="px-8 py-10 text-gray-500/50  text-xs ">
                   {(currentPage - 1) * pageSize + index + 1}
                 </TableCell>
                 <TableCell className="px-8 py-10">
@@ -85,15 +85,15 @@ export function IssueReturnList({ members }: IssueReturnListProps) {
                       <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
                     </div>
                     <div>
-                      <div className="font-black text-foreground tracking-tight text-base font-serif italic uppercase leading-none mb-1">
+                      <div className="font-semibold text-foreground tracking-tight text-base    leading-none mb-1">
                         {m.name}
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-black text-secondary uppercase tracking-widest">
+                        <span className="text-[10px] font-semibold text-secondary  ">
                           {m.type} Archetype
                         </span>
                         <span className="h-1 w-1 bg-muted-foreground/30 rounded-full"></span>
-                        <span className="text-[9px] font-mono font-bold text-muted-foreground">
+                        <span className="text-[9px]  font-bold text-gray-500">
                           {m.memberId}
                         </span>
                       </div>
@@ -102,15 +102,15 @@ export function IssueReturnList({ members }: IssueReturnListProps) {
                 </TableCell>
                 <TableCell className="px-8 py-10">
                   <div className="space-y-1.5">
-                    <div className="flex items-center gap-2 text-[10px] text-muted-foreground italic">
+                    <div className="flex items-center gap-2 text-[10px] text-gray-500 ">
                       <FaEnvelope
-                        className="text-muted-foreground/50"
+                        className="text-gray-500/50"
                         size={10}
                       />
                       <span>{m.email}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-[10px] text-muted-foreground font-mono font-medium">
-                      <FaPhone className="text-muted-foreground/50" size={10} />
+                    <div className="flex items-center gap-2 text-[10px] text-gray-500  font-medium">
+                      <FaPhone className="text-gray-500/50" size={10} />
                       <span>{m.mobile}</span>
                     </div>
                   </div>
@@ -119,7 +119,7 @@ export function IssueReturnList({ members }: IssueReturnListProps) {
                   <div className="flex justify-center gap-2">
                     <Button
                       variant="default"
-                      className="flex items-center gap-2 px-5 py-2.5 bg-secondary text-white text-[9px] font-black rounded-xl uppercase tracking-widest hover:bg-secondary/90 transition-all shadow-lg active:scale-95 group/btn h-auto"
+                      className="flex items-center gap-2 px-5 py-2.5 bg-secondary text-white text-[9px] font-semibold rounded-xl   hover:bg-secondary/90 transition-all shadow-lg active:scale-95 group/btn h-auto"
                     >
                       <FaExchangeAlt
                         size={10}
@@ -130,7 +130,7 @@ export function IssueReturnList({ members }: IssueReturnListProps) {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="p-2.5 bg-secondary/5 text-muted-foreground rounded-xl hover:bg-white hover:text-secondary transition-all border border-secondary/10 shadow-sm h-auto w-auto"
+                      className="p-2.5 bg-secondary/5 text-gray-500 rounded-xl hover:bg-white hover:text-secondary transition-all border border-secondary/10 shadow-sm h-auto w-auto"
                     >
                       <FaHistory size={12} />
                     </Button>
@@ -153,6 +153,6 @@ export function IssueReturnList({ members }: IssueReturnListProps) {
           />
         </div>
       )}
-    </GlassCard>
+    </AdminCard>
   );
 }

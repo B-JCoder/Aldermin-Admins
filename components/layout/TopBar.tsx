@@ -3,7 +3,7 @@ import { FaBars, FaSearch, FaBell, FaEnvelope } from "react-icons/fa";
 
 export default function TopBar() {
   return (
-    <header className="h-16 flex items-center justify-between px-6 z-10 bg-white/60 backdrop-blur-md border-b border-white/20 sticky top-0">
+    <header className="h-16 flex items-center justify-between px-6 z-10 bg-white border-b border-gray-100 sticky top-0">
       <div className="flex items-center gap-4">
         {/* Toggle (Visible on mobile) */}
         <button className="text-gray-600 text-xl md:hidden hover:text-gray-900 transition-colors">

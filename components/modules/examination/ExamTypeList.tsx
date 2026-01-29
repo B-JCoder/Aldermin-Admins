@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -37,36 +37,36 @@ export function ExamTypeList({ exams }: ExamTypeListProps) {
   );
 
   return (
-    <GlassCard className="flex-1 flex flex-col p-0 overflow-hidden relative h-full">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+    <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative h-full">
+      
 
-      <div className="p-8 pb-4 relative z-10 border-b border-white/20 flex items-center justify-between">
-        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <div className="p-8 pb-4 relative z-10 border-b border-gray-200 flex items-center justify-between">
+        <h4 className="text-xs font-semibold text-gray-500   leading-none">
           Assessment Catalog
         </h4>
-        <div className="px-5 py-2 bg-secondary/10 text-secondary text-[10px] font-black rounded-full uppercase tracking-widest ring-1 ring-secondary/20 shadow-sm">
+        <div className="px-5 py-2 bg-secondary/10 text-secondary text-[10px] font-semibold rounded-full   ring-1 ring-secondary/20 shadow-sm">
           {exams.length} Frameworks Active
         </div>
       </div>
 
       <div className="flex-1 overflow-x-auto p-8 pt-0 relative z-10">
-        <div className="rounded-xl border border-white/20 bg-white/40 overflow-hidden">
+        <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
           <Table>
-            <TableHeader className="bg-white/50">
+            <TableHeader className="bg-white">
               <TableRow>
-                <TableHead className="px-6 py-6 text-left w-16 text-[10px] uppercase font-black text-muted-foreground tracking-widest">
+                <TableHead className="px-6 py-6 text-left w-16 text-[10px]  font-semibold text-gray-500 ">
                   SN
                 </TableHead>
-                <TableHead className="px-6 py-6 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-6 text-left text-[10px]  font-semibold  text-gray-500">
                   Assessment Name
                 </TableHead>
-                <TableHead className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-6 text-center text-[10px]  font-semibold  text-gray-500">
                   Pass Criteria
                 </TableHead>
-                <TableHead className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-6 text-center text-[10px]  font-semibold  text-gray-500">
                   Cohort Avg
                 </TableHead>
-                <TableHead className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-6 text-center text-[10px]  font-semibold  text-gray-500">
                   Interaction
                 </TableHead>
               </TableRow>
@@ -77,41 +77,41 @@ export function ExamTypeList({ exams }: ExamTypeListProps) {
                   key={e.id}
                   className="hover:bg-secondary/5 transition-all group"
                 >
-                  <TableCell className="px-6 py-8 text-muted-foreground/50 font-mono text-xs italic">
+                  <TableCell className="px-6 py-8 text-gray-500/50  text-xs ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell className="px-6 py-8">
-                    <div className="font-black text-foreground tracking-tight text-base font-serif italic group-hover:text-secondary transition-colors uppercase">
+                    <div className="font-semibold text-foreground tracking-tight text-base   group-hover:text-secondary transition-colors ">
                       {e.name}
                     </div>
-                    <div className="flex items-center gap-1.5 mt-1.5 font-black text-[8px] uppercase tracking-widest">
+                    <div className="flex items-center gap-1.5 mt-1.5 font-semibold text-[8px]  ">
                       <span
                         className={
                           e.isMandatory
                             ? "text-secondary bg-secondary/10 px-1.5 py-0.5 rounded"
-                            : "text-muted-foreground"
+                            : "text-gray-500"
                         }
                       >
                         {e.isMandatory ? "Mandatory" : "Optional"}
                       </span>
                       <span className="w-1 h-1 bg-muted-foreground/30 rounded-full"></span>
-                      <span className="text-muted-foreground">
+                      <span className="text-gray-500">
                         Active Framework
                       </span>
                     </div>
                   </TableCell>
                   <TableCell className="px-6 py-8 text-center">
-                    <div className="inline-flex items-center gap-1 text-xs font-black text-muted-foreground italic">
+                    <div className="inline-flex items-center gap-1 text-xs font-semibold text-gray-500 ">
                       <FaPercent size={8} className="text-secondary/50" />
                       {e.avgPass}
                     </div>
                   </TableCell>
                   <TableCell className="px-6 py-8 text-center">
-                    <div className="text-sm font-black text-secondary italic">
+                    <div className="text-sm font-semibold text-secondary ">
                       {e.avgMark}
                     </div>
                   </TableCell>
-                  <TableCell className="px-6 py-8 text-center text-[10px] font-black text-secondary uppercase tracking-widest">
+                  <TableCell className="px-6 py-8 text-center text-[10px] font-semibold text-secondary  ">
                     <div className="flex justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                       <Button
                         variant="ghost"
@@ -147,6 +147,6 @@ export function ExamTypeList({ exams }: ExamTypeListProps) {
           />
         </div>
       )}
-    </GlassCard>
+    </AdminCard>
   );
 }

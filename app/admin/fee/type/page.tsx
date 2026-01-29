@@ -53,7 +53,7 @@ export default function FeeTypePage() {
   return (
     <div className="container mx-auto p-4 space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-gray-900 tracking-tighter flex items-center gap-3">
+        <h1 className="text-2xl font-semibold text-gray-900 tracking-tighter flex items-center gap-3">
           <div className="p-2 bg-emerald-600 rounded-xl shadow-lg ring-4 ring-emerald-50">
             <FaMoneyBillWave className="text-white" size={20} />
           </div>
@@ -65,14 +65,14 @@ export default function FeeTypePage() {
         {/* Creation Form */}
         <div className="lg:col-span-4">
           <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 flex flex-col h-full bg-gradient-to-br from-white to-emerald-50/5">
-            <h4 className="mb-6 text-xs font-black text-gray-400 uppercase tracking-widest leading-none flex items-center justify-between">
+            <h4 className="mb-6 text-xs font-semibold text-gray-400   leading-none flex items-center justify-between">
               Define Fee Category
               <div className="h-1 w-12 bg-emerald-100 rounded-full"></div>
             </h4>
 
             <form onSubmit={handleSubmit} className="space-y-6 flex-1">
               <div>
-                <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                <label className="block text-xs font-semibold text-gray-400   mb-2 px-1">
                   Type Designation <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
@@ -84,7 +84,7 @@ export default function FeeTypePage() {
                     type="text"
                     value={typeName}
                     onChange={(e) => setTypeName(e.target.value)}
-                    className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-sm font-bold focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all placeholder:font-medium bg-white shadow-sm italic"
+                    className="w-full rounded-2xl border-gray-100 p-4 pl-10 text-sm font-bold focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all placeholder:font-medium bg-white shadow-sm "
                     placeholder="e.g. Lab Maintenance"
                     required
                   />
@@ -92,7 +92,7 @@ export default function FeeTypePage() {
               </div>
 
               <div>
-                <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                <label className="block text-xs font-semibold text-gray-400   mb-2 px-1">
                   Functional Group <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
@@ -115,7 +115,7 @@ export default function FeeTypePage() {
               </div>
 
               <div>
-                <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                <label className="block text-xs font-semibold text-gray-400   mb-2 px-1">
                   Descriptive Details
                 </label>
                 <div className="relative">
@@ -135,10 +135,10 @@ export default function FeeTypePage() {
               <div className="pt-4">
                 <button
                   type="submit"
-                  className="group w-full relative overflow-hidden rounded-2xl bg-emerald-600 px-8 py-5 text-white font-black text-xs uppercase tracking-widest transition-all hover:bg-emerald-700 active:scale-[0.98] shadow-2xl shadow-emerald-100"
+                  className="group w-full relative overflow-hidden rounded-2xl bg-emerald-600 px-8 py-5 text-white font-semibold text-xs   transition-all hover:bg-emerald-700 active:scale-[0.98] shadow-2xl shadow-emerald-100"
                 >
                   <div className="relative z-10 flex items-center justify-center gap-2">
-                    <FaCheck className="italic" />
+                    <FaCheck className="" />
                     Catalog Category
                   </div>
                 </button>
@@ -153,7 +153,7 @@ export default function FeeTypePage() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-50/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
 
             <div className="flex items-center justify-between mb-8 relative">
-              <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest leading-none">
+              <h4 className="text-xs font-semibold text-gray-400   leading-none">
                 Taxonomic Registry
               </h4>
             </div>
@@ -162,16 +162,16 @@ export default function FeeTypePage() {
               <table className="min-w-full text-sm">
                 <thead className="bg-gray-50/70 text-gray-500 font-bold border-b border-gray-50">
                   <tr>
-                    <th className="px-6 py-5 text-left w-16 text-[10px] uppercase font-black">
+                    <th className="px-6 py-5 text-left w-16 text-[10px]  font-semibold">
                       SN
                     </th>
-                    <th className="px-6 py-5 text-left text-[10px] uppercase font-black tracking-widest">
+                    <th className="px-6 py-5 text-left text-[10px]  font-semibold ">
                       Type Identity
                     </th>
-                    <th className="px-6 py-5 text-left text-[10px] uppercase font-black tracking-widest w-1/3">
+                    <th className="px-6 py-5 text-left text-[10px]  font-semibold  w-1/3">
                       Narrative
                     </th>
-                    <th className="px-6 py-5 text-center text-[10px] uppercase font-black tracking-widest">
+                    <th className="px-6 py-5 text-center text-[10px]  font-semibold ">
                       Interaction
                     </th>
                   </tr>
@@ -182,19 +182,19 @@ export default function FeeTypePage() {
                       key={t.id}
                       className="hover:bg-emerald-50/20 transition-all group"
                     >
-                      <td className="px-6 py-8 text-gray-300 font-mono text-xs italic">
+                      <td className="px-6 py-8 text-gray-300  text-xs ">
                         {index + 1}
                       </td>
                       <td className="px-6 py-8">
-                        <div className="font-black text-gray-900 tracking-tight text-base font-serif italic uppercase leading-none mb-2">
+                        <div className="font-semibold text-gray-900 tracking-tight text-base    leading-none mb-2">
                           {t.name}
                         </div>
-                        <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-md text-[8px] font-black uppercase tracking-widest border border-emerald-100">
+                        <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-md text-[8px] font-semibold   border border-emerald-100">
                           <FaLayerGroup size={8} /> {t.group}
                         </div>
                       </td>
                       <td className="px-6 py-8">
-                        <p className="text-[10px] font-medium text-gray-400 italic leading-relaxed">
+                        <p className="text-[10px] font-medium text-gray-400  leading-relaxed">
                           {t.description ||
                             "No descriptive cataloguing provided."}
                         </p>
@@ -220,3 +220,4 @@ export default function FeeTypePage() {
     </div>
   );
 }
+

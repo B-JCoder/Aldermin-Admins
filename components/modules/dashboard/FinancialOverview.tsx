@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { BiTrendingUp, BiTrendingDown } from "react-icons/bi";
 import {
   Select,
@@ -13,14 +13,14 @@ import {
 
 export function FinancialOverview() {
   return (
-    <GlassCard className="p-6 h-full flex flex-col">
+    <AdminCard className="p-6 h-full flex flex-col">
       <div className="flex justify-between items-center mb-6">
-        <h5 className="font-black text-foreground text-sm uppercase tracking-widest">
+        <h5 className="font-semibold text-foreground text-sm  ">
           Financial Overview
         </h5>
         <div className="flex gap-2">
           <Select>
-            <SelectTrigger className="h-8 w-[110px] bg-white/50 border-white/40 text-xs font-bold">
+            <SelectTrigger className="h-8 w-[110px] bg-white border-gray-200 text-xs font-bold">
               <SelectValue placeholder="2023-2024" />
             </SelectTrigger>
             <SelectContent>
@@ -29,7 +29,7 @@ export function FinancialOverview() {
             </SelectContent>
           </Select>
           <Select>
-            <SelectTrigger className="h-8 w-[100px] bg-white/50 border-white/40 text-xs font-bold">
+            <SelectTrigger className="h-8 w-[100px] bg-white border-gray-200 text-xs font-bold">
               <SelectValue placeholder="Annual" />
             </SelectTrigger>
             <SelectContent>
@@ -49,14 +49,14 @@ export function FinancialOverview() {
             <BiTrendingUp className="text-white text-xl" />
           </div>
 
-          <span className="absolute top-6 right-6 bg-green-100 text-green-700 border border-green-200 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+          <span className="absolute top-6 right-6 bg-green-100 text-green-700 border border-green-200 text-[10px] font-semibold px-3 py-1 rounded-full  tracking-wider">
             ↑ 12%
           </span>
           <div className="mt-6 relative z-10">
-            <h4 className="text-2xl font-black text-foreground mb-1 tracking-tight">
+            <h4 className="text-2xl font-semibold text-foreground mb-1 tracking-tight">
               PKR 29.5M
             </h4>
-            <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
+            <p className="text-[10px] text-gray-500   font-bold">
               Total Income
             </p>
           </div>
@@ -70,19 +70,19 @@ export function FinancialOverview() {
             <BiTrendingDown className="text-white text-xl" />
           </div>
 
-          <span className="absolute top-6 right-6 bg-red-100 text-red-700 border border-red-200 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+          <span className="absolute top-6 right-6 bg-red-100 text-red-700 border border-red-200 text-[10px] font-semibold px-3 py-1 rounded-full  tracking-wider">
             ↓ 0.5%
           </span>
           <div className="mt-6 relative z-10">
-            <h4 className="text-2xl font-black text-foreground mb-1 tracking-tight">
+            <h4 className="text-2xl font-semibold text-foreground mb-1 tracking-tight">
               PKR 19.2M
             </h4>
-            <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
+            <p className="text-[10px] text-gray-500   font-bold">
               Total Expenses
             </p>
           </div>
         </div>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

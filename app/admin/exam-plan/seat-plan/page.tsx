@@ -48,7 +48,7 @@ export default function SeatPlanPage() {
           title="Seat Plan Arrangement"
           subtitle="Generate and Allot Exam Seats"
         />
-        <Button className="flex items-center gap-2 rounded-xl bg-foreground text-background px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-foreground/90 transition-all shadow-xl active:scale-95 h-auto">
+        <Button className="flex items-center gap-2 rounded-xl bg-foreground text-background px-6 py-3 text-[10px] font-semibold  tracking-[0.2em] hover:bg-foreground/90 transition-all shadow-xl active:scale-95 h-auto">
           <FaPrint size={14} />
           Print Seat Plans
         </Button>

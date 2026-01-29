@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -54,34 +54,34 @@ export function GroupList({ groups }: GroupListProps) {
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col p-8 pb-0 overflow-hidden relative">
-        <div className="flex items-center justify-between mb-8 border-b border-white/20 pb-4">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <AdminCard className="flex-1 flex flex-col p-8 pb-0 overflow-hidden relative">
+        <div className="flex items-center justify-between mb-8 border-b border-gray-200 pb-4">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Assembly Registry
           </h4>
           <Badge
             variant="secondary"
-            className="bg-secondary text-white px-4 py-1.5 text-[10px] font-black rounded-full uppercase tracking-tighter shadow-sm hover:bg-secondary/90"
+            className="bg-secondary text-white px-4 py-1.5 text-[10px] font-semibold rounded-full  tracking-tighter shadow-sm hover:bg-secondary/90"
           >
             {groups.length} Groups Active
           </Badge>
         </div>
 
         <div className="flex-1 overflow-x-auto">
-          <div className="overflow-hidden rounded-xl border border-white/20 bg-white/40">
+          <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
             <Table>
-              <TableHeader className="bg-white/50">
+              <TableHeader className="bg-white">
                 <TableRow>
-                  <TableHead className="px-6 py-5 w-16 text-[10px] uppercase font-black text-muted-foreground">
+                  <TableHead className="px-6 py-5 w-16 text-[10px]  font-semibold text-gray-500">
                     SN
                   </TableHead>
-                  <TableHead className="px-6 py-5 text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-5 text-[10px]  font-semibold  text-gray-500">
                     Assembly Identity
                   </TableHead>
-                  <TableHead className="px-6 py-5 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-5 text-center text-[10px]  font-semibold  text-gray-500">
                     Target Scope
                   </TableHead>
-                  <TableHead className="px-6 py-5 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-5 text-center text-[10px]  font-semibold  text-gray-500">
                     Action
                   </TableHead>
                 </TableRow>
@@ -90,17 +90,17 @@ export function GroupList({ groups }: GroupListProps) {
                 {paginatedGroups.map((g, index) => (
                   <TableRow
                     key={g.id}
-                    className="hover:bg-white/60 transition-all group"
+                    className="hover:bg-white transition-all group"
                   >
-                    <TableCell className="px-6 py-5 text-muted-foreground font-mono text-xs italic">
+                    <TableCell className="px-6 py-5 text-gray-500  text-xs ">
                       {(currentPage - 1) * pageSize + index + 1}
                     </TableCell>
                     <TableCell className="px-6 py-5">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-white/50 flex items-center justify-center text-secondary/50 group-hover:bg-secondary/10 group-hover:text-secondary group-hover:shadow-sm transition-all border border-white/40">
+                        <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-secondary/50 group-hover:bg-secondary/10 group-hover:text-secondary group-hover:shadow-sm transition-all border border-gray-200">
                           <FaLayerGroup size={12} />
                         </div>
-                        <span className="font-black text-foreground tracking-tight text-sm font-serif italic">
+                        <span className="font-semibold text-foreground tracking-tight text-sm  ">
                           {g.name}
                         </span>
                       </div>
@@ -109,13 +109,13 @@ export function GroupList({ groups }: GroupListProps) {
                       <div className="flex flex-col items-center gap-1">
                         <Badge
                           variant="outline"
-                          className="bg-white/50 text-muted-foreground text-[9px]"
+                          className="bg-white text-gray-500 text-[9px]"
                         >
                           Grades: {g.grade}
                         </Badge>
                         <Badge
                           variant="outline"
-                          className="bg-white/50 text-muted-foreground text-[9px]"
+                          className="bg-white text-gray-500 text-[9px]"
                         >
                           Units: {g.section}
                         </Badge>
@@ -145,7 +145,7 @@ export function GroupList({ groups }: GroupListProps) {
             />
           </div>
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

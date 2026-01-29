@@ -40,7 +40,7 @@ export default function StudentWiseAttendancePage() {
         subtitle="Course-level Presence Tracking"
         icon={<FaUserTag size={28} />}
         action={
-          <div className="flex bg-white/50 p-2 rounded-2xl ring-1 ring-white/60 flex-wrap gap-2 backdrop-blur-sm">
+          <div className="flex bg-white p-2 rounded-2xl ring-1 ring-white/60 flex-wrap gap-2 backdrop-blur-sm">
             {["Present", "Late", "Absent"].map((stat) => (
               <div
                 key={stat}
@@ -55,7 +55,7 @@ export default function StudentWiseAttendancePage() {
                       : "bg-rose-500"
                   }`}
                 ></div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <span className="text-[10px] font-semibold   text-gray-500">
                   {stat}
                 </span>
               </div>

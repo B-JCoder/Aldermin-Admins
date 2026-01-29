@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { ListToolbar } from "@/components/common/ListToolbar";
 import { ListPagination } from "@/components/common/ListPagination";
 import { ListActionButtons } from "@/components/common/ListActionButtons";
@@ -53,9 +53,9 @@ export function AssignmentList({
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col">
-        <div className="p-8 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <AdminCard className="flex-1 flex flex-col">
+        <div className="p-8 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Active Assignment Queue
           </h4>
         </div>
@@ -74,40 +74,40 @@ export function AssignmentList({
             <TableBody>
               {paginatedAssignments.map((a, index) => (
                 <TableRow key={a.id} className="group">
-                  <TableCell className="font-mono text-xs text-muted-foreground italic">
+                  <TableCell className=" text-xs text-gray-500 ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell>
                     <div className="flex flex-col gap-1">
-                      <span className="font-black text-foreground text-sm uppercase italic tracking-tight">
+                      <span className="font-semibold text-foreground text-sm   tracking-tight">
                         {a.title}
                       </span>
                       <div className="flex items-center gap-2">
-                        <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-secondary/10 text-secondary border border-secondary/20">
+                        <span className="px-2 py-0.5 rounded-full text-[9px] font-semibold  bg-secondary/10 text-secondary border border-secondary/20">
                           {a.subject}
                         </span>
-                        <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider">
+                        <span className="text-[9px] font-bold text-gray-500  tracking-wider">
                           {a.class}
                         </span>
                       </div>
                     </div>
                   </TableCell>
                   <TableCell className="text-center">
-                    <span className="font-mono text-xs font-bold text-muted-foreground">
+                    <span className=" text-xs font-bold text-gray-500">
                       {a.deadline}
                     </span>
                   </TableCell>
                   <TableCell className="text-center">
                     <div className="flex flex-col items-center gap-1.5">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-black text-foreground">
+                        <span className="text-xs font-semibold text-foreground">
                           {a.submitted}
                         </span>
-                        <span className="text-[10px] font-bold text-muted-foreground uppercase">
+                        <span className="text-[10px] font-bold text-gray-500 ">
                           of {a.total}
                         </span>
                       </div>
-                      <div className="w-24 h-1.5 bg-sidebar/5 rounded-full overflow-hidden border border-white/20">
+                      <div className="w-24 h-1.5 bg-sidebar/5 rounded-full overflow-hidden border border-gray-200">
                         <div
                           className="h-full bg-secondary shadow-[0_0_10px_rgba(0,109,95,0.3)] transition-all duration-500"
                           style={{ width: `${(a.submitted / a.total) * 100}%` }}
@@ -127,7 +127,7 @@ export function AssignmentList({
                 <TableRow>
                   <TableCell
                     colSpan={5}
-                    className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                   >
                     No matching assignments found.
                   </TableCell>
@@ -146,7 +146,7 @@ export function AssignmentList({
             pageSize={pageSize}
           />
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

@@ -1,20 +1,20 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { BiBell, BiPlus, BiPencil, BiTrash } from "react-icons/bi";
 import { Button } from "@/components/ui/button";
 
 export function NoticeBoard() {
   return (
-    <GlassCard className="p-6 h-full flex flex-col">
+    <AdminCard className="p-6 h-full flex flex-col">
       <div className="flex justify-between items-center mb-4">
-        <h5 className="font-black text-foreground text-sm uppercase tracking-widest">
+        <h5 className="font-semibold text-foreground text-sm  ">
           Notice Board
         </h5>
         <a
           href="#"
-          className="text-secondary text-xs font-bold hover:underline uppercase tracking-wide"
+          className="text-secondary text-xs font-bold hover:underline  tracking-wide"
         >
           view all
         </a>
@@ -30,7 +30,7 @@ export function NoticeBoard() {
             <h6 className="font-bold text-foreground text-sm mb-1">
               Sports Day Announcement
             </h6>
-            <p className="text-xs text-muted-foreground leading-snug">
+            <p className="text-xs text-gray-500 leading-snug">
               Annual Sports Day on May 12, 2024. Mark your calendars!
             </p>
           </div>
@@ -45,7 +45,7 @@ export function NoticeBoard() {
             <h6 className="font-bold text-foreground text-sm mb-1">
               Summer Break Start
             </h6>
-            <p className="text-xs text-muted-foreground leading-snug">
+            <p className="text-xs text-gray-500 leading-snug">
               Summer break begins on May 25, 2024. Enjoy!
             </p>
           </div>
@@ -60,36 +60,36 @@ export function NoticeBoard() {
             <h6 className="font-bold text-foreground text-sm mb-1">
               New Timetable Uploaded
             </h6>
-            <p className="text-xs text-muted-foreground leading-snug">
+            <p className="text-xs text-gray-500 leading-snug">
               Check the updated class schedule on the portal.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="mt-auto pt-4 flex gap-2 border-t border-white/20">
+      <div className="mt-auto pt-4 flex gap-2 border-t border-gray-200">
         <Button
           variant="ghost"
           size="sm"
-          className="h-8 gap-1 text-xs font-bold uppercase tracking-wider text-muted-foreground hover:bg-secondary/10 hover:text-secondary"
+          className="h-8 gap-1 text-xs font-bold  tracking-wider text-gray-500 hover:bg-secondary/10 hover:text-secondary"
         >
           <BiPlus size={14} /> Add
         </Button>
         <Button
           variant="ghost"
           size="icon"
-          className="h-8 w-8 text-muted-foreground hover:bg-secondary/10 hover:text-secondary"
+          className="h-8 w-8 text-gray-500 hover:bg-secondary/10 hover:text-secondary"
         >
           <BiPencil size={14} />
         </Button>
         <Button
           variant="ghost"
           size="icon"
-          className="h-8 w-8 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+          className="h-8 w-8 text-gray-500 hover:bg-destructive/10 hover:text-destructive"
         >
           <BiTrash size={14} />
         </Button>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

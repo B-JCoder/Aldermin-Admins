@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -52,35 +52,35 @@ export function ClassReportTable({ ranks }: ClassReportTableProps) {
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+      <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
+        
 
-        <div className="p-8 pb-4 relative z-10 border-b border-white/20">
+        <div className="p-8 pb-4 relative z-10 border-b border-gray-200">
           <div className="flex items-center justify-between">
-            <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+            <h4 className="text-xs font-semibold text-gray-500   leading-none">
               Tier Merit Standings
             </h4>
           </div>
         </div>
 
         <div className="flex-1 overflow-x-auto p-8 pt-0 relative z-10">
-          <div className="rounded-xl border border-white/20 bg-white/40 overflow-hidden">
+          <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
             <Table>
-              <TableHeader className="bg-white/50">
+              <TableHeader className="bg-white">
                 <TableRow>
-                  <TableHead className="px-8 py-6 text-left w-24 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-left w-24 text-[10px] font-semibold   text-gray-500">
                     Standing
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-left text-[10px] font-semibold   text-gray-500">
                     Organizational Tier
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-center text-[10px] font-semibold   text-gray-500">
                     Subject Magnitude
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-center text-[10px] font-semibold   text-gray-500">
                     Aggregate Merit
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-center text-[10px] font-semibold   text-gray-500">
                     Governance
                   </TableHead>
                 </TableRow>
@@ -89,34 +89,34 @@ export function ClassReportTable({ ranks }: ClassReportTableProps) {
                 {paginatedRanks.map((rank) => (
                   <TableRow
                     key={rank.id}
-                    className="group hover:bg-white/60 transition-all font-medium"
+                    className="group hover:bg-white transition-all font-medium"
                   >
                     <TableCell className="px-8 py-10">
-                      <div className="flex items-center gap-3 font-mono font-black italic text-muted-foreground/60 group-hover:text-secondary transition-colors text-lg">
+                      <div className="flex items-center gap-3  font-semibold  text-gray-500/60 group-hover:text-secondary transition-colors text-lg">
                         #{rank.rank}
                       </div>
                     </TableCell>
                     <TableCell className="px-8 py-10">
-                      <div className="font-black text-foreground tracking-tight text-lg font-serif italic uppercase leading-none mb-1 group-hover:text-secondary transition-colors">
+                      <div className="font-semibold text-foreground tracking-tight text-lg    leading-none mb-1 group-hover:text-secondary transition-colors">
                         {rank.class}
                       </div>
-                      <div className="text-[9px] font-black text-muted-foreground uppercase tracking-widest">
+                      <div className="text-[9px] font-semibold text-gray-500  ">
                         Verified Institutional Grade
                       </div>
                     </TableCell>
                     <TableCell className="px-8 py-10 text-center">
                       <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-muted/50 rounded-xl border border-border/50 group-hover:bg-white transition-all">
                         <FaUsers
-                          className="text-muted-foreground group-hover:text-secondary"
+                          className="text-gray-500 group-hover:text-secondary"
                           size={10}
                         />
-                        <span className="text-[10px] font-black text-muted-foreground">
+                        <span className="text-[10px] font-semibold text-gray-500">
                           {rank.students} Subjects
                         </span>
                       </div>
                     </TableCell>
                     <TableCell className="px-8 py-10 text-center">
-                      <div className="inline-flex items-center gap-1 text-xl font-black font-mono text-emerald-600">
+                      <div className="inline-flex items-center gap-1 text-xl font-semibold  text-emerald-600">
                         {rank.points}
                         <FaArrowUp size={10} className="mb-2" />
                       </div>
@@ -144,7 +144,7 @@ export function ClassReportTable({ ranks }: ClassReportTableProps) {
             />
           </div>
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

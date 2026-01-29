@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -35,38 +35,38 @@ export function SeatPlanList({
   handleSelectAll,
 }: SeatPlanListProps) {
   return (
-    <GlassCard className="p-8">
-      <h4 className="mb-4 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+    <AdminCard className="p-8">
+      <h4 className="mb-4 text-xs font-semibold text-gray-500   leading-none">
         Candidate Allotment List
       </h4>
       <div className="overflow-x-auto rounded-xl border border-border/50">
         <Table>
           <TableHeader className="bg-secondary/5">
             <TableRow className="hover:bg-transparent">
-              <TableHead className="px-5 py-4 text-left w-16 text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-5 py-4 text-left w-16 text-[10px]  font-semibold  text-gray-500">
                 SN
               </TableHead>
-              <TableHead className="px-5 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-5 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                 Student Name
               </TableHead>
-              <TableHead className="px-5 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-5 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                 Admission No
               </TableHead>
-              <TableHead className="px-5 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-5 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                 Class
               </TableHead>
-              <TableHead className="px-5 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-5 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                 Father's Name
               </TableHead>
-              <TableHead className="px-5 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-5 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                 Category
               </TableHead>
-              <TableHead className="px-5 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-5 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                 Gender
               </TableHead>
               <TableHead className="px-5 py-4 text-center">
                 <div className="flex flex-col items-center justify-center gap-1">
-                  <span className="text-[8px] font-black text-secondary uppercase tracking-widest">
+                  <span className="text-[8px] font-semibold text-secondary  ">
                     Allot All
                   </span>
                   <Checkbox
@@ -87,29 +87,29 @@ export function SeatPlanList({
                   item.selected ? "bg-secondary/10" : ""
                 }`}
               >
-                <TableCell className="px-5 py-4 text-muted-foreground/50 font-mono text-xs italic">
+                <TableCell className="px-5 py-4 text-gray-500/50  text-xs ">
                   {index + 1}
                 </TableCell>
                 <TableCell className="px-5 py-4 font-bold text-foreground line-clamp-1">
                   {item.name}
                 </TableCell>
                 <TableCell className="px-5 py-4">
-                  <span className="text-xs font-black text-secondary bg-secondary/10 px-2 py-0.5 rounded border border-secondary/20 tabular-nums">
+                  <span className="text-xs font-semibold text-secondary bg-secondary/10 px-2 py-0.5 rounded border border-secondary/20 tabular-nums">
                     {item.admissionNo}
                   </span>
                 </TableCell>
-                <TableCell className="px-5 py-4 text-muted-foreground font-medium">
+                <TableCell className="px-5 py-4 text-gray-500 font-medium">
                   {item.className}
                 </TableCell>
-                <TableCell className="px-5 py-4 text-muted-foreground italic text-xs">
+                <TableCell className="px-5 py-4 text-gray-500  text-xs">
                   {item.fatherName}
                 </TableCell>
                 <TableCell className="px-5 py-4">
-                  <span className="text-[10px] font-black tracking-widest text-muted-foreground/50">
+                  <span className="text-[10px] font-semibold  text-gray-500/50">
                     {item.category}
                   </span>
                 </TableCell>
-                <TableCell className="px-5 py-4 text-muted-foreground text-xs font-black">
+                <TableCell className="px-5 py-4 text-gray-500 text-xs font-semibold">
                   {item.gender}
                 </TableCell>
                 <TableCell className="px-5 py-4 text-center">
@@ -125,7 +125,7 @@ export function SeatPlanList({
               <TableRow>
                 <TableCell
                   colSpan={8}
-                  className="px-5 py-12 text-center text-muted-foreground font-bold uppercase tracking-widest text-[10px]"
+                  className="px-5 py-12 text-center text-gray-500 font-bold   text-[10px]"
                 >
                   No students matching the criteria.
                 </TableCell>
@@ -134,6 +134,6 @@ export function SeatPlanList({
           </TableBody>
         </Table>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,9 +23,9 @@ export function GroupForm({ onAddGroup }: GroupFormProps) {
   };
 
   return (
-    <GlassCard className="p-8 h-full flex flex-col">
+    <AdminCard className="p-8 h-full flex flex-col">
       <div className="flex items-center justify-between mb-6">
-        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+        <h4 className="text-xs font-semibold text-gray-500   leading-none">
           Create New Assembly
         </h4>
         <div className="h-1 w-12 bg-secondary/20 rounded-full"></div>
@@ -33,13 +33,13 @@ export function GroupForm({ onAddGroup }: GroupFormProps) {
 
       <form onSubmit={handleSubmit} className="space-y-6 flex-1">
         <div>
-          <Label className="block text-xs font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-xs font-semibold text-gray-500   mb-2 px-1">
             Assembly Name <span className="text-destructive">*</span>
           </Label>
           <Input
             value={groupName}
             onChange={(e) => setGroupName(e.target.value)}
-            className="w-full bg-white/50 border-white/40 py-6 text-xs font-bold"
+            className="w-full bg-white border-gray-200 py-6 text-xs font-bold"
             placeholder="e.g. Chess Federation"
             required
           />
@@ -49,13 +49,13 @@ export function GroupForm({ onAddGroup }: GroupFormProps) {
           <Button
             type="submit"
             variant="default"
-            className="w-full py-6 text-xs font-black uppercase tracking-widest shadow-lg flex items-center justify-center gap-2"
+            className="w-full py-6 text-xs font-semibold   shadow-lg flex items-center justify-center gap-2"
           >
             <FaPlus className="text-sm" />
             Finalize Assembly
           </Button>
         </div>
       </form>
-    </GlassCard>
+    </AdminCard>
   );
 }

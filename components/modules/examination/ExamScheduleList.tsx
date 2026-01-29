@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -46,26 +46,26 @@ export function ExamScheduleList({ schedules }: ExamScheduleListProps) {
   );
 
   return (
-    <GlassCard className="p-0 overflow-hidden relative">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl -mr-48 -mt-48 pointer-events-none"></div>
+    <AdminCard className="p-0 overflow-hidden relative">
+      
 
       <div className="relative overflow-x-auto p-4">
         <Table>
           <TableHeader>
-            <TableRow className="border-b border-white/20 hover:bg-transparent">
-              <TableHead className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground w-16">
+            <TableRow className="border-b border-gray-200 hover:bg-transparent">
+              <TableHead className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-500 w-16">
                 SN
               </TableHead>
-              <TableHead className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-500">
                 Chronology
               </TableHead>
-              <TableHead className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-500">
                 Academic Domain
               </TableHead>
-              <TableHead className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-500">
                 Env / Room
               </TableHead>
-              <TableHead className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-500">
                 Invigilator
               </TableHead>
             </TableRow>
@@ -76,7 +76,7 @@ export function ExamScheduleList({ schedules }: ExamScheduleListProps) {
                 key={item.id}
                 className="group hover:bg-secondary/5 transition-all text-sm"
               >
-                <TableCell className="px-6 py-10 text-muted-foreground/50 font-mono text-xs italic">
+                <TableCell className="px-6 py-10 text-gray-500/50  text-xs ">
                   {(currentPage - 1) * pageSize + index + 1}
                 </TableCell>
                 <TableCell className="px-6 py-10">
@@ -85,30 +85,30 @@ export function ExamScheduleList({ schedules }: ExamScheduleListProps) {
                       <div className="p-1.5 bg-secondary/10 text-secondary rounded-lg group-hover:bg-secondary group-hover:text-white transition-colors">
                         <FaCalendarAlt size={12} />
                       </div>
-                      <div className="font-black text-foreground tracking-tight text-xs uppercase">
+                      <div className="font-semibold text-foreground tracking-tight text-xs ">
                         {item.date}
                       </div>
                     </div>
-                    <div className="font-black text-[9px] text-muted-foreground uppercase tracking-[0.2em] ml-8">
+                    <div className="font-semibold text-[9px] text-gray-500  tracking-[0.2em] ml-8">
                       {item.day}
                     </div>
                     <div className="flex items-center gap-2 mt-2">
-                      <FaClock className="text-muted-foreground/50" size={10} />
-                      <span className="text-[10px] font-bold text-muted-foreground italic tracking-tighter">
+                      <FaClock className="text-gray-500/50" size={10} />
+                      <span className="text-[10px] font-bold text-gray-500  tracking-tighter">
                         {item.time}
                       </span>
                     </div>
                   </div>
                 </TableCell>
                 <TableCell className="px-6 py-10">
-                  <div className="font-black text-foreground tracking-tight text-base font-serif italic mb-2 group-hover:text-secondary transition-colors uppercase">
+                  <div className="font-semibold text-foreground tracking-tight text-base   mb-2 group-hover:text-secondary transition-colors ">
                     {item.subject}
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="px-3 py-1 bg-secondary/5 text-muted-foreground text-[9px] font-black rounded uppercase tracking-tighter border border-secondary/10">
+                    <span className="px-3 py-1 bg-secondary/5 text-gray-500 text-[9px] font-semibold rounded  tracking-tighter border border-secondary/10">
                       {item.className}
                     </span>
-                    <span className="px-3 py-1 bg-foreground text-background text-[9px] font-black rounded uppercase tracking-tighter italic">
+                    <span className="px-3 py-1 bg-foreground text-background text-[9px] font-semibold rounded  tracking-tighter ">
                       {item.duration}
                     </span>
                   </div>
@@ -116,27 +116,27 @@ export function ExamScheduleList({ schedules }: ExamScheduleListProps) {
                 <TableCell className="px-6 py-10">
                   <div className="flex items-center gap-2 text-foreground">
                     <FaMapMarkerAlt
-                      className="text-muted-foreground/50"
+                      className="text-gray-500/50"
                       size={12}
                     />
-                    <span className="font-black text-sm italic">
+                    <span className="font-semibold text-sm ">
                       {item.room}
                     </span>
                   </div>
-                  <div className="mt-2 flex items-center gap-1.5 font-bold text-[9px] text-muted-foreground uppercase tracking-widest">
+                  <div className="mt-2 flex items-center gap-1.5 font-bold text-[9px] text-gray-500  ">
                     <FaDoorOpen size={10} /> Access Point Alpha
                   </div>
                 </TableCell>
                 <TableCell className="px-6 py-10">
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-secondary/5 flex items-center justify-center text-muted-foreground transition-all group-hover:scale-110 border border-secondary/10">
+                    <div className="w-10 h-10 rounded-full bg-secondary/5 flex items-center justify-center text-gray-500 transition-all group-hover:scale-110 border border-secondary/10">
                       <FaUserTie size={16} />
                     </div>
                     <div>
-                      <div className="text-xs font-black text-foreground tracking-tight italic">
+                      <div className="text-xs font-semibold text-foreground tracking-tight ">
                         {item.teacher}
                       </div>
-                      <div className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mt-1">
+                      <div className="text-[9px] font-bold text-gray-500   mt-1">
                         Lead Supervisor
                       </div>
                     </div>
@@ -159,6 +159,6 @@ export function ExamScheduleList({ schedules }: ExamScheduleListProps) {
           </div>
         )}
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

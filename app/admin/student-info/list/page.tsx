@@ -40,13 +40,13 @@ export default function StudentListPage() {
           <div className="flex items-center gap-2">
             <Button
               variant="outline"
-              className="rounded-2xl border-secondary/20 text-secondary font-black text-xs uppercase tracking-widest hover:bg-secondary hover:text-white transition-all shadow-sm"
+              className="rounded-2xl border-secondary/20 text-secondary font-semibold text-xs   hover:bg-secondary hover:text-white transition-all shadow-sm"
             >
               Batch Actions
             </Button>
             <Button
               variant="default"
-              className="rounded-2xl bg-accent text-white font-black text-xs uppercase tracking-widest hover:bg-accent/90 transition-all shadow-xl"
+              className="rounded-2xl bg-accent text-white font-semibold text-xs   hover:bg-accent/90 transition-all shadow-xl"
             >
               Export Ledger
             </Button>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -34,27 +34,27 @@ export function CategoryList({ categories }: CategoryListProps) {
   );
 
   return (
-    <GlassCard className="flex-1 flex flex-col p-0 overflow-hidden relative h-full">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+    <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative h-full">
+      
 
-      <div className="p-8 pb-4 relative z-10 border-b border-white/20">
-        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <div className="p-8 pb-4 relative z-10 border-b border-gray-200">
+        <h4 className="text-xs font-semibold text-gray-500   leading-none">
           Authorized Category Registry
         </h4>
       </div>
 
       <div className="flex-1 overflow-x-auto p-8 pt-0 relative z-10">
-        <div className="rounded-xl border border-white/20 bg-white/40 overflow-hidden">
+        <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
           <Table>
-            <TableHeader className="bg-white/50">
+            <TableHeader className="bg-white">
               <TableRow>
-                <TableHead className="px-6 py-6 text-left w-20 text-[10px] uppercase font-black text-muted-foreground">
+                <TableHead className="px-6 py-6 text-left w-20 text-[10px]  font-semibold text-gray-500">
                   SN
                 </TableHead>
-                <TableHead className="px-6 py-6 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-6 text-left text-[10px]  font-semibold  text-gray-500">
                   Authorized Category
                 </TableHead>
-                <TableHead className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-6 text-center text-[10px]  font-semibold  text-gray-500">
                   Action
                 </TableHead>
               </TableRow>
@@ -65,7 +65,7 @@ export function CategoryList({ categories }: CategoryListProps) {
                   key={c.id}
                   className="hover:bg-secondary/5 transition-all group"
                 >
-                  <TableCell className="px-6 py-8 text-muted-foreground/50 font-mono text-xs italic">
+                  <TableCell className="px-6 py-8 text-gray-500/50  text-xs ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell className="px-6 py-8">
@@ -73,12 +73,12 @@ export function CategoryList({ categories }: CategoryListProps) {
                       <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary ring-4 ring-secondary/5 group-hover:bg-secondary group-hover:text-white transition-all duration-300 shadow-sm relative overflow-hidden">
                         <FaLayerGroup size={12} />
                       </div>
-                      <div className="font-black text-foreground tracking-tight text-base font-serif italic uppercase leading-none">
+                      <div className="font-semibold text-foreground tracking-tight text-base    leading-none">
                         {c.title}
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell className="px-6 py-8 text-center text-[10px] font-black text-secondary uppercase tracking-widest">
+                  <TableCell className="px-6 py-8 text-center text-[10px] font-semibold text-secondary  ">
                     <div className="flex justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                       <Button
                         variant="ghost"
@@ -114,6 +114,6 @@ export function CategoryList({ categories }: CategoryListProps) {
           />
         </div>
       )}
-    </GlassCard>
+    </AdminCard>
   );
 }

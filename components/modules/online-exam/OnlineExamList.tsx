@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -38,13 +38,13 @@ interface OnlineExamListProps {
 
 export function OnlineExamList({ exams, onRemove }: OnlineExamListProps) {
   return (
-    <GlassCard className="p-0 overflow-hidden h-full flex flex-col">
-      <div className="p-6 border-b border-border/50 flex items-center justify-between bg-white/40">
-        <h3 className="text-sm font-black text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-          <FaLaptopCode className="text-muted-foreground/50" />
+    <AdminCard className="p-0 overflow-hidden h-full flex flex-col">
+      <div className="p-6 border-b border-border/50 flex items-center justify-between bg-white">
+        <h3 className="text-sm font-semibold text-gray-500  tracking-wider flex items-center gap-2">
+          <FaLaptopCode className="text-gray-500/50" />
           Scheduled Exams
         </h3>
-        <span className="text-[10px] font-black bg-secondary/10 text-secondary px-2 py-1 rounded-md">
+        <span className="text-[10px] font-semibold bg-secondary/10 text-secondary px-2 py-1 rounded-md">
           Total: {exams.length}
         </span>
       </div>
@@ -54,28 +54,28 @@ export function OnlineExamList({ exams, onRemove }: OnlineExamListProps) {
           <Table>
             <TableHeader className="bg-secondary/5">
               <TableRow className="hover:bg-transparent">
-                <TableHead className="w-16 px-6 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="w-16 px-6 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                   SN
                 </TableHead>
-                <TableHead className="px-6 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                   Title
                 </TableHead>
-                <TableHead className="px-6 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                   Class
                 </TableHead>
-                <TableHead className="px-6 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                   Subject
                 </TableHead>
-                <TableHead className="px-6 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                   Duration
                 </TableHead>
-                <TableHead className="px-6 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                   Dates
                 </TableHead>
-                <TableHead className="px-6 py-4 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-center text-[10px]  font-semibold  text-gray-500">
                   Status
                 </TableHead>
-                <TableHead className="w-32 px-6 py-4 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="w-32 px-6 py-4 text-center text-[10px]  font-semibold  text-gray-500">
                   Action
                 </TableHead>
               </TableRow>
@@ -86,24 +86,24 @@ export function OnlineExamList({ exams, onRemove }: OnlineExamListProps) {
                   key={i}
                   className="hover:bg-secondary/5 transition-colors group"
                 >
-                  <TableCell className="px-6 py-4 text-muted-foreground/50 font-mono text-xs italic">
+                  <TableCell className="px-6 py-4 text-gray-500/50  text-xs ">
                     {i + 1}
                   </TableCell>
                   <TableCell className="px-6 py-4 text-xs font-bold text-foreground">
                     {exam.title}
                   </TableCell>
-                  <TableCell className="px-6 py-4 text-xs font-bold text-muted-foreground">
+                  <TableCell className="px-6 py-4 text-xs font-bold text-gray-500">
                     {exam.className}
                   </TableCell>
-                  <TableCell className="px-6 py-4 text-xs font-bold text-muted-foreground">
+                  <TableCell className="px-6 py-4 text-xs font-bold text-gray-500">
                     {exam.subject}
                   </TableCell>
                   <TableCell className="px-6 py-4">
                     <div className="flex flex-col gap-1">
-                      <span className="text-[10px] font-black text-foreground">
+                      <span className="text-[10px] font-semibold text-foreground">
                         {exam.duration} Min
                       </span>
-                      <span className="text-[9px] text-muted-foreground">
+                      <span className="text-[9px] text-gray-500">
                         Pass: {exam.percentage}%
                       </span>
                     </div>
@@ -121,7 +121,7 @@ export function OnlineExamList({ exams, onRemove }: OnlineExamListProps) {
                   <TableCell className="px-6 py-4 text-center">
                     <span
                       className={cn(
-                        "px-2 py-1 rounded-full text-[9px] font-black uppercase tracking-wider inline-flex items-center gap-1",
+                        "px-2 py-1 rounded-full text-[9px] font-semibold  tracking-wider inline-flex items-center gap-1",
                         exam.status === "Active"
                           ? "bg-emerald-100/50 text-emerald-600"
                           : "bg-rose-100/50 text-rose-600"
@@ -160,7 +160,7 @@ export function OnlineExamList({ exams, onRemove }: OnlineExamListProps) {
                 <TableRow>
                   <TableCell
                     colSpan={8}
-                    className="px-6 py-12 text-center text-muted-foreground font-bold uppercase tracking-widest text-[10px]"
+                    className="px-6 py-12 text-center text-gray-500 font-bold   text-[10px]"
                   >
                     No online exams scheduled.
                   </TableCell>
@@ -170,6 +170,6 @@ export function OnlineExamList({ exams, onRemove }: OnlineExamListProps) {
           </Table>
         </div>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

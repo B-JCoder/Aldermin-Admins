@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -55,30 +55,30 @@ export function FeeTypeList({
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+      <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
+        
 
-        <div className="p-8 pb-4 relative z-10 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+        <div className="p-8 pb-4 relative z-10 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Authorized Fee Classification
           </h4>
         </div>
 
         <div className="flex-1 overflow-x-auto p-8 pt-0 relative z-10">
-          <div className="rounded-xl border border-white/20 bg-white/40 overflow-hidden">
+          <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
             <Table>
-              <TableHeader className="bg-white/50">
+              <TableHeader className="bg-white">
                 <TableRow>
-                  <TableHead className="px-6 py-6 text-left w-20 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-6 text-left w-20 text-[10px] font-semibold   text-gray-500">
                     SN
                   </TableHead>
-                  <TableHead className="px-6 py-6 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-6 text-left text-[10px] font-semibold   text-gray-500">
                     Fee Narrative
                   </TableHead>
-                  <TableHead className="px-6 py-6 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-6 text-left text-[10px] font-semibold   text-gray-500">
                     Category
                   </TableHead>
-                  <TableHead className="px-6 py-6 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-6 text-center text-[10px] font-semibold   text-gray-500">
                     Action
                   </TableHead>
                 </TableRow>
@@ -87,9 +87,9 @@ export function FeeTypeList({
                 {paginatedFeeTypeList.map((item, index) => (
                   <TableRow
                     key={item.id}
-                    className="group hover:bg-white/60 transition-all font-medium"
+                    className="group hover:bg-white transition-all font-medium"
                   >
-                    <TableCell className="px-6 py-6 text-muted-foreground/50 font-mono text-xs italic">
+                    <TableCell className="px-6 py-6 text-gray-500/50  text-xs ">
                       {(currentPage - 1) * pageSize + index + 1}
                     </TableCell>
                     <TableCell className="px-6 py-6">
@@ -98,17 +98,17 @@ export function FeeTypeList({
                           <FaMoneyCheckAlt size={14} />
                         </div>
                         <div>
-                          <div className="font-black text-foreground text-sm uppercase italic tracking-tight group-hover:text-secondary transition-colors">
+                          <div className="font-semibold text-foreground text-sm   tracking-tight group-hover:text-secondary transition-colors">
                             {item.type}
                           </div>
-                          <div className="text-[10px] font-bold text-muted-foreground truncate max-w-[200px] uppercase tracking-widest">
+                          <div className="text-[10px] font-bold text-gray-500 truncate max-w-[200px]  ">
                             {item.description}
                           </div>
                         </div>
                       </div>
                     </TableCell>
                     <TableCell className="px-6 py-6">
-                      <span className="px-3 py-1 bg-secondary/5 text-secondary text-[9px] font-black rounded-full uppercase tracking-widest border border-secondary/10 shadow-sm">
+                      <span className="px-3 py-1 bg-secondary/5 text-secondary text-[9px] font-semibold rounded-full   border border-secondary/10 shadow-sm">
                         {item.group}
                       </span>
                     </TableCell>
@@ -124,7 +124,7 @@ export function FeeTypeList({
                   <TableRow>
                     <TableCell
                       colSpan={4}
-                      className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                      className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                     >
                       No matching fee types found.
                     </TableCell>
@@ -146,7 +146,7 @@ export function FeeTypeList({
             />
           </div>
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

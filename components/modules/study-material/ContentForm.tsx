@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -23,9 +23,9 @@ import {
 
 export function ContentForm() {
   return (
-    <GlassCard className="p-8 h-full bg-gradient-to-br from-white/60 to-sidebar/5">
+    <AdminCard className="p-8 h-full bg-gradient-to-br from-white/60 to-sidebar/5">
       <div className="flex items-center justify-between mb-6">
-        <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-2">
+        <h4 className="text-sm font-bold text-gray-500   flex items-center gap-2">
           Upload New Asset
           <div className="h-1 w-12 bg-sidebar/20 rounded-full"></div>
         </h4>
@@ -34,28 +34,28 @@ export function ContentForm() {
       <form className="space-y-6 flex-1">
         <div className="space-y-4">
           <div className="space-y-2">
-            <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+            <Label className=" text-[10px]  text-gray-500 font-bold">
               Content Title <span className="text-red-500">*</span>
             </Label>
             <Input
               placeholder="e.g. Midterm Syllabus"
-              className="bg-white/50 backdrop-blur-sm border-white/40 focus:bg-white transition-all font-medium py-6"
+              className="bg-white backdrop-blur-sm border-gray-200 focus:bg-white transition-all font-medium py-6"
               required
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+              <Label className=" text-[10px]  text-gray-500 font-bold">
                 Content Type <span className="text-red-500">*</span>
               </Label>
               <div className="relative">
                 <FaLayerGroup
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground z-10"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 z-10"
                   size={14}
                 />
                 <Select>
-                  <SelectTrigger className="pl-10 bg-white/50 backdrop-blur-sm border-white/40 focus:bg-white transition-all py-6">
+                  <SelectTrigger className="pl-10 bg-white backdrop-blur-sm border-gray-200 focus:bg-white transition-all py-6">
                     <SelectValue placeholder="Type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -68,16 +68,16 @@ export function ContentForm() {
             </div>
 
             <div className="space-y-2">
-              <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+              <Label className=" text-[10px]  text-gray-500 font-bold">
                 Target Audience
               </Label>
               <div className="relative">
                 <FaUsers
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground z-10"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 z-10"
                   size={14}
                 />
                 <Select>
-                  <SelectTrigger className="pl-10 bg-white/50 backdrop-blur-sm border-white/40 focus:bg-white transition-all py-6">
+                  <SelectTrigger className="pl-10 bg-white backdrop-blur-sm border-gray-200 focus:bg-white transition-all py-6">
                     <SelectValue placeholder="Audience" />
                   </SelectTrigger>
                   <SelectContent>
@@ -90,41 +90,41 @@ export function ContentForm() {
           </div>
 
           <div className="space-y-2">
-            <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+            <Label className=" text-[10px]  text-gray-500 font-bold">
               Description
             </Label>
             <Input
               placeholder="Brief description..."
-              className="bg-white/50 backdrop-blur-sm border-white/40 focus:bg-white transition-all font-medium py-6"
+              className="bg-white backdrop-blur-sm border-gray-200 focus:bg-white transition-all font-medium py-6"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+              <Label className=" text-[10px]  text-gray-500 font-bold">
                 Publish Date
               </Label>
               <div className="relative">
                 <FaCalendarAlt
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
                   size={14}
                 />
                 <Input
                   type="date"
-                  className="pl-10 bg-white/50 backdrop-blur-sm border-white/40 focus:bg-white transition-all font-medium py-6"
+                  className="pl-10 bg-white backdrop-blur-sm border-gray-200 focus:bg-white transition-all font-medium py-6"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+              <Label className=" text-[10px]  text-gray-500 font-bold">
                 Attachment
               </Label>
               <div className="relative">
                 <Input type="file" className="hidden" id="content-file" />
                 <Label
                   htmlFor="content-file"
-                  className="w-full h-[52px] rounded-xl border-dashed border-2 border-slate-200 p-4 pl-10 bg-slate-50/50 hover:bg-white cursor-pointer transition-all flex items-center text-[10px] font-bold uppercase tracking-widest text-muted-foreground overflow-hidden"
+                  className="w-full h-[52px] rounded-xl border-dashed border-2 border-slate-200 p-4 pl-10 bg-slate-50/50 hover:bg-white cursor-pointer transition-all flex items-center text-[10px] font-bold   text-gray-500 overflow-hidden"
                 >
                   <FaFileAlt
                     className="mr-2 text-secondary shrink-0"
@@ -140,15 +140,15 @@ export function ContentForm() {
         <div className="pt-2">
           <Button
             type="submit"
-            className="w-full py-6 text-xs font-black uppercase tracking-[0.2em] bg-secondary hover:bg-secondary/90 text-white shadow-lg transition-all active:scale-[0.98]"
+            className="w-full py-6 text-xs font-semibold  tracking-[0.2em] bg-secondary hover:bg-secondary/90 text-white shadow-lg transition-all active:scale-[0.98]"
           >
             <div className="flex items-center gap-2">
-              <FaCloudUploadAlt className="italic" />
+              <FaCloudUploadAlt className="" />
               Upload Asset
             </div>
           </Button>
         </div>
       </form>
-    </GlassCard>
+    </AdminCard>
   );
 }

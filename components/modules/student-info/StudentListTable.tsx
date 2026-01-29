@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -68,33 +68,33 @@ export function StudentListTable({ students }: StudentListTableProps) {
         onAdd={() => console.log("Add New Student")}
       />
 
-      <GlassCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+      <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
+        
 
-        <div className="p-8 pb-4 relative z-10 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+        <div className="p-8 pb-4 relative z-10 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Student List
           </h4>
         </div>
 
         <div className="flex-1 overflow-x-auto p-8 pt-0 relative z-10">
-          <div className="rounded-xl border border-white/20 bg-white/40 overflow-hidden">
+          <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
             <Table>
-              <TableHeader className="bg-white/50">
+              <TableHeader className="bg-white">
                 <TableRow>
-                  <TableHead className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-500">
                     Identity
                   </TableHead>
-                  <TableHead className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-500">
                     Student Profile
                   </TableHead>
-                  <TableHead className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-500">
                     Guardianship
                   </TableHead>
-                  <TableHead className="px-6 py-8 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-8 text-center text-[10px] font-semibold   text-gray-500">
                     Class Point
                   </TableHead>
-                  <TableHead className="px-6 py-8 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-8 text-center text-[10px] font-semibold   text-gray-500">
                     Interaction
                   </TableHead>
                 </TableRow>
@@ -103,31 +103,31 @@ export function StudentListTable({ students }: StudentListTableProps) {
                 {paginatedStudents.map((student) => (
                   <TableRow
                     key={student.id}
-                    className="group hover:bg-white/60 transition-all font-medium"
+                    className="group hover:bg-white transition-all font-medium"
                   >
                     <TableCell className="px-6 py-8">
                       <Badge
                         variant="secondary"
-                        className="font-mono text-[10px] font-black bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary/20 shadow-none px-3 py-1"
+                        className=" text-[10px] font-semibold bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary/20 shadow-none px-3 py-1"
                       >
                         {student.admissionNo}
                       </Badge>
-                      <div className="mt-2 flex items-center gap-1 text-[9px] font-black text-muted-foreground uppercase tracking-tighter">
+                      <div className="mt-2 flex items-center gap-1 text-[9px] font-semibold text-gray-500  tracking-tighter">
                         <FaIdCard size={10} /> Certified Member
                       </div>
                     </TableCell>
                     <TableCell className="px-6 py-8">
                       <div className="flex items-center gap-4">
                         <Avatar className="h-12 w-12 border-2 border-white shadow-sm ring-2 ring-secondary/5">
-                          <AvatarFallback className="bg-secondary/10 text-secondary font-black text-lg">
+                          <AvatarFallback className="bg-secondary/10 text-secondary font-semibold text-lg">
                             {student.name.charAt(0)}
                           </AvatarFallback>
                         </Avatar>
                         <div>
-                          <div className="text-base font-black text-foreground tracking-tight leading-none group-hover:text-secondary transition-colors font-serif italic">
+                          <div className="text-base font-semibold text-foreground tracking-tight leading-none group-hover:text-secondary transition-colors  ">
                             {student.name}
                           </div>
-                          <div className="text-[10px] font-bold text-muted-foreground mt-1 uppercase tracking-widest flex items-center gap-2">
+                          <div className="text-[10px] font-bold text-gray-500 mt-1   flex items-center gap-2">
                             {student.gender}{" "}
                             <span className="w-1 h-1 bg-gray-300 rounded-full"></span>{" "}
                             {student.dob}
@@ -136,19 +136,19 @@ export function StudentListTable({ students }: StudentListTableProps) {
                       </div>
                     </TableCell>
                     <TableCell className="px-6 py-8">
-                      <div className="text-xs font-black text-foreground tracking-tight mb-1">
+                      <div className="text-xs font-semibold text-foreground tracking-tight mb-1">
                         {student.fatherName}
                       </div>
-                      <div className="text-[9px] font-black text-muted-foreground uppercase leading-none">
+                      <div className="text-[9px] font-semibold text-gray-500  leading-none">
                         Primary Contact
                       </div>
                     </TableCell>
                     <TableCell className="px-6 py-8 text-center">
                       <div className="inline-flex flex-col items-center">
-                        <Badge className="px-4 py-1.5 bg-accent text-white text-[10px] font-black rounded-lg uppercase tracking-widest shadow-lg hover:bg-accent/90">
+                        <Badge className="px-4 py-1.5 bg-accent text-white text-[10px] font-semibold rounded-lg   shadow-lg hover:bg-accent/90">
                           {student.className}
                         </Badge>
-                        <div className="mt-2 text-[9px] font-black text-emerald-600 uppercase flex items-center gap-1 italic">
+                        <div className="mt-2 text-[9px] font-semibold text-emerald-600  flex items-center gap-1 ">
                           <FaMapMarkerAlt size={8} /> Active Desk
                         </div>
                       </div>
@@ -178,7 +178,7 @@ export function StudentListTable({ students }: StudentListTableProps) {
             />
           </div>
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

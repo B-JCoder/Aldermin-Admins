@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Button } from "@/components/ui/button";
 import { FaPrint } from "react-icons/fa";
 
@@ -20,13 +20,13 @@ interface FeesQueueProps {
 
 export function FeesQueue({ receipts }: FeesQueueProps) {
   return (
-    <GlassCard className="h-full bg-white/60 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+    <AdminCard className="h-full bg-white relative overflow-hidden">
+      
       <div className="p-8 pb-0 flex items-center justify-between mb-8 relative">
-        <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest leading-none">
+        <h4 className="text-xs font-semibold text-gray-400   leading-none">
           Receipt Queue
         </h4>
-        <Button className="px-6 py-3 bg-secondary hover:bg-secondary/90 text-white text-[10px] font-black rounded-xl uppercase tracking-widest transition-all flex items-center gap-2 shadow-lg shadow-secondary/10 active:scale-95">
+        <Button className="px-6 py-3 bg-secondary hover:bg-secondary/90 text-white text-[10px] font-semibold rounded-xl   transition-all flex items-center gap-2 shadow-lg shadow-secondary/10 active:scale-95">
           <FaPrint />
           Print Batch
         </Button>
@@ -42,13 +42,13 @@ export function FeesQueue({ receipts }: FeesQueueProps) {
                   className="rounded border-gray-300 text-secondary focus:ring-secondary/20"
                 />
               </th>
-              <th className="px-6 py-6 text-left text-[10px] uppercase font-black tracking-widest">
+              <th className="px-6 py-6 text-left text-[10px]  font-semibold ">
                 Payee
               </th>
-              <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
+              <th className="px-6 py-6 text-center text-[10px]  font-semibold ">
                 Amount
               </th>
-              <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
+              <th className="px-6 py-6 text-center text-[10px]  font-semibold ">
                 Date
               </th>
             </tr>
@@ -66,20 +66,20 @@ export function FeesQueue({ receipts }: FeesQueueProps) {
                   />
                 </td>
                 <td className="px-6 py-8">
-                  <div className="font-black text-gray-900 tracking-tight text-base font-serif italic uppercase leading-none mb-1">
+                  <div className="font-semibold text-gray-900 tracking-tight text-base    leading-none mb-1">
                     {r.student}
                   </div>
-                  <div className="text-[10px] font-mono text-secondary font-bold">
+                  <div className="text-[10px]  text-secondary font-bold">
                     {r.class}
                   </div>
                 </td>
                 <td className="px-6 py-8 text-center">
-                  <div className="text-[10px] font-black uppercase text-gray-500 font-mono">
+                  <div className="text-[10px] font-semibold  text-gray-500 ">
                     {r.amount}
                   </div>
                 </td>
                 <td className="px-6 py-8 text-center">
-                  <div className="text-[10px] font-black uppercase text-gray-400 font-mono">
+                  <div className="text-[10px] font-semibold  text-gray-400 ">
                     {r.date}
                   </div>
                 </td>
@@ -88,6 +88,6 @@ export function FeesQueue({ receipts }: FeesQueueProps) {
           </tbody>
         </table>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

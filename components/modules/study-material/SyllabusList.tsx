@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -55,9 +55,9 @@ export function SyllabusList({
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col">
-        <div className="p-8 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <AdminCard className="flex-1 flex flex-col">
+        <div className="p-8 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Authorized Curriculum
           </h4>
         </div>
@@ -76,24 +76,24 @@ export function SyllabusList({
             <TableBody>
               {paginatedSyllabusList.map((s, index) => (
                 <TableRow key={s.id} className="group">
-                  <TableCell className="font-mono text-xs text-muted-foreground italic">
+                  <TableCell className=" text-xs text-gray-500 ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell>
-                    <div className="font-black text-foreground text-sm uppercase italic tracking-tight mb-1">
+                    <div className="font-semibold text-foreground text-sm   tracking-tight mb-1">
                       {s.title}
                     </div>
-                    <div className="text-[10px] font-black text-secondary flex items-center gap-1 uppercase tracking-widest">
+                    <div className="text-[10px] font-semibold text-secondary flex items-center gap-1  ">
                       <FaGraduationCap size={10} /> {s.class}
                     </div>
                   </TableCell>
                   <TableCell className="text-center">
-                    <span className="px-3 py-1 bg-secondary/10 text-secondary text-[9px] font-black rounded-full uppercase tracking-widest">
+                    <span className="px-3 py-1 bg-secondary/10 text-secondary text-[9px] font-semibold rounded-full  ">
                       {s.type}
                     </span>
                   </TableCell>
                   <TableCell className="text-center">
-                    <div className="text-[10px] font-black uppercase text-muted-foreground font-mono">
+                    <div className="text-[10px] font-semibold  text-gray-500 ">
                       {s.date}
                     </div>
                   </TableCell>
@@ -117,7 +117,7 @@ export function SyllabusList({
                 <TableRow>
                   <TableCell
                     colSpan={5}
-                    className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                   >
                     No matching syllabus found.
                   </TableCell>
@@ -136,7 +136,7 @@ export function SyllabusList({
             pageSize={pageSize}
           />
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

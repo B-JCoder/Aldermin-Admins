@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -56,42 +56,42 @@ export function AssignIncidentTable({ students }: AssignIncidentTableProps) {
         onSearch={setSearchTerm}
         showAddButton={false}
         action={
-          <Button className="rounded-xl bg-secondary text-white hover:bg-secondary/90 transition-all shadow-lg shadow-secondary/20 text-[10px] font-black uppercase tracking-widest px-6 h-10">
+          <Button className="rounded-xl bg-secondary text-white hover:bg-secondary/90 transition-all shadow-lg shadow-secondary/20 text-[10px] font-semibold   px-6 h-10">
             <FaPlus className="mr-2" /> Attribute Incident
           </Button>
         }
       />
 
-      <GlassCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+      <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
+        
 
-        <div className="p-8 pb-4 relative z-10 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+        <div className="p-8 pb-4 relative z-10 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Conduct Evaluation Matrix
           </h4>
         </div>
 
         <div className="flex-1 overflow-x-auto p-8 pt-0 relative z-10">
-          <div className="rounded-xl border border-white/20 bg-white/40 overflow-hidden">
+          <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
             <Table>
-              <TableHeader className="bg-white/50">
+              <TableHeader className="bg-white">
                 <TableRow>
-                  <TableHead className="px-8 py-6 text-left w-16 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-left w-16 text-[10px] font-semibold   text-gray-500">
                     SN
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-left text-[10px] font-semibold   text-gray-500">
                     Student Profile
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-center text-[10px] font-semibold   text-gray-500">
                     Enrollment Node
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-center text-[10px] font-semibold   text-gray-500">
                     Aggregate Merit
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-center text-[10px] font-semibold   text-gray-500">
                     Log Count
                   </TableHead>
-                  <TableHead className="px-8 py-6 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-8 py-6 text-center text-[10px] font-semibold   text-gray-500">
                     Intervention
                   </TableHead>
                 </TableRow>
@@ -100,9 +100,9 @@ export function AssignIncidentTable({ students }: AssignIncidentTableProps) {
                 {paginatedStudents.map((student, index) => (
                   <TableRow
                     key={student.id}
-                    className="group hover:bg-white/60 transition-all"
+                    className="group hover:bg-white transition-all"
                   >
-                    <TableCell className="px-8 py-8 text-muted-foreground/50 font-mono text-xs italic">
+                    <TableCell className="px-8 py-8 text-gray-500/50  text-xs ">
                       {(currentPage - 1) * pageSize + index + 1}
                     </TableCell>
                     <TableCell className="px-8 py-8">
@@ -111,23 +111,23 @@ export function AssignIncidentTable({ students }: AssignIncidentTableProps) {
                           <FaUserGraduate size={16} />
                         </div>
                         <div>
-                          <div className="font-black text-foreground tracking-tight text-base font-serif italic uppercase leading-none mb-1 group-hover:text-secondary transition-colors">
+                          <div className="font-semibold text-foreground tracking-tight text-base    leading-none mb-1 group-hover:text-secondary transition-colors">
                             {student.name}
                           </div>
-                          <div className="text-[9px] font-black text-muted-foreground uppercase tracking-widest">
+                          <div className="text-[9px] font-semibold text-gray-500  ">
                             {student.gender} • {student.class}
                           </div>
                         </div>
                       </div>
                     </TableCell>
                     <TableCell className="px-8 py-8 text-center">
-                      <span className="px-3 py-1 bg-secondary/5 text-secondary text-[10px] font-mono font-black rounded border border-secondary/10 italic">
+                      <span className="px-3 py-1 bg-secondary/5 text-secondary text-[10px]  font-semibold rounded border border-secondary/10 ">
                         {student.admissionNo}
                       </span>
                     </TableCell>
                     <TableCell className="px-8 py-8 text-center">
                       <div
-                        className={`text-lg font-black font-mono ${
+                        className={`text-lg font-semibold  ${
                           student.points >= 0
                             ? "text-emerald-500"
                             : "text-rose-500"
@@ -138,13 +138,13 @@ export function AssignIncidentTable({ students }: AssignIncidentTableProps) {
                           : student.points}
                       </div>
                     </TableCell>
-                    <TableCell className="px-8 py-8 text-center text-muted-foreground font-bold italic text-xs">
+                    <TableCell className="px-8 py-8 text-center text-gray-500 font-bold  text-xs">
                       {student.incidents} Entries
                     </TableCell>
                     <TableCell className="px-8 py-8 text-center">
                       <Button
                         variant="ghost"
-                        className="rounded-xl bg-muted/50 text-foreground hover:bg-secondary hover:text-white transition-all shadow-sm text-[9px] font-black uppercase tracking-widest h-9 px-4"
+                        className="rounded-xl bg-muted/50 text-foreground hover:bg-secondary hover:text-white transition-all shadow-sm text-[9px] font-semibold   h-9 px-4"
                       >
                         <FaEye className="mr-2" /> View Dossier
                       </Button>
@@ -167,7 +167,7 @@ export function AssignIncidentTable({ students }: AssignIncidentTableProps) {
             />
           </div>
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

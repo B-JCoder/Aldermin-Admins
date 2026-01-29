@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { Button } from "@/components/ui/button";
 
 export function CalendarCard() {
   return (
-    <GlassCard className="h-full p-6 flex flex-col items-center justify-center text-center">
+    <AdminCard className="h-full p-6 flex flex-col items-center justify-center text-center">
       <div className="w-full flex-1 flex flex-col items-center justify-center min-h-[250px]">
         <div className="w-full max-w-[280px]">
           <div className="flex items-center justify-between mb-6">
@@ -18,7 +18,7 @@ export function CalendarCard() {
             >
               <BiChevronLeft size={24} />
             </Button>
-            <span className="font-black text-foreground text-lg tracking-tight">
+            <span className="font-semibold text-foreground text-lg tracking-tight">
               May 2024
             </span>
             <Button
@@ -29,7 +29,7 @@ export function CalendarCard() {
               <BiChevronRight size={24} />
             </Button>
           </div>
-          <div className="grid grid-cols-7 gap-2 text-center text-xs mb-3 text-muted-foreground font-black uppercase tracking-wider">
+          <div className="grid grid-cols-7 gap-2 text-center text-xs mb-3 text-gray-500 font-semibold  tracking-wider">
             <span>Su</span>
             <span>Mo</span>
             <span>Tu</span>
@@ -57,10 +57,10 @@ export function CalendarCard() {
       </div>
       <Button
         variant="secondary"
-        className="mt-4 w-3/4 rounded-xl text-xs font-black uppercase tracking-widest shadow-md"
+        className="mt-4 w-3/4 rounded-xl text-xs font-semibold   shadow-md"
       >
         Manage Calendar
       </Button>
-    </GlassCard>
+    </AdminCard>
   );
 }

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { ListToolbar } from "@/components/common/ListToolbar";
 import { ListPagination } from "@/components/common/ListPagination";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Button } from "@/components/ui/button";
 import { FaPlay, FaCheck, FaLink, FaTrash, FaEdit } from "react-icons/fa";
 
@@ -54,27 +54,27 @@ export default function VideoTutorialPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Upload Form */}
         <div className="lg:col-span-4 h-full">
-          <GlassCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
-            <h4 className="mb-8 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+          <AdminCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
+            <h4 className="mb-8 text-xs font-semibold text-gray-500   leading-none">
               Embed Video Resource
             </h4>
 
             <form className="space-y-6 flex-1">
               <div className="space-y-5">
                 <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                     Video Title <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
-                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm italic"
+                    className="w-full rounded-2xl border-gray-200 bg-white p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm "
                     placeholder="e.g. Chapter 1 Overview"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                     Source Link
                   </label>
                   <div className="relative">
@@ -84,7 +84,7 @@ export default function VideoTutorialPage() {
                     />
                     <input
                       type="url"
-                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
+                      className="w-full rounded-2xl border-gray-200 bg-white p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
                       placeholder="https://..."
                       required
                     />
@@ -93,20 +93,20 @@ export default function VideoTutorialPage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                    <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                       Platform
                     </label>
-                    <select className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none cursor-pointer">
+                    <select className="w-full rounded-2xl border-gray-200 bg-white p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none cursor-pointer">
                       <option>YouTube</option>
                       <option>Vimeo</option>
                       <option>Internal Server</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                    <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                       Target Audience
                     </label>
-                    <select className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none cursor-pointer">
+                    <select className="w-full rounded-2xl border-gray-200 bg-white p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none cursor-pointer">
                       <option>All Classes</option>
                       <option>Class 10</option>
                     </select>
@@ -114,23 +114,23 @@ export default function VideoTutorialPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                     Description
                   </label>
                   <textarea
-                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm min-h-[100px]"
+                    className="w-full rounded-2xl border-gray-200 bg-white p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm min-h-[100px]"
                     placeholder="Details about this learning resource..."
                   ></textarea>
                 </div>
               </div>
 
               <div className="pt-6">
-                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl shadow-secondary/20 transition-all active:scale-95">
-                  <FaCheck className="mr-2 italic" /> Publish Hub Video
+                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-semibold  text-[10px]  shadow-xl shadow-secondary/20 transition-all active:scale-95">
+                  <FaCheck className="mr-2 " /> Publish Hub Video
                 </Button>
               </div>
             </form>
-          </GlassCard>
+          </AdminCard>
         </div>
 
         {/* Video List */}
@@ -141,9 +141,9 @@ export default function VideoTutorialPage() {
             showAddButton={false}
           />
 
-          <GlassCard className="flex-1 flex flex-col p-8">
-            <div className="mb-8 border-b border-white/20 pb-6">
-              <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+          <AdminCard className="flex-1 flex flex-col p-8">
+            <div className="mb-8 border-b border-gray-200 pb-6">
+              <h4 className="text-xs font-semibold text-gray-500   leading-none">
                 Visual Resource Archive
               </h4>
             </div>
@@ -156,15 +156,15 @@ export default function VideoTutorialPage() {
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
 
-                  <div className="absolute top-4 right-4 bg-secondary/80 backdrop-blur-md px-3 py-1.5 rounded-xl text-[10px] font-black text-white uppercase tracking-widest shadow-lg">
+                  <div className="absolute top-4 right-4 bg-secondary/80  px-3 py-1.5 rounded-xl text-[10px] font-semibold text-white   shadow-lg">
                     {v.source}
                   </div>
 
                   <div className="absolute bottom-0 left-0 w-full p-6">
-                    <h3 className="text-white font-black text-lg leading-tight mb-2 uppercase italic tracking-tight">
+                    <h3 className="text-white font-semibold text-lg leading-tight mb-2   tracking-tight">
                       {v.title}
                     </h3>
-                    <div className="flex items-center gap-2 text-slate-300 text-[10px] font-black uppercase tracking-[0.2em]">
+                    <div className="flex items-center gap-2 text-slate-300 text-[10px] font-semibold  tracking-[0.2em]">
                       <span className="text-secondary">{v.class}</span>{" "}
                       <span className="opacity-20">|</span>{" "}
                       <span>{v.date}</span>
@@ -172,23 +172,23 @@ export default function VideoTutorialPage() {
                   </div>
 
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all bg-black/40 backdrop-blur-sm cursor-pointer">
-                    <div className="w-16 h-16 rounded-full bg-secondary/80 backdrop-blur-md flex items-center justify-center text-white ring-8 ring-secondary/20 hover:scale-110 transition-all shadow-2xl">
+                    <div className="w-16 h-16 rounded-full bg-secondary/80  flex items-center justify-center text-white ring-8 ring-secondary/20 hover:scale-110 transition-all shadow-2xl">
                       <FaPlay size={20} className="ml-1" />
                     </div>
                   </div>
 
                   <div className="absolute top-4 left-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
-                    <button className="w-9 h-9 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-secondary transition-all shadow-xl">
+                    <button className="w-9 h-9 rounded-xl bg-white/10  flex items-center justify-center text-white hover:bg-secondary transition-all shadow-xl">
                       <FaEdit size={12} />
                     </button>
-                    <button className="w-9 h-9 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-red-500 transition-all shadow-xl">
+                    <button className="w-9 h-9 rounded-xl bg-white/10  flex items-center justify-center text-white hover:bg-red-500 transition-all shadow-xl">
                       <FaTrash size={12} />
                     </button>
                   </div>
                 </div>
               ))}
               {paginatedVideos.length === 0 && (
-                <div className="col-span-full h-60 flex items-center justify-center border border-dashed border-white/20 rounded-[2rem] text-muted-foreground uppercase tracking-widest text-[10px] font-black">
+                <div className="col-span-full h-60 flex items-center justify-center border border-dashed border-gray-200 rounded-[2rem] text-gray-500   text-[10px] font-semibold">
                   No matching videos in archive.
                 </div>
               )}
@@ -203,7 +203,7 @@ export default function VideoTutorialPage() {
                 pageSize={pageSize}
               />
             )}
-          </GlassCard>
+          </AdminCard>
         </div>
       </div>
     </div>

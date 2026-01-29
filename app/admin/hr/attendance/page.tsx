@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { ListToolbar } from "@/components/common/ListToolbar";
 import { ListPagination } from "@/components/common/ListPagination";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -95,10 +95,10 @@ export default function StaffAttendancePage() {
                 type="date"
                 value={attendanceDate}
                 onChange={(e) => setAttendanceDate(e.target.value)}
-                className="pl-10 pr-4 py-3 rounded-xl bg-white/50 border-white/40 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
+                className="pl-10 pr-4 py-3 rounded-xl bg-white border-gray-200 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
               />
             </div>
-            <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 h-12 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10 transition-all">
+            <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 h-12 px-6 rounded-xl font-bold  text-[10px]  shadow-lg shadow-secondary/10 transition-all">
               <FaUserCheck size={14} /> Mark All Present
             </Button>
           </div>
@@ -112,22 +112,22 @@ export default function StaffAttendancePage() {
           { label: "Late", val: 3, color: "amber", Icon: FaClock },
           { label: "On Leave", val: 2, color: "indigo", Icon: FaRunning },
         ].map((stat, i) => (
-          <GlassCard
+          <AdminCard
             key={i}
             className={`p-6 border-none bg-gradient-to-br from-${stat.color}-500 to-${stat.color}-600 text-white shadow-xl shadow-${stat.color}-500/20`}
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[10px] font-black uppercase opacity-70 tracking-widest">
+                <p className="text-[10px] font-semibold  opacity-70 ">
                   {stat.label}
                 </p>
-                <h3 className="text-3xl font-black mt-1 font-mono tracking-tighter">
+                <h3 className="text-3xl font-semibold mt-1  tracking-tighter">
                   {stat.val}
                 </h3>
               </div>
               <stat.Icon size={32} className="opacity-20 translate-x-1" />
             </div>
-          </GlassCard>
+          </AdminCard>
         ))}
       </div>
 
@@ -138,16 +138,16 @@ export default function StaffAttendancePage() {
           showAddButton={false}
         />
 
-        <GlassCard className="flex-1 flex flex-col">
-          <div className="p-8 border-b border-white/20 flex items-center justify-between">
-            <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+        <AdminCard className="flex-1 flex flex-col">
+          <div className="p-8 border-b border-gray-200 flex items-center justify-between">
+            <h4 className="text-xs font-semibold text-gray-500   leading-none">
               Daily Attendance Repository
             </h4>
             <div className="flex items-center gap-3">
-              <span className="text-[9px] font-black text-muted-foreground uppercase tracking-wider">
+              <span className="text-[9px] font-semibold text-gray-500  tracking-wider">
                 Categorize by:
               </span>
-              <select className="bg-secondary/5 border-none text-[9px] font-black uppercase rounded-lg px-2 py-1.5 outline-none focus:bg-secondary/10 transition-all cursor-pointer">
+              <select className="bg-secondary/5 border-none text-[9px] font-semibold  rounded-lg px-2 py-1.5 outline-none focus:bg-secondary/10 transition-all cursor-pointer">
                 <option>Department</option>
                 <option>Functional Role</option>
               </select>
@@ -169,19 +169,19 @@ export default function StaffAttendancePage() {
               <TableBody>
                 {paginatedAttendance.map((item, index) => (
                   <TableRow key={item.id} className="group">
-                    <TableCell className="font-mono text-xs text-muted-foreground italic">
+                    <TableCell className=" text-xs text-gray-500 ">
                       {(currentPage - 1) * pageSize + index + 1}
                     </TableCell>
                     <TableCell>
-                      <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none mb-1">
+                      <div className="font-semibold text-foreground text-sm   tracking-tight leading-none mb-1">
                         {item.name}
                       </div>
-                      <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+                      <div className="text-[10px] font-bold text-gray-500  ">
                         UID: {item.staffId}
                       </div>
                     </TableCell>
                     <TableCell>
-                      <span className="px-2 py-1 bg-secondary/10 text-secondary text-[9px] font-bold rounded border border-secondary/20 uppercase tracking-widest">
+                      <span className="px-2 py-1 bg-secondary/10 text-secondary text-[9px] font-bold rounded border border-secondary/20  ">
                         {item.role}
                       </span>
                     </TableCell>
@@ -217,10 +217,10 @@ export default function StaffAttendancePage() {
                             key={btn.key}
                             onClick={() => handleStatusChange(item.id, btn.key)}
                             title={btn.label}
-                            className={`w-8 h-8 rounded-full text-[9px] font-black uppercase transition-all shadow-sm ring-1 ring-inset ${
+                            className={`w-8 h-8 rounded-full text-[9px] font-semibold  transition-all shadow-sm ring-1 ring-inset ${
                               item.status === btn.key
                                 ? `bg-${btn.color}-500 text-white ring-${btn.color}-600 shadow-${btn.color}-500/20`
-                                : `bg-white/50 text-muted-foreground ring-white/60 hover:bg-${btn.color}-500/10 hover:text-${btn.color}-600`
+                                : `bg-white text-gray-500 ring-white/60 hover:bg-${btn.color}-500/10 hover:text-${btn.color}-600`
                             }`}
                           >
                             {btn.abbr}
@@ -231,19 +231,19 @@ export default function StaffAttendancePage() {
                     <TableCell>
                       <div className="flex items-center justify-center gap-4">
                         <div className="text-center">
-                          <p className="text-[9px] font-black text-muted-foreground/40 uppercase leading-none mb-1 tracking-tighter">
+                          <p className="text-[9px] font-semibold text-gray-500/40  leading-none mb-1 tracking-tighter">
                             Inbound
                           </p>
-                          <p className="text-[10px] font-bold text-foreground font-mono">
+                          <p className="text-[10px] font-bold text-foreground ">
                             {item.clockIn}
                           </p>
                         </div>
                         <div className="w-px h-6 bg-white/20" />
                         <div className="text-center">
-                          <p className="text-[9px] font-black text-muted-foreground/40 uppercase leading-none mb-1 tracking-tighter">
+                          <p className="text-[9px] font-semibold text-gray-500/40  leading-none mb-1 tracking-tighter">
                             Outbound
                           </p>
-                          <p className="text-[10px] font-bold text-foreground font-mono">
+                          <p className="text-[10px] font-bold text-foreground ">
                             {item.clockOut}
                           </p>
                         </div>
@@ -253,7 +253,7 @@ export default function StaffAttendancePage() {
                       <input
                         type="text"
                         placeholder="Log memoranda..."
-                        className="w-full bg-white/40 border-white/20 rounded-xl px-3 py-2 text-[10px] focus:bg-white outline-none transition-all placeholder:text-muted-foreground/30 font-medium italic"
+                        className="w-full bg-white border-gray-200 rounded-xl px-3 py-2 text-[10px] focus:bg-white outline-none transition-all placeholder:text-gray-500/30 font-medium "
                       />
                     </TableCell>
                   </TableRow>
@@ -271,8 +271,9 @@ export default function StaffAttendancePage() {
               pageSize={pageSize}
             />
           )}
-        </GlassCard>
+        </AdminCard>
       </div>
     </div>
   );
 }
+

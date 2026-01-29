@@ -47,7 +47,7 @@ export default function SubjectPage() {
   return (
     <div className="container mx-auto p-4 space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-gray-900 tracking-tighter flex items-center gap-3">
+        <h1 className="text-2xl font-semibold text-gray-900 tracking-tighter flex items-center gap-3">
           <div className="p-2 bg-indigo-600 rounded-xl shadow-lg ring-4 ring-indigo-50">
             <FaBookOpen className="text-white" size={20} />
           </div>
@@ -59,7 +59,7 @@ export default function SubjectPage() {
         {/* Creation Form */}
         <div className="lg:col-span-4">
           <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 flex flex-col h-full bg-gradient-to-br from-white to-gray-50/10">
-            <h4 className="mb-8 text-xs font-black text-gray-400 uppercase tracking-widest leading-none flex items-center gap-2">
+            <h4 className="mb-8 text-xs font-semibold text-gray-400   leading-none flex items-center gap-2">
               Add Curricular Discipline
               <div className="h-[1px] flex-1 bg-gray-100"></div>
             </h4>
@@ -68,7 +68,7 @@ export default function SubjectPage() {
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1 text-nowrap">
+                    <label className="block text-[10px] font-semibold text-gray-400   mb-2 px-1 text-nowrap">
                       Discipline Name
                     </label>
                     <input
@@ -81,14 +81,14 @@ export default function SubjectPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                    <label className="block text-[10px] font-semibold text-gray-400   mb-2 px-1">
                       Codification
                     </label>
                     <input
                       type="text"
                       value={subjectCode}
                       onChange={(e) => setSubjectCode(e.target.value)}
-                      className="w-full rounded-2xl border-gray-100 p-4 text-xs font-mono font-bold focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all bg-white shadow-sm"
+                      className="w-full rounded-2xl border-gray-100 p-4 text-xs  font-bold focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all bg-white shadow-sm"
                       placeholder="TOP-101"
                       required
                     />
@@ -96,7 +96,7 @@ export default function SubjectPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-400   mb-4 px-1">
                     Discipline Modality
                   </label>
                   <div className="grid grid-cols-2 gap-4">
@@ -116,7 +116,7 @@ export default function SubjectPage() {
                             : "text-gray-300"
                         }
                       />
-                      <span className="text-[11px] font-black uppercase tracking-widest">
+                      <span className="text-[11px] font-semibold  ">
                         Theory
                       </span>
                     </div>
@@ -136,7 +136,7 @@ export default function SubjectPage() {
                             : "text-gray-300"
                         }
                       />
-                      <span className="text-[11px] font-black uppercase tracking-widest">
+                      <span className="text-[11px] font-semibold  ">
                         Practical
                       </span>
                     </div>
@@ -147,10 +147,10 @@ export default function SubjectPage() {
               <div className="pt-6">
                 <button
                   type="submit"
-                  className="w-full relative overflow-hidden rounded-2xl bg-gray-900 border-b-4 border-gray-700 text-white px-8 py-5 text-xs font-black uppercase tracking-widest transition-all hover:bg-black active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-gray-200"
+                  className="w-full relative overflow-hidden rounded-2xl bg-gray-900 border-b-4 border-gray-700 text-white px-8 py-5 text-xs font-semibold   transition-all hover:bg-black active:scale-[0.98] active:border-b-0 active:translate-y-1 shadow-2xl shadow-gray-200"
                 >
                   <div className="relative z-10 flex items-center justify-center gap-2">
-                    <FaCheck className="italic" />
+                    <FaCheck className="" />
                     Catalog Discipline
                   </div>
                 </button>
@@ -165,25 +165,25 @@ export default function SubjectPage() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
 
             <div className="flex items-center justify-between mb-8 relative">
-              <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest leading-none">
+              <h4 className="text-xs font-semibold text-gray-400   leading-none">
                 Discipline Taxonomy
               </h4>
             </div>
 
             <div className="overflow-x-auto rounded-2xl border border-gray-50 relative">
               <table className="min-w-full text-[11px]">
-                <thead className="bg-gray-50/70 text-gray-500 font-black border-b border-gray-50">
+                <thead className="bg-gray-50/70 text-gray-500 font-semibold border-b border-gray-50">
                   <tr>
-                    <th className="px-5 py-6 text-left w-12 uppercase tracking-tighter">
+                    <th className="px-5 py-6 text-left w-12  tracking-tighter">
                       SN
                     </th>
-                    <th className="px-5 py-6 text-left uppercase tracking-tighter text-gray-400">
+                    <th className="px-5 py-6 text-left  tracking-tighter text-gray-400">
                       Discipline Identity
                     </th>
-                    <th className="px-5 py-6 text-center uppercase tracking-tighter text-gray-400">
+                    <th className="px-5 py-6 text-center  tracking-tighter text-gray-400">
                       Classification
                     </th>
-                    <th className="px-5 py-6 text-center uppercase tracking-tighter text-gray-400">
+                    <th className="px-5 py-6 text-center  tracking-tighter text-gray-400">
                       Governance
                     </th>
                   </tr>
@@ -194,7 +194,7 @@ export default function SubjectPage() {
                       key={s.id}
                       className="hover:bg-indigo-50/20 transition-all group"
                     >
-                      <td className="px-5 py-8 text-gray-300 font-mono italic">
+                      <td className="px-5 py-8 text-gray-300  ">
                         {index + 1}
                       </td>
                       <td className="px-5 py-8">
@@ -207,10 +207,10 @@ export default function SubjectPage() {
                             )}
                           </div>
                           <div>
-                            <div className="font-black text-gray-900 leading-tight text-xs uppercase italic tracking-tighter mb-1">
+                            <div className="font-semibold text-gray-900 leading-tight text-xs   tracking-tighter mb-1">
                               {s.name}
                             </div>
-                            <div className="text-[9px] font-mono font-black text-indigo-500/60 uppercase tracking-widest">
+                            <div className="text-[9px]  font-semibold text-indigo-500/60  ">
                               {s.code}
                             </div>
                           </div>
@@ -218,7 +218,7 @@ export default function SubjectPage() {
                       </td>
                       <td className="px-5 py-8 text-center text-gray-500">
                         <span
-                          className={`px-4 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest shadow-sm ring-1 ring-inset ${
+                          className={`px-4 py-1.5 rounded-lg text-[9px] font-semibold   shadow-sm ring-1 ring-inset ${
                             s.type === "Theory"
                               ? "bg-indigo-50 text-indigo-700 ring-indigo-100"
                               : "bg-emerald-50 text-emerald-700 ring-emerald-100"
@@ -248,3 +248,4 @@ export default function SubjectPage() {
     </div>
   );
 }
+

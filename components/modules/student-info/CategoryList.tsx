@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -52,9 +52,9 @@ export function CategoryList({
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col">
-        <div className="p-8 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <AdminCard className="flex-1 flex flex-col">
+        <div className="p-8 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Authorized Classifications
           </h4>
         </div>
@@ -72,7 +72,7 @@ export function CategoryList({
             <TableBody>
               {paginatedCategories.map((c, index) => (
                 <TableRow key={c.id} className="group">
-                  <TableCell className="font-mono text-xs text-muted-foreground italic">
+                  <TableCell className=" text-xs text-gray-500 ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell>
@@ -80,7 +80,7 @@ export function CategoryList({
                       <div className="w-8 h-8 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center group-hover:bg-secondary group-hover:text-white transition-all shadow-sm">
                         <FaLayerGroup size={12} />
                       </div>
-                      <span className="font-black text-foreground text-sm uppercase italic tracking-tight">
+                      <span className="font-semibold text-foreground text-sm   tracking-tight">
                         {c.name}
                       </span>
                     </div>
@@ -89,13 +89,13 @@ export function CategoryList({
                     <div className="inline-flex gap-2">
                       <Badge
                         variant="outline"
-                        className="bg-white/50 text-[9px] font-bold border-white/40 uppercase tracking-tighter"
+                        className="bg-white text-[9px] font-bold border-gray-200  tracking-tighter"
                       >
                         G: {c.grade}
                       </Badge>
                       <Badge
                         variant="outline"
-                        className="bg-white/50 text-[9px] font-bold border-white/40 uppercase tracking-tighter"
+                        className="bg-white text-[9px] font-bold border-gray-200  tracking-tighter"
                       >
                         S: {c.section}
                       </Badge>
@@ -113,7 +113,7 @@ export function CategoryList({
                 <TableRow>
                   <TableCell
                     colSpan={4}
-                    className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                   >
                     No matching categories found.
                   </TableCell>
@@ -132,7 +132,7 @@ export function CategoryList({
             pageSize={pageSize}
           />
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -33,7 +33,7 @@ export function TeacherList({ teachers }: TeacherListProps) {
   const renderStars = (rating: number) => {
     return (
       <div className="flex text-amber-400 gap-0.5 items-center">
-        <span className="text-xs font-black text-gray-700 mr-1">{rating}</span>
+        <span className="text-xs font-semibold text-gray-700 mr-1">{rating}</span>
         {[...Array(5)].map((_, i) => (
           <FaStar
             key={i}
@@ -80,36 +80,36 @@ export function TeacherList({ teachers }: TeacherListProps) {
   };
 
   return (
-    <GlassCard className="p-0 overflow-hidden relative">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+    <AdminCard className="p-0 overflow-hidden relative">
+      
 
       <div className="p-8 pb-0">
-        <h3 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-4">
+        <h3 className="text-[10px] font-semibold   text-gray-500 mb-4">
           Faculty Performance Registry
         </h3>
       </div>
 
       <div className="p-6">
-        <div className="rounded-xl border border-white/20 overflow-hidden bg-white/40">
+        <div className="rounded-xl border border-gray-200 overflow-hidden bg-white">
           <Table>
-            <TableHeader className="bg-white/50">
+            <TableHeader className="bg-white">
               <TableRow>
-                <TableHead className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-[10px] font-semibold   text-gray-500">
                   Faculty Identity
                 </TableHead>
-                <TableHead className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-[10px] font-semibold   text-gray-500">
                   Department
                 </TableHead>
-                <TableHead className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-[10px] font-semibold   text-gray-500">
                   Aggregate Rating
                 </TableHead>
-                <TableHead className="px-6 py-4 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-center text-[10px] font-semibold   text-gray-500">
                   Total Reviews
                 </TableHead>
-                <TableHead className="px-6 py-4 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-center text-[10px] font-semibold   text-gray-500">
                   Performance Status
                 </TableHead>
-                <TableHead className="px-6 py-4 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-center text-[10px] font-semibold   text-gray-500">
                   Analytics
                 </TableHead>
               </TableRow>
@@ -118,7 +118,7 @@ export function TeacherList({ teachers }: TeacherListProps) {
               {teachers.map((t) => (
                 <TableRow
                   key={t.id}
-                  className="group hover:bg-white/60 transition-colors"
+                  className="group hover:bg-white transition-colors"
                 >
                   <TableCell className="px-6 py-4">
                     <div className="flex items-center gap-4">
@@ -129,17 +129,17 @@ export function TeacherList({ teachers }: TeacherListProps) {
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <div className="text-sm font-black text-foreground tracking-tight group-hover:text-secondary transition-colors font-serif italic">
+                        <div className="text-sm font-semibold text-foreground tracking-tight group-hover:text-secondary transition-colors  ">
                           {t.name}
                         </div>
-                        <div className="text-[9px] font-black text-muted-foreground uppercase tracking-widest mt-0.5">
+                        <div className="text-[9px] font-semibold text-gray-500   mt-0.5">
                           {t.staffNo}
                         </div>
                       </div>
                     </div>
                   </TableCell>
                   <TableCell className="px-6 py-4">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                    <span className="text-[10px] font-semibold   text-gray-500">
                       {t.department}
                     </span>
                   </TableCell>
@@ -147,7 +147,7 @@ export function TeacherList({ teachers }: TeacherListProps) {
                     {renderStars(t.avgRating)}
                   </TableCell>
                   <TableCell className="px-6 py-4 text-center">
-                    <span className="font-mono text-xs font-bold text-muted-foreground">
+                    <span className=" text-xs font-bold text-gray-500">
                       {t.totalReviews}
                     </span>
                   </TableCell>
@@ -169,6 +169,6 @@ export function TeacherList({ teachers }: TeacherListProps) {
           </Table>
         </div>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

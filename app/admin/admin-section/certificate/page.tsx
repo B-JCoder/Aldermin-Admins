@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { ListToolbar } from "@/components/common/ListToolbar";
 import { ListPagination } from "@/components/common/ListPagination";
 import { ListActionButtons } from "@/components/common/ListActionButtons";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -68,20 +68,20 @@ export default function CertificatePage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Designer Form */}
         <div className="lg:col-span-5 h-full">
-          <GlassCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
-            <h4 className="mb-8 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+          <AdminCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
+            <h4 className="mb-8 text-xs font-semibold text-gray-500   leading-none">
               Honourary Protocol Design
             </h4>
 
             <form className="space-y-6 flex-1">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                     Accolade Designation <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
-                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm italic"
+                    className="w-full rounded-2xl border-gray-200 bg-white p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm "
                     placeholder="e.g. Dean's List Certification"
                     required
                   />
@@ -89,38 +89,38 @@ export default function CertificatePage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                    <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                       Typography Class
                     </label>
                     <div className="relative">
                       <FaFont
-                        className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
                         size={10}
                       />
-                      <select className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none cursor-pointer">
+                      <select className="w-full rounded-2xl border-gray-200 bg-white p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none cursor-pointer">
                         <option>Serif Pro Display</option>
                         <option>Gothic Formal</option>
                       </select>
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                    <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                       Font Amplitude (pt)
                     </label>
                     <input
                       type="number"
-                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-mono font-bold focus:bg-white outline-none transition-all shadow-sm"
+                      className="w-full rounded-2xl border-gray-200 bg-white p-4 text-xs  font-bold focus:bg-white outline-none transition-all shadow-sm"
                       placeholder="24"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                     Narrative Body
                   </label>
                   <textarea
-                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm min-h-[120px] leading-relaxed"
+                    className="w-full rounded-2xl border-gray-200 bg-white p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm min-h-[120px] leading-relaxed"
                     placeholder="This is to certify that [Student Name] has achieved..."
                   ></textarea>
                 </div>
@@ -136,22 +136,22 @@ export default function CertificatePage() {
                       className={`p-4 rounded-xl flex flex-col items-center gap-2 cursor-pointer transition-all border ${
                         i === 1
                           ? "bg-secondary/10 border-secondary/20"
-                          : "bg-white/40 border-white/20 hover:bg-white hover:border-secondary/30 shadow-sm"
+                          : "bg-white border-gray-200 hover:bg-white hover:border-secondary/30 shadow-sm"
                       }`}
                     >
                       <align.Icon
                         className={
                           i === 1
                             ? "text-secondary"
-                            : "text-muted-foreground/40"
+                            : "text-gray-500/40"
                         }
                         size={12}
                       />
                       <span
-                        className={`text-[8px] font-black uppercase tracking-widest ${
+                        className={`text-[8px] font-semibold   ${
                           i === 1
                             ? "text-secondary"
-                            : "text-muted-foreground/40"
+                            : "text-gray-500/40"
                         }`}
                       >
                         {align.label}
@@ -161,12 +161,12 @@ export default function CertificatePage() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 pt-2">
-                  <label className="w-full flex flex-col items-center gap-2 p-4 rounded-2xl border border-dashed border-white/40 bg-white/40 text-[9px] font-black text-muted-foreground/60 uppercase tracking-widest cursor-pointer hover:bg-white hover:border-secondary/40 transition-all shadow-sm">
+                  <label className="w-full flex flex-col items-center gap-2 p-4 rounded-2xl border border-dashed border-gray-200 bg-white text-[9px] font-semibold text-gray-500/60   cursor-pointer hover:bg-white hover:border-secondary/40 transition-all shadow-sm">
                     <FaImage size={14} className="text-secondary/40" />
                     Watermark Asset
                     <input type="file" className="hidden" />
                   </label>
-                  <label className="w-full flex flex-col items-center gap-2 p-4 rounded-2xl border border-dashed border-white/40 bg-white/40 text-[9px] font-black text-muted-foreground/60 uppercase tracking-widest cursor-pointer hover:bg-white hover:border-secondary/40 transition-all shadow-sm">
+                  <label className="w-full flex flex-col items-center gap-2 p-4 rounded-2xl border border-dashed border-gray-200 bg-white text-[9px] font-semibold text-gray-500/60   cursor-pointer hover:bg-white hover:border-secondary/40 transition-all shadow-sm">
                     <FaSignature size={14} className="text-secondary/40" />
                     Authorize Sign
                     <input type="file" className="hidden" />
@@ -175,12 +175,12 @@ export default function CertificatePage() {
               </div>
 
               <div className="pt-6">
-                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl shadow-secondary/20 transition-all active:scale-95">
-                  <FaCheck className="mr-2 italic" /> Canonize Accolade Design
+                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-semibold  text-[10px]  shadow-xl shadow-secondary/20 transition-all active:scale-95">
+                  <FaCheck className="mr-2 " /> Canonize Accolade Design
                 </Button>
               </div>
             </form>
-          </GlassCard>
+          </AdminCard>
         </div>
 
         {/* Templates Index */}
@@ -191,9 +191,9 @@ export default function CertificatePage() {
             showAddButton={false}
           />
 
-          <GlassCard className="flex-1 flex flex-col">
-            <div className="p-8 border-b border-white/20">
-              <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+          <AdminCard className="flex-1 flex flex-col">
+            <div className="p-8 border-b border-gray-200">
+              <h4 className="text-xs font-semibold text-gray-500   leading-none">
                 Institutional Accolade Registry
               </h4>
             </div>
@@ -211,14 +211,14 @@ export default function CertificatePage() {
                 <TableBody>
                   {paginatedCertificates.map((c: any, index: number) => (
                     <TableRow key={c.id} className="group">
-                      <TableCell className="font-mono text-xs text-muted-foreground italic">
+                      <TableCell className=" text-xs text-gray-500 ">
                         {(currentPage - 1) * pageSize + index + 1}
                       </TableCell>
                       <TableCell>
-                        <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none mb-1">
+                        <div className="font-semibold text-foreground text-sm   tracking-tight leading-none mb-1">
                           {c.name}
                         </div>
-                        <div className="text-[10px] font-bold text-secondary uppercase tracking-widest flex items-center gap-1.5 font-mono">
+                        <div className="text-[10px] font-bold text-secondary   flex items-center gap-1.5 ">
                           <FaCertificate
                             size={8}
                             className="text-secondary/60"
@@ -227,7 +227,7 @@ export default function CertificatePage() {
                         </div>
                       </TableCell>
                       <TableCell className="text-center">
-                        <span className="px-3 py-1.5 bg-secondary/10 text-secondary text-[9px] font-black rounded-xl uppercase tracking-widest border border-secondary/20">
+                        <span className="px-3 py-1.5 bg-secondary/10 text-secondary text-[9px] font-semibold rounded-xl   border border-secondary/20">
                           {c.background}
                         </span>
                       </TableCell>
@@ -243,7 +243,7 @@ export default function CertificatePage() {
                     <TableRow>
                       <TableCell
                         colSpan={4}
-                        className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                        className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                       >
                         No matches in accolade registry database.
                       </TableCell>
@@ -262,9 +262,10 @@ export default function CertificatePage() {
                 pageSize={pageSize}
               />
             )}
-          </GlassCard>
+          </AdminCard>
         </div>
       </div>
     </div>
   );
 }
+

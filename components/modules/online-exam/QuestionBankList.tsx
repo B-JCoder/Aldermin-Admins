@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -31,13 +31,13 @@ export function QuestionBankList({
   onRemove,
 }: QuestionBankListProps) {
   return (
-    <GlassCard className="p-0 overflow-hidden h-full flex flex-col">
-      <div className="p-6 border-b border-border/50 flex items-center justify-between bg-white/40">
-        <h3 className="text-sm font-black text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-          <FaDatabase className="text-muted-foreground/50" />
+    <AdminCard className="p-0 overflow-hidden h-full flex flex-col">
+      <div className="p-6 border-b border-border/50 flex items-center justify-between bg-white">
+        <h3 className="text-sm font-semibold text-gray-500  tracking-wider flex items-center gap-2">
+          <FaDatabase className="text-gray-500/50" />
           Question Repository
         </h3>
-        <span className="text-[10px] font-black bg-secondary/10 text-secondary px-2 py-1 rounded-md">
+        <span className="text-[10px] font-semibold bg-secondary/10 text-secondary px-2 py-1 rounded-md">
           Total: {questions.length}
         </span>
       </div>
@@ -47,25 +47,25 @@ export function QuestionBankList({
           <Table>
             <TableHeader className="bg-secondary/5">
               <TableRow className="hover:bg-transparent">
-                <TableHead className="w-16 px-6 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="w-16 px-6 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                   SN
                 </TableHead>
-                <TableHead className="px-6 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                   Group
                 </TableHead>
-                <TableHead className="px-6 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                   Class
                 </TableHead>
-                <TableHead className="px-6 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                   Type
                 </TableHead>
-                <TableHead className="px-6 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                   Question
                 </TableHead>
-                <TableHead className="px-6 py-4 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-center text-[10px]  font-semibold  text-gray-500">
                   Marks
                 </TableHead>
-                <TableHead className="w-32 px-6 py-4 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="w-32 px-6 py-4 text-center text-[10px]  font-semibold  text-gray-500">
                   Action
                 </TableHead>
               </TableRow>
@@ -76,17 +76,17 @@ export function QuestionBankList({
                   key={i}
                   className="hover:bg-secondary/5 transition-colors group"
                 >
-                  <TableCell className="px-6 py-4 text-muted-foreground/50 font-mono text-xs italic">
+                  <TableCell className="px-6 py-4 text-gray-500/50  text-xs ">
                     {i + 1}
                   </TableCell>
-                  <TableCell className="px-6 py-4 text-xs font-bold text-muted-foreground">
+                  <TableCell className="px-6 py-4 text-xs font-bold text-gray-500">
                     {q.group}
                   </TableCell>
-                  <TableCell className="px-6 py-4 text-xs font-bold text-muted-foreground">
+                  <TableCell className="px-6 py-4 text-xs font-bold text-gray-500">
                     {q.className}
                   </TableCell>
                   <TableCell className="px-6 py-4">
-                    <span className="px-2 py-1 rounded bg-secondary/10 text-secondary text-[10px] font-black uppercase tracking-wider">
+                    <span className="px-2 py-1 rounded bg-secondary/10 text-secondary text-[10px] font-semibold  tracking-wider">
                       {q.type}
                     </span>
                   </TableCell>
@@ -98,7 +98,7 @@ export function QuestionBankList({
                       {q.question}
                     </p>
                   </TableCell>
-                  <TableCell className="px-6 py-4 text-center font-mono text-xs font-bold text-foreground">
+                  <TableCell className="px-6 py-4 text-center  text-xs font-bold text-foreground">
                     {q.marks}
                   </TableCell>
                   <TableCell className="px-6 py-4 text-center">
@@ -126,7 +126,7 @@ export function QuestionBankList({
                 <TableRow>
                   <TableCell
                     colSpan={7}
-                    className="px-6 py-12 text-center text-muted-foreground font-bold uppercase tracking-widest text-[10px]"
+                    className="px-6 py-12 text-center text-gray-500 font-bold   text-[10px]"
                   >
                     No questions found in repository.
                   </TableCell>
@@ -136,6 +136,6 @@ export function QuestionBankList({
           </Table>
         </div>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

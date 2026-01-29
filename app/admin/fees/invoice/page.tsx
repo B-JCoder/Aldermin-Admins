@@ -47,11 +47,11 @@ export default function FeeInvoicePage() {
           <div className="flex items-center gap-2">
             <Button
               variant="outline"
-              className="rounded-xl border-secondary/20 text-secondary font-black text-[10px] uppercase tracking-widest hover:bg-secondary hover:text-white transition-all shadow-sm px-6 h-12"
+              className="rounded-xl border-secondary/20 text-secondary font-semibold text-[10px]   hover:bg-secondary hover:text-white transition-all shadow-sm px-6 h-12"
             >
               <FaPrint className="mr-2" /> Export
             </Button>
-            <Button className="rounded-xl bg-secondary text-white hover:bg-secondary/90 transition-all shadow-lg shadow-secondary/10 text-[10px] font-black uppercase tracking-widest px-6 h-12">
+            <Button className="rounded-xl bg-secondary text-white hover:bg-secondary/90 transition-all shadow-lg shadow-secondary/10 text-[10px] font-semibold   px-6 h-12">
               <FaFileInvoiceDollar className="mr-2" /> New Invoice
             </Button>
           </div>

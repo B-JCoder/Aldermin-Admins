@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FaCircle } from "react-icons/fa";
 import {
@@ -32,23 +32,23 @@ const chartData = [
 
 export function EarningChart() {
   return (
-    <GlassCard className="p-6 h-[400px] flex flex-col">
+    <AdminCard className="p-6 h-[400px] flex flex-col">
       <div className="flex justify-between items-center mb-6">
-        <h4 className="font-black text-foreground text-sm uppercase tracking-widest">
+        <h4 className="font-semibold text-foreground text-sm  ">
           Earning
         </h4>
         <div className="flex gap-4 items-center">
-          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+          <div className="flex items-center gap-2 text-[10px] font-bold  tracking-wider text-gray-500">
             <FaCircle className="text-secondary" size={8} /> Income
           </div>
-          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+          <div className="flex items-center gap-2 text-[10px] font-bold  tracking-wider text-gray-500">
             <FaCircle className="text-gray-300" size={8} /> Expense
           </div>
         </div>
         <button>
           <BiDotsVerticalRounded
             size={22}
-            className="text-muted-foreground hover:text-foreground"
+            className="text-gray-500 hover:text-foreground"
           />
         </button>
       </div>
@@ -127,6 +127,6 @@ export function EarningChart() {
           </ResponsiveContainer>
         </div>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

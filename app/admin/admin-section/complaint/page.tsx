@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { ListToolbar } from "@/components/common/ListToolbar";
 import { ListPagination } from "@/components/common/ListPagination";
 import { ListActionButtons } from "@/components/common/ListActionButtons";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -67,7 +67,7 @@ export default function ComplaintPage() {
         title="Grievance Repository"
         subtitle="Resolution Monitoring Matrix"
         action={
-          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10 transition-all">
+          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold  text-[10px]  shadow-lg shadow-secondary/10 transition-all">
             <FaPlus /> Authorize Record
           </Button>
         }
@@ -76,25 +76,25 @@ export default function ComplaintPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Creation Form */}
         <div className="lg:col-span-4 h-full">
-          <GlassCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
-            <h4 className="mb-8 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+          <AdminCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
+            <h4 className="mb-8 text-xs font-semibold text-gray-500   leading-none">
               Grievance Inward Entry
             </h4>
 
             <form className="space-y-6 flex-1">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                     Complainant <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
                     <FaUserTie
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
                       size={12}
                     />
                     <input
                       type="text"
-                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
+                      className="w-full rounded-2xl border-gray-200 bg-white p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
                       placeholder="Identifier"
                       required
                     />
@@ -103,19 +103,19 @@ export default function ComplaintPage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                    <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                       Taxonomy
                     </label>
-                    <select className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none">
+                    <select className="w-full rounded-2xl border-gray-200 bg-white p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none">
                       <option>Academic</option>
                       <option>Conduct</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                    <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                       Medium
                     </label>
-                    <select className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none">
+                    <select className="w-full rounded-2xl border-gray-200 bg-white p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm appearance-none">
                       <option>Digital</option>
                       <option>Vocal</option>
                     </select>
@@ -123,11 +123,11 @@ export default function ComplaintPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+                  <label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
                     Narrative Description
                   </label>
                   <textarea
-                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm min-h-[100px]"
+                    className="w-full rounded-2xl border-gray-200 bg-white p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm min-h-[100px]"
                     placeholder="Provide detailed grievance data..."
                   ></textarea>
                 </div>
@@ -135,35 +135,35 @@ export default function ComplaintPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="relative">
                     <FaPhoneAlt
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
                       size={12}
                     />
                     <input
                       type="text"
-                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
+                      className="w-full rounded-2xl border-gray-200 bg-white p-4 pl-10 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
                       placeholder="Phone"
                     />
                   </div>
                   <div className="relative">
                     <FaCalendarAlt
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
                       size={12}
                     />
                     <input
                       type="date"
-                      className="w-full rounded-2xl border-white/40 bg-white/50 p-4 pl-10 text-[10px] font-bold focus:bg-white outline-none transition-all shadow-sm"
+                      className="w-full rounded-2xl border-gray-200 bg-white p-4 pl-10 text-[10px] font-bold focus:bg-white outline-none transition-all shadow-sm"
                     />
                   </div>
                 </div>
               </div>
 
               <div className="pt-6">
-                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl shadow-secondary/20 transition-all active:scale-95">
+                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-semibold  text-[10px]  shadow-xl shadow-secondary/20 transition-all active:scale-95">
                   Broadcast Grievance
                 </Button>
               </div>
             </form>
-          </GlassCard>
+          </AdminCard>
         </div>
 
         {/* List Index */}
@@ -174,9 +174,9 @@ export default function ComplaintPage() {
             showAddButton={false}
           />
 
-          <GlassCard className="flex-1 flex flex-col">
-            <div className="p-8 border-b border-white/20">
-              <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+          <AdminCard className="flex-1 flex flex-col">
+            <div className="p-8 border-b border-gray-200">
+              <h4 className="text-xs font-semibold text-gray-500   leading-none">
                 Grievance Resolution Stream
               </h4>
             </div>
@@ -195,28 +195,28 @@ export default function ComplaintPage() {
                 <TableBody>
                   {paginatedComplaints.map((c: any, index: number) => (
                     <TableRow key={c.id} className="group">
-                      <TableCell className="font-mono text-xs text-muted-foreground italic">
+                      <TableCell className=" text-xs text-gray-500 ">
                         {(currentPage - 1) * pageSize + index + 1}
                       </TableCell>
                       <TableCell>
-                        <div className="font-black text-foreground text-sm uppercase italic tracking-tight mb-1 leading-none">
+                        <div className="font-semibold text-foreground text-sm   tracking-tight mb-1 leading-none">
                           {c.by}
                         </div>
-                        <div className="text-[10px] font-bold text-secondary uppercase tracking-widest flex items-center gap-2">
+                        <div className="text-[10px] font-bold text-secondary   flex items-center gap-2">
                           <FaLayerGroup size={10} /> {c.type}
                         </div>
                       </TableCell>
                       <TableCell className="text-center">
-                        <div className="text-[10px] font-black uppercase text-muted-foreground font-mono leading-none mb-1">
+                        <div className="text-[10px] font-semibold  text-gray-500  leading-none mb-1">
                           {c.date}
                         </div>
-                        <div className="text-[9px] font-bold text-muted-foreground/60 uppercase">
+                        <div className="text-[9px] font-bold text-gray-500/60 ">
                           {c.source}
                         </div>
                       </TableCell>
                       <TableCell className="text-center">
                         <span
-                          className={`inline-flex items-center px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-[9px] font-semibold   ${
                             c.status === "Resolved"
                               ? "bg-emerald-500/10 text-emerald-600"
                               : "bg-amber-500/10 text-amber-600 animate-pulse"
@@ -237,7 +237,7 @@ export default function ComplaintPage() {
                     <TableRow>
                       <TableCell
                         colSpan={5}
-                        className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                        className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                       >
                         No matches in grievance stream.
                       </TableCell>
@@ -256,9 +256,10 @@ export default function ComplaintPage() {
                 pageSize={pageSize}
               />
             )}
-          </GlassCard>
+          </AdminCard>
         </div>
       </div>
     </div>
   );
 }
+

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Button } from "@/components/ui/button";
 import { FaEdit, FaTrash, FaBook } from "react-icons/fa";
 import { Badge } from "@/components/ui/badge";
@@ -21,8 +21,8 @@ interface LessonListProps {
 
 export function LessonList({ lessonList, handleDelete }: LessonListProps) {
   return (
-    <GlassCard className="h-full bg-white/60">
-      <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-white/40 backdrop-blur-md">
+    <AdminCard className="h-full bg-white">
+      <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-white ">
         <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
           <FaBook className="text-secondary" />
           Active Lesson Repository
@@ -40,19 +40,19 @@ export function LessonList({ lessonList, handleDelete }: LessonListProps) {
           <table className="min-w-full text-sm">
             <thead className="bg-gray-50/50 text-gray-500 font-bold">
               <tr>
-                <th className="px-6 py-5 text-left w-16 text-[10px] uppercase font-black">
+                <th className="px-6 py-5 text-left w-16 text-[10px]  font-semibold">
                   SN
                 </th>
-                <th className="px-6 py-5 text-left text-[10px] uppercase font-black tracking-widest">
+                <th className="px-6 py-5 text-left text-[10px]  font-semibold ">
                   Context (Class/Sec)
                 </th>
-                <th className="px-6 py-5 text-left text-[10px] uppercase font-black tracking-widest">
+                <th className="px-6 py-5 text-left text-[10px]  font-semibold ">
                   Subject
                 </th>
-                <th className="px-6 py-5 text-left text-[10px] uppercase font-black tracking-widest">
+                <th className="px-6 py-5 text-left text-[10px]  font-semibold ">
                   Lesson Topic
                 </th>
-                <th className="px-6 py-5 text-center text-[10px] uppercase font-black tracking-widest">
+                <th className="px-6 py-5 text-center text-[10px]  font-semibold ">
                   Actions
                 </th>
               </tr>
@@ -63,26 +63,26 @@ export function LessonList({ lessonList, handleDelete }: LessonListProps) {
                   key={item.id}
                   className="hover:bg-secondary/5 transition-all group"
                 >
-                  <td className="px-6 py-5 text-gray-400 font-mono text-xs">
+                  <td className="px-6 py-5 text-gray-400  text-xs">
                     {index + 1}
                   </td>
                   <td className="px-6 py-5">
-                    <div className="font-black text-gray-700">
+                    <div className="font-semibold text-gray-700">
                       {item.className}
                     </div>
-                    <div className="text-[10px] text-gray-400 font-bold uppercase">
+                    <div className="text-[10px] text-gray-400 font-bold ">
                       {item.section}
                     </div>
                   </td>
                   <td className="px-6 py-5">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                      <span className="font-bold text-gray-600 font-serif italic">
+                      <span className="font-bold text-gray-600  ">
                         {item.subject}
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-5 font-black text-gray-900 tracking-tight text-base group-hover:text-secondary transition-colors">
+                  <td className="px-6 py-5 font-semibold text-gray-900 tracking-tight text-base group-hover:text-secondary transition-colors">
                     {item.lesson}
                   </td>
                   <td className="px-6 py-5">
@@ -110,7 +110,7 @@ export function LessonList({ lessonList, handleDelete }: LessonListProps) {
                 <tr>
                   <td
                     colSpan={5}
-                    className="px-6 py-16 text-center text-gray-300 font-black uppercase tracking-widest text-[10px]"
+                    className="px-6 py-16 text-center text-gray-300 font-semibold   text-[10px]"
                   >
                     No lessons registered.
                   </td>
@@ -120,6 +120,6 @@ export function LessonList({ lessonList, handleDelete }: LessonListProps) {
           </table>
         </div>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

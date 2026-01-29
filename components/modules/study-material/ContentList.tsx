@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -55,9 +55,9 @@ export function ContentList({
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col">
-        <div className="p-8 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <AdminCard className="flex-1 flex flex-col">
+        <div className="p-8 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Authorized Digital Assets
           </h4>
         </div>
@@ -76,25 +76,25 @@ export function ContentList({
             <TableBody>
               {paginatedContentList.map((c, index) => (
                 <TableRow key={c.id} className="group">
-                  <TableCell className="font-mono text-xs text-muted-foreground italic">
+                  <TableCell className=" text-xs text-gray-500 ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell>
-                    <div className="font-black text-foreground text-sm uppercase italic tracking-tight mb-1">
+                    <div className="font-semibold text-foreground text-sm   tracking-tight mb-1">
                       {c.title}
                     </div>
-                    <div className="text-[10px] font-black text-secondary flex items-center gap-1 bg-secondary/10 w-fit px-2 py-0.5 rounded-full uppercase tracking-widest">
+                    <div className="text-[10px] font-semibold text-secondary flex items-center gap-1 bg-secondary/10 w-fit px-2 py-0.5 rounded-full  ">
                       <FaLayerGroup size={10} /> {c.type}
                     </div>
                   </TableCell>
                   <TableCell className="text-center">
-                    <div className="flex items-center justify-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                    <div className="flex items-center justify-center gap-1.5 text-[10px] font-semibold   text-gray-500">
                       <FaUsers size={12} className="text-sidebar/40" />
                       {c.availableFor}
                     </div>
                   </TableCell>
                   <TableCell className="text-center">
-                    <div className="text-[10px] font-black uppercase text-muted-foreground font-mono">
+                    <div className="text-[10px] font-semibold  text-gray-500 ">
                       {c.date}
                     </div>
                   </TableCell>
@@ -120,7 +120,7 @@ export function ContentList({
                 <TableRow>
                   <TableCell
                     colSpan={5}
-                    className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                   >
                     No matching assets found.
                   </TableCell>
@@ -139,7 +139,7 @@ export function ContentList({
             pageSize={pageSize}
           />
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

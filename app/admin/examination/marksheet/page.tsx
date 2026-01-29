@@ -59,7 +59,7 @@ export default function MarksheetReportPage() {
           title="Marksheet Report Analysis"
           subtitle="Generate and Print Student Marksheets"
         />
-        <Button className="flex items-center gap-2 px-6 py-3 bg-foreground text-background text-[10px] font-black rounded-xl uppercase tracking-[0.2em] hover:bg-foreground/90 transition-all shadow-xl active:scale-95 h-auto">
+        <Button className="flex items-center gap-2 px-6 py-3 bg-foreground text-background text-[10px] font-semibold rounded-xl  tracking-[0.2em] hover:bg-foreground/90 transition-all shadow-xl active:scale-95 h-auto">
           <FaPrint size={14} />
           Export PDF
         </Button>

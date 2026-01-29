@@ -32,7 +32,7 @@ export default function FeeCarryForwardPage() {
   return (
     <div className="container mx-auto p-4 space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-gray-900 tracking-tighter flex items-center gap-3">
+        <h1 className="text-2xl font-semibold text-gray-900 tracking-tighter flex items-center gap-3">
           <div className="p-2 bg-emerald-600 rounded-xl shadow-lg ring-4 ring-emerald-50">
             <FaForward className="text-white" size={20} />
           </div>
@@ -42,13 +42,13 @@ export default function FeeCarryForwardPage() {
 
       {/* Transitional Parameter Form */}
       <div className="rounded-[2rem] bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 bg-gradient-to-br from-white to-emerald-50/5">
-        <h4 className="mb-8 text-xs font-black text-gray-400 uppercase tracking-widest leading-none flex items-center gap-2">
+        <h4 className="mb-8 text-xs font-semibold text-gray-400   leading-none flex items-center gap-2">
           Transition Mapping
           <div className="h-[1px] flex-1 bg-gray-100"></div>
         </h4>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-end">
           <div className="space-y-3">
-            <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">
+            <label className="block text-[10px] font-semibold text-gray-400   ml-1">
               Source Session
             </label>
             <div className="relative">
@@ -65,7 +65,7 @@ export default function FeeCarryForwardPage() {
             <FaArrowRight size={24} />
           </div>
           <div className="space-y-3">
-            <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">
+            <label className="block text-[10px] font-semibold text-gray-400   ml-1">
               Target Session
             </label>
             <div className="relative">
@@ -78,7 +78,7 @@ export default function FeeCarryForwardPage() {
               </select>
             </div>
           </div>
-          <button className="w-full bg-gray-900 text-white rounded-2xl py-4 text-xs font-black uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-gray-200 active:scale-95 flex items-center justify-center gap-2">
+          <button className="w-full bg-gray-900 text-white rounded-2xl py-4 text-xs font-semibold   hover:bg-black transition-all shadow-xl shadow-gray-200 active:scale-95 flex items-center justify-center gap-2">
             <FaSearch size={12} />
             Verify Balances
           </button>
@@ -93,19 +93,19 @@ export default function FeeCarryForwardPage() {
           <table className="min-w-full text-sm">
             <thead>
               <tr className="border-b border-gray-100">
-                <th className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-gray-400 w-16">
+                <th className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-400 w-16">
                   SN
                 </th>
-                <th className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-gray-400">
+                <th className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-400">
                   Patron Information
                 </th>
-                <th className="px-6 py-8 text-center text-[10px] font-black uppercase tracking-widest text-gray-400">
+                <th className="px-6 py-8 text-center text-[10px] font-semibold   text-gray-400">
                   Previous Arrears
                 </th>
-                <th className="px-6 py-8 text-center text-[10px] font-black uppercase tracking-widest text-gray-400">
+                <th className="px-6 py-8 text-center text-[10px] font-semibold   text-gray-400">
                   Status
                 </th>
-                <th className="px-6 py-8 text-center text-[10px] font-black uppercase tracking-widest text-gray-400">
+                <th className="px-6 py-8 text-center text-[10px] font-semibold   text-gray-400">
                   Interaction
                 </th>
               </tr>
@@ -116,7 +116,7 @@ export default function FeeCarryForwardPage() {
                   key={s.id}
                   className="group hover:bg-emerald-50/10 transition-all"
                 >
-                  <td className="px-6 py-10 text-gray-300 font-mono text-xs italic">
+                  <td className="px-6 py-10 text-gray-300  text-xs ">
                     {index + 1}
                   </td>
                   <td className="px-6 py-10">
@@ -125,23 +125,23 @@ export default function FeeCarryForwardPage() {
                         <FaUserGraduate size={16} />
                       </div>
                       <div>
-                        <div className="font-black text-gray-900 tracking-tight text-base font-serif italic uppercase leading-none mb-1">
+                        <div className="font-semibold text-gray-900 tracking-tight text-base    leading-none mb-1">
                           {s.name}
                         </div>
-                        <div className="text-[9px] font-mono text-gray-400 uppercase tracking-tighter italic">
+                        <div className="text-[9px]  text-gray-400  tracking-tighter ">
                           ID: {s.admissionNo}
                         </div>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-10 text-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-rose-50 text-rose-600 rounded-xl text-xs font-black font-mono border border-rose-100">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-rose-50 text-rose-600 rounded-xl text-xs font-semibold  border border-rose-100">
                       <FaMoneyBillWave size={10} />${s.previousBalance}
                     </div>
                   </td>
                   <td className="px-6 py-10 text-center">
                     <span
-                      className={`px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${
+                      className={`px-3 py-1 rounded-full text-[9px] font-semibold   ${
                         s.status === "Analyzed"
                           ? "bg-emerald-100 text-emerald-700"
                           : "bg-amber-100 text-amber-700"
@@ -166,7 +166,7 @@ export default function FeeCarryForwardPage() {
       </div>
 
       <div className="flex justify-center">
-        <button className="px-16 py-6 bg-emerald-600 border-b-4 border-emerald-800 text-white rounded-[2rem] text-xs font-black uppercase tracking-[0.4em] shadow-2xl shadow-emerald-100 hover:brightness-110 active:border-b-0 active:translate-y-1 transition-all flex items-center gap-4">
+        <button className="px-16 py-6 bg-emerald-600 border-b-4 border-emerald-800 text-white rounded-[2rem] text-xs font-semibold  tracking-[0.4em] shadow-2xl shadow-emerald-100 hover:brightness-110 active:border-b-0 active:translate-y-1 transition-all flex items-center gap-4">
           <FaForward size={14} />
           Commit Fiscal Transition
         </button>
@@ -174,3 +174,4 @@ export default function FeeCarryForwardPage() {
     </div>
   );
 }
+

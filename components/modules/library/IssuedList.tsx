@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -49,9 +49,9 @@ export function IssuedList({ issuedBooks }: IssuedListProps) {
   );
 
   return (
-    <GlassCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
-      <div className="p-8 border-b border-white/20 flex items-center justify-between bg-secondary/5">
-        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+    <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
+      <div className="p-8 border-b border-gray-200 flex items-center justify-between bg-secondary/5">
+        <h4 className="text-xs font-semibold text-gray-500   leading-none">
           Issued Inventory Registry
         </h4>
       </div>
@@ -60,22 +60,22 @@ export function IssuedList({ issuedBooks }: IssuedListProps) {
         <Table>
           <TableHeader className="bg-secondary/5">
             <TableRow>
-              <TableHead className="px-6 py-6 text-left w-16 text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-6 text-left w-16 text-[10px]  font-semibold  text-gray-500">
                 SN
               </TableHead>
-              <TableHead className="px-6 py-6 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-6 text-left text-[10px]  font-semibold  text-gray-500">
                 Industrial Asset
               </TableHead>
-              <TableHead className="px-6 py-6 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-6 text-left text-[10px]  font-semibold  text-gray-500">
                 Allocation Holder
               </TableHead>
-              <TableHead className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-6 text-center text-[10px]  font-semibold  text-gray-500">
                 Temporal Nodes
               </TableHead>
-              <TableHead className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-6 text-center text-[10px]  font-semibold  text-gray-500">
                 Status
               </TableHead>
-              <TableHead className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-6 text-center text-[10px]  font-semibold  text-gray-500">
                 Action
               </TableHead>
             </TableRow>
@@ -86,23 +86,23 @@ export function IssuedList({ issuedBooks }: IssuedListProps) {
                 key={i.id}
                 className="hover:bg-secondary/5 transition-all group"
               >
-                <TableCell className="px-6 py-10 text-muted-foreground/50 font-mono text-xs italic">
+                <TableCell className="px-6 py-10 text-gray-500/50  text-xs ">
                   {(currentPage - 1) * pageSize + index + 1}
                 </TableCell>
                 <TableCell className="px-6 py-10">
                   <div>
-                    <div className="font-black text-foreground tracking-tight text-base font-serif italic uppercase leading-none mb-1 group-hover:text-secondary transition-colors">
+                    <div className="font-semibold text-foreground tracking-tight text-base    leading-none mb-1 group-hover:text-secondary transition-colors">
                       {i.title}
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[8px] font-black bg-foreground text-background px-2 py-0.5 rounded uppercase tracking-widest">
+                      <span className="text-[8px] font-semibold bg-foreground text-background px-2 py-0.5 rounded  ">
                         {i.bookNo}
                       </span>
-                      <span className="text-[9px] font-black text-muted-foreground uppercase tracking-widest leading-none">
+                      <span className="text-[9px] font-semibold text-gray-500   leading-none">
                         {i.author}
                       </span>
                     </div>
-                    <div className="text-[9px] font-black text-secondary uppercase tracking-widest mt-2 flex items-center gap-1.5 opacity-60 italic">
+                    <div className="text-[9px] font-semibold text-secondary   mt-2 flex items-center gap-1.5 opacity-60 ">
                       {i.subject}
                     </div>
                   </div>
@@ -112,23 +112,23 @@ export function IssuedList({ issuedBooks }: IssuedListProps) {
                     <div className="p-2 bg-secondary/10 rounded-lg text-secondary group-hover:bg-secondary group-hover:text-white transition-all shadow-sm">
                       <FaUserTag size={12} />
                     </div>
-                    <div className="font-black text-foreground tracking-tight text-sm uppercase leading-none">
+                    <div className="font-semibold text-foreground tracking-tight text-sm  leading-none">
                       {i.member}
                     </div>
                   </div>
                 </TableCell>
                 <TableCell className="px-6 py-10">
                   <div className="space-y-1.5 flex flex-col items-center">
-                    <div className="flex items-center gap-2 text-[9px] text-muted-foreground">
+                    <div className="flex items-center gap-2 text-[9px] text-gray-500">
                       <FaCalendarAlt size={10} className="text-secondary/70" />
-                      <span className="font-black tracking-tighter w-12 uppercase">
+                      <span className="font-semibold tracking-tighter w-12 ">
                         Issued:
                       </span>
-                      <span className="font-mono font-bold text-muted-foreground">
+                      <span className=" font-bold text-gray-500">
                         {i.issueDate}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 text-[9px] text-muted-foreground">
+                    <div className="flex items-center gap-2 text-[9px] text-gray-500">
                       <FaCalendarAlt
                         size={10}
                         className={cn(
@@ -137,15 +137,15 @@ export function IssuedList({ issuedBooks }: IssuedListProps) {
                             : "text-secondary/70"
                         )}
                       />
-                      <span className="font-black tracking-tighter w-12 uppercase">
+                      <span className="font-semibold tracking-tighter w-12 ">
                         Return:
                       </span>
                       <span
                         className={cn(
-                          "font-mono font-bold",
+                          " font-bold",
                           i.status === "Overdue"
                             ? "text-rose-600"
-                            : "text-muted-foreground"
+                            : "text-gray-500"
                         )}
                       >
                         {i.returnDate}
@@ -156,7 +156,7 @@ export function IssuedList({ issuedBooks }: IssuedListProps) {
                 <TableCell className="px-6 py-10 text-center">
                   <span
                     className={cn(
-                      "inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-sm ring-1 ring-inset",
+                      "inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-[10px] font-semibold   shadow-sm ring-1 ring-inset",
                       i.status === "Active"
                         ? "bg-secondary/5 text-secondary ring-secondary/20"
                         : "bg-rose-50 text-rose-700 ring-rose-100 animate-pulse"
@@ -174,7 +174,7 @@ export function IssuedList({ issuedBooks }: IssuedListProps) {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="p-2.5 bg-secondary/5 text-muted-foreground rounded-xl hover:bg-secondary hover:text-white transition-all border border-secondary/10 shadow-sm h-auto w-auto group/btn"
+                    className="p-2.5 bg-secondary/5 text-gray-500 rounded-xl hover:bg-secondary hover:text-white transition-all border border-secondary/10 shadow-sm h-auto w-auto group/btn"
                   >
                     <FaHistory
                       size={12}
@@ -199,6 +199,6 @@ export function IssuedList({ issuedBooks }: IssuedListProps) {
           />
         </div>
       )}
-    </GlassCard>
+    </AdminCard>
   );
 }

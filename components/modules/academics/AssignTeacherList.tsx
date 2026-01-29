@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Button } from "@/components/ui/button";
 import { FaEdit, FaTrash, FaUserTie } from "react-icons/fa";
 import { Badge } from "@/components/ui/badge";
@@ -23,13 +23,13 @@ export function AssignTeacherList({
   handleDelete,
 }: AssignTeacherListProps) {
   return (
-    <GlassCard className="h-full bg-white/60">
-      <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-white/40 backdrop-blur-md">
+    <AdminCard className="h-full bg-white">
+      <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-white ">
         <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
           <FaUserTie className="text-secondary" />
           Assigned Teachers
         </h3>
-        <Badge variant="outline" className="px-3 py-1 bg-white/50">
+        <Badge variant="outline" className="px-3 py-1 bg-white">
           {assignedTeachers.length} Records
         </Badge>
       </div>
@@ -37,7 +37,7 @@ export function AssignTeacherList({
       <div className="p-0 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
-            <thead className="text-xs text-gray-500 uppercase bg-gray-50/50">
+            <thead className="text-xs text-gray-500  bg-gray-50/50">
               <tr>
                 <th className="px-6 py-4 font-bold tracking-wider">SN</th>
                 <th className="px-6 py-4 font-bold tracking-wider">Class</th>
@@ -101,6 +101,6 @@ export function AssignTeacherList({
           </table>
         </div>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

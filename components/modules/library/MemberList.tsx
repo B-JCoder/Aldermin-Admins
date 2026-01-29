@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -44,30 +44,30 @@ export function MemberList({ members }: MemberListProps) {
   );
 
   return (
-    <GlassCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
+    <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
 
-      <div className="p-8 pb-4 relative z-10 border-b border-white/20">
-        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <div className="p-8 pb-4 relative z-10 border-b border-gray-200">
+        <h4 className="text-xs font-semibold text-gray-500   leading-none">
           Active Membership Indices
         </h4>
       </div>
 
       <div className="flex-1 overflow-x-auto p-8 pt-0 relative z-10">
-        <div className="rounded-xl border border-white/20 bg-white/40 overflow-hidden">
+        <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
           <Table>
-            <TableHeader className="bg-white/50">
+            <TableHeader className="bg-white">
               <TableRow>
-                <TableHead className="px-6 py-5 text-left w-16 text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-5 text-left w-16 text-[10px]  font-semibold  text-gray-500">
                   SN
                 </TableHead>
-                <TableHead className="px-6 py-5 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-5 text-left text-[10px]  font-semibold  text-gray-500">
                   Identity Profile
                 </TableHead>
-                <TableHead className="px-6 py-5 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-5 text-left text-[10px]  font-semibold  text-gray-500">
                   Communication Nodes
                 </TableHead>
-                <TableHead className="px-6 py-5 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-5 text-center text-[10px]  font-semibold  text-gray-500">
                   Action
                 </TableHead>
               </TableRow>
@@ -78,7 +78,7 @@ export function MemberList({ members }: MemberListProps) {
                   key={m.id}
                   className="hover:bg-secondary/5 transition-all group"
                 >
-                  <TableCell className="px-6 py-8 text-muted-foreground/50 font-mono text-xs italic">
+                  <TableCell className="px-6 py-8 text-gray-500/50  text-xs ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell className="px-6 py-8">
@@ -87,14 +87,14 @@ export function MemberList({ members }: MemberListProps) {
                         <FaUserGraduate size={14} />
                       </div>
                       <div>
-                        <div className="font-black text-foreground tracking-tight text-base font-serif italic uppercase leading-none mb-1">
+                        <div className="font-semibold text-foreground tracking-tight text-base    leading-none mb-1">
                           {m.name}
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-[8px] font-black bg-foreground text-background px-2 py-0.5 rounded uppercase tracking-widest">
+                          <span className="text-[8px] font-semibold bg-foreground text-background px-2 py-0.5 rounded  ">
                             {m.memberId}
                           </span>
-                          <span className="text-[9px] font-black text-secondary uppercase tracking-widest">
+                          <span className="text-[9px] font-semibold text-secondary  ">
                             {m.type} Archetype
                           </span>
                         </div>
@@ -103,23 +103,23 @@ export function MemberList({ members }: MemberListProps) {
                   </TableCell>
                   <TableCell className="px-6 py-8">
                     <div className="space-y-1">
-                      <div className="flex items-center gap-2 text-[10px] text-muted-foreground italic">
+                      <div className="flex items-center gap-2 text-[10px] text-gray-500 ">
                         <FaEnvelope
-                          className="text-muted-foreground/50"
+                          className="text-gray-500/50"
                           size={10}
                         />
                         <span>{m.email}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-[10px] text-muted-foreground font-mono">
+                      <div className="flex items-center gap-2 text-[10px] text-gray-500 ">
                         <FaPhone
-                          className="text-muted-foreground/50"
+                          className="text-gray-500/50"
                           size={10}
                         />
                         <span>{m.mobile}</span>
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell className="px-6 py-8 text-center text-[10px] font-black text-secondary uppercase tracking-widest">
+                  <TableCell className="px-6 py-8 text-center text-[10px] font-semibold text-secondary  ">
                     <div className="flex justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                       <Button
                         variant="ghost"
@@ -155,6 +155,6 @@ export function MemberList({ members }: MemberListProps) {
           />
         </div>
       )}
-    </GlassCard>
+    </AdminCard>
   );
 }

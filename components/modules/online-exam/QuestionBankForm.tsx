@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -31,19 +31,19 @@ export function QuestionBankForm({
   };
 
   return (
-    <GlassCard className="p-6 h-full flex flex-col overflow-auto">
+    <AdminCard className="p-6 h-full flex flex-col overflow-auto">
       <div className="flex items-center gap-2 mb-6 border-b border-border/50 pb-4">
         <div className="p-2 bg-secondary/10 rounded-lg text-secondary">
           <FaDatabase size={16} />
         </div>
-        <h3 className="text-sm font-black text-foreground uppercase tracking-wider">
+        <h3 className="text-sm font-semibold text-foreground  tracking-wider">
           Add To Bank
         </h3>
       </div>
 
       <form onSubmit={onSubmit} className="space-y-4 flex-1">
         <div>
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
             Group <span className="text-rose-500">*</span>
           </Label>
           <Select
@@ -61,7 +61,7 @@ export function QuestionBankForm({
         </div>
 
         <div>
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
             Class <span className="text-rose-500">*</span>
           </Label>
           <Select
@@ -79,7 +79,7 @@ export function QuestionBankForm({
         </div>
 
         <div>
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
             Section <span className="text-rose-500">*</span>
           </Label>
           <Select
@@ -97,7 +97,7 @@ export function QuestionBankForm({
         </div>
 
         <div>
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
             Question Type <span className="text-rose-500">*</span>
           </Label>
           <Select
@@ -115,7 +115,7 @@ export function QuestionBankForm({
         </div>
 
         <div>
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
             Question Text <span className="text-rose-500">*</span>
           </Label>
           <Textarea
@@ -127,7 +127,7 @@ export function QuestionBankForm({
         </div>
 
         <div>
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-[10px] font-semibold text-gray-500   mb-2 px-1">
             Marks <span className="text-rose-500">*</span>
           </Label>
           <Input
@@ -142,13 +142,13 @@ export function QuestionBankForm({
         <div className="pt-4">
           <Button
             type="submit"
-            className="w-full bg-secondary text-white rounded-xl py-6 text-xs font-black uppercase tracking-[0.2em] hover:bg-secondary/90 active:translate-y-1 transition-all flex items-center justify-center gap-2 shadow-lg"
+            className="w-full bg-secondary text-white rounded-xl py-6 text-xs font-semibold  tracking-[0.2em] hover:bg-secondary/90 active:translate-y-1 transition-all flex items-center justify-center gap-2 shadow-lg"
           >
             <FaPlus size={12} />
             Save Question
           </Button>
         </div>
       </form>
-    </GlassCard>
+    </AdminCard>
   );
 }

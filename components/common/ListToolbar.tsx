@@ -24,22 +24,23 @@ export function ListToolbar({
 }: ListToolbarProps) {
   return (
     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-      <div className="relative flex-1 max-w-sm">
+      <div className="relative flex-1 max-w-md">
         <FaSearch
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
-          size={12}
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+          size={14}
         />
         <Input
           placeholder={searchPlaceHolder}
           onChange={(e) => onSearch?.(e.target.value)}
-          className="pl-10 bg-white/50 border-white/40 focus:bg-white py-6 rounded-2xl"
+          className="pl-9 h-10 bg-white border-gray-200 focus:border-secondary focus:ring-secondary/20 rounded-lg text-sm"
         />
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0">
         <Button
           variant="outline"
-          className="rounded-2xl border-white/40 bg-white/50 py-6 px-6 font-bold uppercase text-[10px] tracking-widest text-muted-foreground hover:text-secondary transition-all"
+          size="sm"
+          className="h-10 px-4 rounded-lg border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50 font-medium"
         >
           <FaFilter size={12} className="mr-2" />
           Filter
@@ -50,7 +51,8 @@ export function ListToolbar({
         {showAddButton && (
           <Button
             onClick={onAdd}
-            className="bg-secondary hover:bg-secondary/90 text-white py-6 px-6 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-lg shadow-secondary/10 transition-all active:scale-[0.98]"
+            size="sm"
+            className="h-10 px-4 rounded-lg bg-secondary text-white hover:bg-secondary/90 shadow-sm font-medium"
           >
             <FaPlus size={12} className="mr-2" />
             {addButtonText}

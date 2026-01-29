@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -15,14 +15,14 @@ import { FaSearch } from "react-icons/fa";
 
 export function MarkRegisterFilter() {
   return (
-    <GlassCard className="p-8">
+    <AdminCard className="p-8">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-end">
         <div>
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase mb-3 ml-2">
+          <Label className="block text-[10px] font-semibold text-gray-500  mb-3 ml-2">
             Active Framework
           </Label>
           <Select>
-            <SelectTrigger className="w-full bg-white/50 border-border/50 rounded-2xl p-4 text-xs font-black outline-none focus:ring-secondary/20 h-12">
+            <SelectTrigger className="w-full bg-white border-border/50 rounded-2xl p-4 text-xs font-semibold outline-none focus:ring-secondary/20 h-12">
               <SelectValue placeholder="Select Exam" />
             </SelectTrigger>
             <SelectContent className="rounded-xl border-border/50">
@@ -31,11 +31,11 @@ export function MarkRegisterFilter() {
           </Select>
         </div>
         <div>
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase mb-3 ml-2">
+          <Label className="block text-[10px] font-semibold text-gray-500  mb-3 ml-2">
             Grade
           </Label>
           <Select>
-            <SelectTrigger className="w-full bg-white/50 border-border/50 rounded-2xl p-4 text-xs font-black outline-none focus:ring-secondary/20 h-12">
+            <SelectTrigger className="w-full bg-white border-border/50 rounded-2xl p-4 text-xs font-semibold outline-none focus:ring-secondary/20 h-12">
               <SelectValue placeholder="Select Grade" />
             </SelectTrigger>
             <SelectContent className="rounded-xl border-border/50">
@@ -44,11 +44,11 @@ export function MarkRegisterFilter() {
           </Select>
         </div>
         <div>
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase mb-3 ml-2">
+          <Label className="block text-[10px] font-semibold text-gray-500  mb-3 ml-2">
             Section
           </Label>
           <Select>
-            <SelectTrigger className="w-full bg-white/50 border-border/50 rounded-2xl p-4 text-xs font-black outline-none focus:ring-secondary/20 h-12">
+            <SelectTrigger className="w-full bg-white border-border/50 rounded-2xl p-4 text-xs font-semibold outline-none focus:ring-secondary/20 h-12">
               <SelectValue placeholder="Select Section" />
             </SelectTrigger>
             <SelectContent className="rounded-xl border-border/50">
@@ -57,11 +57,11 @@ export function MarkRegisterFilter() {
           </Select>
         </div>
         <div>
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase mb-3 ml-2">
+          <Label className="block text-[10px] font-semibold text-gray-500  mb-3 ml-2">
             Discipline
           </Label>
           <Select>
-            <SelectTrigger className="w-full bg-white/50 border-border/50 rounded-2xl p-4 text-xs font-black outline-none focus:ring-secondary/20 h-12">
+            <SelectTrigger className="w-full bg-white border-border/50 rounded-2xl p-4 text-xs font-semibold outline-none focus:ring-secondary/20 h-12">
               <SelectValue placeholder="Select Subject" />
             </SelectTrigger>
             <SelectContent className="rounded-xl border-border/50">
@@ -69,11 +69,11 @@ export function MarkRegisterFilter() {
             </SelectContent>
           </Select>
         </div>
-        <Button className="w-full bg-secondary text-white rounded-2xl py-6 text-xs font-black uppercase tracking-[0.2em] hover:bg-secondary/90 active:translate-y-1 transition-all flex items-center justify-center gap-3 h-12 shadow-md">
+        <Button className="w-full bg-secondary text-white rounded-2xl py-6 text-xs font-semibold  tracking-[0.2em] hover:bg-secondary/90 active:translate-y-1 transition-all flex items-center justify-center gap-3 h-12 shadow-md">
           <FaSearch size={14} />
           Open Ledger
         </Button>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

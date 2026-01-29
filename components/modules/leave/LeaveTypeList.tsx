@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Button } from "@/components/ui/button";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
@@ -26,30 +26,30 @@ interface LeaveTypeListProps {
 
 export function LeaveTypeList({ types }: LeaveTypeListProps) {
   return (
-    <GlassCard className="h-full overflow-hidden p-0 relative">
+    <AdminCard className="h-full overflow-hidden p-0 relative">
       <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
 
       <div className="p-8 pb-4 flex items-center justify-between relative">
-        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+        <h4 className="text-xs font-semibold text-gray-500   leading-none">
           Active Types
         </h4>
       </div>
 
       <div className="p-6 pt-0">
-        <div className="rounded-xl border border-white/20 overflow-hidden bg-white/40">
+        <div className="rounded-xl border border-gray-200 overflow-hidden bg-white">
           <Table>
-            <TableHeader className="bg-white/50">
+            <TableHeader className="bg-white">
               <TableRow>
-                <TableHead className="px-6 py-4 text-left w-16 text-[10px] uppercase font-black text-muted-foreground">
+                <TableHead className="px-6 py-4 text-left w-16 text-[10px]  font-semibold text-gray-500">
                   SN
                 </TableHead>
-                <TableHead className="px-6 py-4 text-left text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-left text-[10px]  font-semibold  text-gray-500">
                   Classification
                 </TableHead>
-                <TableHead className="px-6 py-4 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-center text-[10px]  font-semibold  text-gray-500">
                   Code
                 </TableHead>
-                <TableHead className="px-6 py-4 text-center text-[10px] uppercase font-black tracking-widest text-muted-foreground">
+                <TableHead className="px-6 py-4 text-center text-[10px]  font-semibold  text-gray-500">
                   Action
                 </TableHead>
               </TableRow>
@@ -58,20 +58,20 @@ export function LeaveTypeList({ types }: LeaveTypeListProps) {
               {types.map((t, index) => (
                 <TableRow
                   key={t.id}
-                  className="group hover:bg-white/60 transition-colors"
+                  className="group hover:bg-white transition-colors"
                 >
-                  <TableCell className="px-6 py-4 text-muted-foreground/50 font-mono text-xs italic">
+                  <TableCell className="px-6 py-4 text-gray-500/50  text-xs ">
                     {index + 1}
                   </TableCell>
                   <TableCell className="px-6 py-4">
-                    <div className="font-black text-foreground tracking-tight text-sm font-serif italic uppercase leading-none mb-1">
+                    <div className="font-semibold text-foreground tracking-tight text-sm    leading-none mb-1">
                       {t.name}
                     </div>
-                    <div className="text-[10px] font-bold text-muted-foreground">
+                    <div className="text-[10px] font-bold text-gray-500">
                       {t.description}
                     </div>
                   </TableCell>
-                  <TableCell className="px-6 py-4 text-center text-primary font-mono font-bold text-xs">
+                  <TableCell className="px-6 py-4 text-center text-primary  font-bold text-xs">
                     {t.code}
                   </TableCell>
                   <TableCell className="px-6 py-4 text-center">
@@ -98,6 +98,6 @@ export function LeaveTypeList({ types }: LeaveTypeListProps) {
           </Table>
         </div>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

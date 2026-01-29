@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -41,9 +41,9 @@ export function SectionList({ sections: initialSections }: SectionListProps) {
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col">
-        <div className="p-8 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+      <AdminCard className="flex-1 flex flex-col">
+        <div className="p-8 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Authorized Sections
           </h4>
         </div>
@@ -60,11 +60,11 @@ export function SectionList({ sections: initialSections }: SectionListProps) {
             <TableBody>
               {paginatedSections.map((section, index) => (
                 <TableRow key={index} className="group">
-                  <TableCell className="font-mono text-xs text-muted-foreground italic">
+                  <TableCell className=" text-xs text-gray-500 ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell>
-                    <div className="font-black text-foreground text-sm uppercase italic tracking-tight">
+                    <div className="font-semibold text-foreground text-sm   tracking-tight">
                       {section}
                     </div>
                   </TableCell>
@@ -80,7 +80,7 @@ export function SectionList({ sections: initialSections }: SectionListProps) {
                 <TableRow>
                   <TableCell
                     colSpan={3}
-                    className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                    className="h-40 text-center text-gray-500   text-[10px] font-semibold"
                   >
                     No matching sections found.
                   </TableCell>
@@ -99,7 +99,7 @@ export function SectionList({ sections: initialSections }: SectionListProps) {
             pageSize={pageSize}
           />
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

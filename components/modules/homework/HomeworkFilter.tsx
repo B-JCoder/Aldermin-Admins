@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,9 +15,9 @@ import { FaSearch, FaFilter, FaUserGraduate } from "react-icons/fa";
 
 export function HomeworkFilter() {
   return (
-    <GlassCard className="p-8 bg-gradient-to-br from-white/60 to-sidebar/5">
+    <AdminCard className="p-8 bg-gradient-to-br from-white/60 to-sidebar/5">
       <div className="flex items-center justify-between mb-6">
-        <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-2">
+        <h4 className="text-sm font-bold text-gray-500   flex items-center gap-2">
           Assignment Filters
           <div className="h-1 w-12 bg-sidebar/20 rounded-full"></div>
         </h4>
@@ -25,16 +25,16 @@ export function HomeworkFilter() {
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="space-y-2">
-          <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+          <Label className=" text-[10px]  text-gray-500 font-bold">
             Academic Tier
           </Label>
           <div className="relative">
             <FaUserGraduate
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground z-10"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 z-10"
               size={14}
             />
             <Select>
-              <SelectTrigger className="pl-10 bg-white/50 backdrop-blur-sm border-white/40 focus:bg-white transition-all py-6">
+              <SelectTrigger className="pl-10 bg-white backdrop-blur-sm border-gray-200 focus:bg-white transition-all py-6">
                 <SelectValue placeholder="Grade 10" />
               </SelectTrigger>
               <SelectContent>
@@ -46,16 +46,16 @@ export function HomeworkFilter() {
         </div>
 
         <div className="space-y-2">
-          <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+          <Label className=" text-[10px]  text-gray-500 font-bold">
             Unit Assignment
           </Label>
           <div className="relative">
             <FaFilter
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground z-10"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 z-10"
               size={14}
             />
             <Select>
-              <SelectTrigger className="pl-10 bg-white/50 backdrop-blur-sm border-white/40 focus:bg-white transition-all py-6">
+              <SelectTrigger className="pl-10 bg-white backdrop-blur-sm border-gray-200 focus:bg-white transition-all py-6">
                 <SelectValue placeholder="Alpha" />
               </SelectTrigger>
               <SelectContent>
@@ -67,11 +67,11 @@ export function HomeworkFilter() {
         </div>
 
         <div className="space-y-2">
-          <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+          <Label className=" text-[10px]  text-gray-500 font-bold">
             Subject Domain
           </Label>
           <Select>
-            <SelectTrigger className="bg-white/50 backdrop-blur-sm border-white/40 focus:bg-white transition-all py-6">
+            <SelectTrigger className="bg-white backdrop-blur-sm border-gray-200 focus:bg-white transition-all py-6">
               <SelectValue placeholder="Advanced Physics" />
             </SelectTrigger>
             <SelectContent>
@@ -82,14 +82,14 @@ export function HomeworkFilter() {
         </div>
 
         <div className="space-y-2 flex flex-col justify-end">
-          <Button className="w-full py-6 text-xs font-black uppercase tracking-[0.2em] bg-secondary hover:bg-secondary/90 text-white shadow-lg transition-all active:scale-[0.98]">
+          <Button className="w-full py-6 text-xs font-semibold  tracking-[0.2em] bg-secondary hover:bg-secondary/90 text-white shadow-lg transition-all active:scale-[0.98]">
             <div className="flex items-center gap-2">
-              <FaSearch className="italic" />
+              <FaSearch className="" />
               Query Assignments
             </div>
           </Button>
         </div>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

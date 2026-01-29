@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { ListToolbar } from "@/components/common/ListToolbar";
 import { ListPagination } from "@/components/common/ListPagination";
 import { ListActionButtons } from "@/components/common/ListActionButtons";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -15,6 +15,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function ContentTypePage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,7 +29,7 @@ export default function ContentTypePage() {
     description: "",
   });
 
-  const [typeList, setTypeList] = useState([
+  const [typeList] = useState([
     {
       id: 1,
       name: "Assignment",
@@ -42,104 +45,93 @@ export default function ContentTypePage() {
   const filteredTypes = typeList.filter(
     (item: any) =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.description.toLowerCase().includes(searchTerm.toLowerCase())
+      item.description.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const totalPages = Math.ceil(filteredTypes.length / pageSize);
   const paginatedTypes = filteredTypes.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   return (
-    <div className="container mx-auto space-y-8">
+    <div className="container mx-auto max-w-7xl space-y-6">
       <PageHeader
-        title="Content Type Taxonomy"
-        subtitle="Define and Organize Institutional Digital Asset Classifications"
+        title="Content Type"
+        subtitle="Manage content types for the download center."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Form Section */}
-        <div className="lg:col-span-4 h-full">
-          <GlassCard className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-secondary/5">
-            <h4 className="mb-8 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
-              Define Taxonomy
-            </h4>
-            <form className="space-y-6 flex-1">
-              <div className="space-y-5">
-                <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
-                    Classification Name <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm italic"
-                    placeholder="e.g. Technical Guide"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
-                    Conceptual Description
-                  </label>
-                  <textarea
-                    className="w-full rounded-2xl border-white/40 bg-white/50 p-4 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm min-h-[120px]"
-                    placeholder="Define the scope of this classification..."
-                    rows={4}
-                  ></textarea>
-                </div>
+        <div className="lg:col-span-4">
+          <AdminCard
+            title="Add New Type"
+            description="Create a new content classification."
+          >
+            <form className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">
+                  Type Name <span className="text-red-500">*</span>
+                </Label>
+                <Input id="name" placeholder="e.g. Technical Guide" required />
               </div>
 
-              <div className="pt-6">
-                <Button className="w-full h-16 bg-secondary hover:bg-secondary/90 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl shadow-secondary/20 transition-all active:scale-95">
-                  Save Taxonomy Class
+              <div className="space-y-2">
+                <Label htmlFor="description">Description</Label>
+                <Textarea
+                  id="description"
+                  placeholder="Enter description..."
+                  rows={4}
+                />
+              </div>
+
+              <div className="pt-2">
+                <Button className="w-full bg-secondary hover:bg-secondary/90">
+                  Save Type
                 </Button>
               </div>
             </form>
-          </GlassCard>
+          </AdminCard>
         </div>
 
         {/* List Section */}
-        <div className="lg:col-span-8 space-y-6 flex flex-col h-full">
-          <ListToolbar
-            searchPlaceHolder="Search taxonomy registry..."
-            onSearch={setSearchTerm}
-            showAddButton={false}
-          />
-
-          <GlassCard className="flex-1 flex flex-col">
-            <div className="p-8 border-b border-white/20">
-              <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
-                Active Classification Registry
-              </h4>
+        <div className="lg:col-span-8 space-y-6">
+          <AdminCard className="p-0 overflow-hidden">
+            <div className="p-6 pb-0">
+              <ListToolbar
+                searchPlaceHolder="Search types..."
+                onSearch={setSearchTerm}
+                showAddButton={false}
+              />
             </div>
 
-            <div className="flex-1 overflow-x-auto">
+            <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-20">SN</TableHead>
-                    <TableHead>Classification Name</TableHead>
-                    <TableHead>Scope Description</TableHead>
-                    <TableHead className="text-center">Governance</TableHead>
+                    <TableHead className="w-[80px] text-center">SN</TableHead>
+                    <TableHead>Type Name</TableHead>
+                    <TableHead>Description</TableHead>
+                    <TableHead className="text-center w-[120px]">
+                      Actions
+                    </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {paginatedTypes.map((item: any, index: number) => (
-                    <TableRow key={item.id} className="group">
-                      <TableCell className="font-mono text-xs text-muted-foreground italic">
+                    <TableRow key={item.id} className="hover:bg-gray-50/50">
+                      <TableCell className="text-center font-medium text-gray-500">
                         {(currentPage - 1) * pageSize + index + 1}
                       </TableCell>
                       <TableCell>
-                        <div className="font-black text-foreground text-sm uppercase italic tracking-tight leading-none">
+                        <span className="font-medium text-gray-900">
                           {item.name}
-                        </div>
+                        </span>
                       </TableCell>
                       <TableCell>
-                        <div className="text-[10px] text-muted-foreground/60 italic font-medium leading-relaxed max-w-sm">
+                        <span className="text-gray-500 text-sm">
                           {item.description}
-                        </div>
+                        </span>
                       </TableCell>
                       <TableCell className="text-center">
                         <ListActionButtons
@@ -153,9 +145,9 @@ export default function ContentTypePage() {
                     <TableRow>
                       <TableCell
                         colSpan={4}
-                        className="h-40 text-center text-muted-foreground uppercase tracking-widest text-[10px] font-black"
+                        className="h-32 text-center text-gray-500"
                       >
-                        No matches found in taxonomy registry.
+                        No content types found.
                       </TableCell>
                     </TableRow>
                   )}
@@ -164,15 +156,17 @@ export default function ContentTypePage() {
             </div>
 
             {filteredTypes.length > pageSize && (
-              <ListPagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-                totalRecords={filteredTypes.length}
-                pageSize={pageSize}
-              />
+              <div className="p-4 border-t border-gray-100">
+                <ListPagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                  totalRecords={filteredTypes.length}
+                  pageSize={pageSize}
+                />
+              </div>
             )}
-          </GlassCard>
+          </AdminCard>
         </div>
       </div>
     </div>

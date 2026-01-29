@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -30,20 +30,20 @@ export function TopicForm({
   };
 
   return (
-    <GlassCard className="p-8 h-full bg-gradient-to-br from-white/60 to-secondary/5">
-      <h4 className="mb-6 text-xs font-black text-gray-400 uppercase tracking-widest leading-none flex items-center justify-between">
+    <AdminCard className="p-8 h-full bg-gradient-to-br from-white/60 to-secondary/5">
+      <h4 className="mb-6 text-xs font-semibold text-gray-400   leading-none flex items-center justify-between">
         Define New Topic
         <div className="h-1 w-12 bg-secondary/20 rounded-full"></div>
       </h4>
 
       <form onSubmit={handleSubmit} className="space-y-5 flex-1">
         <div className="space-y-2">
-          <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+          <Label className=" text-[10px]  text-gray-500 font-bold">
             Topic Title <span className="text-red-500">*</span>
           </Label>
           <div className="relative">
             <FaBookmark
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground z-10"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 z-10"
               size={14}
             />
             <Input
@@ -51,7 +51,7 @@ export function TopicForm({
               value={formData.title}
               onChange={handleInputChange}
               placeholder="e.g. Completing the Square"
-              className="pl-10 bg-white/50 backdrop-blur-sm border-white/40 focus:bg-white transition-all font-medium py-6"
+              className="pl-10 bg-white backdrop-blur-sm border-gray-200 focus:bg-white transition-all font-medium py-6"
               required
             />
           </div>
@@ -59,14 +59,14 @@ export function TopicForm({
 
         <div className="space-y-4">
           <div className="space-y-2">
-            <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+            <Label className=" text-[10px]  text-gray-500 font-bold">
               Class <span className="text-red-500">*</span>
             </Label>
             <Select
               value={formData.className}
               onValueChange={(val) => onSelectChange("className", val)}
             >
-              <SelectTrigger className="bg-white/50 backdrop-blur-sm border-white/40 focus:bg-white transition-all py-6 font-medium">
+              <SelectTrigger className="bg-white backdrop-blur-sm border-gray-200 focus:bg-white transition-all py-6 font-medium">
                 <SelectValue placeholder="Select Class" />
               </SelectTrigger>
               <SelectContent>
@@ -77,14 +77,14 @@ export function TopicForm({
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+              <Label className=" text-[10px]  text-gray-500 font-bold">
                 Section
               </Label>
               <Select
                 value={formData.section}
                 onValueChange={(val) => onSelectChange("section", val)}
               >
-                <SelectTrigger className="bg-white/50 backdrop-blur-sm border-white/40 focus:bg-white transition-all py-6 font-medium">
+                <SelectTrigger className="bg-white backdrop-blur-sm border-gray-200 focus:bg-white transition-all py-6 font-medium">
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent>
@@ -93,14 +93,14 @@ export function TopicForm({
               </Select>
             </div>
             <div className="space-y-2">
-              <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+              <Label className=" text-[10px]  text-gray-500 font-bold">
                 Subject
               </Label>
               <Select
                 value={formData.subject}
                 onValueChange={(val) => onSelectChange("subject", val)}
               >
-                <SelectTrigger className="bg-white/50 backdrop-blur-sm border-white/40 focus:bg-white transition-all py-6 font-medium">
+                <SelectTrigger className="bg-white backdrop-blur-sm border-gray-200 focus:bg-white transition-all py-6 font-medium">
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent>
@@ -111,14 +111,14 @@ export function TopicForm({
           </div>
 
           <div className="space-y-2">
-            <Label className="uppercase text-[10px] tracking-widest text-muted-foreground font-bold">
+            <Label className=" text-[10px]  text-gray-500 font-bold">
               Lesson <span className="text-red-500">*</span>
             </Label>
             <Select
               value={formData.lesson}
               onValueChange={(val) => onSelectChange("lesson", val)}
             >
-              <SelectTrigger className="bg-white/50 backdrop-blur-sm border-white/40 focus:bg-white transition-all py-6 font-medium">
+              <SelectTrigger className="bg-white backdrop-blur-sm border-gray-200 focus:bg-white transition-all py-6 font-medium">
                 <SelectValue placeholder="Select Lesson" />
               </SelectTrigger>
               <SelectContent>
@@ -133,15 +133,15 @@ export function TopicForm({
         <div className="pt-4">
           <Button
             type="submit"
-            className="w-full py-6 text-xs font-black uppercase tracking-[0.2em] bg-secondary hover:bg-secondary/90 text-white shadow-lg transition-all active:scale-[0.98]"
+            className="w-full py-6 text-xs font-semibold  tracking-[0.2em] bg-secondary hover:bg-secondary/90 text-white shadow-lg transition-all active:scale-[0.98]"
           >
             <div className="flex items-center gap-2">
-              <FaCheckDouble className="italic" />
+              <FaCheckDouble className="" />
               Save Topic
             </div>
           </Button>
         </div>
       </form>
-    </GlassCard>
+    </AdminCard>
   );
 }

@@ -47,7 +47,7 @@ export default function BehaviourReportPage() {
         title="Conduct Excellence Ledger"
         subtitle="Ranked Behavioral Analytics"
         action={
-          <Button className="rounded-xl bg-accent text-white hover:bg-accent/90 transition-all shadow-xl text-[10px] font-black uppercase tracking-[0.2em] px-6 h-12">
+          <Button className="rounded-xl bg-accent text-white hover:bg-accent/90 transition-all shadow-xl text-[10px] font-semibold  tracking-[0.2em] px-6 h-12">
             <FaPrint className="mr-2" /> Broadcast Standings
           </Button>
         }

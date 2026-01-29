@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -35,8 +35,8 @@ export function MarksheetFilter({
   };
 
   return (
-    <GlassCard className="p-8">
-      <h4 className="mb-4 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+    <AdminCard className="p-8">
+      <h4 className="mb-4 text-xs font-semibold text-gray-500   leading-none">
         Report Generation Filter
       </h4>
       <form
@@ -44,7 +44,7 @@ export function MarksheetFilter({
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-end"
       >
         <div>
-          <Label className="block text-xs font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-xs font-semibold text-gray-500   mb-2 px-1">
             Exam <span className="text-rose-500">*</span>
           </Label>
           <Select
@@ -61,7 +61,7 @@ export function MarksheetFilter({
         </div>
 
         <div>
-          <Label className="block text-xs font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-xs font-semibold text-gray-500   mb-2 px-1">
             Class <span className="text-rose-500">*</span>
           </Label>
           <Select
@@ -78,7 +78,7 @@ export function MarksheetFilter({
         </div>
 
         <div>
-          <Label className="block text-xs font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-xs font-semibold text-gray-500   mb-2 px-1">
             Section <span className="text-rose-500">*</span>
           </Label>
           <Select
@@ -95,7 +95,7 @@ export function MarksheetFilter({
         </div>
 
         <div>
-          <Label className="block text-xs font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-xs font-semibold text-gray-500   mb-2 px-1">
             Subject <span className="text-rose-500">*</span>
           </Label>
           <Select
@@ -114,13 +114,13 @@ export function MarksheetFilter({
         <div className="lg:col-span-4 flex justify-end mt-2">
           <Button
             type="submit"
-            className="flex items-center gap-2 rounded-2xl bg-secondary text-white px-10 py-6 text-xs font-black uppercase tracking-[0.2em] transition-all hover:bg-secondary/90 active:scale-[0.98] shadow-lg h-auto"
+            className="flex items-center gap-2 rounded-2xl bg-secondary text-white px-10 py-6 text-xs font-semibold  tracking-[0.2em] transition-all hover:bg-secondary/90 active:scale-[0.98] shadow-lg h-auto"
           >
             <FaSearch size={14} />
             Generate Marksheet
           </Button>
         </div>
       </form>
-    </GlassCard>
+    </AdminCard>
   );
 }

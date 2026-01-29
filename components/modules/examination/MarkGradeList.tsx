@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -38,37 +38,37 @@ export function MarkGradeList({ grades }: MarkGradeListProps) {
   );
 
   return (
-    <GlassCard className="flex-1 flex flex-col p-0 overflow-hidden relative h-full">
+    <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative h-full">
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none"></div>
 
-      <div className="p-8 pb-4 relative z-10 border-b border-white/20 flex items-center justify-between">
-        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none flex items-center gap-2">
+      <div className="p-8 pb-4 relative z-10 border-b border-gray-200 flex items-center justify-between">
+        <h4 className="text-xs font-semibold text-gray-500   leading-none flex items-center gap-2">
           Institutional Grade Index
           <div className="h-[1px] w-12 bg-border/50"></div>
         </h4>
       </div>
 
       <div className="flex-1 overflow-x-auto p-8 pt-0 relative z-10">
-        <div className="rounded-xl border border-white/20 bg-white/40 overflow-hidden">
+        <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
           <Table>
-            <TableHeader className="bg-white/50">
+            <TableHeader className="bg-white">
               <TableRow>
-                <TableHead className="px-6 py-6 text-left w-12 text-[10px] uppercase tracking-widest font-black text-muted-foreground">
+                <TableHead className="px-6 py-6 text-left w-12 text-[10px]   font-semibold text-gray-500">
                   SN
                 </TableHead>
-                <TableHead className="px-6 py-6 text-left text-[10px] uppercase tracking-widest font-black text-muted-foreground">
+                <TableHead className="px-6 py-6 text-left text-[10px]   font-semibold text-gray-500">
                   Standard
                 </TableHead>
-                <TableHead className="px-6 py-6 text-center text-[10px] uppercase tracking-widest font-black text-muted-foreground">
+                <TableHead className="px-6 py-6 text-center text-[10px]   font-semibold text-gray-500">
                   Base GPA
                 </TableHead>
-                <TableHead className="px-6 py-6 text-center text-[10px] uppercase tracking-widest font-black text-muted-foreground">
+                <TableHead className="px-6 py-6 text-center text-[10px]   font-semibold text-gray-500">
                   Percentage Map
                 </TableHead>
-                <TableHead className="px-6 py-6 text-center text-[10px] uppercase tracking-widest font-black text-muted-foreground">
+                <TableHead className="px-6 py-6 text-center text-[10px]   font-semibold text-gray-500">
                   GPA Span
                 </TableHead>
-                <TableHead className="px-6 py-6 text-center text-[10px] uppercase tracking-widest font-black text-muted-foreground">
+                <TableHead className="px-6 py-6 text-center text-[10px]   font-semibold text-gray-500">
                   Action
                 </TableHead>
               </TableRow>
@@ -79,36 +79,36 @@ export function MarkGradeList({ grades }: MarkGradeListProps) {
                   key={g.id}
                   className="hover:bg-secondary/5 transition-all group"
                 >
-                  <TableCell className="px-6 py-8 text-muted-foreground/50 font-mono text-xs italic">
+                  <TableCell className="px-6 py-8 text-gray-500/50  text-xs ">
                     {(currentPage - 1) * pageSize + index + 1}
                   </TableCell>
                   <TableCell className="px-6 py-8">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary font-black text-sm border border-secondary/10 shadow-sm group-hover:bg-secondary group-hover:text-white transition-all">
+                      <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary font-semibold text-sm border border-secondary/10 shadow-sm group-hover:bg-secondary group-hover:text-white transition-all">
                         {g.name}
                       </div>
                       <div>
-                        <div className="text-[10px] font-black text-muted-foreground uppercase tracking-widest group-hover:text-secondary transition-colors">
+                        <div className="text-[10px] font-semibold text-gray-500   group-hover:text-secondary transition-colors">
                           Class Standard
                         </div>
-                        <div className="text-[9px] font-bold text-muted-foreground/70 italic max-w-[120px] truncate">
+                        <div className="text-[9px] font-bold text-gray-500/70  max-w-[120px] truncate">
                           {g.description}
                         </div>
                       </div>
                     </div>
                   </TableCell>
                   <TableCell className="px-6 py-8 text-center">
-                    <div className="text-base font-black text-foreground font-mono italic tracking-tighter group-hover:scale-110 transition-transform inline-block">
+                    <div className="text-base font-semibold text-foreground   tracking-tighter group-hover:scale-110 transition-transform inline-block">
                       {g.gpa}
                     </div>
                   </TableCell>
                   <TableCell className="px-6 py-8 text-center">
-                    <span className="px-3 py-1 bg-secondary/5 text-secondary text-[10px] font-black rounded-lg border border-secondary/10 shadow-sm italic">
+                    <span className="px-3 py-1 bg-secondary/5 text-secondary text-[10px] font-semibold rounded-lg border border-secondary/10 shadow-sm ">
                       {g.percentRange}
                     </span>
                   </TableCell>
                   <TableCell className="px-6 py-8 text-center">
-                    <div className="inline-flex items-center gap-2 text-[10px] font-black text-muted-foreground bg-secondary/5 px-3 py-1 rounded-lg border border-secondary/10 font-mono">
+                    <div className="inline-flex items-center gap-2 text-[10px] font-semibold text-gray-500 bg-secondary/5 px-3 py-1 rounded-lg border border-secondary/10 ">
                       {g.gpaRange}
                     </div>
                   </TableCell>
@@ -148,6 +148,6 @@ export function MarkGradeList({ grades }: MarkGradeListProps) {
           />
         </div>
       )}
-    </GlassCard>
+    </AdminCard>
   );
 }

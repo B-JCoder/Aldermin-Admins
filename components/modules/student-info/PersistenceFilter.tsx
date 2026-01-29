@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -24,14 +24,14 @@ export function PersistenceFilter({
   setAttendanceDate,
 }: PersistenceFilterProps) {
   return (
-    <GlassCard className="p-8 border border-white/20 bg-white/60">
+    <AdminCard className="p-8 border border-gray-200 bg-white">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-end">
         <div>
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase mb-3 ml-2">
+          <Label className="block text-[10px] font-semibold text-gray-500  mb-3 ml-2">
             Academic Grade
           </Label>
           <Select>
-            <SelectTrigger className="w-full bg-white/50 border-white/40 h-12 rounded-xl text-xs font-bold">
+            <SelectTrigger className="w-full bg-white border-gray-200 h-12 rounded-xl text-xs font-bold">
               <SelectValue placeholder="Class 10" />
             </SelectTrigger>
             <SelectContent>
@@ -40,11 +40,11 @@ export function PersistenceFilter({
           </Select>
         </div>
         <div>
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase mb-3 ml-2">
+          <Label className="block text-[10px] font-semibold text-gray-500  mb-3 ml-2">
             Sectional Unit
           </Label>
           <Select>
-            <SelectTrigger className="w-full bg-white/50 border-white/40 h-12 rounded-xl text-xs font-bold">
+            <SelectTrigger className="w-full bg-white border-gray-200 h-12 rounded-xl text-xs font-bold">
               <SelectValue placeholder="Section A" />
             </SelectTrigger>
             <SelectContent>
@@ -53,24 +53,24 @@ export function PersistenceFilter({
           </Select>
         </div>
         <div>
-          <Label className="block text-[10px] font-black text-muted-foreground uppercase mb-3 ml-2">
+          <Label className="block text-[10px] font-semibold text-gray-500  mb-3 ml-2">
             Observation Date
           </Label>
           <Input
             type="date"
             value={attendanceDate}
             onChange={(e) => setAttendanceDate(e.target.value)}
-            className="w-full bg-white/50 border-white/40 h-12 rounded-xl text-xs font-bold"
+            className="w-full bg-white border-gray-200 h-12 rounded-xl text-xs font-bold"
           />
         </div>
         <Button
           variant="default"
-          className="w-full bg-accent text-white rounded-xl h-12 text-xs font-black uppercase tracking-[0.2em] shadow-lg hover:bg-accent/90"
+          className="w-full bg-accent text-white rounded-xl h-12 text-xs font-semibold  tracking-[0.2em] shadow-lg hover:bg-accent/90"
         >
           <FaSearch className="mr-2" size={14} />
           Fetch Registry
         </Button>
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

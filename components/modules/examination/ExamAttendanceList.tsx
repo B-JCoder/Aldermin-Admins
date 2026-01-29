@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -43,24 +43,24 @@ export function ExamAttendanceList({
   );
 
   return (
-    <GlassCard className="p-0 overflow-hidden relative">
+    <AdminCard className="p-0 overflow-hidden relative">
       <div className="overflow-x-auto p-4">
         <Table>
           <TableHeader>
-            <TableRow className="border-b border-white/20 hover:bg-transparent">
-              <TableHead className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground w-16">
+            <TableRow className="border-b border-gray-200 hover:bg-transparent">
+              <TableHead className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-500 w-16">
                 SN
               </TableHead>
-              <TableHead className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-500">
                 Patron Information
               </TableHead>
-              <TableHead className="px-6 py-8 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-8 text-center text-[10px] font-semibold   text-gray-500">
                 Sectional Unit
               </TableHead>
-              <TableHead className="px-6 py-8 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-8 text-center text-[10px] font-semibold   text-gray-500">
                 Roll/Nº
               </TableHead>
-              <TableHead className="px-6 py-8 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+              <TableHead className="px-6 py-8 text-center text-[10px] font-semibold   text-gray-500">
                 Presence Check
               </TableHead>
             </TableRow>
@@ -71,7 +71,7 @@ export function ExamAttendanceList({
                 key={student.id}
                 className="group hover:bg-secondary/5 transition-all text-sm"
               >
-                <TableCell className="px-6 py-8 text-muted-foreground/50 font-mono text-xs italic">
+                <TableCell className="px-6 py-8 text-gray-500/50  text-xs ">
                   {(currentPage - 1) * pageSize + index + 1}
                 </TableCell>
                 <TableCell className="px-6 py-8">
@@ -80,25 +80,25 @@ export function ExamAttendanceList({
                       <FaUserGraduate size={16} />
                     </div>
                     <div>
-                      <div className="font-black text-foreground tracking-tight text-base font-serif italic mb-1 uppercase group-hover:text-secondary transition-colors leading-none">
+                      <div className="font-semibold text-foreground tracking-tight text-base   mb-1  group-hover:text-secondary transition-colors leading-none">
                         {student.name}
                       </div>
-                      <div className="text-[9px] font-mono text-muted-foreground uppercase tracking-tighter italic">
+                      <div className="text-[9px]  text-gray-500  tracking-tighter ">
                         Credential: {student.admissionNo}
                       </div>
                     </div>
                   </div>
                 </TableCell>
                 <TableCell className="px-6 py-8 text-center">
-                  <span className="px-3 py-1 bg-secondary/5 text-muted-foreground text-[10px] font-black rounded-lg uppercase tracking-tighter border border-secondary/10">
+                  <span className="px-3 py-1 bg-secondary/5 text-gray-500 text-[10px] font-semibold rounded-lg  tracking-tighter border border-secondary/10">
                     Class {student.className}
                   </span>
                 </TableCell>
                 <TableCell className="px-6 py-8 text-center">
-                  <div className="text-lg font-black text-foreground italic font-mono tracking-tighter">
+                  <div className="text-lg font-semibold text-foreground   tracking-tighter">
                     #{student.rollNo}
                   </div>
-                  <div className="text-[8px] font-black text-muted-foreground/50 uppercase tracking-widest">
+                  <div className="text-[8px] font-semibold text-gray-500/50  ">
                     Desk Mark
                   </div>
                 </TableCell>
@@ -106,7 +106,7 @@ export function ExamAttendanceList({
                   <Button
                     onClick={() => toggleAttendance(student.id)}
                     className={cn(
-                      "inline-flex items-center gap-3 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all shadow-lg h-auto",
+                      "inline-flex items-center gap-3 px-6 py-3 rounded-2xl text-[10px] font-semibold   transition-all shadow-lg h-auto",
                       student.attendance === "Present"
                         ? "bg-secondary text-white shadow-secondary/20 hover:bg-secondary/90"
                         : "bg-rose-600 text-white shadow-rose-100 hover:bg-rose-700"
@@ -137,6 +137,6 @@ export function ExamAttendanceList({
           </div>
         )}
       </div>
-    </GlassCard>
+    </AdminCard>
   );
 }

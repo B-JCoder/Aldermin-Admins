@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import {
   Table,
   TableBody,
@@ -54,32 +54,32 @@ export function ProgressionRegistry({ students }: ProgressionRegistryProps) {
         showAddButton={false}
       />
 
-      <GlassCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+      <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
+        
 
-        <div className="p-8 pb-4 relative z-10 border-b border-white/20">
-          <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">
+        <div className="p-8 pb-4 relative z-10 border-b border-gray-200">
+          <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Progression Registry
           </h4>
         </div>
         <div className="flex-1 overflow-x-auto p-8 pt-0 relative z-10">
-          <div className="rounded-xl border border-white/20 bg-white/40 overflow-hidden">
+          <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
             <Table>
-              <TableHeader className="bg-white/50">
+              <TableHeader className="bg-white">
                 <TableRow>
-                  <TableHead className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground w-20">
+                  <TableHead className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-500 w-20">
                     SN
                   </TableHead>
-                  <TableHead className="px-6 py-8 text-left text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-8 text-left text-[10px] font-semibold   text-gray-500">
                     Patron Information
                   </TableHead>
-                  <TableHead className="px-6 py-8 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-8 text-center text-[10px] font-semibold   text-gray-500">
                     Roll/Nº
                   </TableHead>
-                  <TableHead className="px-6 py-8 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-8 text-center text-[10px] font-semibold   text-gray-500">
                     Progression Path
                   </TableHead>
-                  <TableHead className="px-6 py-8 text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                  <TableHead className="px-6 py-8 text-center text-[10px] font-semibold   text-gray-500">
                     Interaction
                   </TableHead>
                 </TableRow>
@@ -88,17 +88,17 @@ export function ProgressionRegistry({ students }: ProgressionRegistryProps) {
                 {paginatedStudents.map((student, index) => (
                   <TableRow
                     key={student.id}
-                    className="group hover:bg-white/60 transition-all font-medium"
+                    className="group hover:bg-white transition-all font-medium"
                   >
-                    <TableCell className="px-6 py-8 text-muted-foreground font-mono text-xs italic">
+                    <TableCell className="px-6 py-8 text-gray-500  text-xs ">
                       {(currentPage - 1) * pageSize + index + 1}
                     </TableCell>
                     <TableCell className="px-6 py-8">
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-xl bg-white/50 flex items-center justify-center text-muted-foreground group-hover:bg-secondary group-hover:text-white transition-all shadow-sm border border-white/40">
+                        <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-gray-500 group-hover:bg-secondary group-hover:text-white transition-all shadow-sm border border-gray-200">
                           <FaUserGraduate size={16} />
                         </div>
-                        <div className="font-black text-foreground tracking-tight text-base font-serif italic">
+                        <div className="font-semibold text-foreground tracking-tight text-base  ">
                           {student.name}
                         </div>
                       </div>
@@ -106,7 +106,7 @@ export function ProgressionRegistry({ students }: ProgressionRegistryProps) {
                     <TableCell className="px-6 py-8 text-center">
                       <Badge
                         variant="outline"
-                        className="bg-white/50 text-muted-foreground border-white/60 font-black"
+                        className="bg-white text-gray-500 border-white/60 font-semibold"
                       >
                         {student.rollNo}
                       </Badge>
@@ -114,7 +114,7 @@ export function ProgressionRegistry({ students }: ProgressionRegistryProps) {
                     <TableCell className="px-6 py-8">
                       <div className="flex items-center justify-center gap-6">
                         <div className="text-center">
-                          <div className="text-[8px] font-black text-muted-foreground/50 uppercase tracking-widest mb-1">
+                          <div className="text-[8px] font-semibold text-gray-500/50   mb-1">
                             From
                           </div>
                           <Badge
@@ -125,11 +125,11 @@ export function ProgressionRegistry({ students }: ProgressionRegistryProps) {
                           </Badge>
                         </div>
                         <FaArrowRight
-                          className="text-muted-foreground/30 animate-pulse"
+                          className="text-gray-500/30 animate-pulse"
                           size={12}
                         />
                         <div className="text-center">
-                          <div className="text-[8px] font-black text-emerald-500/50 uppercase tracking-widest mb-1">
+                          <div className="text-[8px] font-semibold text-emerald-500/50   mb-1">
                             To
                           </div>
                           <Badge
@@ -144,7 +144,7 @@ export function ProgressionRegistry({ students }: ProgressionRegistryProps) {
                     <TableCell className="px-6 py-8 text-center">
                       <Button
                         variant="secondary"
-                        className="rounded-2xl text-[10px] font-black uppercase tracking-widest h-auto py-3 px-6 shadow-md hover:scale-105 transition-transform"
+                        className="rounded-2xl text-[10px] font-semibold   h-auto py-3 px-6 shadow-md hover:scale-105 transition-transform"
                       >
                         Promote & Update
                         <FaArrowRight
@@ -171,7 +171,7 @@ export function ProgressionRegistry({ students }: ProgressionRegistryProps) {
             />
           </div>
         )}
-      </GlassCard>
+      </AdminCard>
     </div>
   );
 }

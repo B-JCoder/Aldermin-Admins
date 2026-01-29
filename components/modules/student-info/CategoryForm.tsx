@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GlassCard } from "@/components/cards/GlassCard";
+import { AdminCard } from "@/components/common/AdminCard";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -23,21 +23,21 @@ export function CategoryForm({ onAddCategory }: CategoryFormProps) {
   };
 
   return (
-    <GlassCard className="p-8 h-full flex flex-col">
-      <h4 className="mb-6 text-xs font-black text-muted-foreground uppercase tracking-widest leading-none flex items-center justify-between">
+    <AdminCard className="p-8 h-full flex flex-col">
+      <h4 className="mb-6 text-xs font-semibold text-gray-500   leading-none flex items-center justify-between">
         Define Taxonomy
         <div className="h-1 w-12 bg-secondary/20 rounded-full"></div>
       </h4>
 
       <form onSubmit={handleSubmit} className="space-y-6 flex-1">
         <div>
-          <Label className="block text-xs font-black text-muted-foreground uppercase tracking-widest mb-2 px-1">
+          <Label className="block text-xs font-semibold text-gray-500   mb-2 px-1">
             Category Designation <span className="text-destructive">*</span>
           </Label>
           <Input
             value={categoryName}
             onChange={(e) => setCategoryName(e.target.value)}
-            className="w-full bg-white/50 backdrop-blur-sm border-white/40 font-bold focus:bg-white transition-all py-6"
+            className="w-full bg-white backdrop-blur-sm border-gray-200 font-bold focus:bg-white transition-all py-6"
             placeholder="e.g. Merit Scholarship"
             required
           />
@@ -47,15 +47,15 @@ export function CategoryForm({ onAddCategory }: CategoryFormProps) {
           <Button
             type="submit"
             variant="default"
-            className="w-full py-6 text-xs font-black uppercase tracking-widest transition-all shadow-lg text-white"
+            className="w-full py-6 text-xs font-semibold   transition-all shadow-lg text-white"
           >
             <div className="flex items-center justify-center gap-2">
-              <FaCheckCircle className="italic" />
+              <FaCheckCircle className="" />
               Initialize Record
             </div>
           </Button>
         </div>
       </form>
-    </GlassCard>
+    </AdminCard>
   );
 }

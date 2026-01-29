@@ -35,7 +35,7 @@ export default function AcademicClassRoomPage() {
   return (
     <div className="container mx-auto p-4 space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-gray-900 tracking-tighter flex items-center gap-3">
+        <h1 className="text-2xl font-semibold text-gray-900 tracking-tighter flex items-center gap-3">
           <div className="p-2 bg-indigo-600 rounded-xl shadow-lg ring-4 ring-indigo-50">
             <FaBuilding className="text-white" size={20} />
           </div>
@@ -47,14 +47,14 @@ export default function AcademicClassRoomPage() {
         {/* Creation Form */}
         <div className="lg:col-span-4">
           <div className="rounded-3xl bg-white p-8 shadow-xl border border-gray-100 ring-1 ring-black/5 flex flex-col h-full bg-gradient-to-br from-white to-gray-50/10">
-            <h4 className="mb-6 text-xs font-black text-gray-400 uppercase tracking-widest leading-none flex items-center justify-between">
+            <h4 className="mb-6 text-xs font-semibold text-gray-400   leading-none flex items-center justify-between">
               Register Space
               <div className="h-1 w-12 bg-indigo-100 rounded-full"></div>
             </h4>
 
             <form onSubmit={handleSubmit} className="space-y-6 flex-1">
               <div>
-                <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                <label className="block text-xs font-semibold text-gray-400   mb-2 px-1">
                   Room Designation <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
@@ -66,7 +66,7 @@ export default function AcademicClassRoomPage() {
                     type="text"
                     value={roomNumber}
                     onChange={(e) => setRoomNumber(e.target.value)}
-                    className="w-full rounded-2xl border-gray-100 p-4 pl-12 text-sm font-bold focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500/20 outline-none transition-all placeholder:font-medium bg-white shadow-sm italic uppercase"
+                    className="w-full rounded-2xl border-gray-100 p-4 pl-12 text-sm font-bold focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500/20 outline-none transition-all placeholder:font-medium bg-white shadow-sm  "
                     placeholder="e.g. HALL-A"
                     required
                   />
@@ -74,7 +74,7 @@ export default function AcademicClassRoomPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 px-1">
+                <label className="block text-xs font-semibold text-gray-400   mb-2 px-1">
                   Occupancy Capacity <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
@@ -86,7 +86,7 @@ export default function AcademicClassRoomPage() {
                     type="number"
                     value={capacity}
                     onChange={(e) => setCapacity(e.target.value)}
-                    className="w-full rounded-2xl border-gray-100 p-4 pl-12 text-sm font-black focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500/20 outline-none transition-all placeholder:font-medium bg-white shadow-sm font-mono"
+                    className="w-full rounded-2xl border-gray-100 p-4 pl-12 text-sm font-semibold focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500/20 outline-none transition-all placeholder:font-medium bg-white shadow-sm "
                     placeholder="40"
                     required
                   />
@@ -96,7 +96,7 @@ export default function AcademicClassRoomPage() {
               <div className="pt-4">
                 <button
                   type="submit"
-                  className="group w-full relative overflow-hidden rounded-2xl bg-gray-900 px-8 py-5 text-white font-black text-xs uppercase tracking-widest transition-all hover:bg-black active:scale-[0.98] shadow-2xl shadow-gray-200"
+                  className="group w-full relative overflow-hidden rounded-2xl bg-gray-900 px-8 py-5 text-white font-semibold text-xs   transition-all hover:bg-black active:scale-[0.98] shadow-2xl shadow-gray-200"
                 >
                   <div className="relative z-10 flex items-center justify-center gap-2">
                     <FaCheck className="group-hover:rotate-12 transition-transform" />
@@ -114,7 +114,7 @@ export default function AcademicClassRoomPage() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
 
             <div className="flex items-center justify-between mb-8 relative">
-              <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest leading-none">
+              <h4 className="text-xs font-semibold text-gray-400   leading-none">
                 Architectural Matrix
               </h4>
             </div>
@@ -123,16 +123,16 @@ export default function AcademicClassRoomPage() {
               <table className="min-w-full text-sm">
                 <thead className="bg-gray-50/70 text-gray-500 font-bold border-b border-gray-50">
                   <tr>
-                    <th className="px-6 py-6 text-left w-16 text-[10px] uppercase font-black">
+                    <th className="px-6 py-6 text-left w-16 text-[10px]  font-semibold">
                       SN
                     </th>
-                    <th className="px-6 py-6 text-left text-[10px] uppercase font-black tracking-widest">
+                    <th className="px-6 py-6 text-left text-[10px]  font-semibold ">
                       Space Identity
                     </th>
-                    <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
+                    <th className="px-6 py-6 text-center text-[10px]  font-semibold ">
                       Load Capacity
                     </th>
-                    <th className="px-6 py-6 text-center text-[10px] uppercase font-black tracking-widest">
+                    <th className="px-6 py-6 text-center text-[10px]  font-semibold ">
                       Interaction
                     </th>
                   </tr>
@@ -143,7 +143,7 @@ export default function AcademicClassRoomPage() {
                       key={r.id}
                       className="hover:bg-indigo-50/20 transition-all group"
                     >
-                      <td className="px-6 py-8 text-gray-300 font-mono text-xs italic">
+                      <td className="px-6 py-8 text-gray-300  text-xs ">
                         {index + 1}
                       </td>
                       <td className="px-6 py-8">
@@ -151,13 +151,13 @@ export default function AcademicClassRoomPage() {
                           <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm border border-gray-100">
                             <FaDoorOpen size={20} />
                           </div>
-                          <span className="font-black text-gray-900 tracking-tight text-lg font-serif italic uppercase leading-none">
+                          <span className="font-semibold text-gray-900 tracking-tight text-lg    leading-none">
                             {r.number}
                           </span>
                         </div>
                       </td>
                       <td className="px-6 py-8 text-center">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-600 rounded-2xl text-xs font-black italic shadow-sm border border-indigo-100">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-600 rounded-2xl text-xs font-semibold  shadow-sm border border-indigo-100">
                           <FaUsers size={12} />
                           {r.capacity} Seats
                         </div>
@@ -183,3 +183,4 @@ export default function AcademicClassRoomPage() {
     </div>
   );
 }
+

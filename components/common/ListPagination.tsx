@@ -23,11 +23,12 @@ export function ListPagination({
   const end = Math.min(currentPage * pageSize, totalRecords);
 
   return (
-    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 border-t border-white/20 bg-white/30">
-      <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
-        Showing <span className="text-foreground">{start}</span> to{" "}
-        <span className="text-foreground">{end}</span> of{" "}
-        <span className="text-foreground">{totalRecords}</span> Results
+    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="text-sm text-gray-500">
+        Showing <span className="font-medium text-gray-900">{start}</span> to{" "}
+        <span className="font-medium text-gray-900">{end}</span> of{" "}
+        <span className="font-medium text-gray-900">{totalRecords}</span>{" "}
+        results
       </div>
 
       <div className="flex items-center gap-2">
@@ -36,10 +37,9 @@ export function ListPagination({
           size="sm"
           disabled={currentPage === 1}
           onClick={() => onPageChange(currentPage - 1)}
-          className="rounded-xl border-white/40 bg-white/50 text-muted-foreground hover:text-secondary disabled:opacity-30 transition-all font-bold uppercase text-[9px] tracking-widest px-4"
+          className="h-8 w-8 p-0"
         >
-          <FaChevronLeft size={10} className="mr-1" />
-          Previous
+          <FaChevronLeft size={12} />
         </Button>
 
         <div className="flex items-center gap-1">
@@ -47,12 +47,13 @@ export function ListPagination({
             <Button
               key={page}
               variant={currentPage === page ? "default" : "ghost"}
+              size="sm"
               onClick={() => onPageChange(page)}
-              className={`w-8 h-8 rounded-lg text-[10px] font-black ${
+              className={`h-8 w-8 p-0 text-xs font-medium ${
                 currentPage === page
-                  ? "bg-secondary text-white shadow-lg shadow-secondary/20"
-                  : "text-muted-foreground hover:bg-secondary/10 hover:text-secondary"
-              } transition-all`}
+                  ? "bg-secondary text-white hover:bg-secondary/90"
+                  : "text-gray-500 hover:text-gray-900"
+              }`}
             >
               {page}
             </Button>
@@ -64,10 +65,9 @@ export function ListPagination({
           size="sm"
           disabled={currentPage === totalPages}
           onClick={() => onPageChange(currentPage + 1)}
-          className="rounded-xl border-white/40 bg-white/50 text-muted-foreground hover:text-secondary disabled:opacity-30 transition-all font-bold uppercase text-[9px] tracking-widest px-4"
+          className="h-8 w-8 p-0"
         >
-          Next
-          <FaChevronRight size={10} className="ml-1" />
+          <FaChevronRight size={12} />
         </Button>
       </div>
     </div>
