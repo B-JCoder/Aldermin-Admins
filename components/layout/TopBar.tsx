@@ -1,12 +1,19 @@
 "use client";
 import { FaBars, FaSearch, FaBell, FaEnvelope } from "react-icons/fa";
 
-export default function TopBar() {
+interface TopBarProps {
+  onToggleSidebar?: () => void;
+}
+
+export default function TopBar({ onToggleSidebar }: TopBarProps) {
   return (
     <header className="h-16 flex items-center justify-between px-6 z-10 bg-white border-b border-gray-100 sticky top-0">
       <div className="flex items-center gap-4">
         {/* Toggle (Visible on mobile) */}
-        <button className="text-gray-600 text-xl md:hidden hover:text-gray-900 transition-colors">
+        <button
+          className="text-gray-600 text-xl md:hidden hover:text-gray-900 transition-colors p-2"
+          onClick={onToggleSidebar}
+        >
           <FaBars />
         </button>
         {/* Search */}

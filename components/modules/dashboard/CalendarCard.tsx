@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export function CalendarCard() {
   return (
-    <AdminCard className="h-full p-6 flex flex-col items-center justify-center text-center">
+    <AdminCard className="h-full p-4 md:p-6 flex flex-col items-center justify-center text-center">
       <div className="w-full flex-1 flex flex-col items-center justify-center min-h-[250px]">
         <div className="w-full max-w-[280px]">
           <div className="flex items-center justify-between mb-6">

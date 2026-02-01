@@ -2,7 +2,7 @@
 
 import React from "react";
 import { AdminCard } from "@/components/common/AdminCard";
-import { BiTrendingUp, BiTrendingDown } from "react-icons/bi";
+import { BiTrendingDown, BiTrendingUp } from "react-icons/bi";
 import {
   Select,
   SelectTrigger,
@@ -13,7 +13,7 @@ import {
 
 export function FinancialOverview() {
   return (
-    <AdminCard className="p-6 h-full flex flex-col">
+    <AdminCard className="p-4 md:p-6 h-full flex flex-col">
       <div className="flex justify-between items-center mb-6">
         <h5 className="font-semibold text-foreground text-sm  ">
           Financial Overview
@@ -42,7 +42,7 @@ export function FinancialOverview() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
         {/* Income */}
-        <div className="bg-secondary/10 p-6 rounded-[20px] relative text-foreground flex flex-col justify-end border border-secondary/20 overflow-hidden group">
+        <div className="bg-secondary/10 p-4 md:p-6 rounded-[20px] relative text-foreground flex flex-col justify-end border border-secondary/20 overflow-hidden group">
           <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-3xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700"></div>
 
           <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center absolute top-6 left-6 shadow-lg shadow-secondary/30">
@@ -53,7 +53,7 @@ export function FinancialOverview() {
             ↑ 12%
           </span>
           <div className="mt-6 relative z-10">
-            <h4 className="text-2xl font-semibold text-foreground mb-1 tracking-tight">
+            <h4 className="text-xl md:text-2xl font-semibold text-foreground mb-1 tracking-tight">
               PKR 29.5M
             </h4>
             <p className="text-[10px] text-gray-500   font-bold">
@@ -63,7 +63,7 @@ export function FinancialOverview() {
         </div>
 
         {/* Expense */}
-        <div className="bg-orange-50/50 p-6 rounded-[20px] relative text-foreground flex flex-col justify-end border border-orange-100 overflow-hidden group">
+        <div className="bg-orange-50/50 p-4 md:p-6 rounded-[20px] relative text-foreground flex flex-col justify-end border border-orange-100 overflow-hidden group">
           <div className="absolute top-0 right-0 w-32 h-32 bg-orange-100/50 rounded-full blur-3xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700"></div>
 
           <div className="w-10 h-10 bg-orange-400 rounded-full flex items-center justify-center absolute top-6 left-6 shadow-lg shadow-orange-200">
@@ -74,7 +74,7 @@ export function FinancialOverview() {
             ↓ 0.5%
           </span>
           <div className="mt-6 relative z-10">
-            <h4 className="text-2xl font-semibold text-foreground mb-1 tracking-tight">
+            <h4 className="text-xl md:text-2xl font-semibold text-foreground mb-1 tracking-tight">
               PKR 19.2M
             </h4>
             <p className="text-[10px] text-gray-500   font-bold">

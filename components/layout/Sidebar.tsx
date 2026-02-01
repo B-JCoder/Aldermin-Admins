@@ -19,6 +19,7 @@ import {
   FaPrint,
   FaDownload,
   FaUser,
+  FaTimes, // Added close icon for mobile header
 } from "react-icons/fa";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { cn } from "@/lib/utils";
@@ -249,82 +250,115 @@ const menuItems: MenuItem[] = [
   { icon: FaUser, label: "User", href: "/admin/user" },
 ];
 
-export default function Sidebar() {
+interface SidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const [openSubMenus, setOpenSubMenus] = useState<string[]>([]);
 
   const toggleSubMenu = (label: string) => {
     setOpenSubMenus((prev) =>
       prev.includes(label)
         ? prev.filter((item) => item !== label)
-        : [...prev, label]
+        : [...prev, label],
     );
   };
 
   return (
-    <aside className="w-64 bg-sidebar text-sidebar-foreground h-screen overflow-y-auto custom-scrollbar flex-shrink-0 transition-colors duration-300 border-r border-sidebar-border/10">
-      <div className="p-4 flex items-center justify-center border-b border-sidebar-border/10">
-        {/* Logo */}
-        <h1 className="text-2xl font-bold tracking-tight">Aldermin</h1>
-      </div>
-      <nav className="mt-4">
-        <ul>
-          {menuItems.map((item, index) => (
-            <li
-              key={index}
-              className="border-l-4 border-transparent hover:border-sidebar-foreground/50"
-            >
-              {item.subItems ? (
-                <div>
-                  <button
-                    onClick={() => toggleSubMenu(item.label)}
-                    className="w-full flex items-center justify-between px-4 py-3 text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all duration-200"
-                  >
-                    <div className="flex items-center gap-3">
-                      <item.icon className="text-lg opacity-90" />
-                      <span className="font-medium text-sm">{item.label}</span>
+    <>
+      {/* Overlay for mobile */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden backdrop-blur-sm"
+          onClick={onClose}
+        />
+      )}
+
+      <aside
+        className={cn(
+          "w-64 bg-sidebar text-sidebar-foreground h-screen overflow-y-auto custom-scrollbar flex-shrink-0 transition-transform duration-300 border-r border-sidebar-border/10",
+          "fixed top-0 left-0 z-50 md:sticky md:top-0 md:transform-none", // Mobile: fixed. Desktop: sticky.
+          isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0", // Toggle transform on mobile, always visible on desktop
+        )}
+      >
+        <div className="p-4 flex items-center justify-between border-b border-sidebar-border/10">
+          {/* Logo */}
+          <h1 className="text-2xl font-bold tracking-tight">Aldermin</h1>
+
+          {/* Close button for mobile */}
+          <button
+            onClick={onClose}
+            className="md:hidden text-sidebar-foreground hover:text-white transition-colors"
+          >
+            <FaTimes size={20} />
+          </button>
+        </div>
+        <nav className="mt-4 pb-20">
+          <ul>
+            {menuItems.map((item, index) => (
+              <li
+                key={index}
+                className="border-l-4 border-transparent hover:border-sidebar-foreground/50"
+              >
+                {item.subItems ? (
+                  <div>
+                    <button
+                      onClick={() => toggleSubMenu(item.label)}
+                      className="w-full flex items-center justify-between px-4 py-3 text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all duration-200"
+                    >
+                      <div className="flex items-center gap-3">
+                        <item.icon className="text-lg opacity-90" />
+                        <span className="font-medium text-sm">
+                          {item.label}
+                        </span>
+                      </div>
+                      {openSubMenus.includes(item.label) ? (
+                        <IoIosArrowDown />
+                      ) : (
+                        <IoIosArrowForward />
+                      )}
+                    </button>
+                    {/* Submenu */}
+                    <div
+                      className={cn(
+                        "bg-black/10 overflow-hidden transition-all duration-300 ease-in-out",
+                        openSubMenus.includes(item.label)
+                          ? "max-h-[1000px] opacity-100"
+                          : "max-h-0 opacity-0",
+                      )}
+                    >
+                      <ul className="py-2">
+                        {item.subItems.map((subItem, subIndex) => (
+                          <li key={subIndex}>
+                            <Link
+                              href={subItem.href}
+                              onClick={onClose} // Auto close on navigation
+                              className="block px-4 py-2 pl-12 text-xs font-medium text-sidebar-foreground/70 hover:text-white hover:bg-white/10 transition-colors"
+                            >
+                              {subItem.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    {openSubMenus.includes(item.label) ? (
-                      <IoIosArrowDown />
-                    ) : (
-                      <IoIosArrowForward />
-                    )}
-                  </button>
-                  {/* Submenu */}
-                  <div
-                    className={cn(
-                      "bg-black/10 overflow-hidden transition-all duration-300 ease-in-out",
-                      openSubMenus.includes(item.label)
-                        ? "max-h-[1000px] opacity-100"
-                        : "max-h-0 opacity-0"
-                    )}
-                  >
-                    <ul className="py-2">
-                      {item.subItems.map((subItem, subIndex) => (
-                        <li key={subIndex}>
-                          <Link
-                            href={subItem.href}
-                            className="block px-4 py-2 pl-12 text-xs font-medium text-sidebar-foreground/70 hover:text-white hover:bg-white/10 transition-colors"
-                          >
-                            {subItem.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
-                </div>
-              ) : (
-                <Link
-                  href={item.href || "#"}
-                  className="flex items-center gap-3 px-4 py-3 text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all duration-200"
-                >
-                  <item.icon className="text-lg opacity-90" />
-                  <span className="font-medium text-sm">{item.label}</span>
-                </Link>
-              )}
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </aside>
+                ) : (
+                  <Link
+                    href={item.href || "#"}
+                    onClick={onClose}
+                    className="flex items-center gap-3 px-4 py-3 text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all duration-200"
+                  >
+                    <item.icon className="text-lg opacity-90" />
+                    <span className="font-medium text-sm">{item.label}</span>
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+    </>
   );
 }

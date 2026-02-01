@@ -24,10 +24,11 @@ export function AssignSubjectList({
 }: AssignSubjectListProps) {
   return (
     <AdminCard className="h-full bg-white">
-      <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-white ">
-        <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
+      <div className="p-4 md:p-6 border-b border-gray-100 flex justify-between items-center bg-white">
+        <h3 className="text-md md:text-lg font-bold text-gray-800 flex items-center gap-2">
           <FaBookOpen className="text-secondary" />
-          Subject Assignments
+          <span className="hidden md:inline">Subject Assignments</span>
+          <span className="md:hidden">Assignments</span>
         </h3>
         <Badge variant="outline" className="px-3 py-1 bg-white">
           {assignedSubjects.length} Records
@@ -37,13 +38,21 @@ export function AssignSubjectList({
       <div className="p-0 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
-            <thead className="text-xs text-gray-500  bg-gray-50/50">
+            <thead className="text-xs text-gray-500 bg-gray-50/50">
               <tr>
-                <th className="px-6 py-4 font-bold tracking-wider">SN</th>
-                <th className="px-6 py-4 font-bold tracking-wider">Subject</th>
-                <th className="px-6 py-4 font-bold tracking-wider">Section</th>
-                <th className="px-6 py-4 font-bold tracking-wider">Teacher</th>
-                <th className="px-6 py-4 font-bold tracking-wider text-right">
+                <th className="px-4 py-3 md:px-6 md:py-4 font-bold tracking-wider">
+                  SN
+                </th>
+                <th className="px-4 py-3 md:px-6 md:py-4 font-bold tracking-wider">
+                  Subject
+                </th>
+                <th className="px-4 py-3 md:px-6 md:py-4 font-bold tracking-wider">
+                  Section
+                </th>
+                <th className="px-4 py-3 md:px-6 md:py-4 font-bold tracking-wider">
+                  Teacher
+                </th>
+                <th className="px-4 py-3 md:px-6 md:py-4 font-bold tracking-wider text-right">
                   Action
                 </th>
               </tr>
@@ -54,19 +63,21 @@ export function AssignSubjectList({
                   key={item.id}
                   className="hover:bg-gray-50/60 transition-colors group"
                 >
-                  <td className="px-6 py-4 font-medium text-gray-900">
+                  <td className="px-4 py-3 md:px-6 md:py-4 font-medium text-gray-900">
                     {index + 1}
                   </td>
-                  <td className="px-6 py-4 text-gray-600 font-medium">
+                  <td className="px-4 py-3 md:px-6 md:py-4 text-gray-600 font-medium">
                     {item.subject}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-4 py-3 md:px-6 md:py-4">
                     <Badge variant="secondary" className="font-bold">
                       {item.section}
                     </Badge>
                   </td>
-                  <td className="px-6 py-4 text-gray-700">{item.teacher}</td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-4 py-3 md:px-6 md:py-4 text-gray-700">
+                    {item.teacher}
+                  </td>
+                  <td className="px-4 py-3 md:px-6 md:py-4 text-right">
                     <div className="flex justify-end gap-2">
                       <Button
                         size="sm"

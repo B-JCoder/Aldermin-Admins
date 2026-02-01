@@ -13,7 +13,7 @@ import { MessagesCard } from "@/components/modules/dashboard/MessagesCard";
 
 export default function Dashboard() {
   return (
-    <div className="container-fluid space-y-6 pb-8">
+    <div className="w-full space-y-6 pb-8">
       <div className="grid grid-cols-12 gap-6 mt-4 items-stretch">
         <div className="col-span-12 md:col-span-7">
           <WelcomeCard />

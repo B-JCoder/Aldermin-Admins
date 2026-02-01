@@ -44,9 +44,9 @@ export function AssignSubjectForm({
   teachers,
 }: AssignSubjectFormProps) {
   return (
-    <AdminCard className="p-8 h-full bg-gradient-to-br from-white/60 to-sidebar/5">
+    <AdminCard className="p-4 md:p-8 h-full bg-gradient-to-br from-white/60 to-sidebar/5">
       <div className="flex items-center justify-between mb-6">
-        <h4 className="text-sm font-bold text-gray-500   flex items-center gap-2">
+        <h4 className="text-sm font-bold text-gray-500 flex items-center gap-2">
           Assign Subject
           <div className="h-1 w-12 bg-sidebar/20 rounded-full"></div>
         </h4>
@@ -56,7 +56,7 @@ export function AssignSubjectForm({
         <div className="space-y-4">
           {/* Subject Selection */}
           <div className="space-y-2">
-            <Label className=" text-[10px]  text-gray-500 font-bold">
+            <Label className="text-[10px] text-gray-500 font-bold">
               Subject <span className="text-red-500">*</span>
             </Label>
             <div className="relative">
@@ -84,7 +84,7 @@ export function AssignSubjectForm({
 
           {/* Section Selection */}
           <div className="space-y-2">
-            <Label className=" text-[10px]  text-gray-500 font-bold">
+            <Label className="text-[10px] text-gray-500 font-bold">
               Section <span className="text-red-500">*</span>
             </Label>
             <div className="relative">
@@ -112,7 +112,7 @@ export function AssignSubjectForm({
 
           {/* Teacher Selection */}
           <div className="space-y-2">
-            <Label className=" text-[10px]  text-gray-500 font-bold">
+            <Label className="text-[10px] text-gray-500 font-bold">
               Teacher <span className="text-red-500">*</span>
             </Label>
             <div className="relative">
@@ -142,7 +142,7 @@ export function AssignSubjectForm({
         <div className="pt-2">
           <Button
             type="submit"
-            className="w-full py-6 text-xs font-semibold  tracking-[0.2em] bg-secondary hover:bg-secondary/90 text-white shadow-lg transition-all active:scale-[0.98]"
+            className="w-full py-6 text-xs font-semibold tracking-[0.2em] bg-secondary hover:bg-secondary/90 text-white shadow-lg transition-all active:scale-[0.98]"
           >
             <div className="flex items-center gap-2">
               <FaCheck className="" />

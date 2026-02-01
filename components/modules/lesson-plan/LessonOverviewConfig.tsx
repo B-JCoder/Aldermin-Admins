@@ -26,7 +26,7 @@ export function LessonOverviewConfig({
     handleInputChange({ target: { name, value } });
   };
   return (
-    <AdminCard className="p-8 h-full bg-gradient-to-br from-white to-secondary/5">
+    <AdminCard className="p-4 md:p-8 h-full bg-gradient-to-br from-white to-secondary/5">
       <h4 className="mb-8 text-xs font-semibold text-gray-400   leading-none flex items-center gap-2">
         Auditor Configuration
         <div className="h-[1px] flex-1 bg-secondary/20"></div>
@@ -50,7 +50,7 @@ export function LessonOverviewConfig({
           </Select>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label className="block text-[10px] font-semibold text-gray-500  ">
               Class
