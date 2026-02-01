@@ -25,6 +25,11 @@ import {
   FaBoxes,
   FaBullhorn,
   FaCalculator,
+  FaCog,
+  FaFileInvoiceDollar,
+  FaHotel,
+  FaBus,
+  FaUserShield,
 } from "react-icons/fa";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { cn } from "@/lib/utils";
@@ -57,6 +62,7 @@ const menuItems: MenuItem[] = [
       },
       { label: "Student Group", href: "/admin/student-info/group" },
       { label: "Student Promote", href: "/admin/student-info/promote" },
+      { label: "Student Export", href: "/admin/student-info/studentexport" },
     ],
   },
   {
@@ -314,6 +320,35 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
+    icon: FaHotel,
+    label: "Dormitory",
+    subItems: [
+      { label: "Dormitory", href: "/admin/dormitory/dormitory" },
+      { label: "Dormitory Rooms", href: "/admin/dormitory/dormitoryrooms" },
+      { label: "Room Type", href: "/admin/dormitory/roomtype" },
+    ],
+  },
+  {
+    icon: FaBus,
+    label: "Transport",
+    subItems: [
+      { label: "Routes", href: "/admin/transport/routes" },
+      { label: "Vehicle", href: "/admin/transport/vehicle" },
+      { label: "Assign Vehicle", href: "/admin/transport/assignvehicle" },
+    ],
+  },
+  {
+    icon: FaUserShield,
+    label: "Roles & Permissions",
+    subItems: [
+      { label: "Manage Roles", href: "/admin/role&permission/managerole" },
+      {
+        label: "Login Permission",
+        href: "/admin/role&permission/loginpermission",
+      },
+    ],
+  },
+  {
     icon: FaWallet,
     label: "Wallet",
     subItems: [
@@ -330,6 +365,216 @@ const menuItems: MenuItem[] = [
       {
         label: "Wallet Transaction",
         href: "/admin/accounts/wallet/wallettransaction",
+      },
+    ],
+  },
+  {
+    icon: FaFileAlt,
+    label: "Student Reports",
+    subItems: [
+      {
+        label: "Student Attendance Report",
+        href: "/admin/reports/studentreports/student-attendance-report",
+      },
+      {
+        label: "Subject Attendance Report",
+        href: "/admin/reports/studentreports/subject-attendance-report",
+      },
+      {
+        label: "Home Work Evaluation Report",
+        href: "/admin/reports/studentreports/home-work-evaluation-report",
+      },
+      {
+        label: "Student Transport Report",
+        href: "/admin/reports/studentreports/student-transport-report",
+      },
+      {
+        label: "Student Dormitory Report",
+        href: "/admin/reports/studentreports/student-dormitory-report",
+      },
+      {
+        label: "Guardian Report",
+        href: "/admin/reports/studentreports/guardian-report",
+      },
+      {
+        label: "Student History",
+        href: "/admin/reports/studentreports/student-history",
+      },
+      {
+        label: "Student Login Report",
+        href: "/admin/reports/studentreports/student-login-report",
+      },
+      {
+        label: "Class Report",
+        href: "/admin/reports/studentreports/class-report",
+      },
+      {
+        label: "Class Routine",
+        href: "/admin/reports/studentreports/class-routine",
+      },
+      { label: "User Log", href: "/admin/reports/studentreports/user-log" },
+      {
+        label: "Student Report",
+        href: "/admin/reports/studentreports/student-report",
+      },
+      {
+        label: "Previous Record",
+        href: "/admin/reports/studentreports/previous-record",
+      },
+    ],
+  },
+  {
+    icon: FaClipboardList,
+    label: "Exam Reports",
+    subItems: [
+      {
+        label: "Exam Routine",
+        href: "/admin/reports/examreports/exam-routine",
+      },
+      {
+        label: "Merit List Report",
+        href: "/admin/reports/examreports/merit-list-report",
+      },
+      {
+        label: "Online Exam Report",
+        href: "/admin/reports/examreports/online-exam-report",
+      },
+      {
+        label: "Mark Sheet Report",
+        href: "/admin/reports/examreports/mark-sheet-report",
+      },
+      {
+        label: "Tabulation Sheet Report",
+        href: "/admin/reports/examreports/tabulation-sheet-report",
+      },
+      {
+        label: "Progress Card Report",
+        href: "/admin/reports/examreports/progress-card-report",
+      },
+      {
+        label: "Progress Card Report 100%",
+        href: "/admin/reports/examreports/progress-card-report-100",
+      },
+      {
+        label: "Previous Result",
+        href: "/admin/reports/examreports/previous-result",
+      },
+    ],
+  },
+  {
+    icon: FaUsers,
+    label: "Staff Reports",
+    subItems: [
+      {
+        label: "Staff Attendance Report",
+        href: "/admin/reports/staffreports/staff-attendance-report",
+      },
+      {
+        label: "Payroll Report",
+        href: "/admin/reports/staffreports/payroll-report",
+      },
+    ],
+  },
+  {
+    icon: FaFileInvoiceDollar,
+    label: "Fees Reports",
+    subItems: [
+      {
+        label: "Fees Due Report",
+        href: "/admin/reports/feesreports/fees-due-report",
+      },
+      { label: "Fine Report", href: "/admin/reports/feesreports/fine-report" },
+      {
+        label: "Payment Report",
+        href: "/admin/reports/feesreports/payment-report",
+      },
+      {
+        label: "Balance Report",
+        href: "/admin/reports/feesreports/balance-report",
+      },
+      {
+        label: "Waiver Report",
+        href: "/admin/reports/feesreports/waiver-report",
+      },
+    ],
+  },
+  {
+    icon: FaCalculator,
+    label: "Accounts Reports",
+    subItems: [
+      {
+        label: "Payroll Report",
+        href: "/admin/reports/accountsreports/payroll-report",
+      },
+      {
+        label: "Transaction",
+        href: "/admin/reports/accountsreports/transaction",
+      },
+      {
+        label: "Wallet Report",
+        href: "/admin/reports/accountsreports/wallet-report",
+      },
+    ],
+  },
+  {
+    icon: FaCog,
+    label: "General Settings",
+    subItems: [
+      {
+        label: "Student Settings",
+        href: "/admin/settings/general-settings/student-settings",
+      },
+      {
+        label: "Lesson Plan Setting",
+        href: "/admin/settings/general-settings/lesson-plan-setting",
+      },
+      {
+        label: "Staff Settings",
+        href: "/admin/settings/general-settings/staff-settings",
+      },
+      {
+        label: "General Settings",
+        href: "/admin/settings/general-settings/general-settings-inner",
+      },
+      {
+        label: "Academic Year",
+        href: "/admin/settings/general-settings/academic-year",
+      },
+      { label: "Holiday", href: "/admin/settings/general-settings/holiday" },
+      {
+        label: "Notification Setting",
+        href: "/admin/settings/general-settings/notification-setting",
+      },
+      {
+        label: "Email Setting",
+        href: "/admin/settings/general-settings/email-setting",
+      },
+      {
+        label: "Payment Settings",
+        href: "/admin/settings/general-settings/payment-settings",
+      },
+      {
+        label: "Base Setup",
+        href: "/admin/settings/general-settings/base-setup",
+      },
+      {
+        label: "SMS Settings",
+        href: "/admin/settings/general-settings/sms-settings",
+      },
+      { label: "Weekend", href: "/admin/settings/general-settings/weekend" },
+      {
+        label: "Language Settings",
+        href: "/admin/settings/general-settings/language-settings",
+      },
+    ],
+  },
+  {
+    icon: FaFileInvoiceDollar,
+    label: "Fees Settings",
+    subItems: [
+      {
+        label: "Fees Invoice Settings",
+        href: "/admin/settings/fees-settings/fees-invoice-settings",
       },
     ],
   },

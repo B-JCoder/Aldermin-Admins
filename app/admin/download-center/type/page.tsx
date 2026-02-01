@@ -66,7 +66,7 @@ export default function ContentTypePage() {
         <div className="lg:col-span-4">
           <AdminCard
             title="Add New Type"
-            description="Create a new content classification."
+            subtitle="Create a new content classification."
           >
             <form className="space-y-4">
               <div className="space-y-2">
