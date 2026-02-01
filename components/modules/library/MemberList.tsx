@@ -40,13 +40,11 @@ export function MemberList({ members }: MemberListProps) {
   const totalPages = Math.ceil(members.length / pageSize);
   const paginatedMembers = members.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   return (
     <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
-
       <div className="p-8 pb-4 relative z-10 border-b border-gray-200">
         <h4 className="text-xs font-semibold text-gray-500   leading-none">
           Active Membership Indices
@@ -104,17 +102,11 @@ export function MemberList({ members }: MemberListProps) {
                   <TableCell className="px-6 py-8">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2 text-[10px] text-gray-500 ">
-                        <FaEnvelope
-                          className="text-gray-500/50"
-                          size={10}
-                        />
+                        <FaEnvelope className="text-gray-500/50" size={10} />
                         <span>{m.email}</span>
                       </div>
                       <div className="flex items-center gap-2 text-[10px] text-gray-500 ">
-                        <FaPhone
-                          className="text-gray-500/50"
-                          size={10}
-                        />
+                        <FaPhone className="text-gray-500/50" size={10} />
                         <span>{m.mobile}</span>
                       </div>
                     </div>

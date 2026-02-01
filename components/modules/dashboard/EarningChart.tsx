@@ -31,16 +31,30 @@ const chartData = [
 ];
 
 export function EarningChart() {
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return (
+      <AdminCard className="p-6 h-[400px] flex items-center justify-center">
+        Loading...
+      </AdminCard>
+    );
+  }
+
   return (
     <AdminCard className="p-6 h-[400px] flex flex-col">
       <div className="flex justify-between items-center mb-6">
         <h4 className="font-semibold text-foreground text-sm  ">Earning</h4>
         <div className="flex gap-4 items-center">
-          <div className="flex items-center gap-2 text-[10px] font-bold  tracking-wider text-gray-500">
-            <FaCircle className="text-secondary" size={8} /> Income
+          <div className="flex items-center gap-2 text-[10px] font-bold tracking-wider text-gray-500">
+            <FaCircle className="text-[#016956]" size={8} /> Income
           </div>
-          <div className="flex items-center gap-2 text-[10px] font-bold  tracking-wider text-gray-500">
-            <FaCircle className="text-gray-300" size={8} /> Expense
+          <div className="flex items-center gap-2 text-[10px] font-bold tracking-wider text-gray-500">
+            <FaCircle className="text-orange-400" size={8} /> Expense
           </div>
         </div>
         <button>
@@ -50,7 +64,7 @@ export function EarningChart() {
           />
         </button>
       </div>
-      <div className="flex-1 w-full min-h-0 relative">
+      <div className="flex-1 w-full relative" style={{ minHeight: "300px" }}>
         {/* Explicitly adding width/height to container or using 99% to avoid float math issues sometimes in rechart */}
         <div
           style={{
@@ -68,56 +82,57 @@ export function EarningChart() {
             >
               <defs>
                 <linearGradient id="colorIncome" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#006D5F" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="#006D5F" stopOpacity={0.05} />
+                  <stop offset="5%" stopColor="#016956" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#016956" stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="colorExpense" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#e5e7eb" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="#e5e7eb" stopOpacity={0.1} />
+                  <stop offset="5%" stopColor="#FB923C" stopOpacity={0.2} />
+                  <stop offset="95%" stopColor="#FB923C" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <XAxis
                 dataKey="month"
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "#9ca3af", fontSize: 10, fontWeight: 700 }}
+                tick={{ fill: "#9ca3af", fontSize: 11, fontWeight: 600 }}
                 dy={10}
               />
               <YAxis
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "#9ca3af", fontSize: 10, fontWeight: 700 }}
+                tick={{ fill: "#9ca3af", fontSize: 11, fontWeight: 600 }}
                 dx={-10}
               />
               <CartesianGrid
                 vertical={false}
                 stroke="#f3f4f6"
-                strokeDasharray="3 3"
+                strokeDasharray="0"
               />
               <Tooltip
+                cursor={{ stroke: "#f3f4f6", strokeWidth: 2 }}
                 contentStyle={{
-                  borderRadius: "12px",
-                  border: "none",
-                  boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)",
-                  backgroundColor: "rgba(255, 255, 255, 0.9)",
-                  backdropFilter: "blur(4px)",
+                  borderRadius: "16px",
+                  border: "1px solid #f3f4f6",
+                  boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)",
+                  backgroundColor: "rgba(255, 255, 255, 0.95)",
+                  backdropFilter: "blur(8px)",
                   fontSize: "12px",
-                  fontWeight: "bold",
+                  fontWeight: "700",
                 }}
               />
               <Area
                 type="monotone"
                 dataKey="income"
-                stroke="#006D5F"
-                strokeWidth={3}
+                stroke="#016956"
+                strokeWidth={4}
                 fillOpacity={1}
                 fill="url(#colorIncome)"
               />
               <Area
                 type="monotone"
                 dataKey="expense"
-                stroke="#d1d5db"
-                strokeWidth={3}
+                stroke="#FB923C"
+                strokeWidth={4}
                 fillOpacity={1}
                 fill="url(#colorExpense)"
               />

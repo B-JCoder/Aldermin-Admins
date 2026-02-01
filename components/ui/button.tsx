@@ -9,10 +9,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "bg-secondary text-white shadow-lg shadow-secondary/20 hover:bg-secondary/90",
+        default: "bg-secondary text-white hover:bg-secondary/90",
         destructive:
-          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 shadow-lg shadow-destructive/20",
+          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20",
         outline:
           "border border-white/40 bg-white/50 shadow-sm hover:bg-white hover:text-secondary",
         secondary:
@@ -33,7 +32,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 function Button({

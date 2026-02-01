@@ -34,13 +34,11 @@ export function MarkGradeList({ grades }: MarkGradeListProps) {
   const totalPages = Math.ceil(grades.length / pageSize);
   const paginatedGrades = grades.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   return (
     <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative h-full">
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none"></div>
-
       <div className="p-8 pb-4 relative z-10 border-b border-gray-200 flex items-center justify-between">
         <h4 className="text-xs font-semibold text-gray-500   leading-none flex items-center gap-2">
           Institutional Grade Index

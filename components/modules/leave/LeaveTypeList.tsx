@@ -27,8 +27,6 @@ interface LeaveTypeListProps {
 export function LeaveTypeList({ types }: LeaveTypeListProps) {
   return (
     <AdminCard className="h-full overflow-hidden p-0 relative">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
-
       <div className="p-8 pb-4 flex items-center justify-between relative">
         <h4 className="text-xs font-semibold text-gray-500   leading-none">
           Active Types

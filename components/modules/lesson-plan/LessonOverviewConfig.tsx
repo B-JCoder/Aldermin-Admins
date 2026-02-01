@@ -26,7 +26,7 @@ export function LessonOverviewConfig({
     handleInputChange({ target: { name, value } });
   };
   return (
-    <AdminCard className="p-4 md:p-8 h-full bg-gradient-to-br from-white to-secondary/5">
+    <AdminCard className="p-4 md:p-8 h-full bg-white">
       <h4 className="mb-8 text-xs font-semibold text-gray-400   leading-none flex items-center gap-2">
         Auditor Configuration
         <div className="h-[1px] flex-1 bg-secondary/20"></div>
@@ -41,9 +41,11 @@ export function LessonOverviewConfig({
             onValueChange={(val) => onSelectChange("teacher", val)}
             value={formData.teacher}
           >
-            <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold outline-none bg-white shadow-sm focus:ring-2 focus:ring-secondary/20 h-10">
-              <SelectValue placeholder="Select Staff" />
-            </SelectTrigger>
+            <div className="relative">
+              <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold outline-none bg-white focus:ring-2 focus:ring-secondary/20 h-10">
+                <SelectValue placeholder="Select Staff" />
+              </SelectTrigger>
+            </div>
             <SelectContent>
               <SelectItem value="1">Marcus Aurelius</SelectItem>
             </SelectContent>
@@ -59,7 +61,7 @@ export function LessonOverviewConfig({
               onValueChange={(val) => onSelectChange("className", val)}
               value={formData.className}
             >
-              <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold outline-none bg-white shadow-sm focus:ring-2 focus:ring-secondary/20 h-10">
+              <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold outline-none bg-white focus:ring-2 focus:ring-secondary/20 h-10">
                 <SelectValue placeholder="Select" />
               </SelectTrigger>
               <SelectContent>
@@ -75,7 +77,7 @@ export function LessonOverviewConfig({
               onValueChange={(val) => onSelectChange("section", val)}
               value={formData.section}
             >
-              <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold outline-none bg-white shadow-sm focus:ring-2 focus:ring-secondary/20 h-10">
+              <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold outline-none bg-white focus:ring-2 focus:ring-secondary/20 h-10">
                 <SelectValue placeholder="Select" />
               </SelectTrigger>
               <SelectContent>
@@ -93,7 +95,7 @@ export function LessonOverviewConfig({
             onValueChange={(val) => onSelectChange("subject", val)}
             value={formData.subject}
           >
-            <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold outline-none bg-white shadow-sm focus:ring-2 focus:ring-secondary/20 h-10">
+            <SelectTrigger className="w-full rounded-xl border-gray-200 p-4 text-xs font-bold outline-none bg-white focus:ring-2 focus:ring-secondary/20 h-10">
               <SelectValue placeholder="Select" />
             </SelectTrigger>
             <SelectContent>
@@ -103,7 +105,7 @@ export function LessonOverviewConfig({
         </div>
 
         <div className="pt-6">
-          <Button className="w-full py-6 bg-secondary text-white rounded-xl text-xs font-semibold   shadow-xl shadow-secondary/10 hover:bg-secondary/90 transition-all flex items-center justify-center gap-2">
+          <Button className="w-full py-6 bg-secondary text-white rounded-xl text-xs font-semibold hover:bg-secondary/90 transition-all flex items-center justify-center gap-2">
             <FaGraduationCap size={16} />
             Verify Progress
           </Button>

@@ -23,7 +23,7 @@ export function AdminCard({
   return (
     <div
       className={cn(
-        "rounded-xl bg-white border border-gray-100 shadow-sm transition-all duration-200",
+        "rounded-xl bg-white border border-gray-100 transition-all duration-200",
         variant === "bordered" &&
           "border-2 border-dashed border-gray-200 bg-transparent shadow-none",
         variant === "highlighted" && "bg-secondary/5 border-secondary/10",
@@ -46,7 +46,12 @@ export function AdminCard({
           {action && <div>{action}</div>}
         </div>
       )}
-      <div className={cn("p-0", title || description ? "p-6" : "")}>
+      <div
+        className={cn(
+          "p-0 flex flex-col flex-1",
+          title || description ? "p-6" : "",
+        )}
+      >
         {children}
       </div>
     </div>

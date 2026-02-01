@@ -40,13 +40,13 @@ export function BookList({ books }: BookListProps) {
     (b) =>
       b.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       b.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      b.number.toLowerCase().includes(searchTerm.toLowerCase())
+      b.number.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const totalPages = Math.ceil(filteredBooks.length / pageSize);
   const paginatedBooks = filteredBooks.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   return (
@@ -58,8 +58,6 @@ export function BookList({ books }: BookListProps) {
       />
 
       <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
-
         <div className="p-8 pb-4 relative z-10 border-b border-gray-200">
           <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Bibliographic Archive

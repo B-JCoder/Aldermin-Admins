@@ -49,13 +49,13 @@ export function AttendanceTable({
   const filteredStudents = students.filter(
     (student) =>
       student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      student.admissionNo.toLowerCase().includes(searchTerm.toLowerCase())
+      student.admissionNo.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const totalPages = Math.ceil(filteredStudents.length / pageSize);
   const paginatedStudents = filteredStudents.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   return (
@@ -67,8 +67,6 @@ export function AttendanceTable({
       />
 
       <AdminCard className="flex-1 flex flex-col p-0 overflow-hidden relative">
-        
-
         <div className="p-8 pb-4 relative z-10 border-b border-gray-200">
           <h4 className="text-xs font-semibold text-gray-500   leading-none">
             Attendance Matrix
@@ -107,7 +105,7 @@ export function AttendanceTable({
                     </TableCell>
                     <TableCell className="px-6 py-8">
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-gray-500 group-hover:bg-secondary/10 group-hover:text-secondary transition-colors border border-gray-200 shadow-sm">
+                        <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-gray-500 group-hover:bg-secondary/10 group-hover:text-secondary transition-colors border border-gray-200">
                           <FaUserGraduate size={16} />
                         </div>
                         <div>
@@ -136,7 +134,7 @@ export function AttendanceTable({
                           onClick={() => toggleStatus(student.id, "Present")}
                           className={`w-10 h-10 rounded-xl transition-all ${
                             student.status === "Present"
-                              ? "bg-emerald-600 text-white shadow-lg shadow-emerald-200 hover:bg-emerald-700 hover:text-white"
+                              ? "bg-emerald-600 text-white hover:bg-emerald-700 hover:text-white"
                               : "text-gray-500 hover:bg-emerald-50 hover:text-emerald-500"
                           }`}
                         >
@@ -148,7 +146,7 @@ export function AttendanceTable({
                           onClick={() => toggleStatus(student.id, "Late")}
                           className={`w-10 h-10 rounded-xl transition-all ${
                             student.status === "Late"
-                              ? "bg-amber-500 text-white shadow-lg shadow-amber-200 hover:bg-amber-600 hover:text-white"
+                              ? "bg-amber-500 text-white hover:bg-amber-600 hover:text-white"
                               : "text-gray-500 hover:bg-amber-50 hover:text-amber-500"
                           }`}
                         >
@@ -160,7 +158,7 @@ export function AttendanceTable({
                           onClick={() => toggleStatus(student.id, "Absent")}
                           className={`w-10 h-10 rounded-xl transition-all ${
                             student.status === "Absent"
-                              ? "bg-rose-600 text-white shadow-lg shadow-rose-200 hover:bg-rose-700 hover:text-white"
+                              ? "bg-rose-600 text-white hover:bg-rose-700 hover:text-white"
                               : "text-gray-500 hover:bg-rose-50 hover:text-rose-500"
                           }`}
                         >
