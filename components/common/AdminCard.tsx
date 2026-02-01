@@ -8,6 +8,7 @@ interface AdminCardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "default" | "bordered" | "highlighted";
   title?: string;
   description?: string;
+  subtitle?: string;
   action?: React.ReactNode;
 }
 
@@ -17,9 +18,11 @@ export function AdminCard({
   variant = "default",
   title,
   description,
+  subtitle,
   action,
   ...props
 }: AdminCardProps) {
+  const displayDescription = description || subtitle;
   return (
     <div
       className={cn(
@@ -31,7 +34,7 @@ export function AdminCard({
       )}
       {...props}
     >
-      {(title || description || action) && (
+      {(title || displayDescription || action) && (
         <div className="flex flex-col sm:flex-row sm:items-center justify-between p-6 pb-4 gap-4 border-b border-gray-50/50">
           <div className="space-y-1">
             {title && (
@@ -39,8 +42,8 @@ export function AdminCard({
                 {title}
               </h3>
             )}
-            {description && (
-              <p className="text-sm text-gray-500">{description}</p>
+            {displayDescription && (
+              <p className="text-sm text-gray-500">{displayDescription}</p>
             )}
           </div>
           {action && <div>{action}</div>}
@@ -49,7 +52,7 @@ export function AdminCard({
       <div
         className={cn(
           "p-0 flex flex-col flex-1",
-          title || description ? "p-6" : "",
+          title || displayDescription ? "p-6" : "",
         )}
       >
         {children}
