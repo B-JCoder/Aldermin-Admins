@@ -34,9 +34,7 @@ export function EarningChart() {
   return (
     <AdminCard className="p-6 h-[400px] flex flex-col">
       <div className="flex justify-between items-center mb-6">
-        <h4 className="font-semibold text-foreground text-sm  ">
-          Earning
-        </h4>
+        <h4 className="font-semibold text-foreground text-sm  ">Earning</h4>
         <div className="flex gap-4 items-center">
           <div className="flex items-center gap-2 text-[10px] font-bold  tracking-wider text-gray-500">
             <FaCircle className="text-secondary" size={8} /> Income

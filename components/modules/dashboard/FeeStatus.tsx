@@ -58,7 +58,9 @@ export function FeeStatus() {
             >
               Overdue
             </Badge>
-            <strong className="text-red-800 text-lg font-semibold">$1,450</strong>
+            <strong className="text-red-800 text-lg font-semibold">
+              $1,450
+            </strong>
           </div>
         </div>
       </div>

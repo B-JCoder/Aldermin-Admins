@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import {
   FaTachometerAlt,
   FaUserGraduate,
@@ -19,7 +20,11 @@ import {
   FaPrint,
   FaDownload,
   FaUser,
-  FaTimes, // Added close icon for mobile header
+  FaTimes,
+  FaWallet,
+  FaBoxes,
+  FaBullhorn,
+  FaCalculator,
 } from "react-icons/fa";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { cn } from "@/lib/utils";
@@ -247,6 +252,87 @@ const menuItems: MenuItem[] = [
       { label: "Video List", href: "/admin/download-center/video" },
     ],
   },
+  {
+    icon: FaCalculator,
+    label: "Accounts",
+    subItems: [
+      { label: "Bank Account", href: "/admin/accounts/accounts/bankaccount" },
+      {
+        label: "Chart of Account",
+        href: "/admin/accounts/accounts/chartofaccount",
+      },
+      { label: "Expense", href: "/admin/accounts/accounts/expence" },
+      { label: "Fund Transfer", href: "/admin/accounts/accounts/fundtransfer" },
+      { label: "Income", href: "/admin/accounts/accounts/income" },
+      {
+        label: "Profit & Loss",
+        href: "/admin/accounts/accounts/profitandlost",
+      },
+    ],
+  },
+  {
+    icon: FaBullhorn,
+    label: "Communicate",
+    subItems: [
+      { label: "Calendar", href: "/admin/accounts/communicate/calendar" },
+      {
+        label: "Email/SMS Log",
+        href: "/admin/accounts/communicate/emailsmsandlog",
+      },
+      { label: "Event", href: "/admin/accounts/communicate/event" },
+      {
+        label: "Notice Board",
+        href: "/admin/accounts/communicate/noticeboard",
+      },
+      {
+        label: "Send Email/SMS",
+        href: "/admin/accounts/communicate/sendemailandsms",
+      },
+    ],
+  },
+  {
+    icon: FaBoxes,
+    label: "Inventory",
+    subItems: [
+      {
+        label: "Item Category",
+        href: "/admin/accounts/inventory/itemcategory",
+      },
+      { label: "Item Issue", href: "/admin/accounts/inventory/itemissue" },
+      { label: "Item List", href: "/admin/accounts/inventory/itemlist" },
+      { label: "Item Receive", href: "/admin/accounts/inventory/itemreceive" },
+      {
+        label: "Item Receive List",
+        href: "/admin/accounts/inventory/itemreceivelist",
+      },
+      {
+        label: "Item Sell List",
+        href: "/admin/accounts/inventory/itemselllist",
+      },
+      { label: "Item Store", href: "/admin/accounts/inventory/itemstore" },
+      { label: "Suppliers", href: "/admin/accounts/inventory/supplier" },
+    ],
+  },
+  {
+    icon: FaWallet,
+    label: "Wallet",
+    subItems: [
+      {
+        label: "Approved Deposit",
+        href: "/admin/accounts/wallet/approveddeposit",
+      },
+      {
+        label: "Pending Deposit",
+        href: "/admin/accounts/wallet/pendingdeposit",
+      },
+      { label: "Refund Request", href: "/admin/accounts/wallet/refundrequest" },
+      { label: "Reject Deposit", href: "/admin/accounts/wallet/rejectdeposit" },
+      {
+        label: "Wallet Transaction",
+        href: "/admin/accounts/wallet/wallettransaction",
+      },
+    ],
+  },
   { icon: FaUser, label: "User", href: "/admin/user" },
 ];
 
@@ -257,6 +343,7 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const [openSubMenus, setOpenSubMenus] = useState<string[]>([]);
+  const pathname = usePathname();
 
   const toggleSubMenu = (label: string) => {
     setOpenSubMenus((prev) =>
@@ -268,7 +355,6 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
 
   return (
     <>
-      {/* Overlay for mobile */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-40 md:hidden backdrop-blur-sm"
@@ -279,15 +365,18 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
       <aside
         className={cn(
           "w-64 bg-sidebar text-sidebar-foreground h-screen overflow-y-auto custom-scrollbar flex-shrink-0 transition-transform duration-300 border-r border-sidebar-border/10",
-          "fixed top-0 left-0 z-50 md:sticky md:top-0 md:transform-none", // Mobile: fixed. Desktop: sticky.
-          isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0", // Toggle transform on mobile, always visible on desktop
+          "fixed top-0 left-0 z-50 md:sticky md:top-0 md:transform-none",
+          isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0",
         )}
       >
         <div className="p-4 flex items-center justify-between border-b border-sidebar-border/10">
-          {/* Logo */}
-          <h1 className="text-2xl font-bold tracking-tight">Aldermin</h1>
+          <div className="flex flex-col">
+            <h1 className="text-2xl font-bold tracking-tight">Aldermin</h1>
+            <span className="text-[10px] text-white/50 font-bold uppercase tracking-widest leading-none mt-1">
+              Management
+            </span>
+          </div>
 
-          {/* Close button for mobile */}
           <button
             onClick={onClose}
             className="md:hidden text-sidebar-foreground hover:text-white transition-colors"
@@ -296,66 +385,86 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
           </button>
         </div>
         <nav className="mt-4 pb-20">
+          <div className="px-4 mb-2">
+            <span className="text-[10px] font-black uppercase tracking-widest text-white/40">
+              Navigation
+            </span>
+          </div>
           <ul>
-            {menuItems.map((item, index) => (
-              <li
-                key={index}
-                className="border-l-4 border-transparent hover:border-sidebar-foreground/50"
-              >
-                {item.subItems ? (
-                  <div>
-                    <button
-                      onClick={() => toggleSubMenu(item.label)}
-                      className="w-full flex items-center justify-between px-4 py-3 text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all duration-200"
-                    >
-                      <div className="flex items-center gap-3">
-                        <item.icon className="text-lg opacity-90" />
-                        <span className="font-medium text-sm">
-                          {item.label}
-                        </span>
+            {menuItems.map((item, index) => {
+              const isActive = pathname === item.href;
+              const isSubOpen = openSubMenus.includes(item.label);
+
+              return (
+                <li
+                  key={index}
+                  className={cn(
+                    "border-l-4 border-transparent transition-all duration-200",
+                    isActive
+                      ? "border-white bg-white/10"
+                      : "hover:border-sidebar-foreground/50",
+                  )}
+                >
+                  {item.subItems ? (
+                    <div>
+                      <button
+                        onClick={() => toggleSubMenu(item.label)}
+                        className="w-full flex items-center justify-between px-4 py-3 text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all duration-200"
+                      >
+                        <div className="flex items-center gap-3">
+                          <item.icon className="text-lg opacity-90" />
+                          <span className="font-medium text-sm">
+                            {item.label}
+                          </span>
+                        </div>
+                        {isSubOpen ? <IoIosArrowDown /> : <IoIosArrowForward />}
+                      </button>
+                      <div
+                        className={cn(
+                          "bg-black/10 overflow-hidden transition-all duration-300 ease-in-out",
+                          isSubOpen
+                            ? "max-h-[1000px] opacity-100"
+                            : "max-h-0 opacity-0",
+                        )}
+                      >
+                        <ul className="py-2">
+                          {item.subItems.map((subItem, subIndex) => (
+                            <li key={subIndex}>
+                              <Link
+                                href={subItem.href}
+                                onClick={onClose}
+                                className={cn(
+                                  "block px-4 py-2 pl-12 text-xs font-medium transition-colors",
+                                  pathname === subItem.href
+                                    ? "text-white font-bold"
+                                    : "text-sidebar-foreground/70 hover:text-white hover:bg-white/10",
+                                )}
+                              >
+                                {subItem.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      {openSubMenus.includes(item.label) ? (
-                        <IoIosArrowDown />
-                      ) : (
-                        <IoIosArrowForward />
-                      )}
-                    </button>
-                    {/* Submenu */}
-                    <div
+                    </div>
+                  ) : (
+                    <Link
+                      href={item.href || "#"}
+                      onClick={onClose}
                       className={cn(
-                        "bg-black/10 overflow-hidden transition-all duration-300 ease-in-out",
-                        openSubMenus.includes(item.label)
-                          ? "max-h-[1000px] opacity-100"
-                          : "max-h-0 opacity-0",
+                        "flex items-center gap-3 px-4 py-3 transition-all duration-200",
+                        isActive
+                          ? "text-white font-bold"
+                          : "text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                       )}
                     >
-                      <ul className="py-2">
-                        {item.subItems.map((subItem, subIndex) => (
-                          <li key={subIndex}>
-                            <Link
-                              href={subItem.href}
-                              onClick={onClose} // Auto close on navigation
-                              className="block px-4 py-2 pl-12 text-xs font-medium text-sidebar-foreground/70 hover:text-white hover:bg-white/10 transition-colors"
-                            >
-                              {subItem.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                ) : (
-                  <Link
-                    href={item.href || "#"}
-                    onClick={onClose}
-                    className="flex items-center gap-3 px-4 py-3 text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all duration-200"
-                  >
-                    <item.icon className="text-lg opacity-90" />
-                    <span className="font-medium text-sm">{item.label}</span>
-                  </Link>
-                )}
-              </li>
-            ))}
+                      <item.icon className="text-lg opacity-90" />
+                      <span className="font-medium text-sm">{item.label}</span>
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </aside>

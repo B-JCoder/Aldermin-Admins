@@ -5,25 +5,27 @@ import { AdminCard } from "@/components/common/AdminCard";
 
 export function WelcomeCard() {
   return (
-    <AdminCard className="h-full p-4 md:p-8 relative overflow-hidden flex flex-col lg:flex-row justify-between items-center group">
+    <AdminCard className="h-full p-6 sm:p-8 relative overflow-hidden flex flex-col md:flex-row justify-between items-center group min-h-[220px]">
       {/* Text Section */}
-      <div className="flex-grow-1 z-10 max-w-lg mb-6 lg:mb-0 text-center lg:text-left">
-        <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-3 tracking-tight">
+      <div className="flex-1 z-10 max-w-xl mb-6 md:mb-0 text-center md:text-left">
+        <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 tracking-tight">
           Welcome back,{" "}
-          <span className="text-secondary">The Deenway School Team!</span>
+          <span className="text-secondary block sm:inline">
+            The Deenway School Team!
+          </span>
         </h2>
-        <p className="text-gray-500 leading-relaxed text-sm font-medium">
+        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base font-medium max-w-md mx-auto md:mx-0">
           Manage your school operations with ease. Stay updated on academics,
-          attendance, finances, and more — all in one place. Let’s keep shaping
-          a brighter future together!
+          attendance, finances, and more — all in one place.
         </p>
       </div>
+
       {/* Image Section */}
-      <div className="flex-shrink-0 relative z-10 w-full lg:w-auto flex justify-center lg:block">
+      <div className="flex-shrink-0 relative z-10 w-full md:w-auto flex justify-center">
         <img
           src="/assets/images/dashboard-img/img-1.png"
-          alt="Decoration"
-          className="h-[150px] md:h-[220px] object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-105"
+          alt="Dashboard Illustration"
+          className="h-32 sm:h-48 md:h-52 object-contain drop-shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:-rotate-2"
           onError={(e) =>
             ((e.target as HTMLImageElement).style.display = "none")
           }
@@ -31,7 +33,8 @@ export function WelcomeCard() {
       </div>
 
       {/* Decorative gradient blob */}
-      <div className="absolute -right-20 -top-20 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+      <div className="absolute -right-16 -top-16 w-64 h-64 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute -left-16 -bottom-16 w-48 h-48 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
     </AdminCard>
   );
 }

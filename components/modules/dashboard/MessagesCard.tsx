@@ -9,9 +9,7 @@ export function MessagesCard() {
   return (
     <AdminCard className="p-6 h-[400px] flex flex-col">
       <div className="flex justify-between items-center mb-6">
-        <h6 className="font-semibold text-foreground text-sm  ">
-          Messages
-        </h6>
+        <h6 className="font-semibold text-foreground text-sm  ">Messages</h6>
         <button>
           <BiDotsVerticalRounded
             size={20}
@@ -53,9 +51,7 @@ export function MessagesCard() {
               <h6 className="font-bold text-sm text-foreground leading-none group-hover:text-secondary transition-colors">
                 Sarah Smith
               </h6>
-              <small className="text-gray-500 text-[10px] font-bold ">
-                2h
-              </small>
+              <small className="text-gray-500 text-[10px] font-bold ">2h</small>
             </div>
             <p className="text-xs text-gray-500 line-clamp-2 leading-relaxed font-medium">
               Meeting request for next week regarding the science fair...
@@ -76,9 +72,7 @@ export function MessagesCard() {
               <h6 className="font-bold text-sm text-foreground leading-none group-hover:text-secondary transition-colors">
                 Admin
               </h6>
-              <small className="text-gray-500 text-[10px] font-bold ">
-                5h
-              </small>
+              <small className="text-gray-500 text-[10px] font-bold ">5h</small>
             </div>
             <p className="text-xs text-gray-500 line-clamp-2 leading-relaxed font-medium">
               System maintenance notice scheduled for this weekend...
