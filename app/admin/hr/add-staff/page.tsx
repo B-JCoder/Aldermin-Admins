@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { Button } from "@/components/ui/button";
+import { apiService } from "@/lib/api-service";
 import {
   FaUserShield,
   FaIdCard,
@@ -22,6 +23,15 @@ import {
 } from "react-icons/fa";
 
 export default function AddStaffPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [roles, setRoles] = useState<string[]>([]);
+  const [departments, setDepartments] = useState<
+    { id: number; title: string }[]
+  >([]);
+  const [designations, setDesignations] = useState<
+    { id: number; title: string }[]
+  >([]);
+
   const [formData, setFormData] = useState({
     staffNo: "",
     role: "",
@@ -62,10 +72,28 @@ export default function AddStaffPage() {
     nic: "",
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [rolesRes, deptsRes, desigsRes] = await Promise.all([
+          apiService.hr.getRoles(),
+          apiService.hr.getDepartments(),
+          apiService.hr.getDesignations(),
+        ]);
+        setRoles(rolesRes as string[]);
+        setDepartments(deptsRes as any[]);
+        setDesignations(desigsRes as any[]);
+      } catch (error) {
+        console.error("Error fetching form options:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -73,16 +101,24 @@ export default function AddStaffPage() {
 
   const handleFileChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    field: string
+    field: string,
   ) => {
     if (e.target.files) {
       setFormData((prev) => ({ ...prev, [field]: e.target.files![0] }));
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Saving Staff Details", formData);
+    setIsSubmitting(true);
+    try {
+      await apiService.hr.createStaff(formData);
+      alert("Staff profile finalized and archived.");
+    } catch (error) {
+      alert("Critical failure during record archival.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const SectionTitle = ({
@@ -102,9 +138,7 @@ export default function AddStaffPage() {
         <h4 className="text-lg font-semibold text-gray-800 tracking-tight ">
           {title}
         </h4>
-        <p className="text-[10px] text-gray-400 font-bold  ">
-          {subtitle}
-        </p>
+        <p className="text-[10px] text-gray-400 font-bold  ">{subtitle}</p>
       </div>
       <div className="flex-1 border-b border-dashed border-gray-100 ml-4"></div>
     </div>
@@ -150,9 +184,12 @@ export default function AddStaffPage() {
                 onChange={handleInputChange}
                 className="w-full rounded-2xl bg-gray-50 border-gray-100 p-4 text-sm font-bold focus:ring-2 focus:ring-blue-500/20 outline-none"
               >
-                <option value="">Select</option>
-                <option value="teacher">Teacher</option>
-                <option value="admin">Administrator</option>
+                <option value="">Select Role</option>
+                {roles.map((role) => (
+                  <option key={role} value={role.toLowerCase()}>
+                    {role}
+                  </option>
+                ))}
               </select>
             </div>
             <div>
@@ -164,8 +201,12 @@ export default function AddStaffPage() {
                 onChange={handleInputChange}
                 className="w-full rounded-2xl bg-gray-50 border-gray-100 p-4 text-sm font-bold focus:ring-2 focus:ring-blue-500/20 outline-none"
               >
-                <option value="">Select</option>
-                <option value="academic">Academic</option>
+                <option value="">Select Dept</option>
+                {departments.map((dept) => (
+                  <option key={dept.id} value={dept.id}>
+                    {dept.title}
+                  </option>
+                ))}
               </select>
             </div>
             <div>
@@ -177,8 +218,12 @@ export default function AddStaffPage() {
                 onChange={handleInputChange}
                 className="w-full rounded-2xl bg-gray-50 border-gray-100 p-4 text-sm font-bold focus:ring-2 focus:ring-blue-500/20 outline-none"
               >
-                <option value="">Select</option>
-                <option value="lecturer">Lecturer</option>
+                <option value="">Select Role</option>
+                {designations.map((desig) => (
+                  <option key={desig.id} value={desig.id}>
+                    {desig.title}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -428,13 +473,20 @@ export default function AddStaffPage() {
         <div className="flex justify-center pt-8">
           <Button
             type="submit"
-            className="group relative flex items-center justify-center gap-4 rounded-full bg-secondary h-20 px-16 py-5 text-white font-semibold text-xl transition-all hover:bg-secondary/90 active:scale-[0.98] shadow-2xl shadow-secondary/20 overflow-hidden"
+            disabled={isSubmitting}
+            className="group relative flex items-center justify-center gap-4 rounded-full bg-secondary h-20 px-16 py-5 text-white font-semibold text-xl transition-all hover:bg-secondary/90 active:scale-[0.98] shadow-2xl shadow-secondary/20 overflow-hidden disabled:opacity-70"
           >
-            <FaSave
-              size={24}
-              className="group-hover:rotate-12 transition-transform"
-            />
-            Finalize Personnel Record
+            {isSubmitting ? (
+              <div className="w-6 h-6 border-b-2 border-white rounded-full animate-spin"></div>
+            ) : (
+              <FaSave
+                size={24}
+                className="group-hover:rotate-12 transition-transform"
+              />
+            )}
+            {isSubmitting
+              ? "Archiving Details..."
+              : "Finalize Personnel Record"}
             <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
           </Button>
         </div>
@@ -442,4 +494,3 @@ export default function AddStaffPage() {
     </div>
   );
 }
-

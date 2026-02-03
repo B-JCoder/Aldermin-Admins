@@ -1,42 +1,89 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaFileInvoiceDollar, FaPrint } from "react-icons/fa";
 import { PageHeader } from "@/components/common/PageHeader";
 import { Button } from "@/components/ui/button";
 import { InvoiceStats } from "@/components/modules/fees/InvoiceStats";
-import { InvoiceListTable } from "@/components/modules/fees/InvoiceListTable";
+import { DataTable } from "@/components/common/DataTable";
+import { apiService } from "@/lib/api-service";
+import { Badge } from "@/components/ui/badge";
+import { ListActionButtons } from "@/components/common/ListActionButtons";
+
+interface Invoice {
+  id: number;
+  invoiceId: string;
+  studentName: string;
+  amount: string;
+  date: string;
+  status: string;
+}
 
 export default function FeeInvoicePage() {
-  const [invoices, setInvoices] = useState([
+  const [invoices, setInvoices] = useState<Invoice[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchInvoices = async () => {
+      try {
+        const data = await apiService.fees.getCollection();
+        setInvoices(data);
+      } catch (error) {
+        console.error("Error fetching invoices:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchInvoices();
+  }, []);
+
+  const columns = [
     {
-      id: 1,
-      admissionNo: "ADM001",
-      studentName: "Marcus Aurelius",
-      amount: "5000",
-      paid: "5000",
-      dueDate: "2023-12-01",
-      status: "Paid",
+      header: "Invoice ID",
+      accessor: "invoiceId" as keyof Invoice,
+      className: "font-semibold text-secondary",
     },
     {
-      id: 2,
-      admissionNo: "ADM042",
-      studentName: "Seneca Minor",
-      amount: "5000",
-      paid: "2000",
-      dueDate: "2023-12-05",
-      status: "Partial",
+      header: "Student Name",
+      accessor: "studentName" as keyof Invoice,
+      className: "font-bold",
     },
     {
-      id: 3,
-      admissionNo: "ADM108",
-      studentName: "Epictetus Slave",
-      amount: "4500",
-      paid: "0",
-      dueDate: "2023-12-10",
-      status: "Unpaid",
+      header: "Total Amount",
+      accessor: "amount" as keyof Invoice,
     },
-  ]);
+    {
+      header: "Due Date",
+      accessor: "date" as keyof Invoice,
+    },
+    {
+      header: "Status",
+      accessor: (item: Invoice) => (
+        <Badge
+          variant={item.status === "Paid" ? "default" : "outline"}
+          className={
+            item.status === "Paid"
+              ? "bg-emerald-500 hover:bg-emerald-600"
+              : "text-amber-600 border-amber-200"
+          }
+        >
+          {item.status}
+        </Badge>
+      ),
+    },
+    {
+      header: "Actions",
+      accessor: (item: Invoice) => (
+        <ListActionButtons
+          onView={() => console.log("View", item.id)}
+          onEdit={() => console.log("Edit", item.id)}
+          onDelete={() => setInvoices(invoices.filter((i) => i.id !== item.id))}
+        />
+      ),
+      className: "text-center",
+      headerClassName: "text-center",
+    },
+  ];
 
   return (
     <div className="container mx-auto space-y-8 pb-10">
@@ -47,11 +94,11 @@ export default function FeeInvoicePage() {
           <div className="flex items-center gap-2">
             <Button
               variant="outline"
-              className="rounded-xl border-secondary/20 text-secondary font-semibold text-[10px]   hover:bg-secondary hover:text-white transition-all shadow-sm px-6 h-12"
+              className="rounded-xl border-secondary/20 text-secondary font-semibold text-[10px] hover:bg-secondary hover:text-white transition-all shadow-sm px-6 h-12"
             >
               <FaPrint className="mr-2" /> Export
             </Button>
-            <Button className="rounded-xl bg-secondary text-white hover:bg-secondary/90 transition-all shadow-lg shadow-secondary/10 text-[10px] font-semibold   px-6 h-12">
+            <Button className="rounded-xl bg-secondary text-white hover:bg-secondary/90 transition-all shadow-lg shadow-secondary/10 text-[10px] font-semibold px-6 h-12">
               <FaFileInvoiceDollar className="mr-2" /> New Invoice
             </Button>
           </div>
@@ -60,7 +107,14 @@ export default function FeeInvoicePage() {
 
       <InvoiceStats />
 
-      <InvoiceListTable invoices={invoices} />
+      <DataTable
+        data={invoices}
+        columns={columns}
+        searchKey="studentName"
+        searchPlaceholder="Search invoices by student name..."
+        title="Revenue Ledger"
+        isLoading={isLoading}
+      />
     </div>
   );
 }

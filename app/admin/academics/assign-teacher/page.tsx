@@ -1,29 +1,59 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { AssignTeacherForm } from "@/components/modules/academics/AssignTeacherForm";
-import { AssignTeacherList } from "@/components/modules/academics/AssignTeacherList";
 import { Button } from "@/components/ui/button";
 import { FaPlus } from "react-icons/fa";
+import { DataTable } from "@/components/common/DataTable";
+import { apiService } from "@/lib/api-service";
+import { ListActionButtons } from "@/components/common/ListActionButtons";
 
-const classes = ["Class 1", "Class 2", "Class 3"];
-const sections = ["A", "B", "C"];
-const teachers = ["John Doe", "Sarah Smith", "Michael Lee"];
+interface AssignedTeacher {
+  id: number;
+  class: string;
+  section: string;
+  teacher: string;
+}
 
 export default function AssignClassTeacherPage() {
+  const [assignedTeachers, setAssignedTeachers] = useState<AssignedTeacher[]>(
+    [],
+  );
+  const [isLoading, setIsLoading] = useState(true);
+  const [options, setOptions] = useState({
+    classes: [] as string[],
+    sections: [] as string[],
+    teachers: [] as string[],
+  });
+
   const [selectedClass, setSelectedClass] = useState("");
   const [selectedSection, setSelectedSection] = useState("");
   const [selectedTeacher, setSelectedTeacher] = useState("");
 
-  const [assignedTeachers, setAssignedTeachers] = useState([
-    {
-      id: 1,
-      class: "Class 1",
-      section: "A",
-      teacher: "John Doe",
-    },
-  ]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [assignments, classes, sections, staff] = await Promise.all([
+          apiService.academics.getTeacherAssignments(),
+          apiService.academics.getClasses(),
+          apiService.academics.getSections(),
+          apiService.hr.getStaff(),
+        ]);
+        setAssignedTeachers(assignments as AssignedTeacher[]);
+        setOptions({
+          classes: classes as string[],
+          sections: sections as string[],
+          teachers: (staff as any[]).map((s) => s.name),
+        });
+      } catch (error) {
+        console.error("Error fetching assignments:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +62,7 @@ export default function AssignClassTeacherPage() {
     setAssignedTeachers([
       ...assignedTeachers,
       {
-        id: assignedTeachers.length + 1,
+        id: Math.random(),
         class: selectedClass,
         section: selectedSection,
         teacher: selectedTeacher,
@@ -45,19 +75,46 @@ export default function AssignClassTeacherPage() {
     setSelectedTeacher("");
   };
 
-  const handleDelete = (id: number) => {
-    if (confirm("Are you sure you want to delete this record?")) {
-      setAssignedTeachers(assignedTeachers.filter((t) => t.id !== id));
-    }
-  };
+  const columns = [
+    {
+      header: "Institutional Class",
+      accessor: "class" as keyof AssignedTeacher,
+      className: "font-semibold text-foreground",
+    },
+    {
+      header: "Logical Section",
+      accessor: "section" as keyof AssignedTeacher,
+      className: "font-bold text-secondary",
+    },
+    {
+      header: "Faculty In-Charge",
+      accessor: "teacher" as keyof AssignedTeacher,
+      className: "italic text-gray-500",
+    },
+    {
+      header: "Action",
+      accessor: (item: AssignedTeacher) => (
+        <ListActionButtons
+          onEdit={() => console.log("Edit", item.id)}
+          onDelete={() =>
+            setAssignedTeachers(
+              assignedTeachers.filter((t) => t.id !== item.id),
+            )
+          }
+        />
+      ),
+      className: "text-right",
+      headerClassName: "text-right",
+    },
+  ];
 
   return (
-    <div className="container mx-auto space-y-8">
+    <div className="container mx-auto space-y-8 pb-10">
       <PageHeader
         title="Class Teacher Allocation"
         subtitle="Academics Management"
         action={
-          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold  text-[10px]  shadow-lg shadow-secondary/10 transition-all">
+          <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 py-6 px-6 rounded-xl font-bold text-[10px] shadow-lg shadow-secondary/10 transition-all">
             <FaPlus /> Assign Teacher
           </Button>
         }
@@ -65,7 +122,7 @@ export default function AssignClassTeacherPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* FORM */}
-        <div className="lg:col-span-4 h-full">
+        <div className="lg:col-span-4 h-full sticky top-8">
           <AssignTeacherForm
             selectedClass={selectedClass}
             setSelectedClass={setSelectedClass}
@@ -74,17 +131,21 @@ export default function AssignClassTeacherPage() {
             selectedTeacher={selectedTeacher}
             setSelectedTeacher={setSelectedTeacher}
             handleSubmit={handleSubmit}
-            classes={classes}
-            sections={sections}
-            teachers={teachers}
+            classes={options.classes}
+            sections={options.sections}
+            teachers={options.teachers}
           />
         </div>
 
         {/* TABLE */}
         <div className="lg:col-span-8 h-full">
-          <AssignTeacherList
-            assignedTeachers={assignedTeachers}
-            handleDelete={handleDelete}
+          <DataTable
+            data={assignedTeachers}
+            columns={columns}
+            searchKey="teacher"
+            searchPlaceholder="Filter by teacher..."
+            title="Institutional Faculty Matrix"
+            isLoading={isLoading}
           />
         </div>
       </div>

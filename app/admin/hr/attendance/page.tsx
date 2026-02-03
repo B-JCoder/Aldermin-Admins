@@ -1,18 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PageHeader } from "@/components/common/PageHeader";
-import { ListToolbar } from "@/components/common/ListToolbar";
-import { ListPagination } from "@/components/common/ListPagination";
-import { AdminCard } from "@/components/common/AdminCard";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import {
   FaUserCheck,
@@ -22,65 +11,148 @@ import {
   FaTimesCircle,
   FaRunning,
 } from "react-icons/fa";
+import { DataTable } from "@/components/common/DataTable";
+import { apiService } from "@/lib/api-service";
+import { AdminCard } from "@/components/common/AdminCard";
+
+interface AttendanceRecord {
+  id: number;
+  name: string;
+  staffId: string;
+  role: string;
+  status: string;
+  clockIn: string;
+  clockOut: string;
+}
 
 export default function StaffAttendancePage() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5;
-  const [attendanceDate, setAttendanceDate] = useState("2023-12-14");
+  const [attendanceDate, setAttendanceDate] = useState(
+    new Date().toISOString().split("T")[0],
+  );
+  const [attendanceData, setAttendanceData] = useState<AttendanceRecord[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [attendanceList, setAttendanceList] = useState([
-    {
-      id: 1,
-      staffId: "STF001",
-      name: "Marcus Aurelius",
-      role: "Teacher",
-      status: "Present",
-      clockIn: "08:30 AM",
-      clockOut: "04:30 PM",
-    },
-    {
-      id: 2,
-      staffId: "STF008",
-      name: "Seneca Minor",
-      role: "Admin",
-      status: "Absent",
-      clockIn: "-",
-      clockOut: "-",
-    },
-    {
-      id: 3,
-      staffId: "STF012",
-      name: "Epictetus Slave",
-      role: "Librarian",
-      status: "Late",
-      clockIn: "09:12 AM",
-      clockOut: "04:30 PM",
-    },
-  ]);
+  useEffect(() => {
+    const fetchAttendance = async () => {
+      setIsLoading(true);
+      try {
+        const data = (await apiService.hr.getAttendance(attendanceDate)) as any;
+        // Map mock data and add missing fields for display
+        const mappedData = data.map((item: any) => ({
+          ...item,
+          staffId: item.staffId || `STF-0${item.id}`,
+          role: item.role || "Faculty",
+          clockIn: item.clockIn || "08:30 AM",
+          clockOut: item.clockOut || "04:30 PM",
+        }));
+        setAttendanceData(mappedData);
+      } catch (error) {
+        console.error("Error fetching attendance:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchAttendance();
+  }, [attendanceDate]);
 
   const handleStatusChange = (id: number, newStatus: string) => {
-    setAttendanceList((prev) =>
+    setAttendanceData((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, status: newStatus } : item
-      )
+        item.id === id ? { ...item, status: newStatus } : item,
+      ),
     );
   };
 
-  const filteredAttendance = attendanceList.filter(
-    (a) =>
-      a.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      a.staffId.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const totalPages = Math.ceil(filteredAttendance.length / pageSize);
-  const paginatedAttendance = filteredAttendance.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
+  const columns = [
+    {
+      header: "Staff Identity",
+      accessor: (item: AttendanceRecord) => (
+        <div>
+          <div className="font-semibold text-foreground text-sm tracking-tight leading-none mb-1">
+            {item.name}
+          </div>
+          <div className="text-[10px] font-bold text-gray-500">
+            UID: {item.staffId}
+          </div>
+        </div>
+      ),
+    },
+    {
+      header: "Functional Role",
+      accessor: (item: AttendanceRecord) => (
+        <span className="px-2 py-1 bg-secondary/10 text-secondary text-[9px] font-bold rounded border border-secondary/20">
+          {item.role}
+        </span>
+      ),
+    },
+    {
+      header: "Status Matrix",
+      accessor: (item: AttendanceRecord) => (
+        <div className="flex justify-center gap-1.5">
+          {[
+            { key: "Present", abbr: "P", color: "emerald", label: "Present" },
+            { key: "Late", abbr: "L", color: "amber", label: "Late" },
+            { key: "Absent", abbr: "A", color: "rose", label: "Absent" },
+            { key: "Half Day", abbr: "H", color: "indigo", label: "Half-Day" },
+          ].map((btn) => (
+            <button
+              key={btn.key}
+              onClick={() => handleStatusChange(item.id, btn.key)}
+              title={btn.label}
+              className={`w-8 h-8 rounded-full text-[9px] font-semibold transition-all shadow-sm ring-1 ring-inset ${
+                item.status === btn.key
+                  ? `bg-${btn.color}-500 text-white ring-${btn.color}-600`
+                  : `bg-white text-gray-500 ring-gray-100 hover:bg-${btn.color}-50/50`
+              }`}
+            >
+              {btn.abbr}
+            </button>
+          ))}
+        </div>
+      ),
+      className: "text-center",
+      headerClassName: "text-center",
+    },
+    {
+      header: "Temporal Logic",
+      accessor: (item: AttendanceRecord) => (
+        <div className="flex items-center justify-center gap-4 text-xs">
+          <div className="text-center">
+            <p className="text-[9px] font-semibold text-gray-500/40 leading-none mb-1 tracking-tighter">
+              Inbound
+            </p>
+            <p className="text-[10px] font-bold text-foreground">
+              {item.clockIn}
+            </p>
+          </div>
+          <div className="text-center">
+            <p className="text-[9px] font-semibold text-gray-500/40 leading-none mb-1 tracking-tighter">
+              Outbound
+            </p>
+            <p className="text-[10px] font-bold text-foreground">
+              {item.clockOut}
+            </p>
+          </div>
+        </div>
+      ),
+      className: "text-center",
+      headerClassName: "text-center",
+    },
+    {
+      header: "Memoranda",
+      accessor: () => (
+        <input
+          type="text"
+          placeholder="Log memoranda..."
+          className="w-full bg-white border-gray-200 rounded-xl px-3 py-2 text-[10px] focus:ring-1 focus:ring-secondary/20 outline-none transition-all placeholder:text-gray-300 font-medium"
+        />
+      ),
+      className: "w-48",
+    },
+  ];
 
   return (
-    <div className="container mx-auto space-y-8">
+    <div className="container mx-auto space-y-8 pb-10">
       <PageHeader
         title="Institutional Attendance Ledger"
         subtitle="Staff Daily Presence Tracking"
@@ -98,7 +170,7 @@ export default function StaffAttendancePage() {
                 className="pl-10 pr-4 py-3 rounded-xl bg-white border-gray-200 text-xs font-bold focus:bg-white outline-none transition-all shadow-sm"
               />
             </div>
-            <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 h-12 px-6 rounded-xl font-bold  text-[10px]  shadow-lg shadow-secondary/10 transition-all">
+            <Button className="bg-secondary hover:bg-secondary/90 text-white gap-2 h-12 px-6 rounded-xl font-bold text-[10px] shadow-lg shadow-secondary/10 transition-all">
               <FaUserCheck size={14} /> Mark All Present
             </Button>
           </div>
@@ -114,14 +186,14 @@ export default function StaffAttendancePage() {
         ].map((stat, i) => (
           <AdminCard
             key={i}
-            className={`p-6 border-none bg-gradient-to-br from-${stat.color}-500 to-${stat.color}-600 text-white shadow-xl shadow-${stat.color}-500/20`}
+            className={`p-6 border-none bg-gradient-to-br from-secondary/80 to-secondary text-white shadow-xl shadow-secondary/10`}
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[10px] font-semibold  opacity-70 ">
+                <p className="text-[10px] font-semibold opacity-70 uppercase tracking-widest">
                   {stat.label}
                 </p>
-                <h3 className="text-3xl font-semibold mt-1  tracking-tighter">
+                <h3 className="text-3xl font-semibold mt-1 tracking-tighter">
                   {stat.val}
                 </h3>
               </div>
@@ -131,149 +203,14 @@ export default function StaffAttendancePage() {
         ))}
       </div>
 
-      <div className="space-y-6 flex flex-col h-full">
-        <ListToolbar
-          searchPlaceHolder="Search staff identity..."
-          onSearch={setSearchTerm}
-          showAddButton={false}
-        />
-
-        <AdminCard className="flex-1 flex flex-col">
-          <div className="p-8 border-b border-gray-200 flex items-center justify-between">
-            <h4 className="text-xs font-semibold text-gray-500   leading-none">
-              Daily Attendance Repository
-            </h4>
-            <div className="flex items-center gap-3">
-              <span className="text-[9px] font-semibold text-gray-500  tracking-wider">
-                Categorize by:
-              </span>
-              <select className="bg-secondary/5 border-none text-[9px] font-semibold  rounded-lg px-2 py-1.5 outline-none focus:bg-secondary/10 transition-all cursor-pointer">
-                <option>Department</option>
-                <option>Functional Role</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="flex-1 overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-20">SN</TableHead>
-                  <TableHead>Staff Identity</TableHead>
-                  <TableHead>Functional Role</TableHead>
-                  <TableHead className="text-center">Status Matrix</TableHead>
-                  <TableHead className="text-center">Temporal Logic</TableHead>
-                  <TableHead className="text-center">Memoranda</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {paginatedAttendance.map((item, index) => (
-                  <TableRow key={item.id} className="group">
-                    <TableCell className=" text-xs text-gray-500 ">
-                      {(currentPage - 1) * pageSize + index + 1}
-                    </TableCell>
-                    <TableCell>
-                      <div className="font-semibold text-foreground text-sm   tracking-tight leading-none mb-1">
-                        {item.name}
-                      </div>
-                      <div className="text-[10px] font-bold text-gray-500  ">
-                        UID: {item.staffId}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <span className="px-2 py-1 bg-secondary/10 text-secondary text-[9px] font-bold rounded border border-secondary/20  ">
-                        {item.role}
-                      </span>
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex justify-center gap-1.5">
-                        {[
-                          {
-                            key: "Present",
-                            abbr: "P",
-                            color: "emerald",
-                            label: "Present",
-                          },
-                          {
-                            key: "Late",
-                            abbr: "L",
-                            color: "amber",
-                            label: "Late",
-                          },
-                          {
-                            key: "Absent",
-                            abbr: "A",
-                            color: "rose",
-                            label: "Absent",
-                          },
-                          {
-                            key: "Half Day",
-                            abbr: "H",
-                            color: "indigo",
-                            label: "Half-Day",
-                          },
-                        ].map((btn) => (
-                          <button
-                            key={btn.key}
-                            onClick={() => handleStatusChange(item.id, btn.key)}
-                            title={btn.label}
-                            className={`w-8 h-8 rounded-full text-[9px] font-semibold  transition-all shadow-sm ring-1 ring-inset ${
-                              item.status === btn.key
-                                ? `bg-${btn.color}-500 text-white ring-${btn.color}-600 shadow-${btn.color}-500/20`
-                                : `bg-white text-gray-500 ring-white/60 hover:bg-${btn.color}-500/10 hover:text-${btn.color}-600`
-                            }`}
-                          >
-                            {btn.abbr}
-                          </button>
-                        ))}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex items-center justify-center gap-4">
-                        <div className="text-center">
-                          <p className="text-[9px] font-semibold text-gray-500/40  leading-none mb-1 tracking-tighter">
-                            Inbound
-                          </p>
-                          <p className="text-[10px] font-bold text-foreground ">
-                            {item.clockIn}
-                          </p>
-                        </div>
-                        <div className="w-px h-6 bg-white/20" />
-                        <div className="text-center">
-                          <p className="text-[9px] font-semibold text-gray-500/40  leading-none mb-1 tracking-tighter">
-                            Outbound
-                          </p>
-                          <p className="text-[10px] font-bold text-foreground ">
-                            {item.clockOut}
-                          </p>
-                        </div>
-                      </div>
-                    </TableCell>
-                    <TableCell className="w-48">
-                      <input
-                        type="text"
-                        placeholder="Log memoranda..."
-                        className="w-full bg-white border-gray-200 rounded-xl px-3 py-2 text-[10px] focus:bg-white outline-none transition-all placeholder:text-gray-500/30 font-medium "
-                      />
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-
-          {filteredAttendance.length > pageSize && (
-            <ListPagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-              totalRecords={filteredAttendance.length}
-              pageSize={pageSize}
-            />
-          )}
-        </AdminCard>
-      </div>
+      <DataTable
+        data={attendanceData}
+        columns={columns}
+        searchKey="name"
+        searchPlaceholder="Search staff by name or UID..."
+        title="Daily Attendance Repository"
+        isLoading={isLoading}
+      />
     </div>
   );
 }
-

@@ -1,37 +1,67 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaCalendarCheck, FaSave } from "react-icons/fa";
 import { PersistenceFilter } from "@/components/modules/student-info/PersistenceFilter";
 import { AttendanceTable } from "@/components/modules/student-info/AttendanceTable";
 import { PageHeader } from "@/components/common/PageHeader";
 import { Button } from "@/components/ui/button";
+import { apiService } from "@/lib/api-service";
+
+interface StudentAttendance {
+  id: number;
+  admissionNo: string;
+  name: string;
+  rollNo: string;
+  status: string;
+  note: string;
+}
 
 export default function StudentAttendancePage() {
-  const [attendanceDate, setAttendanceDate] = useState("2023-12-15");
-  const [students, setStudents] = useState([
-    {
-      id: 1,
-      admissionNo: "ADM-2023-001",
-      name: "Avery Sterling",
-      rollNo: "10",
-      status: "Present",
-      note: "",
-    },
-    {
-      id: 2,
-      admissionNo: "ADM-2023-042",
-      name: "Elara Vance",
-      rollNo: "15",
-      status: "Absent",
-      note: "Medical leave",
-    },
-  ]);
+  const [attendanceDate, setAttendanceDate] = useState(
+    new Date().toISOString().split("T")[0],
+  );
+  const [students, setStudents] = useState<StudentAttendance[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    const fetchStudents = async () => {
+      setIsLoading(true);
+      try {
+        const data = (await apiService.students.getAll()) as any[];
+        const mappedData = data.map((s, idx) => ({
+          id: s.id,
+          admissionNo: s.admissionNo,
+          name: s.name,
+          rollNo: (idx + 1).toString(),
+          status: "Present",
+          note: "",
+        }));
+        setStudents(mappedData);
+      } catch (error) {
+        console.error("Error fetching students for attendance:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchStudents();
+  }, []);
 
   const toggleStatus = (id: number, nextStatus: string) => {
     setStudents(
-      students.map((s) => (s.id === id ? { ...s, status: nextStatus } : s))
+      students.map((s) => (s.id === id ? { ...s, status: nextStatus } : s)),
     );
+  };
+
+  const handleSave = async () => {
+    setIsSaving(true);
+    try {
+      await new Promise((r) => setTimeout(r, 1000));
+      alert("Attendance committed to ledger successfully!");
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -52,13 +82,13 @@ export default function StudentAttendancePage() {
                     stat === "Present"
                       ? "bg-emerald-500"
                       : stat === "Late"
-                      ? "bg-amber-500"
-                      : stat === "Absent"
-                      ? "bg-rose-500"
-                      : "bg-indigo-500"
+                        ? "bg-amber-500"
+                        : stat === "Absent"
+                          ? "bg-rose-500"
+                          : "bg-indigo-500"
                   }`}
                 ></div>
-                <span className="text-[10px] font-semibold   text-gray-500">
+                <span className="text-[10px] font-semibold text-gray-500">
                   {stat}
                 </span>
               </div>
@@ -72,15 +102,27 @@ export default function StudentAttendancePage() {
         setAttendanceDate={setAttendanceDate}
       />
 
-      <AttendanceTable students={students} toggleStatus={toggleStatus} />
+      {isLoading ? (
+        <div className="flex justify-center items-center h-40">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary"></div>
+        </div>
+      ) : (
+        <AttendanceTable students={students} toggleStatus={toggleStatus} />
+      )}
 
       <div className="flex justify-center pb-12">
         <Button
           variant="secondary"
-          className="px-12 py-6 rounded-2xl text-sm font-semibold  tracking-[0.3em] shadow-xl hover:scale-105 transition-transform"
+          onClick={handleSave}
+          disabled={isSaving || isLoading}
+          className="px-12 py-6 rounded-2xl text-sm font-semibold tracking-[0.3em] shadow-xl hover:scale-105 transition-transform"
         >
-          <FaSave size={18} className="mr-2" />
-          Commit To Ledger
+          {isSaving ? (
+            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+          ) : (
+            <FaSave size={18} className="mr-2" />
+          )}
+          {isSaving ? "COMMITING..." : "COMMIT TO LEDGER"}
         </Button>
       </div>
     </div>
